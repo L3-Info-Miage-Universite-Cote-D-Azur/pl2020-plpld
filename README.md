@@ -20,7 +20,7 @@ La liste complète des UE transversales est disponible [ici](https://lms.univ-co
 
 Ouvrir un terminal et exécuter :
 
-   1 - `git clone https://github.com/L3-Info-Miage-Universite-Cote-D-Azur/projetinfo-2019-stoneage-sag`
+   1 - `git clone https://github.com/L3-Info-Miage-Universite-Cote-D-Azur/pl2020-plpld`
    
    2 - `cd projetinfo-2019-stoneage-sag`
    
