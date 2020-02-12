@@ -14,6 +14,7 @@ Réalisation, en équipe, d'un développement Java/Android avec interface graphi
 *Le client désire déployer une application Android autour du choix des cours dans le nouveau portail "Sciences et Technologies" de la licence (informatique) à Valrose.*
 
 La liste complète des cours est disponible [ici](https://lms.univ-cotedazur.fr/pluginfile.php/112034/course/section/17947/listes%20des%20cours%20semestre%201%20%C3%A0%204.xlsx).
+
 La liste complète des UE transversales est disponible [ici](https://lms.univ-cotedazur.fr/pluginfile.php/112034/course/section/17947/plaquette_competences_transversales.pdf).
 
 ## Usage
