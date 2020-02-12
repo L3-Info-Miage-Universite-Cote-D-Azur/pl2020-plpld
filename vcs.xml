@@ -6,8 +6,12 @@
           <option name="url" value="https://github.com/L3-Info-Miage-Universite-Cote-D-Azur/pl2020-plpld.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/L3-Info-Miage-Universite-Cote-D-Azur/pl2020-plpld/" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
-    <option name="cloneParentDir" value="C:\Users\Florian\Desktop" />
+    <option name="cloneParentDir" value="C:\Users\Florian\OneDrive - Université Nice Sophia Antipolis\L3\Projet licence" />
   </component>
 </application>
