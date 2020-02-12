@@ -22,7 +22,7 @@ Ouvrir un terminal et exécuter :
 
    1 - `git clone https://github.com/L3-Info-Miage-Universite-Cote-D-Azur/pl2020-plpld`
    
-   2 - `cd projetinfo-2019-stoneage-sag`
+   2 - `cd pl2020-plpld`
    
    3 - `mvn clean install`   
    
