@@ -36,6 +36,6 @@ Ouvrir un terminal et exécuter :
 
 > Côté serveur, il faut pouvoir fournir la liste des cours, enregistrer des "parcours" et les fournir.
 
-> Prendre en compte l'évolution 1 du sujet (à déterminer) le 11 mars 2020
+> Prendre en compte l'évolution 1 du sujet (à déterminer) le 11 mars 2020.
 
-> Prendre en compte l'évolution 2 du sujet (à déterminer) le 1er avril 2020
+> Prendre en compte l'évolution 2 du sujet (à déterminer) le 1er avril 2020.
