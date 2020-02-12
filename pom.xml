@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ExempleUnitTest-2019-01</groupId> <!-- à changer par le nom du groupe -->
-    <artifactId>ExempleUnitTest</artifactId> <!-- et le nom du projet -->
+    <groupId>PLPLD</groupId> <!-- à changer par le nom du groupe -->
+    <artifactId>Projet Informatique : Groupe PLPLD</artifactId> <!-- et le nom du projet -->
     <version>1.0</version>
 
 
