@@ -1,13 +1,15 @@
-package reseau;
+package com.example.androidapp.reseau;
 
 import com.example.androidapp.controleur.EcouteurDeReseau;
 
 
 import java.net.URISyntaxException;
 
-import constantes.NET;
-import io.netty.channel.unix.Socket;
+import java.net.URISyntaxException;
+
+import constantes.Net;
 import io.socket.client.IO;
+import io.socket.client.Socket;
 import metier.ToJSON;
 
 public class Connexion {
@@ -24,7 +26,7 @@ public class Connexion {
 
             EcouteurDeReseau net = new EcouteurDeReseau();
 
-            mSocket.on(NET.VALEUR_CPT, net);
+            mSocket.on(Net.VALEUR_CPT, net);
 
         } catch (URISyntaxException e) {
             e.printStackTrace();
