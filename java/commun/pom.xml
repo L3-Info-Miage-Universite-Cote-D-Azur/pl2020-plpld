@@ -5,34 +5,92 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>client-serveur</groupId>
-        <artifactId>client-serveur</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <groupId>PLPLD</groupId> <!-- à changer par le nom du groupe -->
+        <artifactId>Projet-Licence-PLPLD</artifactId> <!-- et le nom du projet -->
+        <version>1.0</version>
     </parent>
 
-    <artifactId>commun</artifactId>
+    <artifactId>commun</artifactId> <!-- et le nom du projet -->
     <version>1.0</version>
 
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> <!-- éventuellement à changer : encodage de vos fichiers -->
-        <compiler.source>13</compiler.source> <!-- éventuellement à changer : version de java (sdk) utilisée pour le développement -->
-        <compiler.target>13</compiler.target> <!-- éventuellement à changer : version de java pour l'utilisateur -->
-    </properties>
 
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>  <!-- éventuellement à changer : localisation des fichiers sources -->
-
-
+        <!--  <testSourceDirectory>src/test</testSourceDirectory> éventuellement à changer : localisation des fichiers sources des tests -->
         <plugins>
+
+
+            <!-- pour que maven lance les tests junit 5 -->
+
+
+
+            <!-- la génération de la  javadoc s'utilise avec "mvn site" -->
+
+
+            <plugin>
+
+
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <show>package</show>
+                    <nohelp>true</nohelp>
+                    <encoding>utf-8</encoding> <!-- éventuellement à changer : encodage de vos fichiers -->
+                    <charset>utf-8</charset> <!-- éventuellement à changer : encodage de vos fichiers -->
+                    <docencoding>utf-8</docencoding>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>javadoc</id>
+                        <goals>
+                            <goal>javadoc</goal>
+                        </goals>
+                        <phase>site</phase>
+                        <configuration>
+                            <!-- <overview>${basedir}/src/main/java/jeu421/overview.html</overview> --><!-- à changer : selon que vous avez des descriptions du projet et des packages -->
+                            <!-- endroit où seront les fichiers html générés ! attention au .gitignore ! -->
+                            <!-- ici, c'est dans src/main/apidocs -->
+                            <outputDirectory>${basedir}/src/main/</outputDirectory>
+                            <reportOutputDirectory>${basedir}/src/main/</reportOutputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test-javadoc</id>
+                        <goals>
+                            <goal>test-javadoc</goal>
+                        </goals>
+                        <phase>site</phase>
+                        <configuration>
+                            <!-- endroit où seront les fichiers html générés ! attention au .gitignore ! -->
+                            <!-- ici, c'est dans src/test/apidocs -->
+                            <reportOutputDirectory>${basedir}/src/test/</reportOutputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+
+            </plugin>
+
+
+
+
 
 
 
         </plugins>
     </build>
 
+
     <dependencies>
-        
+        <dependency>
+            <!-- https://mvnrepository.com/artifact/org.json/json -->
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20190722</version>
+        </dependency>
     </dependencies>
+
 
 </project>
