@@ -1,19 +1,15 @@
 package controleur;
 import android.util.Log;
-import android.view.View;
 
 import com.example.androidapp.MainActivity;
-import com.example.androidapp.R;
 import com.example.androidapp.reseau.Connexion;
-import com.example.androidapp.vue.Vue;
 
-import constantes.NET;
+import static constantes.NET;
 import io.socket.client.Socket;
 
-public class EcouteurDeBouton implements View.OnClickListener {
+public class EcouteurDeBouton {
 
     private final Connexion mSocket;
-    private final Vue vue;
 
 
 

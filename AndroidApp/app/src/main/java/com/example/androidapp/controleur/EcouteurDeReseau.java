@@ -3,7 +3,6 @@ package controleur;
 import android.util.Log;
 
 import com.example.androidapp.MainActivity;
-import com.example.androidapp.vue.Vue;
 
 import io.socket.emitter.Emitter;
 
