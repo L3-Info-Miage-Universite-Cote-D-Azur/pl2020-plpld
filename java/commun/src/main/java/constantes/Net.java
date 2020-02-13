@@ -1,5 +1,4 @@
 package constantes;
-
 /**
  * constante pour définir les messages entre le client et le serveur
  */
