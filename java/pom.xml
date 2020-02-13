@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>PRG</PLPLD> <!-- à changer par le nom du groupe -->
-    <artifactId>ProjetPro</artifactId> <!-- et le nom du projet -->
+    <groupId>PLPLD</groupId> <!-- à changer par le nom du groupe -->
+    <artifactId>Projet-Licence-PLPLD</artifactId> <!-- et le nom du projet -->
     <version>1.0</version>
 	
 	<modules>
@@ -19,8 +19,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> <!-- éventuellement à changer : encodage de vos fichiers -->
-        <compiler.source>1.8</compiler.source> <!-- éventuellement à changer : version de java (sdk) utilisée pour le développement -->
-        <compiler.target>1.8</compiler.target> <!-- éventuellement à changer : version de java pour l'utilisateur -->
+        <compiler.source>13</compiler.source> <!-- éventuellement à changer : version de java (sdk) utilisée pour le développement -->
+        <compiler.target>13</compiler.target> <!-- éventuellement à changer : version de java pour l'utilisateur -->
 
 
     </properties>
