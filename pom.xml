@@ -5,9 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>PLPLD</groupId> <!-- à changer par le nom du groupe -->
-    <artifactId>Projet Informatique : Groupe PLPLD</artifactId> <!-- et le nom du projet -->
+    <artifactId>Projet-Licence-PLPLD</artifactId> <!-- et le nom du projet -->
     <version>1.0</version>
-
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> <!-- éventuellement à changer : encodage de vos fichiers -->
