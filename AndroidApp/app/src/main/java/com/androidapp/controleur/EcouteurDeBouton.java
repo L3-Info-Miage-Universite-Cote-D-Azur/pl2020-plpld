@@ -2,11 +2,10 @@ package com.androidapp.controleur;
 import android.util.Log;
 import android.view.View;
 
-import com.androidapp.MainActivity;
+import com.androidapp.*;
 import com.androidapp.R;
 import com.androidapp.reseau.Connexion;
 
-import constantes.Net;
 import io.socket.client.Socket;
 
 public class EcouteurDeBouton {

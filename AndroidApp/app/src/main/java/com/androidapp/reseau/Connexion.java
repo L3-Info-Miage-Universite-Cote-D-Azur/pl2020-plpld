@@ -1,16 +1,16 @@
 package com.androidapp.reseau;
 
-import com.androidapp.controleur.EcouteurDeReseau;
+import com.androidapp.controleur.*;
 
 
 import java.net.URISyntaxException;
 
 import java.net.URISyntaxException;
 
-import constantes.Net;
+import com.androidapp.reseau.Net;
 import io.socket.client.IO;
 import io.socket.client.Socket;
-import metier.ToJSON;
+import com.androidapp.reseau.ToJSON;
 
 public class Connexion {
 
