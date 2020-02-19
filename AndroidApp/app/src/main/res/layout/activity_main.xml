@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -20,23 +19,26 @@
         android:background="#000000"
         android:backgroundTint="#000000"></View>
 
-    <CheckBox
-        android:id="@+id/checkboxInformatique"
-        android:layout_width="358dp"
-        android:layout_height="125dp"
-        android:text="Mathématiques"></CheckBox>
-
-    <CheckBox
-        android:id="@+id/checkboxPhysique"
-        android:layout_width="358dp"
-        android:layout_height="125dp"
-        android:text="Physique"></CheckBox>
-
-    <CheckBox
-        android:id="@+id/checkboxInformatique"
-        android:layout_width="358dp"
-        android:layout_height="125dp"
-        android:text="Informatique"></CheckBox>
+    <RadioGroup
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="vertical">
+        <RadioButton
+            android:id="@+id/matiereMaths"
+            android:layout_width="wrap_content"
+            android:layout_height="125dp"
+            android:text="Mathématiques"/>
+        <RadioButton
+            android:id="@+id/matierePhysique"
+            android:layout_width="wrap_content"
+            android:layout_height="125dp"
+            android:text="Physique"/>
+        <RadioButton
+            android:id="@+id/matiereInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="125dp"
+            android:text="Informatique"/>
+    </RadioGroup>
 
     <Button
         android:id="@+id/buttonValider"
