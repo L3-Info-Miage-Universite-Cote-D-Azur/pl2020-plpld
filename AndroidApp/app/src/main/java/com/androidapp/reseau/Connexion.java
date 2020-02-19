@@ -1,21 +1,19 @@
 package com.androidapp.reseau;
-
-import com.androidapp.controleur.*;
-
-
 import java.net.URISyntaxException;
 
-import java.net.URISyntaxException;
-
-import com.androidapp.reseau.Net;
 import io.socket.client.IO;
 import io.socket.client.Socket;
-import com.androidapp.reseau.ToJSON;
+import com.androidapp.controleur.*;
+import com.androidapp.vue.Vue;
 
 public class Connexion {
 
 
+    private Vue vue;
 
+    public Connexion(Vue vue) {
+        setVue(vue);
+    }
 
     private Socket mSocket;
 
@@ -24,7 +22,7 @@ public class Connexion {
         try {
             mSocket = IO.socket("http://10.0.2.2:10101");
 
-            EcouteurDeReseau net = new EcouteurDeReseau();
+            EcouteurDeReseau net = new EcouteurDeReseau(getVue());
 
             mSocket.on(Net.VALEUR_CPT, net);
 
@@ -45,6 +43,13 @@ public class Connexion {
 
 
 
+    public void setVue(Vue vue) {
+        this.vue = vue;
+    }
+
+    public Vue getVue() {
+        return vue;
+    }
 
     public void disconnect() {
         if (mSocket != null) mSocket.disconnect();
