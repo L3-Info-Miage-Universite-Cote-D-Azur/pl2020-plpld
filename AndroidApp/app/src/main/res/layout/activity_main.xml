@@ -21,19 +21,19 @@
         android:backgroundTint="#000000"></View>
 
     <CheckBox
-        android:id="@+id/checkbox_meat"
+        android:id="@+id/checkboxInformatique"
         android:layout_width="358dp"
         android:layout_height="125dp"
         android:text="Mathématiques"></CheckBox>
 
     <CheckBox
-        android:id="@+id/checkbox_cheese"
+        android:id="@+id/checkboxPhysique"
         android:layout_width="358dp"
         android:layout_height="125dp"
         android:text="Physique"></CheckBox>
 
     <CheckBox
-        android:id="@+id/checkbox_cheese"
+        android:id="@+id/checkboxInformatique"
         android:layout_width="358dp"
         android:layout_height="125dp"
         android:text="Informatique"></CheckBox>
