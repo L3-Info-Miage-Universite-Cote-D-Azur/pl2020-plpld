@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements Vue{
         if (autoconnect) {
             setConnexion(new Connexion(this));
         }
-        bouton = findViewById(R.id.button);
+        bouton = findViewById(R.id.buttonValider);
         if (autoconnect) {
             initVue();
         }
