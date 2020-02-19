@@ -17,6 +17,8 @@ La liste complète des cours est disponible [ici](https://lms.univ-cotedazur.fr/
 
 La liste complète des UE transversales est disponible [ici](https://lms.univ-cotedazur.fr/pluginfile.php/112034/course/section/17947/plaquette_competences_transversales.pdf).
 
+Les deux fiches décompositions par UE et ECUE sont disponibles [ici](https://lms.univ-cotedazur.fr/pluginfile.php/251642/mod_folder/content/0/1A-Portail.pdf?forcedownload=1) et [ici](https://lms.univ-cotedazur.fr/pluginfile.php/251642/mod_folder/content/0/2A-Portail.pdf?forcedownload=1).
+
 ## Usage
 
 Ouvrir un terminal et exécuter :
