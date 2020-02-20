@@ -2,6 +2,7 @@ package com.androidapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.Button;
@@ -68,4 +69,25 @@ public class MainActivity extends AppCompatActivity implements Vue{
         connexion.envoyerMessage(Net.CONNEXION, monIdentité);
     }
 
+    public void onRadioButtonClick(View v) {
+        switch (v.getId()) {
+            case R.id.matiereMaths:
+                Log.d("POUR MONTRER", "on a cliqué sur maths");
+                break;
+            case R.id.matiereInfo:
+                Log.d("POUR MONTRER", "on a cliqué sur info");
+                break;
+            case R.id.matierePhysique:
+                Log.d("POUR MONTRER", "on a cliqué sur physique");
+                break;
+        }
+    }
+
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.buttonValider:
+                Log.d("POUR MONTRER", "on a cliqué");
+                break;
+        }
+    }
 }

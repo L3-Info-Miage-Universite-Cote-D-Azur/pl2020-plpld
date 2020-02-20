@@ -20,24 +20,30 @@
         android:backgroundTint="#000000"></View>
 
     <RadioGroup
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <RadioButton
             android:id="@+id/matiereMaths"
             android:layout_width="wrap_content"
             android:layout_height="125dp"
-            android:text="Mathématiques"/>
+            android:text="Mathématiques"
+            android:onClick="onRadioButtonClick"/>
+
         <RadioButton
             android:id="@+id/matierePhysique"
             android:layout_width="wrap_content"
             android:layout_height="125dp"
-            android:text="Physique"/>
+            android:text="Physique"
+            android:onClick="onRadioButtonClick"/>
+
         <RadioButton
             android:id="@+id/matiereInfo"
             android:layout_width="wrap_content"
             android:layout_height="125dp"
-            android:text="Informatique"/>
+            android:text="Informatique"
+            android:onClick="onRadioButtonClick"/>
     </RadioGroup>
 
     <Button
