@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements Vue{
         EcouteurDeBouton ecouteur = new EcouteurDeBouton(this, connexion);
         // création de l'écouteur (le controleur)
         bouton.setOnClickListener(ecouteur);
+
         connexion.démarrerÉcoute();
         connexion.envoyerMessage(Net.CONNEXION, monIdentité);
     }
@@ -73,12 +74,18 @@ public class MainActivity extends AppCompatActivity implements Vue{
         switch (v.getId()) {
             case R.id.matiereMaths:
                 Log.d("POUR MONTRER", "on a cliqué sur maths");
+                connexion.envoyerMessage(Net.CHOIX,new Matiere("Mathématiques"));
+
                 break;
             case R.id.matiereInfo:
                 Log.d("POUR MONTRER", "on a cliqué sur info");
+                connexion.envoyerMessage(Net.CHOIX,new Matiere("Informatique"));
+
                 break;
             case R.id.matierePhysique:
                 Log.d("POUR MONTRER", "on a cliqué sur physique");
+                connexion.envoyerMessage(Net.CHOIX,new Matiere("Physique"));
+
                 break;
         }
     }
@@ -87,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements Vue{
         switch (v.getId()) {
             case R.id.buttonValider:
                 Log.d("POUR MONTRER", "on a cliqué");
+                connexion.envoyerMessage(Net.CHOIX,);
                 break;
         }
     }
