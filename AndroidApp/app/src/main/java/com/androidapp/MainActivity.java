@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements Vue{
         switch (v.getId()) {
             case R.id.buttonValider:
                 Log.d("POUR MONTRER", "on a cliqué");
-                connexion.envoyerMessage(Net.CHOIX,);
+               // connexion.envoyerMessage(Net.CHOIX,);
                 break;
         }
     }
