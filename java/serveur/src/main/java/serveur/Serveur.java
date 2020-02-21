@@ -5,7 +5,9 @@ import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.DataListener;
+import constantes.Net;
 import metier.Identité;
+import metier.Matiere;
 
 import static constantes.Net.*;
 
@@ -37,14 +39,30 @@ public class Serveur {
             public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) throws Exception {
                 nouveauClient(socketIOClient, id);
             }
+
+
         });
+        this.server.addEventListener(CHOIX, Matiere.class, new DataListener<Matiere>() {
+            @Override
+            public void onData(SocketIOClient socketIOClient, Matiere matiere, AckRequest ackRequest) throws Exception {
+
+                nouveauChoix(socketIOClient,matiere);
+            }
+        });
+    }
+
+    private void nouveauChoix(SocketIOClient socketIOClient, Matiere matiere) {
+
+        System.out.println(matiere.toString());
+        socketIOClient.sendEvent(CHOIX,matiere.toString());
 
     }
 
     protected void nouveauClient(SocketIOClient socketIOClient, Identité id) {
         // map.put(id, socketIOClient);
+        String str = new String("Bienvenue");
         System.out.println(id+" vient de se connecter");
-        socketIOClient.sendEvent("Bienvenue sur le portail pour la selection des cours de la licence sciences et technologies"," ");
+        socketIOClient.sendEvent("Test event bienvenue",str);
     }
 
     private void démarrer() {
