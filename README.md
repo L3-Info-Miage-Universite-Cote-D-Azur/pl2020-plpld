@@ -21,16 +21,25 @@ Les deux fiches décompositions par UE et ECUE sont disponibles [ici](https://lm
 
 ## Usage
 
-Ouvrir un terminal et exécuter :
+Pour démarrer le serveur : lancer un terminal et exécuter :
 
    1 - `git clone https://github.com/L3-Info-Miage-Universite-Cote-D-Azur/pl2020-plpld`
    
-   2 - `cd pl2020-plpld`
+   2 - `cd pl2020-plpld/java`
    
    3 - `mvn clean install`   
    
    4 - `mvn exec:java`
+   
+ Pour démarrer l'application Android :
 
+   5 - `Lancer Android Studio`
+   
+   6 - `Ouvrir pl2020-plpld/AndroidApp`
+   
+   7 - `Construire l'apk et l'exécuter depuis un émulateur ou un smartphone Android`
+   
+   # Note importante : l'émulateur ou le smartphone doit impérativement tourner sous Android 9 (API level 28) ou + 
             
                  
 
