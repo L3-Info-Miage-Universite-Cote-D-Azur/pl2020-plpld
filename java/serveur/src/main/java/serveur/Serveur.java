@@ -27,35 +27,38 @@ public class Serveur {
 
         Serveur s = new Serveur(server);
         s.démarrer();
-
     }
 
-    public Serveur(SocketIOServer server) {
 
+    String selectionMatiere;
+    public Serveur(SocketIOServer server) {
         this.server = server;
 
-        this.server.addEventListener(CONNEXION, Identité.class, new DataListener<Identité>() {
+        this.server.addEventListener(CONNEXION, Identité.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) throws Exception {
                 nouveauClient(socketIOClient, id);
             }
-
-
         });
-        this.server.addEventListener(CHOIX, Matiere.class, new DataListener<Matiere>() {
+
+        this.server.addEventListener(CHOIX, Matiere.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Matiere matiere, AckRequest ackRequest) throws Exception {
-
                 nouveauChoix(socketIOClient,matiere);
+            }
+        });
+
+        this.server.addEventListener(VALIDATION, Matiere.class, new DataListener<>() {
+            @Override
+            public void onData(SocketIOClient socketIOClient, Matiere matiere, AckRequest ackRequest) throws Exception {
+                validation(socketIOClient, matiere);
             }
         });
     }
 
-    private void nouveauChoix(SocketIOClient socketIOClient, Matiere matiere) {
-
+    protected void nouveauChoix(SocketIOClient socketIOClient, Matiere matiere) {
         System.out.println(matiere.toString());
-        socketIOClient.sendEvent(CHOIX,matiere.toString());
-
+        socketIOClient.sendEvent(CHOIX, matiere.toString());
     }
 
     protected void nouveauClient(SocketIOClient socketIOClient, Identité id) {
@@ -65,9 +68,13 @@ public class Serveur {
         socketIOClient.sendEvent("Test event bienvenue",str);
     }
 
+    protected void validation(SocketIOClient socketIOClient, Matiere matiere) {
+        selectionMatiere = matiere.toString();
+        System.out.println("Votre sélection (" + selectionMatiere +") a été enregistrée.");
+        socketIOClient.sendEvent(VALIDATION, matiere.toString());
+    }
+
     private void démarrer() {
         server.start();
     }
-
-
 }

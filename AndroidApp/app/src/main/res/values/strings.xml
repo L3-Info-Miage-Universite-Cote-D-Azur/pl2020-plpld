@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">AndroidApp</string>
+    <string name="Maths">Mathématiques</string>
+    <string name="Physique">Physique</string>
+    <string name="Informatique">Informatique</string>
 </resources>

@@ -2,8 +2,12 @@ package com.androidapp.controleur;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.androidapp.MainActivity;
+import com.androidapp.reseau.*;
 import com.androidapp.R;
 import com.androidapp.reseau.*;
 import com.androidapp.vue.*;
@@ -25,10 +29,10 @@ public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonValider:
-                Log.d("POUR MONTRER", "on a cliqué");
+                Log.d("POUR MONTRER", "EcouteurDeBouton : bouton valider cliqué");
                 break;
         }
-        mSocket.envoyer(Net.AJOUTER);
+        mSocket.envoyerMessage(Net.VALIDATION, new Matiere(vue.selection()));
+        vue.displayMsg("Votre choix a été transmis au serveur");
     }
 }
-

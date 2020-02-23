@@ -37,7 +37,6 @@ public class Connexion {
     }
 
     public void envoyerMessage(String msg, ToJSON obj) {
-
         mSocket.emit(msg, obj);
     }
 
