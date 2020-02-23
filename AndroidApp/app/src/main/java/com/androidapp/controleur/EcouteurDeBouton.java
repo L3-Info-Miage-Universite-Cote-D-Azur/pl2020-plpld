@@ -30,9 +30,13 @@ public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickL
         switch (v.getId()) {
             case R.id.buttonValider:
                 Log.d("POUR MONTRER", "EcouteurDeBouton : bouton valider cliqué");
+                if (vue.selection()==null)
+                    vue.displayMsg("Selection invalide (veuillez cocher une matière parmi les choix proposés)");
+                else {
+                    mSocket.envoyerMessage(Net.VALIDATION, new Matiere(vue.selection()));
+                    vue.displayMsg("Votre choix a été transmis au serveur");
+                }
                 break;
         }
-        mSocket.envoyerMessage(Net.VALIDATION, new Matiere(vue.selection()));
-        vue.displayMsg("Votre choix a été transmis au serveur");
     }
 }

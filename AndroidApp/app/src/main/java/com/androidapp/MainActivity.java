@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements Vue {
     public String selection() {
         RadioGroup radioMatiereGroup = (RadioGroup) findViewById(R.id.radioMatiere);
         int selectedId = radioMatiereGroup.getCheckedRadioButtonId();
+        if(selectedId==-1) return null;
         RadioButton radioMatiereButton = (RadioButton) findViewById(selectedId);
         return radioMatiereButton.getText().toString();
     }
