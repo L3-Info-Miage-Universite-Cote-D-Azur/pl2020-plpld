@@ -39,7 +39,7 @@ Pour démarrer le serveur : lancer un terminal et exécuter :
    
    7 - `Construire l'apk et l'exécuter depuis un émulateur ou un smartphone Android`
    
-   # Note importante : l'émulateur ou le smartphone doit impérativement tourner sous Android 9 (API level 28) ou + 
+   ### Note importante : l'émulateur ou le smartphone doit impérativement tourner sous Android 9 (API level 28) ou + 
             
                  
 
