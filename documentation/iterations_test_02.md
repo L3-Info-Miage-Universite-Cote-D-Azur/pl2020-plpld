@@ -3,5 +3,5 @@
 ## Avancement des tests
 Les tests unitaires sur les classes "Identité" et "Matières" ont été effectué.
 
-# Stratégie de test
+## Stratégie de test
 Initialisation des matières et des identités avec différents noms puis vérification que l'initialisation s'est bien effectuée.
