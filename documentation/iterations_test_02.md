@@ -1,3 +1,7 @@
+# Bilan des tests unitaires [Iteration 2](https://github.com/L3-Info-Miage-Universite-Cote-D-Azur/pl2020-plpld/milestone/2)
 
-- Nous avons fait des tests basique sur les classes "Identité" et "Matières" : 
-    On initialisent les matières et les identités avec differents noms et a vide, puis nous vérifions si les leurs noms est bien celui avec lequel elles ont été initialisé.
+## Avancement des tests
+Les tests unitaires sur les classes "Identité" et "Matières" ont été effectué.
+
+# Stratégie de test
+Initialisation des matières et des identités avec différents noms puis vérification que l'initialisation s'est bien effectuée.
