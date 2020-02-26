@@ -25,6 +25,7 @@ public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickL
         this.mSocket = mSocket;
     }
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -33,7 +34,7 @@ public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickL
                 if (vue.selection()==null)
                     vue.displayMsg("Selection invalide (veuillez cocher une matière parmi les choix proposés)");
                 else {
-                    mSocket.envoyerMessage(Net.VALIDATION, new Matiere(vue.selection()));
+                    mSocket.envoyerMessage(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
                     vue.displayMsg("Votre choix a été transmis au serveur");
                 }
                 break;

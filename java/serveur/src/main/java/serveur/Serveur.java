@@ -6,8 +6,11 @@ import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.DataListener;
 import constantes.Net;
+import metier.ChoixUtilisateur;
 import metier.Identité;
 import metier.Matiere;
+
+import java.util.List;
 
 import static constantes.Net.*;
 
@@ -29,8 +32,6 @@ public class Serveur {
         s.démarrer();
     }
 
-
-    String selectionMatiere;
     public Serveur(SocketIOServer server) {
         this.server = server;
 
@@ -48,10 +49,10 @@ public class Serveur {
             }
         });
 
-        this.server.addEventListener(VALIDATION, Matiere.class, new DataListener<>() {
+        this.server.addEventListener(VALIDATION, ChoixUtilisateur.class, new DataListener<>() {
             @Override
-            public void onData(SocketIOClient socketIOClient, Matiere matiere, AckRequest ackRequest) throws Exception {
-                validation(socketIOClient, matiere);
+            public void onData(SocketIOClient socketIOClient, ChoixUtilisateur choix, AckRequest ackRequest) throws Exception {
+                validation(socketIOClient, choix);
             }
         });
     }
@@ -68,10 +69,9 @@ public class Serveur {
         socketIOClient.sendEvent("Test event bienvenue",str);
     }
 
-    protected void validation(SocketIOClient socketIOClient, Matiere matiere) {
-        selectionMatiere = matiere.toString();
-        System.out.println("Votre sélection (" + selectionMatiere +") a été enregistrée.");
-        socketIOClient.sendEvent(VALIDATION, matiere.toString());
+    protected void validation(SocketIOClient socketIOClient, ChoixUtilisateur SelectionUE) {
+        System.out.println("Votre sélection (" + SelectionUE.toString() +") a été enregistrée.");
+        socketIOClient.sendEvent(VALIDATION, SelectionUE.toString());
     }
 
     private void démarrer() {

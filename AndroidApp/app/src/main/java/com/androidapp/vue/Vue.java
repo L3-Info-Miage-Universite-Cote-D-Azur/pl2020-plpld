@@ -1,9 +1,12 @@
 package com.androidapp.vue;
 
 import com.androidapp.reseau.Connexion;
+import com.androidapp.reseau.*;
+
+import java.util.List;
 
 public interface Vue {
-    public void displayMsg(String str);
-    public String selection();
+    void displayMsg(String str);
+    List<Matiere> selection();
 }
 

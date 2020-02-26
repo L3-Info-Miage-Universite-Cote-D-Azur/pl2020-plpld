@@ -1,6 +1,10 @@
 package com.androidapp;
 
+import androidx.annotation.StringDef;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +17,10 @@ import com.androidapp.reseau.*;
 import com.androidapp.controleur.*;
 import android.view.View.OnClickListener;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity implements Vue {
     public void displayMsg(String str) {
@@ -21,10 +29,12 @@ public class MainActivity extends AppCompatActivity implements Vue {
 
     public static final String AUTOCONNECT = "AUTOCONNECT";
     private Button bouton;
-
-
     private Identité monIdentité;
     private boolean autoconnect = true;
+    private List<Model> mModelList;
+    private RecyclerView mRecyclerView;
+    private RecyclerViewAdapter mAdapter;
+    private List<String> ListeUE = Arrays.asList("Bases de l'informatique", "Introduction à l'informatique par le web", "Système 1 : Unix et progra shell", "Programmation imperative", "Structures de données et programmation C", "Bases de données", "Outils formels de l'informatique", "Algorithmique 1", "Réseaux et télécommunication", "Système 2: mécanismes internes des systèmes d'exploitation", "Introduction aux systèmes intelligents", "Technologies du web");
 
     public Connexion getConnexion() {
         return connexion;
@@ -35,13 +45,19 @@ public class MainActivity extends AppCompatActivity implements Vue {
         this.connexion.écouterRéseau();
     }
 
-    private Connexion connexion;
+    static Connexion connexion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // création de l'interface graphique
         setContentView(R.layout.activity_main);
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mAdapter = new RecyclerViewAdapter(getListData());
+        LinearLayoutManager manager = new LinearLayoutManager(MainActivity.this);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(manager);
+        mRecyclerView.setAdapter(mAdapter);
         monIdentité = new Identité("AndroidApp");
         autoconnect = getIntent().getBooleanExtra(AUTOCONNECT, true);
     }
@@ -74,35 +90,15 @@ public class MainActivity extends AppCompatActivity implements Vue {
         connexion.envoyerMessage(Net.CONNEXION, monIdentité);
     }
 
-    public void onRadioButtonClick(View v) {
-        switch (v.getId()) {
-            case R.id.matiereMaths:
-                Log.d("POUR MONTRER", "on a cliqué sur maths");
-                connexion.envoyerMessage(Net.CHOIX, new Matiere("Mathématiques"));
-                break;
-            case R.id.matiereInfo:
-                Log.d("POUR MONTRER", "on a cliqué sur info");
-                connexion.envoyerMessage(Net.CHOIX, new Matiere("Informatique"));
-
-                break;
-            case R.id.matierePhysique:
-                Log.d("POUR MONTRER", "on a cliqué sur physique");
-                connexion.envoyerMessage(Net.CHOIX, new Matiere("Physique"));
-                break;
+    private List<Model> getListData() {
+        mModelList = new ArrayList<>();
+        for(String UE: ListeUE) {
+            mModelList.add(new Model(UE));
         }
+        return mModelList;
     }
 
-    public void onClickBtn(View v) {
-        Log.d("POUR MONTRER", "Bouton valider cliqué");
-        connexion.envoyerMessage(Net.CHOIX, new Matiere("TEST"));
-        // connexion.envoyerMessage(Net.CHOIX,);
-    }
-
-    public String selection() {
-        RadioGroup radioMatiereGroup = (RadioGroup) findViewById(R.id.radioMatiere);
-        int selectedId = radioMatiereGroup.getCheckedRadioButtonId();
-        if(selectedId==-1) return null;
-        RadioButton radioMatiereButton = (RadioButton) findViewById(selectedId);
-        return radioMatiereButton.getText().toString();
+    public List<Matiere> selection() {
+        return mAdapter.selection();
     }
 }
