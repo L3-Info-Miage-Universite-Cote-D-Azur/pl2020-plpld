@@ -14,6 +14,9 @@ import java.util.List;
 
 import static constantes.Net.*;
 
+/**
+ *  Classe du serveur, contenant toutes les méthodes pour la communication vers le client
+ */
 public class Serveur {
 
 
@@ -57,23 +60,43 @@ public class Serveur {
         });
     }
 
+    /**
+     * Envoie le choix de l'étudiant au client
+     *
+     * @param socketIOClient Le client
+     * @param matiere La matière choisi par le client
+     */
     protected void nouveauChoix(SocketIOClient socketIOClient, Matiere matiere) {
         System.out.println(matiere.toString());
         socketIOClient.sendEvent(CHOIX, matiere.toString());
     }
 
+
+    // TODO: 28/02/2020  Modifier cette méthode et la rendre plus utile
+    /**
+     *  Pour l'instant, cette méthode affiche un message de validation
+     * @param socketIOClient
+     * @param id  Identité du client
+     */
+
     protected void nouveauClient(SocketIOClient socketIOClient, Identité id) {
-        // map.put(id, socketIOClient);
-        String str = new String("Bienvenue");
         System.out.println(id+" vient de se connecter");
-        socketIOClient.sendEvent("Test event bienvenue",str);
     }
+
+    /**
+     *   Valide le choix de l'étudiant et transmet la liste des UEs choisit par l'étudiant au client
+     * @param socketIOClient
+     * @param SelectionUE Liste de matières
+     */
 
     protected void validation(SocketIOClient socketIOClient, ChoixUtilisateur SelectionUE) {
         System.out.println("Votre sélection (" + SelectionUE.toString() +") a été enregistrée.");
         socketIOClient.sendEvent(VALIDATION, SelectionUE.toString());
     }
 
+    /**
+     * Démarre le serveur
+     */
     private void démarrer() {
         server.start();
     }
