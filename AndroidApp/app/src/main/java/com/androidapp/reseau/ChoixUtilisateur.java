@@ -9,13 +9,31 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
+/**
+ *  Implémentation du choix de l'utilisateur.
+ *  Objet convertible en JSON pour que le serveur puisse recevoir l'information
+ *
+ */
 public class ChoixUtilisateur implements ToJSON {
+    /**
+     *  La liste des matières qui sont choisies par l'utilisateur
+     */
     private List<Matiere> Choix;
+
+    /**
+     *  Constructeur prenant en paramètre une liste de matière.
+     *  Le champ Choix sera initialisé avec ce paramètre
+     * @param UserChoice  Liste de matière
+     */
 
     public ChoixUtilisateur(List<Matiere> UserChoice) {
         Choix = UserChoice;
     }
 
+    /**
+     * Constructeur prenant en paramètre un string
+     *  La chaine de caractère est analysée puis décomposée en UE afin de créer une nouvelle liste
+     */
     public ChoixUtilisateur(String S) {
         Choix = new ArrayList<Matiere>();
         S = S.replace("[", "");
@@ -26,6 +44,9 @@ public class ChoixUtilisateur implements ToJSON {
         ;
     }
 
+    /**
+     *  Retourne la liste des matières sélectionnées par l'utilisateur
+     */
     public List<Matiere> getChoix() {
         return Choix;
     }
