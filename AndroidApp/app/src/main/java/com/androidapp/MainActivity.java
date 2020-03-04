@@ -15,6 +15,12 @@ import android.widget.Button;
 import com.androidapp.vue.*;
 import com.androidapp.reseau.*;
 import com.androidapp.controleur.*;
+
+import constantes.Net;
+import metier.Identité;
+import metier.Matiere;
+import metier.ToJSON;
+
 import android.view.View.OnClickListener;
 
 import java.util.ArrayList;
@@ -87,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements Vue {
         bouton.setOnClickListener(ecouteur);
 
         connexion.démarrerÉcoute();
-        connexion.envoyerMessage(Net.CONNEXION, monIdentité);
+        connexion.envoyerMessage(Net.CONNEXION, (ToJSON) monIdentité);
     }
 
     private List<Model> getListData() {
