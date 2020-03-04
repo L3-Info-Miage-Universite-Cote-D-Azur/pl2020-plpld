@@ -1,6 +1,6 @@
-package com.androidapp;
+package metier;
 
-import com.androidapp.reseau.Matiere;
+import metier.Matiere;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +19,7 @@ public class MatiereTest {
         //Initialisation
         matiereDefault = new Matiere();
         matierePhysique = new Matiere("Physique");
-        matiereMath = new Matiere("Mathématique");
+        matiereMath = new Matiere("Mathématiques");
         matiereInformatique = new Matiere("Informatique");
     }
 
@@ -28,7 +28,7 @@ public class MatiereTest {
         //Test avec le nom d'origine
         assertEquals("nom par défaut", matiereDefault.getNom().toString());
         assertEquals("Physique", matierePhysique.getNom().toString());
-        assertEquals("Mathématique", matiereMath.getNom().toString());
+        assertEquals("Mathématiques", matiereMath.getNom().toString());
         assertEquals("Informatique", matiereInformatique.getNom().toString());
 
         matiereInformatique.setNom("Info");
@@ -41,6 +41,31 @@ public class MatiereTest {
         assertEquals("Phys", matierePhysique.getNom().toString());
         assertEquals("Math", matiereMath.getNom().toString());
         assertEquals("Info", matiereInformatique.getNom().toString());
+    }
+
+
+    @Test
+    public void toJSON() {
+
+        // Test du JSON avec le nom d'origine
+        assertEquals(matiereInformatique.toJSON().toString(), "{\"nom\":\"Informatique\"}");
+        assertEquals(matiereMath.toJSON().toString(), "{\"nom\":\"Mathématiques\"}");
+        assertEquals(matierePhysique.toJSON().toString(), "{\"nom\":\"Physique\"}");
+        assertEquals(matiereDefault.toJSON().toString(), "{\"nom\":\"nom par défaut\"}");
+
+        matiereInformatique.setNom("Info");
+        matierePhysique.setNom("Phys");
+        matiereMath.setNom("Math");
+        matiereDefault.setNom("Electronique");
+
+        // Test du JSON avec un nom modifié
+        assertEquals(matiereInformatique.toJSON().toString(), "{\"nom\":\"Info\"}");
+        assertEquals(matiereMath.toJSON().toString(), "{\"nom\":\"Math\"}");
+        assertEquals(matierePhysique.toJSON().toString(), "{\"nom\":\"Phys\"}");
+        assertEquals(matiereDefault.toJSON().toString(), "{\"nom\":\"Electronique\"}");
+
+        //JSONObject json = matiereInformatique.toJSON();
+        //System.out.println(json.getJSONObject("nom"));
     }
 
 }
