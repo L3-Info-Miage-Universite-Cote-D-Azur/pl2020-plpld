@@ -17,18 +17,29 @@ La liste complète des cours est disponible [ici](https://lms.univ-cotedazur.fr/
 
 La liste complète des UE transversales est disponible [ici](https://lms.univ-cotedazur.fr/pluginfile.php/112034/course/section/17947/plaquette_competences_transversales.pdf).
 
+Les deux fiches décompositions par UE et ECUE sont disponibles [ici](https://lms.univ-cotedazur.fr/pluginfile.php/251642/mod_folder/content/0/1A-Portail.pdf?forcedownload=1) et [ici](https://lms.univ-cotedazur.fr/pluginfile.php/251642/mod_folder/content/0/2A-Portail.pdf?forcedownload=1).
+
 ## Usage
 
-Ouvrir un terminal et exécuter :
+Pour démarrer le serveur : lancer un terminal et exécuter :
 
    1 - `git clone https://github.com/L3-Info-Miage-Universite-Cote-D-Azur/pl2020-plpld`
    
-   2 - `cd pl2020-plpld`
+   2 - `cd pl2020-plpld/java`
    
    3 - `mvn clean install`   
    
    4 - `mvn exec:java`
+   
+ Pour démarrer l'application Android :
 
+   5 - `Lancer Android Studio`
+   
+   6 - `Ouvrir pl2020-plpld/AndroidApp`
+   
+   7 - `Construire l'apk et l'exécuter depuis un émulateur ou un smartphone Android`
+   
+   ### Note importante : l'émulateur ou le smartphone doit impérativement tourner sous Android 9 (API level 28) ou + 
             
                  
 

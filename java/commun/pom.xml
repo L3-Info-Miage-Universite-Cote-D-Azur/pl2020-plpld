@@ -7,11 +7,11 @@
     <parent>
         <groupId>PLPLD</groupId> <!-- à changer par le nom du groupe -->
         <artifactId>Projet-Licence-PLPLD</artifactId> <!-- et le nom du projet -->
-        <version>0.1</version>
+        <version>0.3</version>
     </parent>
 
     <artifactId>commun</artifactId> <!-- et le nom du projet -->
-    <version>1.0</version>
+    <version>0.3</version>
 
 
 
@@ -82,7 +82,6 @@
         </plugins>
     </build>
 
-
     <dependencies>
         <dependency>
             <!-- https://mvnrepository.com/artifact/org.json/json -->
@@ -91,6 +90,5 @@
             <version>20190722</version>
         </dependency>
     </dependencies>
-
 
 </project>
