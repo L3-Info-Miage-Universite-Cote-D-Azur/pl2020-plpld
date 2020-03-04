@@ -5,6 +5,8 @@ import com.androidapp.reseau.*;
 
 import java.util.List;
 
+import metier.Matiere;
+
 /**
  *  Vue de l'écran
  *

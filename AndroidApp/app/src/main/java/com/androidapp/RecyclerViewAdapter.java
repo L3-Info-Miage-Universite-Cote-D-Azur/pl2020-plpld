@@ -8,11 +8,12 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.androidapp.reseau.Matiere;
-import com.androidapp.reseau.Net;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import constantes.Net;
+import metier.Matiere;
+import metier.ToJSON;
 
 import static com.androidapp.MainActivity.connexion;
 
@@ -41,7 +42,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 model.setSelected(!model.isSelected());
                 holder.view.setBackgroundColor(model.isSelected() ? Color.CYAN : Color.WHITE);
                 Log.d("POUR MONTRER", "on a cliqué sur " + model.getText());
-                connexion.envoyerMessage(Net.CHOIX, new Matiere(model.getText()));
+                connexion.envoyerMessage(Net.CHOIX, (ToJSON) new Matiere(model.getText()));
             }
         });
     }

@@ -11,7 +11,11 @@ import com.androidapp.reseau.*;
 import com.androidapp.R;
 import com.androidapp.reseau.*;
 import com.androidapp.vue.*;
+
+import constantes.Net;
 import io.socket.client.Socket;
+import metier.ChoixUtilisateur;
+import metier.ToJSON;
 
 public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickListener {
 
@@ -37,7 +41,7 @@ public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickL
                 else {
                     if(validation == false)
                     {
-                        mSocket.envoyerMessage(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
+                        mSocket.envoyerMessage(Net.VALIDATION, (ToJSON) new ChoixUtilisateur(vue.selection()));
                         vue.displayMsg("Votre choix a été transmis au serveur");
                         validation = true;
                     }
