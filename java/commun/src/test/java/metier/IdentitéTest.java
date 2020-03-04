@@ -1,9 +1,9 @@
-package com.androidapp;
-
-import com.androidapp.reseau.Identité;
+package metier;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import metier.Identité;
 
 import static org.junit.Assert.assertEquals;
 
@@ -36,5 +36,23 @@ public class IdentitéTest {
         assertEquals("super Appli Android 1", identite1.getNom().toString());
         assertEquals("super Appli Android 2", identite2.getNom().toString());
         assertEquals("super Appli par défaut", identiteDefault.getNom().toString());
+    }
+
+
+    @Test
+    public void toJSON() {
+        // Test du JSON avec le nom d'origine
+        assertEquals(identite1.toJSON().toString(), "{\"nom\":\"Android APP 1\"}");
+        assertEquals(identite2.toJSON().toString(), "{\"nom\":\"Android APP 2\"}");
+        assertEquals(identiteDefault.toJSON().toString(), "{\"nom\":\"nom par défaut\"}");
+
+        identite1.setNom("super Appli Android 1");
+        identite2.setNom("super Appli Android 2");
+        identiteDefault.setNom("super Appli par défaut");
+
+        // Test du JSON avec un nom modifié
+        assertEquals(identite1.toJSON().toString(), "{\"nom\":\"super Appli Android 1\"}");
+        assertEquals(identite2.toJSON().toString(), "{\"nom\":\"super Appli Android 2\"}");
+        assertEquals(identiteDefault.toJSON().toString(), "{\"nom\":\"super Appli par défaut\"}");
     }
 }
