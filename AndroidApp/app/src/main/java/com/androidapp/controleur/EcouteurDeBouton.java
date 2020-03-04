@@ -17,12 +17,13 @@ public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickL
 
     private final Connexion mSocket;
     private final Vue vue;
-
+    private boolean validation = false;
 
 
     public EcouteurDeBouton(Vue v, Connexion mSocket) {
         this.vue = v;
         this.mSocket = mSocket;
+
     }
 
 
@@ -34,8 +35,15 @@ public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickL
                 if (vue.selection()==null)
                     vue.displayMsg("Selection invalide (veuillez cocher une matière parmi les choix proposés)");
                 else {
-                    mSocket.envoyerMessage(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
-                    vue.displayMsg("Votre choix a été transmis au serveur");
+                    if(validation == false)
+                    {
+                        mSocket.envoyerMessage(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
+                        vue.displayMsg("Votre choix a été transmis au serveur");
+                        validation = true;
+                    }
+                    else {
+                        vue.displayMsg("Vous avez déjà validé votre choix");
+                    }
                 }
                 break;
         }
