@@ -1,11 +1,12 @@
-package com.androidapp;
+package metier;
 
-import com.androidapp.reseau.ChoixUtilisateur;
-import com.androidapp.reseau.Matiere;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.ArrayList;
+
+import metier.ChoixUtilisateur;
+import metier.Matiere;
 
 public class ChoixUtilisateurTest {
 
@@ -61,5 +62,18 @@ public class ChoixUtilisateurTest {
 
         //choixListe.toString() renvoie une la liste des matières
         assertEquals(choixListe.toString(), "[Mathématiques, Informatique, Physique, Chimie]");
+    }
+
+
+    @Test
+    public void toJSON() {
+        // Test du JSON avec un seul choix de matière
+        assertEquals(choixMath.toJSON().toString(), "{\"liste choisie\":\"[Mathématiques]\"}");
+        assertEquals(choixInfo.toJSON().toString(), "{\"liste choisie\":\"[Informatique]\"}");
+        assertEquals(choixPhysique.toJSON().toString(), "{\"liste choisie\":\"[Physique]\"}");
+        assertEquals(choixChimie.toJSON().toString(), "{\"liste choisie\":\"[Chimie]\"}");
+
+        // Test du JSON avec une liste de choix de matières
+        assertEquals(choixListe.toJSON().toString(), "{\"liste choisie\":\"[Mathématiques, Informatique, Physique, Chimie]\"}");
     }
 }
