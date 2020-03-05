@@ -2,9 +2,6 @@ package metier;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import metier.Identité;
-
 import static org.junit.Assert.assertEquals;
 
 public class IdentitéTest {

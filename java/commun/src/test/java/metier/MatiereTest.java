@@ -1,10 +1,7 @@
 package metier;
 
-import metier.Matiere;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 
 public class MatiereTest {
@@ -63,9 +60,6 @@ public class MatiereTest {
         assertEquals(matiereMath.toJSON().toString(), "{\"nom\":\"Math\"}");
         assertEquals(matierePhysique.toJSON().toString(), "{\"nom\":\"Phys\"}");
         assertEquals(matiereDefault.toJSON().toString(), "{\"nom\":\"Electronique\"}");
-
-        //JSONObject json = matiereInformatique.toJSON();
-        //System.out.println(json.getJSONObject("nom"));
     }
 
 }

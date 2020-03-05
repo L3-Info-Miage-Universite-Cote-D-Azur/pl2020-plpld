@@ -1,12 +1,9 @@
 package metier;
 
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.ArrayList;
-
-import metier.ChoixUtilisateur;
-import metier.Matiere;
+import static org.junit.Assert.assertEquals;
 
 public class ChoixUtilisateurTest {
 
