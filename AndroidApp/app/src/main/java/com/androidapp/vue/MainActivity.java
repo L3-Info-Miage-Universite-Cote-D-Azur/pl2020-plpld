@@ -1,20 +1,14 @@
-package com.androidapp;
+package com.androidapp.vue;
 
-import androidx.annotation.StringDef;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 import android.widget.Button;
-import com.androidapp.vue.*;
+
+import com.androidapp.R;
 import com.androidapp.reseau.*;
 import com.androidapp.controleur.*;
 
@@ -23,10 +17,7 @@ import metier.Identité;
 import metier.Matiere;
 import metier.ToJSON;
 
-import android.view.View.OnClickListener;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,9 +32,6 @@ public class MainActivity extends AppCompatActivity implements Vue {
     private Button bouton;
     private Identité monIdentité;
     private boolean autoconnect = true;
-    private List<Model> mModelList;
-    private RecyclerView mRecyclerView;
-    private RecyclerViewAdapter mAdapter;
     List<String> groupList;
     List<String> childList;
     Map<String, List<String>> UECollection;
