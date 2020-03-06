@@ -37,7 +37,7 @@ public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickL
             case R.id.buttonValider:
                 Log.d("POUR MONTRER", "EcouteurDeBouton : bouton valider cliqué");
                 if (vue.selection()==null)
-                    vue.displayMsg("Selection invalide (veuillez cocher une matière parmi les choix proposés)");
+                    vue.displayMsg("Votre validation a été transmise au serveur");
                 else {
                     if(validation == false)
                     {

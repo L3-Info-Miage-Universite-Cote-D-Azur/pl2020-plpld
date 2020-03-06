@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.ExpandableListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -25,7 +27,9 @@ import android.view.View.OnClickListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity implements Vue {
@@ -40,7 +44,10 @@ public class MainActivity extends AppCompatActivity implements Vue {
     private List<Model> mModelList;
     private RecyclerView mRecyclerView;
     private RecyclerViewAdapter mAdapter;
-    private List<String> ListeUE = Arrays.asList("Bases de l'informatique", "Introduction à l'informatique par le web", "Système 1 : Unix et progra shell", "Programmation imperative", "Structures de données et programmation C", "Bases de données", "Outils formels de l'informatique", "Algorithmique 1", "Réseaux et télécommunication", "Système 2: mécanismes internes des systèmes d'exploitation", "Introduction aux systèmes intelligents", "Technologies du web");
+    List<String> groupList;
+    List<String> childList;
+    Map<String, List<String>> UECollection;
+    ExpandableListView expListView;
 
     public Connexion getConnexion() {
         return connexion;
@@ -57,15 +64,74 @@ public class MainActivity extends AppCompatActivity implements Vue {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        mAdapter = new RecyclerViewAdapter(getListData());
-        LinearLayoutManager manager = new LinearLayoutManager(MainActivity.this);
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(manager);
-        mRecyclerView.setAdapter(mAdapter);
+        
         monIdentité = new Identité("AndroidApp");
         autoconnect = getIntent().getBooleanExtra(AUTOCONNECT, true);
+
+
+        createGroupList();
+
+        createCollection();
+
+        expListView = (ExpandableListView) findViewById(R.id.UE_list);
+        final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(
+                this, groupList, UECollection);
+        expListView.setAdapter(expListAdapter);
+
+        //setGroupIndicatorToRight();
+
+        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+
+            public boolean onChildClick(ExpandableListView parent, View v,
+                                        int groupPosition, int childPosition, long id) {
+                final String selected = (String) expListAdapter.getChild(
+                        groupPosition, childPosition);
+                Toast.makeText(getBaseContext(), selected, Toast.LENGTH_LONG)
+                        .show();
+
+                return true;
+            }
+        });
+    }
+
+    private void createGroupList() {
+        groupList = new ArrayList<String>();
+        groupList.add("Informatique");
+        groupList.add("Mathématiques");
+    }
+
+    private void createCollection() {
+        // preparing laptops collection(child)
+        String[] Informatique = {"Bases de l'informatique", "Introduction à l'informatique par le web", "Système 1 : Unix et progra shell", "Programmation imperative", "Structures de données et programmation C", "Bases de données", "Outils formels de l'informatique", "Algorithmique 1", "Réseaux et télécommunication", "Système 2: mécanismes internes des systèmes d'exploitation", "Introduction aux systèmes intelligents", "Technologies du web" };
+        String[] Math = { "Algèbre", "Analyse"};
+
+        UECollection = new LinkedHashMap<String, List<String>>();
+
+
+        for (String discipline : groupList) {
+            if (discipline.equals("Informatique")) {
+                loadChild(Informatique);
+            } else if (discipline.equals("Mathématiques"))
+                loadChild(Math);
+            else
+                loadChild(new String[]{"Erreur de chargement"});
+
+            UECollection.put(discipline, childList);
+        }
+    }
+
+    private void loadChild(String[] discipline) {
+        childList = new ArrayList<String>();
+        for (String model : discipline)
+            childList.add(model);
+    }
+
+    // Convert pixel to dip
+    public int getDipsFromPixel(float pixels) {
+        // Get the screen's density scale
+        final float scale = getResources().getDisplayMetrics().density;
+        // Convert the dps to pixels, based on density scale
+        return (int) (pixels * scale + 0.5f);
     }
 
     @Override
@@ -77,7 +143,6 @@ public class MainActivity extends AppCompatActivity implements Vue {
     @Override
     protected void onResume() {
         super.onResume();
-
         if (autoconnect) {
             setConnexion(new Connexion(this));
         }
@@ -96,15 +161,9 @@ public class MainActivity extends AppCompatActivity implements Vue {
         connexion.envoyerMessage(Net.CONNEXION, (ToJSON) monIdentité);
     }
 
-    private List<Model> getListData() {
-        mModelList = new ArrayList<>();
-        for(String UE: ListeUE) {
-            mModelList.add(new Model(UE));
-        }
-        return mModelList;
-    }
+
 
     public List<Matiere> selection() {
-        return mAdapter.selection();
+        return new ArrayList<Matiere>();
     }
 }
