@@ -15,4 +15,4 @@
 
 - [X] Liste des itérations et IHM mise à jour en conséquence
 
-A noter : présence d'un bug menant parfois à l'affichage multiples de certains noms d'UE lors du déroulement d'une catégorie : il sera corrigé à la prochaine itération.
+A noter : présence d'un bug menant parfois à l'affichage multiple de certains noms d'UE lors du déroulement d'une catégorie, il sera corrigé à la prochaine itération.
