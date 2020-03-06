@@ -8,7 +8,7 @@ android {
         minSdkVersion 28
         targetSdkVersion 29
         versionCode 1
-        versionName "0.3"
+        versionName "0.4"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -61,7 +61,7 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0-rc01"
     // Pour les tests JSON
     testImplementation 'org.json:json:20190722'
-    implementation 'com.android.support:recyclerview-v7:28.+'
+    implementation 'com.muditsen.multilevelrecyclerview:multilevelview:1.0.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test:rules:1.1.0'

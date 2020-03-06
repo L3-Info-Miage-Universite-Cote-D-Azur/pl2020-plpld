@@ -111,10 +111,12 @@ public class MainActivity extends AppCompatActivity implements Vue {
         for (String discipline : groupList) {
             if (discipline.equals("Informatique")) {
                 loadChild(Informatique);
-            } else if (discipline.equals("Mathématiques"))
+            } else if (discipline.equals("Mathématiques")) {
                 loadChild(Math);
-            else
+            }
+            else {
                 loadChild(new String[]{"Erreur de chargement"});
+            }
 
             UECollection.put(discipline, childList);
         }
