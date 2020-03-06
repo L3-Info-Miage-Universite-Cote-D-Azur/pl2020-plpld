@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements Vue {
     List<String> childList;
     Map<String, List<String>> UECollection;
     ExpandableListView expListView;
+    ExpandableListAdapter adapter;
 
     public Connexion getConnexion() {
         return connexion;
@@ -77,9 +78,7 @@ public class MainActivity extends AppCompatActivity implements Vue {
         final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(
                 this, groupList, UECollection);
         expListView.setAdapter(expListAdapter);
-
-        //setGroupIndicatorToRight();
-
+        adapter = expListAdapter;
         expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
 
             public boolean onChildClick(ExpandableListView parent, View v,
@@ -101,7 +100,6 @@ public class MainActivity extends AppCompatActivity implements Vue {
     }
 
     private void createCollection() {
-        // preparing laptops collection(child)
         String[] Informatique = {"Bases de l'informatique", "Introduction à l'informatique par le web", "Système 1 : Unix et progra shell", "Programmation imperative", "Structures de données et programmation C", "Bases de données", "Outils formels de l'informatique", "Algorithmique 1", "Réseaux et télécommunication", "Système 2: mécanismes internes des systèmes d'exploitation", "Introduction aux systèmes intelligents", "Technologies du web" };
         String[] Math = { "Algèbre", "Analyse"};
 
@@ -166,6 +164,6 @@ public class MainActivity extends AppCompatActivity implements Vue {
 
 
     public List<Matiere> selection() {
-        return new ArrayList<Matiere>();
+        return adapter.selection();
     }
 }

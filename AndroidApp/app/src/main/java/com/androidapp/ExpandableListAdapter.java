@@ -31,6 +31,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private List<Model> mModelList;
     private RecyclerView mRecyclerView;
     private RecyclerViewAdapter mAdapter;
+    private List<RecyclerViewAdapter> AdapterCollection = new ArrayList<>();
 
 
     public ExpandableListAdapter(Activity context, List<String> UE,
@@ -63,6 +64,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(mAdapter);
+        AdapterCollection.add(mAdapter);
         return mRecyclerView;
     }
 
@@ -75,8 +77,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     public List<Matiere> selection() {
-        if(mAdapter==null) return new ArrayList<Matiere>(Arrays.asList(new Matiere()));
-        return new ArrayList<Matiere>(Arrays.asList(new Matiere()));
+        List<Matiere> Selection = new ArrayList<Matiere>();
+        for(RecyclerViewAdapter R: AdapterCollection) {
+            Selection.addAll(R.selection());
+        }
+        return Selection;
     }
 
 
