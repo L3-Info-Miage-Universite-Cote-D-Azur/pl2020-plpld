@@ -1,4 +1,4 @@
-package com.androidapp;
+package com.androidapp.vue;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.androidapp.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,7 @@ import constantes.Net;
 import metier.Matiere;
 import metier.ToJSON;
 
-import static com.androidapp.MainActivity.connexion;
+import static com.androidapp.vue.MainActivity.connexion;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
