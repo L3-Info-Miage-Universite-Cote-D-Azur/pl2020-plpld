@@ -54,13 +54,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(final int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
+        if(ViewCollection.containsKey(groupPosition))
+            return ViewCollection.get(groupPosition);
         LayoutInflater inflater = context.getLayoutInflater();
 
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.child_item, null);
         }
-        if(ViewCollection.containsKey(groupPosition))
-            return ViewCollection.get(groupPosition);
         mRecyclerView = (RecyclerView) convertView.findViewById(R.id.recycler_view);
         mAdapter = new RecyclerViewAdapter(getListData(UE.get(groupPosition)));
         LinearLayoutManager manager = new LinearLayoutManager(context);

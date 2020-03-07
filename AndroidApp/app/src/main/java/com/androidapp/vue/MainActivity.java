@@ -86,23 +86,70 @@ public class MainActivity extends AppCompatActivity implements Vue {
         groupList = new ArrayList<String>();
         groupList.add("Informatique");
         groupList.add("Mathématiques");
+        groupList.add("Chimie");
+        groupList.add("Electronique");
+        groupList.add("Géographie");
+        groupList.add("MIASHS");
+        groupList.add("Physique");
+        groupList.add("Science de la terre");
+        groupList.add("Science de la vie");
+        groupList.add("CLE 1D (Continuum Licence Enseignement)");
+        groupList.add("UE facultative");
     }
 
     private void createCollection() {
-        String[] Informatique = {"Bases de l'informatique", "Introduction à l'informatique par le web", "Système 1 : Unix et progra shell", "Programmation imperative", "Structures de données et programmation C", "Bases de données", "Outils formels de l'informatique", "Algorithmique 1", "Réseaux et télécommunication", "Système 2: mécanismes internes des systèmes d'exploitation", "Introduction aux systèmes intelligents", "Technologies du web" };
-        String[] Math = { "Algèbre", "Analyse"};
+        String[] Informatique = {"Bases de l'informatique", "Introduction à l'informatique par le web", "Structures de données et programmation C", "Bases de données", "Outils formels de l'informatique"};
+        String[] Math = { "Fondements 1", "Méthodes : approche continue", "Complements 1"};
+        String[] Chimie = { "Structure Microscopique de la Matiere", "Chimie des Solutions", "Chimie organique", "Matériaux 1"};
+        String[] Electronique = { "Electronique numerique - Bases", "Automatique : une introduction", "Système embarqué", "Physique des capteurs "};
+        String[] Geographie = { "Decouverte 1", "Disciplinaire 1", "Appofondissement hors géographie 1"};
+        String[] MIASHS = { "Economie-Gestion S1", "Intro R"};
+        String[] Physique = { "Mecanique 1", "Electromagnétisme 1", "Thermodynamique 1", "Outils et Méthodes 1"};
+        String[] SDT = { "Decouverte des sciences de la terre", "Atmosphère, Océan, Climats ", "Le temps en Géosciences", "Physique de la Terre", "Materiaux terrestres"};
+        String[] SDV = { "Org. Mecanismes Moleculaires Cellules Eucaryotes", "Genetique. Evolution. Origine Vie et Biodiversite"};
+        String[] CLE = { "Enseignements fondamentaux à l'école primaire 1"};
+        String[] Facultative = { "Projet FabLab"};
 
         UECollection = new LinkedHashMap<String, List<String>>();
 
 
         for (String discipline : groupList) {
-            if (discipline.equals("Informatique")) {
-                loadChild(Informatique);
-            } else if (discipline.equals("Mathématiques")) {
-                loadChild(Math);
-            }
-            else {
-                loadChild(new String[]{"Erreur de chargement"});
+            switch(discipline) {
+                case "Informatique":
+                    loadChild(Informatique);
+                    break;
+                case "Mathématiques":
+                    loadChild(Math);
+                    break;
+                case "Chimie":
+                    loadChild(Chimie);
+                    break;
+                case "Electronique":
+                    loadChild(Electronique);
+                    break;
+                case "Géographie":
+                    loadChild(Geographie);
+                    break;
+                case "MIASHS":
+                    loadChild(MIASHS);
+                    break;
+                case "Physique":
+                    loadChild(Physique);
+                    break;
+                case "Science de la terre":
+                    loadChild(SDT);
+                    break;
+                case "Science de la vie":
+                    loadChild(SDV);
+                    break;
+                case "CLE 1D (Continuum Licence Enseignement)":
+                    loadChild(CLE);
+                    break;
+                case "UE facultative":
+                    loadChild(Facultative);
+                    break;
+                default:
+                    loadChild(new String[]{"Erreur de chargement"});
             }
 
             UECollection.put(discipline, childList);
