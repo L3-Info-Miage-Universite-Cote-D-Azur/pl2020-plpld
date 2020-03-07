@@ -1,6 +1,7 @@
 package com.androidapp.vue;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import android.app.Activity;
@@ -27,7 +28,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private List<Model> mModelList;
     private RecyclerView mRecyclerView;
     private RecyclerViewAdapter mAdapter;
-    private List<RecyclerViewAdapter> AdapterCollection = new ArrayList<>();
+    private Map<Integer, RecyclerView> ViewCollection ;
+    private Map<Integer, RecyclerViewAdapter> AdapterCollection;
 
 
     public ExpandableListAdapter(Activity context, List<String> UE,
@@ -35,6 +37,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         this.context = context;
         this.UECollections = UECollections;
         this.UE = UE;
+        ViewCollection = new LinkedHashMap<>(getGroupCount());
+        AdapterCollection = new LinkedHashMap<>(getGroupCount());
     }
 
     @Override
@@ -55,14 +59,16 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.child_item, null);
         }
-
+        if(ViewCollection.containsKey(groupPosition))
+            return ViewCollection.get(groupPosition);
         mRecyclerView = (RecyclerView) convertView.findViewById(R.id.recycler_view);
         mAdapter = new RecyclerViewAdapter(getListData(UE.get(groupPosition)));
         LinearLayoutManager manager = new LinearLayoutManager(context);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(mAdapter);
-        AdapterCollection.add(mAdapter);
+        ViewCollection.put(groupPosition, mRecyclerView);
+        AdapterCollection.put(groupPosition, mAdapter);
         return mRecyclerView;
     }
 
@@ -76,8 +82,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     public List<Matiere> selection() {
         List<Matiere> Selection = new ArrayList<Matiere>();
-        for(RecyclerViewAdapter R: AdapterCollection) {
-            Selection.addAll(R.selection());
+        for(Map.Entry<Integer, RecyclerViewAdapter> R: AdapterCollection.entrySet()) {
+            Selection.addAll(R.getValue().selection());
         }
         return Selection;
     }
