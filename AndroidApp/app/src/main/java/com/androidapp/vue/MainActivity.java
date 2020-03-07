@@ -24,10 +24,6 @@ import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity implements Vue {
-    public void displayMsg(String str) {
-        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
-    }
-
     public static final String AUTOCONNECT = "AUTOCONNECT";
     private Button bouton;
     private Identité monIdentité;
@@ -37,6 +33,11 @@ public class MainActivity extends AppCompatActivity implements Vue {
     Map<String, List<String>> UECollection;
     ExpandableListView expListView;
     ExpandableListAdapter adapter;
+
+    @Override
+    public void displayMsg(String str) {
+        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+    }
 
     public Connexion getConnexion() {
         return connexion;
@@ -148,8 +149,6 @@ public class MainActivity extends AppCompatActivity implements Vue {
         connexion.démarrerÉcoute();
         connexion.envoyerMessage(Net.CONNEXION, (ToJSON) monIdentité);
     }
-
-
 
     public List<Matiere> selection() {
         return adapter.selection();

@@ -16,7 +16,6 @@ public class Model {
         isSelected = selected;
     }
 
-
     public boolean isSelected() {
         return isSelected;
     }

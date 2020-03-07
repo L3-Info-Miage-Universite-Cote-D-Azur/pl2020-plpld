@@ -37,15 +37,17 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         this.UE = UE;
     }
 
+    @Override
     public Object getChild(int groupPosition, int childPosition) {
         return UECollections.get(UE.get(groupPosition)).get(childPosition);
     }
 
+    @Override
     public long getChildId(int groupPosition, int childPosition) {
         return childPosition;
     }
 
-
+    @Override
     public View getChildView(final int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
@@ -80,23 +82,27 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return Selection;
     }
 
-
+    @Override
     public int getChildrenCount(int groupPosition) {
-        return UECollections.get(UE.get(groupPosition)).size();
+        return 1;
     }
 
+    @Override
     public Object getGroup(int groupPosition) {
         return UE.get(groupPosition);
     }
 
+    @Override
     public int getGroupCount() {
         return UE.size();
     }
 
+    @Override
     public long getGroupId(int groupPosition) {
         return groupPosition;
     }
 
+    @Override
     public View getGroupView(int groupPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
         String UEName = (String) getGroup(groupPosition);
@@ -112,10 +118,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return convertView;
     }
 
+    @Override
     public boolean hasStableIds() {
         return true;
     }
 
+    @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
     }
