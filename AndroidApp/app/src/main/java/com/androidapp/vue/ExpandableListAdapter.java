@@ -84,7 +84,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return 1;
+        return 1; //Un seul enfant par groupe : le recyclerView
     }
 
     @Override
