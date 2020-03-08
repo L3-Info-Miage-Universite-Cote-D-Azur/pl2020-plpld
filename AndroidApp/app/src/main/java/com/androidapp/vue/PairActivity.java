@@ -22,6 +22,7 @@ public class PairActivity extends MainActivity {
     private Identité monIdentité;
     private boolean autoconnect = true;
     private Button bsimp;
+    private Button brecap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +55,7 @@ public class PairActivity extends MainActivity {
         });
 
         bsimp=(Button)findViewById(R.id.simp);
+        brecap=(Button)findViewById(R.id.buttonValider);
 
         bsimp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +65,15 @@ public class PairActivity extends MainActivity {
                 startActivity(intent);
             }
         });
+        brecap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,"page récapitulatif",Toast.LENGTH_LONG).show();
+                Intent intent2=new Intent(PairActivity.this,RecapActivity.class);
+                startActivity(intent2);
+            }
+        });
+
     }
 
     private void createGroupList() {
@@ -143,4 +154,6 @@ public class PairActivity extends MainActivity {
         for (String model : discipline)
             childList.add(model);
     }
+
+
 }
