@@ -1,4 +1,4 @@
-package com.androidapp.vue;
+package com.androidapp.vue.adapter;
 
 public class Model {
     private String text;

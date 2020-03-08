@@ -1,4 +1,4 @@
-package com.androidapp.vue;
+package com.androidapp.vue.adapter;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidapp.R;
+import com.androidapp.vue.activity.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +17,6 @@ import java.util.List;
 import constantes.Net;
 import metier.Matiere;
 import metier.ToJSON;
-
-import static com.androidapp.vue.MainActivity.connexion;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
@@ -44,7 +43,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 model.setSelected(!model.isSelected());
                 holder.view.setBackgroundColor(model.isSelected() ? Color.CYAN : Color.WHITE);
                 Log.d("POUR MONTRER", "on a cliqué sur " + model.getText());
-                connexion.envoyerMessage(Net.CHOIX, (ToJSON) new Matiere(model.getText()));
+                MainActivity.connexion.envoyerMessage(Net.CHOIX, (ToJSON) new Matiere(model.getText()));
             }
         });
     }
@@ -72,7 +71,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         private MyViewHolder(View itemView) {
             super(itemView);
             view = itemView;
-            textView = (TextView) itemView.findViewById(R.id.text_view);
+            textView = itemView.findViewById(R.id.text_view);
         }
     }
 }

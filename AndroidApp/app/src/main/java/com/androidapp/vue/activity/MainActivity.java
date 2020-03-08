@@ -1,7 +1,9 @@
-package com.androidapp.vue;
+package com.androidapp.vue.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -11,21 +13,19 @@ import android.widget.Button;
 import com.androidapp.R;
 import com.androidapp.reseau.*;
 import com.androidapp.controleur.*;
+import com.androidapp.vue.adapter.ExpandableListAdapter;
+import com.androidapp.vue.Vue;
 
 import constantes.Net;
-import metier.Identité;
-import metier.Matiere;
-import metier.ToJSON;
-
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import metier.*;
+import java.util.*;
 
 
 public class MainActivity extends AppCompatActivity implements Vue {
     public static final String AUTOCONNECT = "AUTOCONNECT";
+    public static Connexion connexion;
     private Button bouton;
+    private Button bspair;
     private Identité monIdentité;
     private boolean autoconnect = true;
     List<String> groupList;
@@ -39,16 +39,10 @@ public class MainActivity extends AppCompatActivity implements Vue {
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
     }
 
-    public Connexion getConnexion() {
-        return connexion;
-    }
-
     public void setConnexion(Connexion connexion) {
         this.connexion = connexion;
         this.connexion.écouterRéseau();
     }
-
-    static Connexion connexion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +52,9 @@ public class MainActivity extends AppCompatActivity implements Vue {
         monIdentité = new Identité("AndroidApp");
         autoconnect = getIntent().getBooleanExtra(AUTOCONNECT, true);
 
+        final Context context=this.getBaseContext();
 
         createGroupList();
-
         createCollection();
 
         expListView = (ExpandableListView) findViewById(R.id.UE_list);
@@ -80,6 +74,21 @@ public class MainActivity extends AppCompatActivity implements Vue {
                 return true;
             }
         });
+
+
+        bspair=(Button)findViewById(R.id.spair);
+
+
+        bspair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,"semestre pair",Toast.LENGTH_LONG).show();
+                Intent intent=new Intent(MainActivity.this,PairActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     private void createGroupList() {
@@ -162,14 +171,6 @@ public class MainActivity extends AppCompatActivity implements Vue {
             childList.add(model);
     }
 
-    // Convert pixel to dip
-    public int getDipsFromPixel(float pixels) {
-        // Get the screen's density scale
-        final float scale = getResources().getDisplayMetrics().density;
-        // Convert the dps to pixels, based on density scale
-        return (int) (pixels * scale + 0.5f);
-    }
-
     @Override
     protected void onPause() {
         super.onPause();
@@ -200,4 +201,6 @@ public class MainActivity extends AppCompatActivity implements Vue {
     public List<Matiere> selection() {
         return adapter.selection();
     }
+
+
 }
