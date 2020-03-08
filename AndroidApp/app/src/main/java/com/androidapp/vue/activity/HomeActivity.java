@@ -1,4 +1,4 @@
-package com.androidapp.vue;
+package com.androidapp.vue.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 

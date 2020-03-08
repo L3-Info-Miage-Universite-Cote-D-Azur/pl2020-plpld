@@ -1,4 +1,4 @@
-package com.androidapp.vue;
+package com.androidapp.vue.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,28 +6,49 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
+import android.widget.Button;
 
 import com.androidapp.R;
+import com.androidapp.reseau.*;
+import com.androidapp.controleur.*;
+import com.androidapp.vue.adapter.ExpandableListAdapter;
+import com.androidapp.vue.Vue;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
+import constantes.Net;
+import metier.*;
+import java.util.*;
 
-import metier.Identité;
 
-public class PairActivity extends MainActivity {
+public class MainActivity extends AppCompatActivity implements Vue {
+    public static final String AUTOCONNECT = "AUTOCONNECT";
+    public static Connexion connexion;
+    private Button bouton;
+    private Button bspair;
     private Identité monIdentité;
     private boolean autoconnect = true;
-    private Button bsimp;
-    private Button brecap;
+    List<String> groupList;
+    List<String> childList;
+    Map<String, List<String>> UECollection;
+    ExpandableListView expListView;
+    ExpandableListAdapter adapter;
+
+    @Override
+    public void displayMsg(String str) {
+        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+    }
+
+    public void setConnexion(Connexion connexion) {
+        this.connexion = connexion;
+        this.connexion.écouterRéseau();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pair);
-
+        setContentView(R.layout.activity_main);
+        
         monIdentité = new Identité("AndroidApp");
         autoconnect = getIntent().getBooleanExtra(AUTOCONNECT, true);
 
@@ -54,25 +75,19 @@ public class PairActivity extends MainActivity {
             }
         });
 
-        bsimp=(Button)findViewById(R.id.simp);
-        brecap=(Button)findViewById(R.id.buttonValider);
 
-        bsimp.setOnClickListener(new View.OnClickListener() {
+        bspair=(Button)findViewById(R.id.spair);
+
+
+        bspair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"semestre impaire",Toast.LENGTH_LONG).show();
-                Intent intent=new Intent(PairActivity.this,MainActivity.class);
+                Toast.makeText(context,"semestre pair",Toast.LENGTH_LONG).show();
+                Intent intent=new Intent(MainActivity.this,PairActivity.class);
                 startActivity(intent);
             }
         });
-        brecap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context,"page récapitulatif",Toast.LENGTH_LONG).show();
-                Intent intent2=new Intent(PairActivity.this,RecapActivity.class);
-                startActivity(intent2);
-            }
-        });
+
 
     }
 
@@ -90,16 +105,17 @@ public class PairActivity extends MainActivity {
         groupList.add("CLE 1D (Continuum Licence Enseignement)");
         groupList.add("UE facultative");
     }
+
     private void createCollection() {
-        String[] Informatique = {"Bases de l'informatique 2", "Introduction à l'informatique par le web 2", "Structures de données et programmation C 2 ", "Bases de données", "Outils formels de l'informatique"};
-        String[] Math = { "Fondements 2 ","Méthodes : approche discrète","Complements 2","Analyse","Probabilités et Introduction à la Statistiques","Algèbre"," Résolution numérique des systèmes d'équations linéaires et non-linéaires","Méthodes : approche aléatoire"};
-        String[] Chimie = {"Reactions et reactivites chimiques ","Thermodynamique chimique / Options ","Vision macroscopique des molécules","Matériaux 2","Chimie Organique Fonctionnelle II", "Bloc de Chimie Expérimentale"};
-        String[] Electronique = { "Electronique analogique","Communication sans fil"  ,"Système optimisé en énergie"  ,"Electronique analogique avancée", "Architecture des processeurs",  "Systèmes embarqués II"};
-        String[] Geographie = { "Decouverte 4" ,"Decouverte 3", "Disciplinaire 2", "Disciplinaire 6" ,"Disciplinaire 7" ,"Disciplinaire 8" ,"Approfondissement hors géographie 2"};
+        String[] Informatique = {"Bases de l'informatique", "Introduction à l'informatique par le web", "Structures de données et programmation C", "Bases de données", "Outils formels de l'informatique"};
+        String[] Math = { "Fondements 1", "Méthodes : approche continue", "Complements 1"};
+        String[] Chimie = { "Structure Microscopique de la Matiere", "Chimie des Solutions", "Chimie organique", "Matériaux 1"};
+        String[] Electronique = { "Electronique numerique - Bases", "Automatique : une introduction", "Système embarqué", "Physique des capteurs "};
+        String[] Geographie = { "Decouverte 1", "Disciplinaire 1", "Appofondissement hors géographie 1"};
         String[] MIASHS = { "Economie-Gestion S1", "Intro R"};
-        String[] Physique = { "Optique 1","Mécanique 2",  "Electromagnétisme 2 ","Mécanique 3 ","Outils et Méthodes 2"};
-        String[] SDT = { "Structure et dynamique de la terre" ,"Atmosphère, Océan, Climats ","Géologie Structurale et Tectonique","Formation et Evolution des Bassins Sédimentaires","Géomécanique,Du paysage à la carte"};
-        String[] SDV = { "Physiologie. Neurologie. Enzymologie. Methodologie","Diversite du Vivant"};
+        String[] Physique = { "Mecanique 1", "Electromagnétisme 1", "Thermodynamique 1", "Outils et Méthodes 1"};
+        String[] SDT = { "Decouverte des sciences de la terre", "Atmosphère, Océan, Climats ", "Le temps en Géosciences", "Physique de la Terre", "Materiaux terrestres"};
+        String[] SDV = { "Org. Mecanismes Moleculaires Cellules Eucaryotes", "Genetique. Evolution. Origine Vie et Biodiversite"};
         String[] CLE = { "Enseignements fondamentaux à l'école primaire 1"};
         String[] Facultative = { "Projet FabLab"};
 
@@ -153,6 +169,37 @@ public class PairActivity extends MainActivity {
         childList = new ArrayList<String>();
         for (String model : discipline)
             childList.add(model);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (connexion != null) connexion.disconnect();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (autoconnect) {
+            setConnexion(new Connexion(this));
+        }
+        bouton = findViewById(R.id.buttonValider);
+        if (autoconnect) {
+            initVue();
+        }
+    }
+
+    protected void initVue() {
+        EcouteurDeBouton ecouteur = new EcouteurDeBouton(this, connexion);
+        // création de l'écouteur (le controleur)
+        bouton.setOnClickListener(ecouteur);
+
+        connexion.démarrerÉcoute();
+        connexion.envoyerMessage(Net.CONNEXION, (ToJSON) monIdentité);
+    }
+
+    public List<Matiere> selection() {
+        return adapter.selection();
     }
 
 

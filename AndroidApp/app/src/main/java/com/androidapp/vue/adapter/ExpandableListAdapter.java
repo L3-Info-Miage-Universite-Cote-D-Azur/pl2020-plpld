@@ -1,4 +1,4 @@
-package com.androidapp.vue;
+package com.androidapp.vue.adapter;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -57,7 +57,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.child_item, null);
         }
-        mRecyclerView = (RecyclerView) convertView.findViewById(R.id.recycler_view);
+        mRecyclerView = convertView.findViewById(R.id.recycler_view);
         if(AdapterCollection.containsKey(groupPosition))
             mAdapter = AdapterCollection.get(groupPosition);
         else
@@ -116,7 +116,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.group_item,
                     null);
         }
-        TextView item = (TextView) convertView.findViewById(R.id.disciplines);
+        TextView item = convertView.findViewById(R.id.disciplines);
         item.setTypeface(null, Typeface.BOLD);
         item.setText(UEName);
         return convertView;
