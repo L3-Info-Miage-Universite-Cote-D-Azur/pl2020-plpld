@@ -28,7 +28,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private List<Model> mModelList;
     private RecyclerView mRecyclerView;
     private RecyclerViewAdapter mAdapter;
-    private Map<Integer, RecyclerView> ViewCollection ;
     private Map<Integer, RecyclerViewAdapter> AdapterCollection;
 
 
@@ -37,8 +36,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         this.context = context;
         this.UECollections = UECollections;
         this.UE = UE;
-        ViewCollection = new LinkedHashMap<>(getGroupCount());
-        AdapterCollection = new LinkedHashMap<>(getGroupCount());
+        AdapterCollection = new LinkedHashMap<>(getGroupCount()); //On crée une collection de RecyclerViewAdapter pour récupérer la séléction de l'utilisateur (un adaptateur pour chaque discipline sur laquelle l'utilisateur clique)
     }
 
     @Override
@@ -54,20 +52,20 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(final int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
-        if(ViewCollection.containsKey(groupPosition))
-            return ViewCollection.get(groupPosition);
         LayoutInflater inflater = context.getLayoutInflater();
 
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.child_item, null);
         }
         mRecyclerView = (RecyclerView) convertView.findViewById(R.id.recycler_view);
-        mAdapter = new RecyclerViewAdapter(getListData(UE.get(groupPosition)));
+        if(AdapterCollection.containsKey(groupPosition))
+            mAdapter = AdapterCollection.get(groupPosition);
+        else
+            mAdapter = new RecyclerViewAdapter(getListData(UE.get(groupPosition)));
         LinearLayoutManager manager = new LinearLayoutManager(context);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(mAdapter);
-        ViewCollection.put(groupPosition, mRecyclerView);
         AdapterCollection.put(groupPosition, mAdapter);
         return mRecyclerView;
     }

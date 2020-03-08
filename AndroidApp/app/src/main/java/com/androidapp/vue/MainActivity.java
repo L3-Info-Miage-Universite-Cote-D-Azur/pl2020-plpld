@@ -182,15 +182,6 @@ public class MainActivity extends AppCompatActivity implements Vue {
             childList.add(model);
     }
 
-
-    // Convert pixel to dip
-    public int getDipsFromPixel(float pixels) {
-        // Get the screen's density scale
-        final float scale = getResources().getDisplayMetrics().density;
-        // Convert the dps to pixels, based on density scale
-        return (int) (pixels * scale + 0.5f);
-    }
-
     @Override
     protected void onPause() {
         super.onPause();

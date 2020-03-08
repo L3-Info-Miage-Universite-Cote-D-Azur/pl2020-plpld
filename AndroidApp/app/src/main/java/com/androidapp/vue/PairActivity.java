@@ -93,7 +93,7 @@ public class PairActivity extends MainActivity {
     private void createCollection() {
         String[] Informatique = {"Bases de l'informatique 2", "Introduction à l'informatique par le web 2", "Structures de données et programmation C 2 ", "Bases de données", "Outils formels de l'informatique"};
         String[] Math = { "Fondements 2 ","Méthodes : approche discrète","Complements 2","Analyse","Probabilités et Introduction à la Statistiques","Algèbre"," Résolution numérique des systèmes d'équations linéaires et non-linéaires","Méthodes : approche aléatoire"};
-        String[] Chimie = {"Reactions et reactivites chimiques ","Thermodynamique chimique / Options ","Vision macroscopique des molécules,Matériaux 2","Chimie Organique Fonctionnelle II", "Bloc de Chimie Expérimentale"};
+        String[] Chimie = {"Reactions et reactivites chimiques ","Thermodynamique chimique / Options ","Vision macroscopique des molécules","Matériaux 2","Chimie Organique Fonctionnelle II", "Bloc de Chimie Expérimentale"};
         String[] Electronique = { "Electronique analogique","Communication sans fil"  ,"Système optimisé en énergie"  ,"Electronique analogique avancée", "Architecture des processeurs",  "Systèmes embarqués II"};
         String[] Geographie = { "Decouverte 4" ,"Decouverte 3", "Disciplinaire 2", "Disciplinaire 6" ,"Disciplinaire 7" ,"Disciplinaire 8" ,"Approfondissement hors géographie 2"};
         String[] MIASHS = { "Economie-Gestion S1", "Intro R"};
