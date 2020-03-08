@@ -199,8 +199,6 @@ public class MainActivity extends AppCompatActivity implements Vue {
     }
 
     public List<Matiere> selection() {
-        return adapter.selection();
+        return adapter.selection(new Matiere("S1"));
     }
-
-
 }

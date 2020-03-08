@@ -16,6 +16,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import metier.Identité;
+import metier.Matiere;
 
 public class PairActivity extends MainActivity {
     private Identité monIdentité;
@@ -154,5 +155,8 @@ public class PairActivity extends MainActivity {
             childList.add(model);
     }
 
+    public List<Matiere> selection() {
+        return adapter.selection(new Matiere("S2"));
+    }
 
 }

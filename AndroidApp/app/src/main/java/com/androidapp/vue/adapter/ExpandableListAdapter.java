@@ -78,8 +78,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return mModelList;
     }
 
-    public List<Matiere> selection() {
+    public List<Matiere> selection(Matiere numSemestre) {
         List<Matiere> Selection = new ArrayList<Matiere>();
+        Selection.add(numSemestre);
         for(Map.Entry<Integer, RecyclerViewAdapter> R: AdapterCollection.entrySet()) {
             Selection.addAll(R.getValue().selection());
         }

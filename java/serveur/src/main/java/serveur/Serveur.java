@@ -90,7 +90,7 @@ public class Serveur {
      */
 
     protected void validation(SocketIOClient socketIOClient, ChoixUtilisateur SelectionUE) {
-        System.out.println("Votre sélection (" + SelectionUE.toString() +") a été enregistrée.");
+        System.out.println("Votre sélection pour le semestre n°" + SelectionUE.getNumSemestre() + " (" + SelectionUE.toString() +") a été enregistrée.");
         socketIOClient.sendEvent(VALIDATION, SelectionUE.toString());
     }
 
