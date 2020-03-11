@@ -14,9 +14,15 @@ import com.anton46.stepsview.StepsView;
 
 public class StepsProgressAdapter extends ArrayAdapter<String> {
     private final String[] labels = {"S1", "S2", "S3", "S4"};
+    int etape = 0;
 
     public StepsProgressAdapter(Context context, int resource) {
         super(context, resource);
+    }
+
+    public StepsProgressAdapter(Context context, int resource, int etape) {
+        super(context, resource);
+        this.etape = etape;
     }
 
     @Override
@@ -29,26 +35,19 @@ public class StepsProgressAdapter extends ArrayAdapter<String> {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
-        holder.mLabel.setText(getItem(position));
-
-        holder.mStepsView.setCompletedPosition(position % labels.length)
+        holder.mStepsView.setCompletedPosition(etape % labels.length)
                 .setLabels(labels)
                 .setBarColorIndicator(ContextCompat.getColor(getContext(), R.color.material_blue_grey_800))
                 .setProgressColorIndicator(ContextCompat.getColor(getContext(), R.color.orange))
                 .setLabelColorIndicator(ContextCompat.getColor(getContext(), R.color.orange))
                 .drawView();
-
         return convertView;
     }
 
     static class ViewHolder {
-
         TextView mLabel;
         StepsView mStepsView;
-
         public ViewHolder(View view) {
-            mLabel = view.findViewById(R.id.label);
             mStepsView = view.findViewById(R.id.stepsView);
         }
     }

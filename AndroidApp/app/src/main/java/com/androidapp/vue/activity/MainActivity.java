@@ -56,14 +56,14 @@ public class MainActivity extends AppCompatActivity implements Vue {
 
         ListView mListView = findViewById(R.id.list);
 
-        StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0);
+        StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0, 0);
         stepsAdapter.addAll(views);
         mListView.setAdapter(stepsAdapter);
 
         final Context context=this.getBaseContext();
 
-        createGroupList();
-        createCollection();
+        this.createGroupList();
+        this.createCollection();
 
         expListView = (ExpandableListView) findViewById(R.id.UE_list);
         final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(this, groupList, UECollection);
