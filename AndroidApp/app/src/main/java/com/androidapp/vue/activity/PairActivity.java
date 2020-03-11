@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.androidapp.R;
 import com.androidapp.vue.Vue;
 import com.androidapp.vue.adapter.ExpandableListAdapter;
+import com.androidapp.vue.adapter.StepsProgressAdapter;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -27,19 +29,24 @@ public class PairActivity extends MainActivity implements Vue {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pair);
+        setContentView(R.layout.activity_main);
 
         monIdentité = new Identité("AndroidApp");
         autoconnect = getIntent().getBooleanExtra(AUTOCONNECT, true);
 
+        ListView mListView = findViewById(R.id.list);
+
+        StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 1, 1);
+        stepsAdapter.addAll(new String[]{"View 2"});
+        mListView.setAdapter(stepsAdapter);
+
         final Context context=this.getBaseContext();
 
-        createGroupList();
-        createCollection();
+        this.createGroupList();
+        this.createCollection();
 
         expListView = (ExpandableListView) findViewById(R.id.UE_list);
-        final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(
-                this, groupList, UECollection);
+        final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(this, groupList, UECollection);
         expListView.setAdapter(expListAdapter);
         adapter = expListAdapter;
         expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
@@ -54,27 +61,6 @@ public class PairActivity extends MainActivity implements Vue {
                 return true;
             }
         });
-
-        bsimp=(Button)findViewById(R.id.simp);
-        brecap=(Button)findViewById(R.id.buttonValider);
-
-        bsimp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context,"semestre impaire",Toast.LENGTH_LONG).show();
-                Intent intent=new Intent(PairActivity.this,MainActivity.class);
-                startActivity(intent);
-            }
-        });
-        brecap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context,"page récapitulatif",Toast.LENGTH_LONG).show();
-                Intent intent2=new Intent(PairActivity.this,RecapActivity.class);
-                startActivity(intent2);
-            }
-        });
-
     }
 
     private void createGroupList() {
