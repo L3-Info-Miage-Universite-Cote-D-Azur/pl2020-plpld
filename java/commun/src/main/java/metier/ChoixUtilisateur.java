@@ -11,6 +11,8 @@ import java.util.StringTokenizer;
 
 public class ChoixUtilisateur implements ToJSON {
     private List<Matiere> Choix;
+    private int numSemestre;
+
     public ChoixUtilisateur(List<Matiere> UserChoice) {
         Choix = UserChoice;
     }
@@ -22,6 +24,7 @@ public class ChoixUtilisateur implements ToJSON {
         for(String UE: new ArrayList<String>(Arrays.asList(S.split(",")))) {
             Choix.add(new Matiere(UE));
         };
+        numSemestre();
     }
 
     public List<Matiere> getChoix() {
@@ -42,4 +45,11 @@ public class ChoixUtilisateur implements ToJSON {
     public String toString() {
         return Choix.toString();
     }
+
+    private void numSemestre() {
+        numSemestre = Choix.get(0).getNom().charAt(1)-48;
+        Choix.remove(0);
+    }
+
+    public int getNumSemestre() {return numSemestre;}
 }

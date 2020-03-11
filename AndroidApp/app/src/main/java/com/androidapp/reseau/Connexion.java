@@ -1,8 +1,11 @@
 package com.androidapp.reseau;
 import java.net.URISyntaxException;
 
+import constantes.Net;
 import io.socket.client.IO;
 import io.socket.client.Socket;
+import metier.ToJSON;
+
 import com.androidapp.controleur.*;
 import com.androidapp.vue.Vue;
 

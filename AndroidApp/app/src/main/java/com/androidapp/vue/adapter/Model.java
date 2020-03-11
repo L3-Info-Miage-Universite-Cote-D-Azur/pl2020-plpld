@@ -1,4 +1,4 @@
-package com.androidapp;
+package com.androidapp.vue.adapter;
 
 public class Model {
     private String text;
@@ -15,7 +15,6 @@ public class Model {
     public void setSelected(boolean selected) {
         isSelected = selected;
     }
-
 
     public boolean isSelected() {
         return isSelected;

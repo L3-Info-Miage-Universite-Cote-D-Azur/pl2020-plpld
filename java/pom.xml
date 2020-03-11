@@ -6,15 +6,15 @@
 
     <groupId>PLPLD</groupId> <!-- à changer par le nom du groupe -->
     <artifactId>Projet-Licence-PLPLD</artifactId> <!-- et le nom du projet -->
-    <version>0.3</version>
-	
-	<modules>
-		<module>commun</module>
-		<module>serveur</module>
-	</modules>
-	
-	<packaging>pom</packaging>
-	
+    <version>0.4</version>
+
+    <modules>
+        <module>commun</module>
+        <module>serveur</module>
+    </modules>
+
+    <packaging>pom</packaging>
+
 
 
     <properties>
@@ -43,7 +43,7 @@
             <!-- la génération de la  javadoc s'utilise avec "mvn site" -->
 
 
-            
+
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -55,7 +55,7 @@
                 </configuration>
             </plugin>
 
-           
+
 
 
 
@@ -92,8 +92,8 @@
             <version>20190722</version>
         </dependency>
 
-	
-</dependencies>
+
+    </dependencies>
 
 
 </project>
