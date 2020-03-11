@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements Vue {
     ExpandableListView expListView;
     ExpandableListAdapter adapter;
     private final String[] views = {"View 1"};
-
+    private Button btns2;
 
     @Override
     public void displayMsg(String str) {
@@ -81,6 +81,9 @@ public class MainActivity extends AppCompatActivity implements Vue {
                 return true;
             }
         });
+
+
+
     }
 
     private void createGroupList() {
@@ -191,6 +194,8 @@ public class MainActivity extends AppCompatActivity implements Vue {
     }
 
     public void changementSemestre() {
-        startActivity(new Intent(MainActivity.this,PairActivity.class));
+        final Context context=this.getBaseContext();
+        Toast.makeText(context,"Semestre 2",Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(MainActivity.this, Semestre2Activityyy.class));
     }
 }

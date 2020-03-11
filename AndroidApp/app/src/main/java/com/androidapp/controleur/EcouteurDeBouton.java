@@ -1,6 +1,4 @@
 package com.androidapp.controleur;
-import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
@@ -9,8 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.androidapp.reseau.*;
 import com.androidapp.R;
 import com.androidapp.vue.*;
-import com.androidapp.vue.activity.MainActivity;
-import com.androidapp.vue.activity.PairActivity;
 
 import constantes.Net;
 import metier.ChoixUtilisateur;
