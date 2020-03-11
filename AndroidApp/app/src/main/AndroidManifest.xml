@@ -12,8 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".vue.activity.RecapActivity"></activity>
-        <activity android:name=".vue.activity.PairActivity" />
+        <activity android:name=".vue.activity.Semestre4Activity"></activity>
+        <activity android:name=".vue.activity.Semestre3Activity" />
+        <activity android:name=".vue.activity.RecapActivity" />
         <activity android:name=".vue.activity.MainActivity" />
         <activity android:name=".vue.activity.HomeActivity">
             <intent-filter>

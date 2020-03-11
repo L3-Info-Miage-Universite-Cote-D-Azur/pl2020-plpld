@@ -48,6 +48,17 @@ Pour démarrer le serveur : lancer un terminal et exécuter :
 
 > Côté serveur, il faut pouvoir fournir la liste des cours, enregistrer des "parcours" et les fournir.
 
-> Prendre en compte l'évolution 1 du sujet (à déterminer) le 11 mars 2020.
+### Modification n°1:
+Il est demandé :
+> D'intégrer des pré-requis comme les conditions d'accès en L3 (et s4) sans considérer les résultats : quand c'est écrit valider on condiérera "suivre" car on ne sait pas les notes qu'obtiendront les étudiants. Par contre si c'est écrit avoir valider x UE de y, mais que moins que x sont suivies, l'accès sera alors impossible... 
 
+> Si une information est manquante pour une discipline, appliquer les mêmes informations que pour une discipline dont vous avez les infos, mais en structurant bien les données. 
+
+> Pouvoir changer les données "facilement" : listes des cours, description des cours, "pré-requis", etc. (sans mettre à jour l'application)
+
+> Il faut pouvoir ré-évaluer les "parcours" (pré-requis) : par exemple pour un parcours fait le 03/03 et les règles qui changent le 04/03, il faut que l'utilisateur sache que les règles ont changées depuis et qu'il puisse vérifier si les changement ont un impact
+
+Document complémentaire [ici](https://lms.univ-cotedazur.fr/pluginfile.php/112034/course/section/17947/modalites%20obtention%20L%20Info%20mars%202020.pdf)
+
+### Modificaiton n°2:
 > Prendre en compte l'évolution 2 du sujet (à déterminer) le 1er avril 2020.

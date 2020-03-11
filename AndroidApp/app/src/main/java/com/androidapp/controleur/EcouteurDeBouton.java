@@ -16,13 +16,11 @@ public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickL
 
     private final Connexion mSocket;
     private final Vue vue;
-    private boolean validation = false;
 
 
     public EcouteurDeBouton(Vue v, Connexion mSocket) {
         this.vue = v;
         this.mSocket = mSocket;
-
     }
 
 
@@ -31,19 +29,9 @@ public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickL
         switch (v.getId()) {
             case R.id.buttonValider:
                 Log.d("POUR MONTRER", "EcouteurDeBouton : bouton valider cliqué");
-                if (vue.selection()==null)
-                    vue.displayMsg("Votre validation a été transmise au serveur");
-                else {
-                    if(validation == false)
-                    {
-                        mSocket.envoyerMessage(Net.VALIDATION, (ToJSON) new ChoixUtilisateur(vue.selection()));
-                        vue.displayMsg("Votre choix a été transmis au serveur");
-                        validation = true;
-                    }
-                    else {
-                        vue.displayMsg("Vous avez déjà validé votre choix");
-                    }
-                }
+                mSocket.envoyerMessage(Net.VALIDATION, (ToJSON) new ChoixUtilisateur(vue.selection()));
+                vue.displayMsg("Votre choix a été transmis au serveur");
+                vue.changementSemestre();
                 break;
         }
     }

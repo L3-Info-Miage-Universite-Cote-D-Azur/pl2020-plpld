@@ -7,14 +7,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.Button;
 
 import com.androidapp.R;
 import com.androidapp.reseau.*;
 import com.androidapp.controleur.*;
-import com.androidapp.vue.adapter.ExpandableListAdapter;
 import com.androidapp.vue.Vue;
+import com.androidapp.vue.adapter.*;
 
 import constantes.Net;
 import metier.*;
@@ -25,7 +26,6 @@ public class MainActivity extends AppCompatActivity implements Vue {
     public static final String AUTOCONNECT = "AUTOCONNECT";
     public static Connexion connexion;
     private Button bouton;
-    private Button bspair;
     private Identité monIdentité;
     private boolean autoconnect = true;
     List<String> groupList;
@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements Vue {
     Map<String, List<String>> UECollection;
     ExpandableListView expListView;
     ExpandableListAdapter adapter;
+    private final String[] views = {"View 1"};
+    private Button btns2;
 
     @Override
     public void displayMsg(String str) {
@@ -52,14 +54,19 @@ public class MainActivity extends AppCompatActivity implements Vue {
         monIdentité = new Identité("AndroidApp");
         autoconnect = getIntent().getBooleanExtra(AUTOCONNECT, true);
 
+        ListView mListView = findViewById(R.id.list);
+
+        StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0, 0);
+        stepsAdapter.addAll(views);
+        mListView.setAdapter(stepsAdapter);
+
         final Context context=this.getBaseContext();
 
-        createGroupList();
-        createCollection();
+        this.createGroupList();
+        this.createCollection();
 
         expListView = (ExpandableListView) findViewById(R.id.UE_list);
-        final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(
-                this, groupList, UECollection);
+        final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(this, groupList, UECollection);
         expListView.setAdapter(expListAdapter);
         adapter = expListAdapter;
         expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
@@ -76,34 +83,18 @@ public class MainActivity extends AppCompatActivity implements Vue {
         });
 
 
-        bspair=(Button)findViewById(R.id.spair);
-
-
-        bspair.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context,"semestre pair",Toast.LENGTH_LONG).show();
-                Intent intent=new Intent(MainActivity.this,PairActivity.class);
-                startActivity(intent);
-            }
-        });
-
 
     }
 
     private void createGroupList() {
         groupList = new ArrayList<String>();
-        groupList.add("Informatique");
-        groupList.add("Mathématiques");
-        groupList.add("Chimie");
-        groupList.add("Electronique");
-        groupList.add("Géographie");
-        groupList.add("MIASHS");
-        groupList.add("Physique");
-        groupList.add("Science de la terre");
-        groupList.add("Science de la vie");
-        groupList.add("CLE 1D (Continuum Licence Enseignement)");
-        groupList.add("UE facultative");
+        String[] strArray = {"Informatique","Mathématiques","Chimie","Electronique","Géographie",
+                             "MIASHS","Physique","Science de la Terre","Science de la vie",
+                             "CLE 1D (Continuum Licence Enseignement)","UE facultative"};
+
+
+        for (String s : strArray) {groupList.add(s);}
+
     }
 
     private void createCollection() {
@@ -200,5 +191,11 @@ public class MainActivity extends AppCompatActivity implements Vue {
 
     public List<Matiere> selection() {
         return adapter.selection(new Matiere("S1"));
+    }
+
+    public void changementSemestre() {
+        final Context context=this.getBaseContext();
+        Toast.makeText(context,"Semestre 2",Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(MainActivity.this, Semestre2Activityyy.class));
     }
 }

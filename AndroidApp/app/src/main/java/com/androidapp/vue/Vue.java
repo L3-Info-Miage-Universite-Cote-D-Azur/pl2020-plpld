@@ -22,5 +22,7 @@ public interface Vue {
      *  Retourne la selection des UEs de l'utilisateur
      */
     List<Matiere> selection();
+
+    void changementSemestre();
 }
 
