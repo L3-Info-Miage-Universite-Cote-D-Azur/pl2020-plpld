@@ -85,17 +85,13 @@ public class MainActivity extends AppCompatActivity implements Vue {
 
     private void createGroupList() {
         groupList = new ArrayList<String>();
-        groupList.add("Informatique");
-        groupList.add("Mathématiques");
-        groupList.add("Chimie");
-        groupList.add("Electronique");
-        groupList.add("Géographie");
-        groupList.add("MIASHS");
-        groupList.add("Physique");
-        groupList.add("Science de la terre");
-        groupList.add("Science de la vie");
-        groupList.add("CLE 1D (Continuum Licence Enseignement)");
-        groupList.add("UE facultative");
+        String[] strArray = {"Informatique","Mathématiques","Chimie","Electronique","Géographie",
+                             "MIASHS","Physique","Science de la Terre","Science de la vie",
+                             "CLE 1D (Continuum Licence Enseignement)","UE facultative"};
+
+
+        for (String s : strArray) {groupList.add(s);}
+
     }
 
     private void createCollection() {
