@@ -7,7 +7,7 @@ import io.socket.client.Socket;
 import metier.ToJSON;
 
 import com.androidapp.controleur.*;
-import com.androidapp.vue.Vue;
+import com.androidapp.vue.*;
 
 public class Connexion {
 
