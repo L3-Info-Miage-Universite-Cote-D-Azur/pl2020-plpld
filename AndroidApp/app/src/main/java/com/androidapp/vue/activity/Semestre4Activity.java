@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.text.Layout;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.androidapp.R;
 import com.androidapp.vue.Vue;
 import com.androidapp.vue.adapter.ExpandableListAdapter;
+import com.androidapp.vue.adapter.StepsProgressAdapter;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -32,12 +34,19 @@ public class Semestre4Activity extends MainActivity implements Vue {
         monIdentité = new Identité("AndroidApp");
         autoconnect = getIntent().getBooleanExtra(AUTOCONNECT, true);
 
-        createGroupList();
-        createCollection();
+        ListView mListView = findViewById(R.id.list);
+
+        StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0, 3);
+        stepsAdapter.addAll(new String[]{"View 4"});
+        mListView.setAdapter(stepsAdapter);
+
+        final Context context=this.getBaseContext();
+
+        this.createGroupList();
+        this.createCollection();
 
         expListView = (ExpandableListView) findViewById(R.id.UE_list);
-        final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(
-                this, groupList, UECollection);
+        final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(this, groupList, UECollection);
         expListView.setAdapter(expListAdapter);
         adapter = expListAdapter;
         expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
@@ -134,7 +143,7 @@ public class Semestre4Activity extends MainActivity implements Vue {
     }
 
     public List<Matiere> selection() {
-        return adapter.selection(new Matiere("S3"));
+        return adapter.selection(new Matiere("S4"));
     }
 
     public void changementSemestre() {
