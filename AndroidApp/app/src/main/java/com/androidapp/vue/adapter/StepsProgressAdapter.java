@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+
 import com.androidapp.R;
 import com.anton46.stepsview.StepsView;
 
@@ -32,10 +34,9 @@ public class StepsProgressAdapter extends ArrayAdapter<String> {
 
         holder.mStepsView.setCompletedPosition(position % labels.length)
                 .setLabels(labels)
-                .setBarColorIndicator(
-                        getContext().getResources().getColor(R.color.material_blue_grey_800))
-                .setProgressColorIndicator(getContext().getResources().getColor(R.color.orange))
-                .setLabelColorIndicator(getContext().getResources().getColor(R.color.orange))
+                .setBarColorIndicator(ContextCompat.getColor(getContext(), R.color.material_blue_grey_800))
+                .setProgressColorIndicator(ContextCompat.getColor(getContext(), R.color.orange))
+                .setLabelColorIndicator(ContextCompat.getColor(getContext(), R.color.orange))
                 .drawView();
 
         return convertView;
@@ -47,8 +48,8 @@ public class StepsProgressAdapter extends ArrayAdapter<String> {
         StepsView mStepsView;
 
         public ViewHolder(View view) {
-            mLabel = (TextView) view.findViewById(R.id.label);
-            mStepsView = (StepsView) view.findViewById(R.id.stepsView);
+            mLabel = view.findViewById(R.id.label);
+            mStepsView = view.findViewById(R.id.stepsView);
         }
     }
 }
