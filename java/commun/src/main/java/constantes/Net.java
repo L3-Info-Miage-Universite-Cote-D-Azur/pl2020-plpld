@@ -9,4 +9,5 @@ public class Net {
     public static final String CONNEXION = "je me connecte";
     public static final String CHOIX = "choix";
     public static final String VALIDATION = "je valide mes choix";
+    public static final String UE = "UE";
 }
