@@ -8,8 +8,14 @@ import com.corundumstudio.socketio.listener.DataListener;
 import constantes.Net;
 import metier.ChoixUtilisateur;
 import metier.Identité;
+import metier.ListeSemestre;
 import metier.Matiere;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.Buffer;
 import java.util.List;
 
 import static constantes.Net.*;
@@ -42,6 +48,7 @@ public class Serveur {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) throws Exception {
                 nouveauClient(socketIOClient, id);
+                envoyerUE(socketIOClient);
             }
         });
 
@@ -94,6 +101,27 @@ public class Serveur {
         socketIOClient.sendEvent(VALIDATION, SelectionUE.toString());
     }
 
+    protected void envoyerUE(SocketIOClient socketIOClient)
+    {
+        ListeSemestre listeSemestre = new ListeSemestre();
+        BufferedReader br;
+        try{
+            br = new BufferedReader(new FileReader("commun/src/main/Ressource/UE.txt"));
+            String line = br.readLine();
+            while(line != null)
+            {
+                System.out.println(line);
+                line = br.readLine();
+            }
+            br.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        socketIOClient.sendEvent(UE,listeSemestre);
+    }
     /**
      * Démarre le serveur
      */
