@@ -1,11 +1,8 @@
 package com.androidapp.vue.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
@@ -23,7 +20,7 @@ import java.util.List;
 import metier.Identité;
 import metier.Matiere;
 
-public class Semestre4Activity extends MainActivity implements Vue {
+public class Semestre4Activity extends Semestre1Activity implements Vue {
     private Identité monIdentité;
     private boolean autoconnect = true;
     @Override

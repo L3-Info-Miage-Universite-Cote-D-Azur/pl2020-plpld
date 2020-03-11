@@ -21,7 +21,7 @@ import java.util.List;
 import metier.Identité;
 import metier.Matiere;
 
-public class Semestre2Activity extends MainActivity implements Vue {
+public class Semestre2Activity extends Semestre1Activity implements Vue {
     private Identité monIdentité;
     private boolean autoconnect = true;
     private Button bsimp;

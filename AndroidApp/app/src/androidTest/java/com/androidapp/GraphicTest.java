@@ -10,7 +10,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 
-import com.androidapp.vue.activity.MainActivity;
+import com.androidapp.vue.activity.Semestre1Activity;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -31,7 +31,7 @@ import static org.hamcrest.Matchers.allOf;
 public class GraphicTest {
 
     @Rule
-    public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule<Semestre1Activity> mActivityTestRule = new ActivityTestRule<>(Semestre1Activity.class);
 
     @Test
     public void graphicTest() {

@@ -22,7 +22,7 @@ import metier.*;
 import java.util.*;
 
 
-public class MainActivity extends AppCompatActivity implements Vue {
+public class Semestre1Activity extends AppCompatActivity implements Vue {
     public static final String AUTOCONNECT = "AUTOCONNECT";
     public static Connexion connexion;
     private Button bouton;
@@ -81,6 +81,9 @@ public class MainActivity extends AppCompatActivity implements Vue {
                 return true;
             }
         });
+
+
+
     }
 
     private void createGroupList() {
@@ -193,6 +196,6 @@ public class MainActivity extends AppCompatActivity implements Vue {
     public void changementSemestre() {
         final Context context=this.getBaseContext();
         Toast.makeText(context,"Semestre 2",Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(MainActivity.this, Semestre2Activity.class));
+        startActivity(new Intent(Semestre1Activity.this, Semestre2Activity.class));
     }
 }
