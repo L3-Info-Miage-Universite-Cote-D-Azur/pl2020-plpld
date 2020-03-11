@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements Vue {
 
         StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0);
         stepsAdapter.addAll(views);
-
         mListView.setAdapter(stepsAdapter);
 
         final Context context=this.getBaseContext();
@@ -193,5 +192,9 @@ public class MainActivity extends AppCompatActivity implements Vue {
 
     public List<Matiere> selection() {
         return adapter.selection(new Matiere("S1"));
+    }
+
+    public void changementSemestre() {
+        startActivity(new Intent(MainActivity.this,PairActivity.class));
     }
 }

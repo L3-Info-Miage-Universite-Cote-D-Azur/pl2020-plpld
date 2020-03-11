@@ -9,6 +9,7 @@ import android.widget.ExpandableListView;
 import android.widget.Toast;
 
 import com.androidapp.R;
+import com.androidapp.vue.Vue;
 import com.androidapp.vue.adapter.ExpandableListAdapter;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.List;
 import metier.Identité;
 import metier.Matiere;
 
-public class PairActivity extends MainActivity {
+public class PairActivity extends MainActivity implements Vue {
     private Identité monIdentité;
     private boolean autoconnect = true;
     private Button bsimp;
@@ -159,4 +160,7 @@ public class PairActivity extends MainActivity {
         return adapter.selection(new Matiere("S2"));
     }
 
+    public void changementSemestre() {
+        startActivity(new Intent(PairActivity.this,PairActivity.class));
+    }
 }
