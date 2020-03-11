@@ -29,7 +29,7 @@ public class Semestre2Activity extends Semestre1Activity implements Vue {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_semestre2);
+        setContentView(R.layout.semestres);
 
         monIdentité = new Identité("AndroidApp");
         autoconnect = getIntent().getBooleanExtra(AUTOCONNECT, true);
