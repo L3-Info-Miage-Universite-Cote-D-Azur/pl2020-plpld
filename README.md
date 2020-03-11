@@ -52,7 +52,7 @@ Pour démarrer le serveur : lancer un terminal et exécuter :
 Il est demandé :
 > D'intégrer des pré-requis comme les conditions d'accès en L3 (et s4) sans considérer les résultats : quand c'est écrit valider on condiérera "suivre" car on ne sait pas les notes qu'obtiendront les étudiants. Par contre si c'est écrit avoir valider x UE de y, mais que moins que x sont suivies, l'accès sera alors impossible... 
 
-> Si une information est manquante pour une discipline, appliquer les mêmes informations que pour une discipline dont vous avez les infos, mais en structurant bien les données. 
+> Si une information est manquante pour une discipline, appliquer les mêmes informations que pour une discipline dont on aurait les informations, mais en structurant bien les données. 
 
 > Pouvoir changer les données "facilement" : listes des cours, description des cours, "pré-requis", etc. (sans mettre à jour l'application)
 
