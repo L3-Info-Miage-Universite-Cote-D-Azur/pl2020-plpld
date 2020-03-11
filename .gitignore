@@ -4,7 +4,7 @@
 **/build/
 **/bin/
 **/*.txt
-**/_windows/
+_windows/
 # pour la javadoc (selon le nom du dossier pouvant la contenir)
 **/javadoc/
 **/apidocs/
@@ -36,7 +36,7 @@
 **/.DS_Store
 
 #pour AndroidStudio
-**/colors.scheme.xml
-**/debugger.xml
-**/notifications.xml
-**/vcs.xml
+colors.scheme.xml
+debugger.xml
+notifications.xml
+vcs.xml
