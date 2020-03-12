@@ -43,6 +43,8 @@ public class SimulationParcoursTest {
                 withText("Bases de l'informatique")).perform(click());
         clicMatiere = onView(
                 withText("Introduction à l'informatique par le web")).perform(click());
+        clicGroupe = onView(
+                withText("Informatique")).perform(click());
 
         clicGroupe = onView(
                 withText("Electronique")).perform(click());
@@ -86,6 +88,8 @@ public class SimulationParcoursTest {
                 withText("MIASHS")).perform(click());
         clicMatiere = onView(
                 withText("Economie-Gestion S2")).perform(click());
+        clicGroupe = onView(
+                withText("MIASHS")).perform(click());
 
         clicGroupe = onView(
                 withText("Physique")).perform(click());
@@ -134,11 +138,15 @@ public class SimulationParcoursTest {
                 withText("Electronique")).perform(click());
         clicMatiere = onView(
                 withText("Système embarqué")).perform(click());
+        clicGroupe = onView(
+                withText("Electronique")).perform(click());
 
         clicGroupe = onView(
                 withText("Géographie")).perform(click());
         clicMatiere = onView(
                 withText("Decouverte 1")).perform(click());
+        clicGroupe = onView(
+                withText("Géographie")).perform(click());
 
         ViewInteraction scrollView = onView(
                 withId(R.id.UE_list)).perform(ViewActions.swipeUp());
@@ -148,6 +156,8 @@ public class SimulationParcoursTest {
                 withText("Economie-Gestion S3")).perform(click());
         clicMatiere = onView(
                 withText("Intro R")).perform(click());
+        clicGroupe = onView(
+                withText("MIASHS")).perform(click());
 
         scrollView = onView(
                 withId(R.id.UE_list)).perform(ViewActions.swipeUp());
@@ -172,6 +182,8 @@ public class SimulationParcoursTest {
                 withText("Algorithmique 1")).perform(click());
         clicMatiere = onView(
                 withText("Systèmes 2 : Mécanisme internes des systèmes d'exploitation")).perform(click());
+        clicGroupe = onView(
+                withText("Informatique")).perform(click());
 
         clicGroupe = onView(
                 withText("Mathématiques")).perform(click());
