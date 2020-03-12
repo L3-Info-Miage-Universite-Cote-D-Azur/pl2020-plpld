@@ -33,9 +33,6 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
     Map<String, List<String>> UECollection;
     ExpandableListView expListView;
     ExpandableListAdapter adapter;
-    private final String[] views = {"View 1"};
-    private Button btns2;
-
     @Override
     public void displayMsg(String str) {
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
@@ -57,7 +54,7 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
         ListView mListView = findViewById(R.id.list);
 
         StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0, 0);
-        stepsAdapter.addAll(views);
+        stepsAdapter.addAll(new String[]{"View 1"});
         mListView.setAdapter(stepsAdapter);
 
         final Context context=this.getBaseContext();
@@ -90,7 +87,7 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
         groupList = new ArrayList<String>();
         String[] strArray = {"Informatique","Mathématiques","Chimie","Electronique","Géographie",
                              "MIASHS","Physique","Science de la Terre","Science de la vie",
-                             "CLE 1D (Continuum Licence Enseignement)","UE facultative"};
+                             "CLE 1D (Continuum Licence Enseignement)"/*,"UE facultative"*/};
 
 
         for (String s : strArray) {groupList.add(s);}
@@ -98,17 +95,18 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
     }
 
     private void createCollection() {
-        String[] Informatique = {"Bases de l'informatique", "Introduction à l'informatique par le web", "Structures de données et programmation C", "Bases de données", "Outils formels de l'informatique"};
+
+        String[] Informatique = {"Bases de l'informatique", "Introduction à l'informatique par le web"};
         String[] Math = { "Fondements 1", "Méthodes : approche continue", "Complements 1"};
-        String[] Chimie = { "Structure Microscopique de la Matiere", "Chimie des Solutions", "Chimie organique", "Matériaux 1"};
-        String[] Electronique = { "Electronique numerique - Bases", "Automatique : une introduction", "Système embarqué", "Physique des capteurs "};
-        String[] Geographie = { "Decouverte 1", "Disciplinaire 1", "Appofondissement hors géographie 1"};
-        String[] MIASHS = { "Economie-Gestion S1", "Intro R"};
-        String[] Physique = { "Mecanique 1", "Electromagnétisme 1", "Thermodynamique 1", "Outils et Méthodes 1"};
-        String[] SDT = { "Decouverte des sciences de la terre", "Atmosphère, Océan, Climats ", "Le temps en Géosciences", "Physique de la Terre", "Materiaux terrestres"};
-        String[] SDV = { "Org. Mecanismes Moleculaires Cellules Eucaryotes", "Genetique. Evolution. Origine Vie et Biodiversite"};
+        String[] Chimie = {"Structure Microscopique de la Matière"};
+        String[] Electronique = { "Electronique numerique - Bases"};
+        String[] Geographie = { "Decouverte 1" ,"Decouverte 2", "Disciplinaire 1"};
+        String[] MIASHS = { "Economie-Gestion S1"};
+        String[] Physique = {"Mécanique 1"};
+        String[] SDT = { "Découverte des sciences de la terre"};
+        String[] SDV = { "Org. Mécanismes Moléculaires Cellules Eucaryotes", "Génétique. Evolution. Origine Vie et Biodiversité"};
         String[] CLE = { "Enseignements fondamentaux à l'école primaire 1"};
-        String[] Facultative = { "Projet FabLab"};
+        String[] Facultative = { };
 
         UECollection = new LinkedHashMap<String, List<String>>();
 
@@ -136,7 +134,7 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
                 case "Physique":
                     loadChild(Physique);
                     break;
-                case "Science de la terre":
+                case "Science de la Terre":
                     loadChild(SDT);
                     break;
                 case "Science de la vie":
