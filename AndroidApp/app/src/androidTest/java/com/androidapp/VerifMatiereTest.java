@@ -37,9 +37,9 @@ public class VerifMatiereTest {
     @Test
     public void graphicTest() throws InterruptedException {
 
-        String[] strArray = {"Informatique","Mathématiques","Chimie","Electronique","Géographie",
-                "MIASHS","Physique","Science de la Terre","Science de la vie",
-                "CLE 1D (Continuum Licence Enseignement)","UE facultative"};
+        String[] strArray = {"MIASHS", "Géographie", "Science de la vie", "Informatique","Mathématiques",
+                "Chimie", "Science de la Terre", "CLE 1D (Continuum Licence Enseignement)",
+                "Physique", "UE facultative", "Electronique"};
 
         String[] InformatiqueS1 = {"Bases de l'informatique", "Introduction à l'informatique par le web"};
         String[] MathS1 = { "Fondements 1", "Méthodes : approche continue", "Complements 1"};
