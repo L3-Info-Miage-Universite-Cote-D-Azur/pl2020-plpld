@@ -85,7 +85,7 @@ public class Semestre4Activity extends Semestre1Activity implements Vue {
         String[] Physique = { "Optique 1", "Mécanique 2", "Electromagnétisme 2", "Ondes", "Mathématiques pour la Physique 1", "Mécanique 3", "Outils et Méthodes 2"};
         String[] SDT = { "Structure et dynamique de la terre", "Atmosphère, Océan, Climats", "Géologie Structurale et Tectonique", "Formation et Evolution des Bassins Sédimentaires", "Géomécanique", "Du paysage à la carte"};
         String[] SDV = { "Physiologie. Neurologie. Enzymologie. Methodologie", "Diversite du Vivant"};
-        String[] CLE = { "Enseignements fondamentaux à l'école primaire 1", "Enseignements fondamentaux à l'école primaire 1", "Méthodologie du concours et didactique - Géométrie", "Méthodologie du concours et didactique - Physique-Chimie", "Outils et Méthodes 2D"};
+        String[] CLE = { "Enseignements fondamentaux à l'école primaire 2", "Méthodologie du concours et didactique - Géométrie", "Méthodologie du concours et didactique - Physique-Chimie", "Outils et Méthodes 2D"};
         String[] UEPro = { "Management de projet"};
         String[] Facultative = { "Projet FabLab"};
 
