@@ -1,5 +1,6 @@
 package metier;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,9 +15,10 @@ public class ListeSemestre {
     {
         mapUE.put(key,value);
     }
+
     public void setMapUE(HashMap<String, List<String>> mapUE) {
         this.mapUE = mapUE;
     }
 
-    HashMap<String, List<String>> mapUE;
+    HashMap<String, List<String>> mapUE = new HashMap<>();
 }
