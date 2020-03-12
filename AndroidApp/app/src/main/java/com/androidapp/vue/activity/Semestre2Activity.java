@@ -92,7 +92,7 @@ public class Semestre2Activity extends Semestre1Activity implements Vue {
         groupList.add("Géographie");
         groupList.add("MIASHS");
         groupList.add("Physique");
-        groupList.add("Science de la terre");
+        groupList.add("Science de la Terre");
         groupList.add("Science de la vie");
         groupList.add("CLE 1D (Continuum Licence Enseignement)");
         groupList.add("UE facultative");
@@ -136,7 +136,7 @@ public class Semestre2Activity extends Semestre1Activity implements Vue {
                 case "Physique":
                     loadChild(Physique);
                     break;
-                case "Science de la terre":
+                case "Science de la Terre":
                     loadChild(SDT);
                     break;
                 case "Science de la vie":
