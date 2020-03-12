@@ -33,9 +33,6 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
     Map<String, List<String>> UECollection;
     ExpandableListView expListView;
     ExpandableListAdapter adapter;
-    private final String[] views = {"View 1"};
-    private Button btns2;
-
     @Override
     public void displayMsg(String str) {
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
@@ -57,7 +54,7 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
         ListView mListView = findViewById(R.id.list);
 
         StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0, 0);
-        stepsAdapter.addAll(views);
+        stepsAdapter.addAll(new String[]{"View 1"});
         mListView.setAdapter(stepsAdapter);
 
         final Context context=this.getBaseContext();
