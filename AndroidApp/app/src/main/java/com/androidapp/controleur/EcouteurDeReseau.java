@@ -27,8 +27,8 @@ public class EcouteurDeReseau implements Emitter.Listener {
         HashMap<String,List<String>> map = new HashMap<>();
         for( String str : tokens)
         {
-            String[] matieres = str.substring(str.lastIndexOf(":[")).replace(":[","").split(",");
-            map.put(str.substring(0,str.indexOf(":[")), Arrays.asList(matieres));
+            String[] matieres = str.substring(str.lastIndexOf(":[")).replace(":[","").replace("\"" ,"").replace("]}","").split(",");
+            map.put(str.substring(0,str.indexOf(":[")).replace("\"","").replace("{",""), Arrays.asList(matieres));
         }
         ListOfMaps.add(map);
     }
