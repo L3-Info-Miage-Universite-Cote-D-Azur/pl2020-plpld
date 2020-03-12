@@ -43,9 +43,12 @@ public class Connexion {
         mSocket.emit(msg, obj);
     }
 
-
-
     public void setVue(Vue vue) {
+        try {
+            mSocket = IO.socket("http://10.0.2.2:10101");
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
         this.vue = vue;
     }
 

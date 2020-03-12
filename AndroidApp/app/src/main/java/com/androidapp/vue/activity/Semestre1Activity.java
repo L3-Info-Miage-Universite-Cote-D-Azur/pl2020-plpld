@@ -47,22 +47,20 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.semestres);
-        
+
+        connexion = new Connexion(this);
         monIdentité = new Identité("AndroidApp");
         autoconnect = getIntent().getBooleanExtra(AUTOCONNECT, true);
-
         ListView mListView = findViewById(R.id.list);
 
         StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0, 0);
         stepsAdapter.addAll(new String[]{"View 1"});
         mListView.setAdapter(stepsAdapter);
 
-        final Context context=this.getBaseContext();
-
         this.createGroupList();
         this.createCollection();
 
-        expListView = (ExpandableListView) findViewById(R.id.UE_list);
+        expListView = findViewById(R.id.UE_list);
         final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(this, groupList, UECollection);
         expListView.setAdapter(expListAdapter);
         adapter = expListAdapter;
@@ -74,13 +72,9 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
                         groupPosition, childPosition);
                 Toast.makeText(getBaseContext(), selected, Toast.LENGTH_LONG)
                         .show();
-
                 return true;
             }
         });
-
-
-
     }
 
     private void createGroupList() {
@@ -170,7 +164,7 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
     protected void onResume() {
         super.onResume();
         if (autoconnect) {
-            setConnexion(new Connexion(this));
+            setConnexion(connexion);
         }
         bouton = findViewById(R.id.buttonValider);
         if (autoconnect) {
