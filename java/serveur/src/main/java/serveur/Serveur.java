@@ -112,7 +112,6 @@ public class Serveur {
             String line = br.readLine();
             while(line != null)
             {
-                System.out.println(line);
                 if(line.contains("$"))
                 {
                     line = line.replace("$","");
@@ -132,8 +131,8 @@ public class Serveur {
             e.printStackTrace();
         }
 
-        socketIOClient.sendEvent(UE,listeSemestre);
-        System.out.println(listeSemestre.toString());
+        socketIOClient.sendEvent(UE,listeSemestre.getMapUE());
+        System.out.println(listeSemestre.getMapUE().toString());
     }
 
 
