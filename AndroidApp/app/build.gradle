@@ -72,4 +72,10 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test:rules:1.1.0'
     implementation 'com.anton46:stepsview:0.0.2'
+    android{
+        packagingOptions {
+            exclude 'META-INF/LICENSE.md'
+            exclude 'META-INF/LICENSE-notice.md'
+        }
+    }
 }
