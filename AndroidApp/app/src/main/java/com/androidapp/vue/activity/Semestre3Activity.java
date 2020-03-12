@@ -75,17 +75,20 @@ public class Semestre3Activity extends Semestre1Activity implements Vue {
         groupList.add("UE facultative");
     }
     private void createCollection() {
-        String[] Informatique = {"Bases de l'informatique 3", "Introduction à l'informatique par le web 3", "Structures de données et programmation C 2 ", "Bases de données", "Outils formels de l'informatique"};
-        String[] Math = { "Fondements 3 ","Méthodes : approche discrète","Complements 2","Analyse","Probabilités et Introduction à la Statistiques","Algèbre"," Résolution numérique des systèmes d'équations linéaires et non-linéaires","Méthodes : approche aléatoire"};
-        String[] Chimie = {"Reactions et reactivites chimiques 3 ","Thermodynamique chimique / Options ","Vision macroscopique des molécules","Matériaux 2","Chimie Organique Fonctionnelle II", "Bloc de Chimie Expérimentale"};
-        String[] Electronique = { "Electronique analogique","Communication sans fil"  ,"Système optimisé en énergie"  ,"Electronique analogique avancée", "Architecture des processeurs",  "Systèmes embarqués II"};
-        String[] Geographie = { "Decouverte 4" ,"Decouverte 3", "Disciplinaire 2", "Disciplinaire 6" ,"Disciplinaire 7" ,"Disciplinaire 8" ,"Approfondissement hors géographie 2"};
-        String[] MIASHS = { "Economie-Gestion S1", "Intro R"};
-        String[] Physique = { "Optique 1","Mécanique 2",  "Electromagnétisme 2 ","Mécanique 3 ","Outils et Méthodes 2"};
-        String[] SDT = { "Structure et dynamique de la terre" ,"Atmosphère, Océan, Climats ","Géologie Structurale et Tectonique","Formation et Evolution des Bassins Sédimentaires","Géomécanique,Du paysage à la carte"};
-        String[] SDV = { "Physiologie. Neurologie. Enzymologie. Methodologie","Diversite du Vivant"};
+
+        String[] Informatique = {"Bases de l'informatique", "Introduction à l'informatique par le web", "Structures de données et programmation C", "Bases de donnée", "Outils formels pour l'informatique"};
+        String[] Math = { "Fondements 1", "Méthodes : approche continue", "Complements 1", "Fondements 3", "Compléments d'Analyse", "Compléments d'Algèbre", "Méthodes : Mathématiques et ingénierie", "Méthodes : approche géométrique"};
+        String[] Chimie = {"Structure Microscopique de la Matière", "Chimie des solutions", "Chimie organique", "Matériaux 1"};
+        String[] Electronique = { "Electronique numerique - Bases", "Automatique : une introduction", "Système embarqué", "Physique des capteurs"};
+        String[] Geographie = { "Decouverte 1" ,"Decouverte 2", "Disciplinaire 1", "Disciplinaire 3", "Disciplinaire 4", "Disciplinaire 5", "Approfondissement hors géographie 1"};
+        String[] MIASHS = { "Economie-Gestion S1", "Economie-Gestion S3", "Intro R"};
+        String[] Physique = {"Mécanique 1", "Electromagnétisme 1", "Thermodynamique 1", "Outils et Méthodes 1"};
+        String[] SDT = { "Découverte des sciences de la terre", "Atmosphère, Océan, Climats", "Le temps en Géosciences", "Physique de la Terre", "Matériaux terrestres"};
+        String[] SDV = { "Org. Mécanismes Moléculaires Cellules Eucaryotes", "Génétique. Evolution. Origine Vie et Biodiversité"};
         String[] CLE = { "Enseignements fondamentaux à l'école primaire 1"};
         String[] Facultative = { "Projet FabLab"};
+
+
 
         UECollection = new LinkedHashMap<String, List<String>>();
 
