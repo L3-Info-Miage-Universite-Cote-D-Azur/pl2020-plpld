@@ -3,6 +3,7 @@ package com.androidapp.vue.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
@@ -10,6 +11,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.androidapp.R;
+import com.androidapp.controleur.EcouteurDeBouton;
+import com.androidapp.reseau.Connexion;
 import com.androidapp.vue.Vue;
 import com.androidapp.vue.adapter.ExpandableListAdapter;
 import com.androidapp.vue.adapter.StepsProgressAdapter;
@@ -18,34 +21,29 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import constantes.Net;
 import metier.Identité;
 import metier.Matiere;
+import metier.ToJSON;
 
 public class Semestre2Activity extends Semestre1Activity implements Vue {
-    private Identité monIdentité;
-    private boolean autoconnect = true;
-    private Button bsimp;
-    private Button brecap;
+    private Button bouton;
+    boolean autoconnect = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.semestres);
-
-        monIdentité = new Identité("AndroidApp");
-        autoconnect = getIntent().getBooleanExtra(AUTOCONNECT, true);
-
+        connexion.setVue(this);
         ListView mListView = findViewById(R.id.list);
 
         StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 1, 1);
         stepsAdapter.addAll(new String[]{"View 2"});
         mListView.setAdapter(stepsAdapter);
 
-        final Context context=this.getBaseContext();
+        createGroupList();
+        createCollection();
 
-        this.createGroupList();
-        this.createCollection();
-
-        expListView = (ExpandableListView) findViewById(R.id.UE_list);
+        expListView = findViewById(R.id.UE_list);
         final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(this, groupList, UECollection);
         expListView.setAdapter(expListAdapter);
         adapter = expListAdapter;
@@ -61,6 +59,28 @@ public class Semestre2Activity extends Semestre1Activity implements Vue {
                 return true;
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (autoconnect) {
+            setConnexion(connexion);
+        }
+        bouton = findViewById(R.id.buttonValider);
+        if (autoconnect) {
+            initVue();
+        }
+    }
+
+    @Override
+    protected void initVue() {
+        bouton = findViewById(R.id.buttonValider);
+        EcouteurDeBouton ecouteur = new EcouteurDeBouton(this, connexion);
+        // création de l'écouteur (le controleur)
+        bouton.setOnClickListener(ecouteur);
+
+        connexion.démarrerÉcoute();
     }
 
     private void createGroupList() {

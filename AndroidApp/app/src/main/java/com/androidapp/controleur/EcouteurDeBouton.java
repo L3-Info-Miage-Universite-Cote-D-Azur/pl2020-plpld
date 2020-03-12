@@ -15,18 +15,16 @@ import metier.ToJSON;
 public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickListener {
 
     private final Connexion mSocket;
-    private final Vue vue;
-
+    private Vue vue;
 
     public EcouteurDeBouton(Vue v, Connexion mSocket) {
         this.vue = v;
         this.mSocket = mSocket;
     }
 
-
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
+        switch(v.getId()) {
             case R.id.buttonValider:
                 Log.d("POUR MONTRER", "EcouteurDeBouton : bouton valider cliqué");
                 mSocket.envoyerMessage(Net.VALIDATION, (ToJSON) new ChoixUtilisateur(vue.selection()));

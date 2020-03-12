@@ -20,17 +20,12 @@ import java.util.List;
 import metier.Identité;
 import metier.Matiere;
 
-public class Semestre3Activity extends Semestre1Activity implements Vue {
-    private Identité monIdentité;
-    private boolean autoconnect = true;
+public class Semestre3Activity extends Semestre2Activity implements Vue {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.semestres);
-
-        monIdentité = new Identité("AndroidApp");
-        autoconnect = getIntent().getBooleanExtra(AUTOCONNECT, true);
-
+        connexion.setVue(this);
         ListView mListView = findViewById(R.id.list);
 
         StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0,2 );
@@ -39,10 +34,10 @@ public class Semestre3Activity extends Semestre1Activity implements Vue {
 
         final Context context=this.getBaseContext();
 
-        this.createGroupList();
-        this.createCollection();
+        createGroupList();
+        createCollection();
 
-        expListView = (ExpandableListView) findViewById(R.id.UE_list);
+        expListView = findViewById(R.id.UE_list);
         final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(this, groupList, UECollection);
         expListView.setAdapter(expListAdapter);
         adapter = expListAdapter;
