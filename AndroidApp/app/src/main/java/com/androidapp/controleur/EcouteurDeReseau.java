@@ -15,7 +15,7 @@ import io.socket.emitter.Emitter;
 
 public class EcouteurDeReseau implements Emitter.Listener {
     private final Vue vue;
-    private List<Map<String,List<String>>> listOfMaps = new ArrayList<Map<String,List<String>>>();
+    public static List<Map<String,List<String>>> ListOfMaps = new ArrayList<Map<String,List<String>>>();
     public EcouteurDeReseau(Vue vue) {
         this.vue = vue;
     }
@@ -27,11 +27,9 @@ public class EcouteurDeReseau implements Emitter.Listener {
         HashMap<String,List<String>> map = new HashMap<>();
         for( String str : tokens)
         {
-            String[] matieres = str.substring(str.lastIndexOf("=[")).replace("=[","").split(",");
-            map.put(str.substring(0,str.indexOf("=[")), Arrays.asList(matieres));
-
+            String[] matieres = str.substring(str.lastIndexOf(":[")).replace(":[","").split(",");
+            map.put(str.substring(0,str.indexOf(":[")), Arrays.asList(matieres));
         }
-        listOfMaps.add(map);
-
+        ListOfMaps.add(map);
     }
 }

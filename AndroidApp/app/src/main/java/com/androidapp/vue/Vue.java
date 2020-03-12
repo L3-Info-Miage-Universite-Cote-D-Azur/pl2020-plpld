@@ -3,6 +3,7 @@ package com.androidapp.vue;
 import com.androidapp.reseau.Connexion;
 import com.androidapp.reseau.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 import metier.Matiere;
