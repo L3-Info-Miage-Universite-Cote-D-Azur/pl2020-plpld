@@ -10,6 +10,8 @@ import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.androidapp.R;
 import com.androidapp.controleur.EcouteurDeBouton;
 import com.androidapp.reseau.Connexion;
@@ -20,20 +22,41 @@ import com.androidapp.vue.adapter.StepsProgressAdapter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import constantes.Net;
 import metier.Identité;
 import metier.Matiere;
 import metier.ToJSON;
 
-public class Semestre2Activity extends Semestre1Activity implements Vue {
+public class Semestre2Activity extends AppCompatActivity implements Vue {
+    public static final String AUTOCONNECT = "AUTOCONNECT";
+    public static Connexion connexion;
     private Button bouton;
-    boolean autoconnect = true;
+    private Identité monIdentité;
+    private boolean autoconnect = true;
+    List<String> groupList;
+    List<String> childList;
+    Map<String, List<String>> UECollection;
+    ExpandableListView expListView;
+    ExpandableListAdapter adapter;
+
+    @Override
+    public void displayMsg(String str) {
+        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+    }
+
+    public void setConnexion(Connexion connexion) {
+        this.connexion = connexion;
+        this.connexion.écouterRéseau();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.semestres);
-        connexion.setVue(this);
+
+        connexion = new Connexion(this);
         ListView mListView = findViewById(R.id.list);
 
         StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 1, 1);
@@ -73,7 +96,6 @@ public class Semestre2Activity extends Semestre1Activity implements Vue {
         }
     }
 
-    @Override
     protected void initVue() {
         bouton = findViewById(R.id.buttonValider);
         EcouteurDeBouton ecouteur = new EcouteurDeBouton(this, connexion);
