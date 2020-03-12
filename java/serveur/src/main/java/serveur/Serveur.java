@@ -16,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.Buffer;
+import java.util.ArrayList;
 import java.util.List;
 
 import static constantes.Net.*;
@@ -104,6 +105,7 @@ public class Serveur {
     protected void envoyerUE(SocketIOClient socketIOClient)
     {
         ListeSemestre listeSemestre = new ListeSemestre();
+        String previousKey = null;
         BufferedReader br;
         try{
             br = new BufferedReader(new FileReader("commun/src/main/Ressource/UE.txt"));
@@ -111,6 +113,16 @@ public class Serveur {
             while(line != null)
             {
                 System.out.println(line);
+                if(line.contains("$"))
+                {
+                    line = line.replace("$","");
+                    listeSemestre.add(line,new ArrayList<String>());
+                    previousKey = line;
+                }
+                else
+                {
+                    listeSemestre.getMapUE().get(previousKey).add(line);
+                }
                 line = br.readLine();
             }
             br.close();
@@ -121,11 +133,15 @@ public class Serveur {
         }
 
         socketIOClient.sendEvent(UE,listeSemestre);
+        System.out.println(listeSemestre.toString());
     }
+
+
     /**
      * Démarre le serveur
      */
     private void démarrer() {
         server.start();
+
     }
 }
