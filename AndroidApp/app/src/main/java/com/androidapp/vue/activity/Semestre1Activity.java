@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
@@ -20,6 +21,9 @@ import com.androidapp.vue.adapter.*;
 import constantes.Net;
 import metier.*;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
+
+import static com.androidapp.controleur.EcouteurDeReseau.ListOfMaps;
 
 
 public class Semestre1Activity extends AppCompatActivity implements Vue {
@@ -28,8 +32,6 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
     private Button bouton;
     private Identité monIdentité;
     private boolean autoconnect = true;
-    List<String> groupList;
-    List<String> childList;
     Map<String, List<String>> UECollection;
     ExpandableListView expListView;
     ExpandableListAdapter adapter;
@@ -49,19 +51,20 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
         setContentView(R.layout.semestres);
 
         connexion = new Connexion(this);
+        setConnexion(connexion);
         monIdentité = new Identité("AndroidApp");
         autoconnect = getIntent().getBooleanExtra(AUTOCONNECT, true);
+        bouton = findViewById(R.id.buttonValider);
+        initVue();
         ListView mListView = findViewById(R.id.list);
 
         StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0, 0);
-        stepsAdapter.addAll(new String[]{"View 1"});
+        stepsAdapter.addAll("View 1");
         mListView.setAdapter(stepsAdapter);
-
-        this.createGroupList();
-        this.createCollection();
+        receptionUE();
 
         expListView = findViewById(R.id.UE_list);
-        final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(this, groupList, UECollection);
+        final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(this, new ArrayList<>(UECollection.keySet()), UECollection);
         expListView.setAdapter(expListAdapter);
         adapter = expListAdapter;
         expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
@@ -75,83 +78,6 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
                 return true;
             }
         });
-    }
-
-    private void createGroupList() {
-        groupList = new ArrayList<String>();
-        String[] strArray = {"Informatique","Mathématiques","Chimie","Electronique","Géographie",
-                             "MIASHS","Physique","Science de la Terre","Science de la vie",
-                             "CLE 1D (Continuum Licence Enseignement)"/*,"UE facultative"*/};
-
-
-        for (String s : strArray) {groupList.add(s);}
-
-    }
-
-    private void createCollection() {
-
-        String[] Informatique = {"Bases de l'informatique", "Introduction à l'informatique par le web"};
-        String[] Math = { "Fondements 1", "Méthodes : approche continue", "Complements 1"};
-        String[] Chimie = {"Structure Microscopique de la Matière"};
-        String[] Electronique = { "Electronique numerique - Bases"};
-        String[] Geographie = { "Decouverte 1" ,"Decouverte 2", "Disciplinaire 1"};
-        String[] MIASHS = { "Economie-Gestion S1"};
-        String[] Physique = {"Mécanique 1"};
-        String[] SDT = { "Découverte des sciences de la terre"};
-        String[] SDV = { "Org. Mécanismes Moléculaires Cellules Eucaryotes", "Génétique. Evolution. Origine Vie et Biodiversité"};
-        String[] CLE = { "Enseignements fondamentaux à l'école primaire 1"};
-        String[] Facultative = { };
-
-        UECollection = new LinkedHashMap<String, List<String>>();
-
-
-        for (String discipline : groupList) {
-            switch(discipline) {
-                case "Informatique":
-                    loadChild(Informatique);
-                    break;
-                case "Mathématiques":
-                    loadChild(Math);
-                    break;
-                case "Chimie":
-                    loadChild(Chimie);
-                    break;
-                case "Electronique":
-                    loadChild(Electronique);
-                    break;
-                case "Géographie":
-                    loadChild(Geographie);
-                    break;
-                case "MIASHS":
-                    loadChild(MIASHS);
-                    break;
-                case "Physique":
-                    loadChild(Physique);
-                    break;
-                case "Science de la Terre":
-                    loadChild(SDT);
-                    break;
-                case "Science de la vie":
-                    loadChild(SDV);
-                    break;
-                case "CLE 1D (Continuum Licence Enseignement)":
-                    loadChild(CLE);
-                    break;
-                case "UE facultative":
-                    loadChild(Facultative);
-                    break;
-                default:
-                    loadChild(new String[]{"Erreur de chargement"});
-            }
-
-            UECollection.put(discipline, childList);
-        }
-    }
-
-    private void loadChild(String[] discipline) {
-        childList = new ArrayList<String>();
-        for (String model : discipline)
-            childList.add(model);
     }
 
     @Override
@@ -189,5 +115,26 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
         final Context context=this.getBaseContext();
         Toast.makeText(context,"Semestre 2",Toast.LENGTH_SHORT).show();
         startActivity(new Intent(Semestre1Activity.this, Semestre2Activity.class));
+    }
+
+    public void receptionUE() {
+        if(ListOfMaps.size()==1) {
+            UECollection = ListOfMaps.get(0);
+        }
+        else {
+            try {
+                TimeUnit.SECONDS.sleep(1);
+                if(ListOfMaps.size()==1) {
+                    UECollection = ListOfMaps.get(0);
+                }
+                else {
+                    Log.d("Timeout", "Le serveur ne répond pas");
+                    //Créer une exception personnalisée qui dit que le serveur n'a pas envoyé la liste de maps
+                }
+            }
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

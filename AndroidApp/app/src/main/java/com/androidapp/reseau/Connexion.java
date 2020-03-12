@@ -24,9 +24,7 @@ public class Connexion {
     public void écouterRéseau() {
         try {
             mSocket = IO.socket("http://10.0.2.2:10101");
-
             EcouteurDeReseau net = new EcouteurDeReseau(getVue());
-
             mSocket.on(Net.UE, net);
 
         } catch (URISyntaxException e) {
@@ -36,7 +34,6 @@ public class Connexion {
 
     public void démarrerÉcoute() {
         mSocket.connect();
-
     }
 
     public void envoyerMessage(String msg, ToJSON obj) {
@@ -46,6 +43,8 @@ public class Connexion {
     public void setVue(Vue vue) {
         try {
             mSocket = IO.socket("http://10.0.2.2:10101");
+            EcouteurDeReseau net = new EcouteurDeReseau(getVue());
+            mSocket.on(Net.UE, net);
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
