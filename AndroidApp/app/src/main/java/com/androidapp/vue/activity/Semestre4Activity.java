@@ -55,18 +55,18 @@ public class Semestre4Activity extends Semestre3Activity implements Vue {
 
     private void createGroupList() {
         groupList = new ArrayList<String>();
+        groupList.add("MIASHS");
+        groupList.add("Géographie");
+        groupList.add("Science de la vie");
         groupList.add("Informatique");
         groupList.add("Mathématiques");
         groupList.add("Chimie");
-        groupList.add("Electronique");
-        groupList.add("Géographie");
-        groupList.add("MIASHS");
-        groupList.add("Physique");
         groupList.add("Science de la Terre");
-        groupList.add("Science de la vie");
         groupList.add("CLE 1D (Continuum Licence Enseignement)");
-        groupList.add("UE Professionnalisante");
+        groupList.add("Physique");
         groupList.add("UE facultative");
+        groupList.add("Electronique");
+        groupList.add("UE Professionnalisante");
     }
     private void createCollection() {
         String[] Informatique = {"System 1. Unix et progra shell", "Programmation impérative", "Algorithmique 1", "Réseaux et télécommunication", "Systèmes 2 : Mécanisme internes des systèmes d'exploitation", "Introduction aux systèmes intelligents", "Technologie du Web"};

@@ -107,17 +107,18 @@ public class Semestre2Activity extends AppCompatActivity implements Vue {
 
     private void createGroupList() {
         groupList = new ArrayList<String>();
+        groupList.add("MIASHS");
+        groupList.add("Géographie");
+        groupList.add("Science de la vie");
         groupList.add("Informatique");
         groupList.add("Mathématiques");
         groupList.add("Chimie");
-        groupList.add("Electronique");
-        groupList.add("Géographie");
-        groupList.add("MIASHS");
-        groupList.add("Physique");
         groupList.add("Science de la Terre");
-        groupList.add("Science de la vie");
         groupList.add("CLE 1D (Continuum Licence Enseignement)");
+        groupList.add("Physique");
         groupList.add("UE facultative");
+        groupList.add("Electronique");
+
     }
     private void createCollection() {
         String[] Informatique = {"System 1. Unix et progra shell", "Programmation impérative"};
