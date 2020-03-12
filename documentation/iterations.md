@@ -4,9 +4,9 @@
 
 <ins>**Itération 3:**</ins>      Ajout d'autres UE ainsi que de catégories. Révision de l'interface graphique. Possibilité de séléctionner plusieurs matières. UE listées par disciplines (i.e. par exemple lorsqu'on clique sur "informatique" les UE liées à cette discipline se déroulent).
 
-<ins>**Itération 4:**</ins>      Création d'un écran d'accueil, d'un écran pour la séléction des cours pour les 4 semestres et d'un écran récaptitulatif des cours choisis.
+<ins>**Itération 4:**</ins>      Création d'un écran d'accueil, d'un écran pour la séléction des cours pour les 4 semestres,d’une barre de progression composé des 4 semestre afin de sélectionner les matières semestre par semestre.Modification du serveur pour permettre l’envoie de la liste des matières au client.Modification du client afin qu’il reçoive la liste des matières émis par le serveur 
 
-<ins>**Itération 5:**</ins>      Mise en place des premières règles à appliquer pour la séléction d'UE (via l'uttilisation d'algo de graphes). On gérera en particulier les prérequis pour chaque UE et le nombre d'UE que l'étudiant peut choisir pour chaque semestre. Les prérequis pour chaque UE seront indiqués dans un fichier facilement modifiable. Mise en place d'un système de recherche des UE.
+<ins>**Itération 5:**</ins>      Création d'un écran récaptitulatif des cours choisis.Mise en place des premières règles à appliquer pour la séléction d'UE (via l'uttilisation d'algo de graphes). On gérera en particulier les prérequis pour chaque UE et le nombre d'UE que l'étudiant peut choisir pour chaque semestre. Les prérequis pour chaque UE seront indiqués dans un fichier facilement modifiable. Mise en place d'un système de recherche des UE.
 
 <ins>**Itération 6:**</ins>      Création d'un système d'enregistrement des parcours du client : le client doit pouvoir interrompre sa saisie et la reprendre plus tard. Le serveur doit enregistrer le choix d'UE effectuées après la validation. Mise en place d'un système de notifications si les prérequis ou les UE proposées changent entre la saisie de l'utilisateur et son retour sur l'application : l'utilisateur doit pouvoir voir facilement l'impacte que cela a sur son parcours.
 
