@@ -27,7 +27,7 @@ public class Connexion {
 
             EcouteurDeReseau net = new EcouteurDeReseau(getVue());
 
-            mSocket.on(Net.VALEUR_CPT, net);
+            mSocket.on(Net.UE, net);
 
         } catch (URISyntaxException e) {
             e.printStackTrace();
