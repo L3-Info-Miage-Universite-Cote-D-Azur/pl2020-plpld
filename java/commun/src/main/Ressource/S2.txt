@@ -1,0 +1,35 @@
+$Informatique
+System 1. Unix et progra shell
+Programmation impérative
+$Mathématiques
+Fondements 2
+Méthodes : approche discrète
+Complements 2
+$Chimie
+Réactions et reactivites chimiques
+Thermodynamique chimique / Options
+$Electronique
+Electronique analogique
+Communication sans fil
+$Géographie
+Découverte 3
+Découverte 4
+Disciplinaire 2
+$MIASHS
+Economie-Gestion S2
+$Physique
+Optique 1
+Mécanique 2
+$Science de la Terre
+Structure et dynamique de la terre
+Atmosphère, Océan, Climats
+$Science de la vie
+Physiologie. Neurologie. Enzymologie. Methodologie
+Diversité du Vivant
+$CLE 1D (Continuum Licence Enseignement)
+Enseignements fondamentaux à l'école primaire 2
+Méthodologie du concours et didactique - Géométrie
+Méthodologie du concours et didactique - Physique-Chimie
+Enseignements fondamentaux à l'école primaire 1
+$UE facultative
+Projet FabLab

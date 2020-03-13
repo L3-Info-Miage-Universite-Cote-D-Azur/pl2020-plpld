@@ -1,0 +1,55 @@
+$Informatique
+Bases de l'informatique
+Introduction à l'informatique par le web
+Structures de données et programmation C
+Bases de donnée
+Outils formels pour l'informatique
+$Mathématiques
+Fondements 1
+Méthodes : approche continue
+Complements 1
+Fondements 3
+Compléments d'Analyse
+Compléments d'Algèbre
+Méthodes : Mathématiques et ingénierie
+Méthodes : approche géométrique
+$Chimie
+Structure Microscopique de la Matière
+Chimie des solutions
+Chimie organique
+Matériaux 1
+$Electronique
+Electronique numerique - Bases
+Automatique : une introduction
+Système embarqué
+Physique des capteurs
+$Géographie
+Decouverte 1
+Decouverte 2
+Disciplinaire 1
+Disciplinaire 3
+Disciplinaire 4
+Disciplinaire 5
+Approfondissement hors géographie 1
+$MIASHS
+Economie-Gestion S1
+Economie-Gestion S3
+Intro R
+$Physique
+Mécanique 1
+Electromagnétisme 1
+Thermodynamique 1
+Outils et Méthodes 1
+$Science de la Terre
+Découverte des sciences de la terre
+Atmosphère, Océan, Climats
+Le temps en Géosciences
+Physique de la Terre
+Matériaux terrestres
+$Science de la vie
+Org. Mécanismes Moléculaires Cellules Eucaryotes
+Génétique. Evolution. Origine Vie et Biodiversité
+$CLE 1D (Continuum Licence Enseignement)
+Enseignements fondamentaux à l'école primaire 1
+$UE facultative
+Project Fablab
