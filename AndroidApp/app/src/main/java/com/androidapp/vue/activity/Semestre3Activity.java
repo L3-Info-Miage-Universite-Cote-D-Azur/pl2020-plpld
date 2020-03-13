@@ -64,7 +64,7 @@ public class Semestre3Activity extends AppCompatActivity implements Vue {
         initVue();
         ListView mListView = findViewById(R.id.list);
 
-        StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0, 0);
+        StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0, 2);
         stepsAdapter.addAll("View 1");
         mListView.setAdapter(stepsAdapter);
         receptionUE();
