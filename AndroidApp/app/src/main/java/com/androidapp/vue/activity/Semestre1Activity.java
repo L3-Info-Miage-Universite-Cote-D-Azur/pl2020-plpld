@@ -118,23 +118,17 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
     }
 
     public void receptionUE() {
-        if(ListOfMaps.size()==1) {
-            UECollection = ListOfMaps.get(0);
-        }
-        else {
+
             try {
                 TimeUnit.SECONDS.sleep(1);
-                if(ListOfMaps.size()==1) {
-                    UECollection = ListOfMaps.get(0);
-                }
-                else {
-                    Log.d("Timeout", "Le serveur ne répond pas");
-                    //Créer une exception personnalisée qui dit que le serveur n'a pas envoyé la liste de maps
-                }
+                UECollection = ListOfMaps.get(ListOfMaps.size()-1);
+
+                // TODO: 13/03/2020  Créer une exception personnalisée qui dit que le serveur n'a pas envoyé la liste de maps
             }
-            catch (InterruptedException e) {
+
+             catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
-}
+

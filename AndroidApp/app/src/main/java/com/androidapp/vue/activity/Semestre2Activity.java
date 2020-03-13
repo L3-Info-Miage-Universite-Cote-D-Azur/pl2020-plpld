@@ -23,11 +23,14 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import constantes.Net;
 import metier.Identité;
 import metier.Matiere;
 import metier.ToJSON;
+
+import static com.androidapp.controleur.EcouteurDeReseau.ListOfMaps;
 
 public class Semestre2Activity extends AppCompatActivity implements Vue {
     public static final String AUTOCONNECT = "AUTOCONNECT";
@@ -35,12 +38,9 @@ public class Semestre2Activity extends AppCompatActivity implements Vue {
     private Button bouton;
     private Identité monIdentité;
     private boolean autoconnect = true;
-    List<String> groupList;
-    List<String> childList;
     Map<String, List<String>> UECollection;
     ExpandableListView expListView;
     ExpandableListAdapter adapter;
-
     @Override
     public void displayMsg(String str) {
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
@@ -57,17 +57,20 @@ public class Semestre2Activity extends AppCompatActivity implements Vue {
         setContentView(R.layout.semestres);
 
         connexion = new Connexion(this);
+        setConnexion(connexion);
+        monIdentité = new Identité("AndroidApp");
+        autoconnect = getIntent().getBooleanExtra(AUTOCONNECT, true);
+        bouton = findViewById(R.id.buttonValider);
+        initVue();
         ListView mListView = findViewById(R.id.list);
 
-        StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 1, 1);
-        stepsAdapter.addAll(new String[]{"View 2"});
+        StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0, 0);
+        stepsAdapter.addAll("View 1");
         mListView.setAdapter(stepsAdapter);
-
-        createGroupList();
-        createCollection();
+        receptionUE();
 
         expListView = findViewById(R.id.UE_list);
-        final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(this, groupList, UECollection);
+        final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(this, new ArrayList<>(UECollection.keySet()), UECollection);
         expListView.setAdapter(expListAdapter);
         adapter = expListAdapter;
         expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
@@ -78,7 +81,6 @@ public class Semestre2Activity extends AppCompatActivity implements Vue {
                         groupPosition, childPosition);
                 Toast.makeText(getBaseContext(), selected, Toast.LENGTH_LONG)
                         .show();
-
                 return true;
             }
         });
@@ -105,85 +107,18 @@ public class Semestre2Activity extends AppCompatActivity implements Vue {
         connexion.démarrerÉcoute();
     }
 
-    private void createGroupList() {
-        groupList = new ArrayList<String>();
-        groupList.add("MIASHS");
-        groupList.add("Géographie");
-        groupList.add("Science de la vie");
-        groupList.add("Informatique");
-        groupList.add("Mathématiques");
-        groupList.add("Chimie");
-        groupList.add("Science de la Terre");
-        groupList.add("CLE 1D (Continuum Licence Enseignement)");
-        groupList.add("Physique");
-        groupList.add("UE facultative");
-        groupList.add("Electronique");
+    public void receptionUE() {
 
-    }
-    private void createCollection() {
-        String[] Informatique = {"System 1. Unix et progra shell", "Programmation impérative"};
-        String[] Math = { "Fondements 2", "Méthodes : approche discrète", "Complements 2"};
-        String[] Chimie = {"Réactions et reactivites chimiques ","Thermodynamique chimique / Options"};
-        String[] Electronique = { "Electronique analogique", "Communication sans fil"};
-        String[] Geographie = { "Découverte 3" ,"Découverte 4", "Disciplinaire 2"};
-        String[] MIASHS = { "Economie-Gestion S2"};
-        String[] Physique = { "Optique 1", "Mécanique 2"};
-        String[] SDT = { "Structure et dynamique de la terre", "Atmosphère, Océan, Climats"};
-        String[] SDV = { "Physiologie. Neurologie. Enzymologie. Methodologie", "Diversité du Vivant"};
-        String[] CLE = { "Enseignements fondamentaux à l'école primaire 2", "Méthodologie du concours et didactique - Géométrie", "Méthodologie du concours et didactique - Physique-Chimie"};
-        String[] Facultative = { "Projet FabLab"};
+            try {
+                TimeUnit.SECONDS.sleep(1);
+                 UECollection = ListOfMaps.get(ListOfMaps.size()-1);
 
-        UECollection = new LinkedHashMap<String, List<String>>();
-
-
-        for (String discipline : groupList) {
-            switch(discipline) {
-                case "Informatique":
-                    loadChild(Informatique);
-                    break;
-                case "Mathématiques":
-                    loadChild(Math);
-                    break;
-                case "Chimie":
-                    loadChild(Chimie);
-                    break;
-                case "Electronique":
-                    loadChild(Electronique);
-                    break;
-                case "Géographie":
-                    loadChild(Geographie);
-                    break;
-                case "MIASHS":
-                    loadChild(MIASHS);
-                    break;
-                case "Physique":
-                    loadChild(Physique);
-                    break;
-                case "Science de la Terre":
-                    loadChild(SDT);
-                    break;
-                case "Science de la vie":
-                    loadChild(SDV);
-                    break;
-                case "CLE 1D (Continuum Licence Enseignement)":
-                    loadChild(CLE);
-                    break;
-                case "UE facultative":
-                    loadChild(Facultative);
-                    break;
-                default:
-                    loadChild(new String[]{"Erreur de chargement"});
             }
-
-            UECollection.put(discipline, childList);
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-    }
 
-    private void loadChild(String[] discipline) {
-        childList = new ArrayList<String>();
-        for (String model : discipline)
-            childList.add(model);
-    }
 
     public List<Matiere> selection() {
         return adapter.selection(new Matiere("S2"));
