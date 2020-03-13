@@ -49,7 +49,9 @@ public class Serveur {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) throws Exception {
                 nouveauClient(socketIOClient, id);
-                envoyerUE(socketIOClient);
+                envoyerUE(socketIOClient,S1);
+
+
             }
         });
 
@@ -64,6 +66,20 @@ public class Serveur {
             @Override
             public void onData(SocketIOClient socketIOClient, ChoixUtilisateur choix, AckRequest ackRequest) throws Exception {
                 validation(socketIOClient, choix);
+
+
+                switch (choix.getNumSemestre()) {
+                    case 1:
+                        envoyerUE(socketIOClient, S2);
+                        break;
+                    case 2 :
+                        envoyerUE(socketIOClient,S3);
+                        break;
+                    case 3 :
+                        envoyerUE(socketIOClient,S4);
+                        break;
+                }
+                    System.out.println("semestre en cours : " + choix.getNumSemestre());
             }
         });
     }
@@ -102,13 +118,13 @@ public class Serveur {
         socketIOClient.sendEvent(VALIDATION, SelectionUE.toString());
     }
 
-    protected void envoyerUE(SocketIOClient socketIOClient)
+    protected void envoyerUE(SocketIOClient socketIOClient,String path)
     {
         ListeSemestre listeSemestre = new ListeSemestre();
         String previousKey = null;
         BufferedReader br;
         try{
-            br = new BufferedReader(new FileReader("commun/src/main/Ressource/UE.txt"));
+            br = new BufferedReader(new FileReader(path));
             String line = br.readLine();
             while(line != null)
             {
