@@ -10,21 +10,12 @@ import com.androidapp.controleur.*;
 import com.androidapp.vue.*;
 
 public class Connexion {
-
-
-    private Vue vue;
-
-    public Connexion(Vue vue) {
-        setVue(vue);
-    }
-
     private Socket mSocket;
-
 
     public void écouterRéseau() {
         try {
             mSocket = IO.socket("http://10.0.2.2:10101");
-            EcouteurDeReseau net = new EcouteurDeReseau(getVue());
+            EcouteurDeReseau net = new EcouteurDeReseau();
             mSocket.on(Net.UE, net);
 
         } catch (URISyntaxException e) {
@@ -38,21 +29,6 @@ public class Connexion {
 
     public void envoyerMessage(String msg, ToJSON obj) {
         mSocket.emit(msg, obj);
-    }
-
-    public void setVue(Vue vue) {
-        try {
-            mSocket = IO.socket("http://10.0.2.2:10101");
-            EcouteurDeReseau net = new EcouteurDeReseau(getVue());
-            mSocket.on(Net.UE, net);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        this.vue = vue;
-    }
-
-    public Vue getVue() {
-        return vue;
     }
 
     public void disconnect() {

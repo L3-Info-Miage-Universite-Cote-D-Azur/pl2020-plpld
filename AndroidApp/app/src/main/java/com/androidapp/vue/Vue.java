@@ -24,6 +24,9 @@ public interface Vue {
      */
     List<Matiere> selection();
 
+    /**
+     *  Permet la transition d'une activité à une autre
+     */
     void changementSemestre();
 }
 

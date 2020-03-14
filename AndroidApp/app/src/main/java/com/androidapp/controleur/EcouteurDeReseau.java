@@ -14,11 +14,7 @@ import java.util.Map;
 import io.socket.emitter.Emitter;
 
 public class EcouteurDeReseau implements Emitter.Listener {
-    private final Vue vue;
     public static List<Map<String,List<String>>> ListOfMaps = new ArrayList<Map<String,List<String>>>();
-    public EcouteurDeReseau(Vue vue) {
-        this.vue = vue;
-    }
 
     @Override
     public void call(Object... args) {
