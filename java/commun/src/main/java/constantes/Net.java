@@ -15,6 +15,7 @@ public class Net {
     public static final String S3 = "commun/src/main/Ressource/S3.txt";
 
     public static final String S4= "commun/src/main/Ressource/S4.txt";
+    public static final String FICHIER_PREREQUIS = "commun/src/main/Ressource/Prerequis.txt";
 
-
+    public static final String PREREQUIS = "PREREQUIS";
 }
