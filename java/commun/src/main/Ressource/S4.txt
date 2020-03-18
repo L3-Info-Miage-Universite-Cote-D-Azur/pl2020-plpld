@@ -51,7 +51,7 @@ Mécanique 3
 Outils et Méthodes 2
 $Science de la Terre
 Structure et dynamique de la terre
-Atmosphère, Océan, Climats
+Atmosphère; Océan; Climats
 Géologie Structurale et Tectonique
 Formation et Evolution des Bassins Sédimentaires
 Géomécanique

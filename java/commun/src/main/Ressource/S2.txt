@@ -22,7 +22,7 @@ Optique 1
 Mécanique 2
 $Science de la Terre
 Structure et dynamique de la terre
-Atmosphère, Océan, Climats
+Atmosphère; Océan; Climats
 $Science de la vie
 Physiologie. Neurologie. Enzymologie. Methodologie
 Diversité du Vivant
