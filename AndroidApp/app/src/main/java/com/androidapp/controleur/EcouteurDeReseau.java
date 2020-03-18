@@ -17,18 +17,18 @@ import java.util.Map;
 import io.socket.emitter.Emitter;
 
 public class EcouteurDeReseau implements Emitter.Listener {
-    public static List<Map<String,List<String>>> ListOfMaps = new ArrayList<Map<String,List<String>>>();
+   /* public static List<Map<String,List<String>>> ListOfMaps = new ArrayList<Map<String,List<String>>>();
     ObjectMapper objectMapper = new ObjectMapper();
-    HashMap<String,List<String>> map;
+    HashMap<String,List<String>> map;*/
     @Override
     public void call(Object... args) {
-        Log.d("POUR MONTRER", "" + args[0]);
+       /* Log.d("POUR MONTRER", "" + args[0]);
         try {
             map = objectMapper.readValue(args[0].toString(), new TypeReference<Map<String,List<String>>>() {});
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 
-        ListOfMaps.add(map);
+        ListOfMaps.add(map);*/
     }
 }
