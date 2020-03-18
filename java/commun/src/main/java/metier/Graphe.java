@@ -9,7 +9,7 @@ public class Graphe {
     private Map<String, List<String>> prerequis;
     private Map<String, List<String>> graphe;
 
-    Graphe(Map<String, List<String>> prerequis) {
+    public Graphe(Map<String, List<String>> prerequis) {
         this.prerequis = prerequis;
         graphe = new HashMap<>();
         creationSommet();
@@ -21,7 +21,7 @@ public class Graphe {
         //On commence par créer un point d'origine du graphe qui sera relié à toutes les UE ne demandant aucun prérequis
         List<String> origine = new ArrayList<>();
         for(String UE : prerequis.keySet()) {
-            if(prerequis.get("UE").size()==0) {
+            if(prerequis.get(UE).size()==0) {
                 origine.add(UE);
             }
         }
@@ -39,7 +39,7 @@ public class Graphe {
                 //Cette boucle permet d'ajouter une arrête si une UE demande un prérequis
                 List<String> ajoutArrete = graphe.get(UE);
                 ajoutArrete.add(R);
-                graphe.put(UE, ajoutArrete);
+                  graphe.put(UE, ajoutArrete);
             }
             graphe.put(UE, aretes);
         }
