@@ -17,6 +17,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.Buffer;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static constantes.Net.*;
@@ -50,11 +51,11 @@ public class Serveur {
             public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) throws Exception {
                 nouveauClient(socketIOClient, id);
                 envoyerUE(socketIOClient,S1);
+                envoiePrerequis(socketIOClient,FICHIER_PREREQUIS);
 
 
             }
         });
-
         this.server.addEventListener(CHOIX, Matiere.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Matiere matiere, AckRequest ackRequest) throws Exception {
@@ -106,7 +107,10 @@ public class Serveur {
     protected void nouveauClient(SocketIOClient socketIOClient, Identité id) {
         System.out.println(id+" vient de se connecter");
     }
-
+    protected void envoiePrerequis(SocketIOClient socketIOClient,String path)
+    {
+        socketIOClient.sendEvent(PREREQUIS,lireFichier(path));
+    }
     /**
      *   Valide le choix de l'étudiant et transmet la liste des UEs choisit par l'étudiant au client
      * @param socketIOClient
@@ -120,11 +124,20 @@ public class Serveur {
 
     protected void envoyerUE(SocketIOClient socketIOClient,String path)
     {
+        socketIOClient.sendEvent(UE,lireFichier(path));
+    }
+
+
+    /**
+     * Démarre le serveur
+     */
+    public HashMap<String, List<String>> lireFichier(String fichier)
+    {
         ListeSemestre listeSemestre = new ListeSemestre();
         String previousKey = null;
         BufferedReader br;
         try{
-            br = new BufferedReader(new FileReader(path));
+            br = new BufferedReader(new FileReader(fichier));
             String line = br.readLine();
             while(line != null)
             {
@@ -147,14 +160,8 @@ public class Serveur {
             e.printStackTrace();
         }
 
-        socketIOClient.sendEvent(UE,listeSemestre.getMapUE());
-        System.out.println(listeSemestre.getMapUE().toString());
+        return listeSemestre.getMapUE();
     }
-
-
-    /**
-     * Démarre le serveur
-     */
     private void démarrer() {
         server.start();
 
