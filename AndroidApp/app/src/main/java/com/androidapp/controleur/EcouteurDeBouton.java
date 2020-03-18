@@ -35,10 +35,7 @@ public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickL
                 {
                     mSocket.envoyerMessage(Net.VALIDATION, (ToJSON) new ChoixUtilisateur(vue.selection()));
                     vue.displayMsg("Votre choix a été transmis au serveur");
-
                     vue.changementSemestre();
-
-
                 }
 
                 break;

@@ -1,7 +1,8 @@
-$Fondement 2
-Fondement 1
+$Fondements 2
+Fondements 1
 $Complements 2
-Complement 1
+Complements 1
+$Méthodes : approche discrète
 $Decouverte1
 $Decouverte2
 $Bases de l'informatique

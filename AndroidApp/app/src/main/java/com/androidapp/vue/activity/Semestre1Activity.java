@@ -29,7 +29,7 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
     protected Graphe graphe;
     private Button bouton;
     private boolean autoconnect = true;
-    protected Map<String, List<String>> UECollection;
+    protected Map<String, List<String>> UECollection = new HashMap<>();
     protected ExpandableListView expListView;
     protected ExpandableListAdapter adapter;
     protected int numSemestre = 1;
@@ -45,15 +45,22 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
 
         autoconnect = getIntent().getBooleanExtra(AUTOCONNECT, true);
         bouton = findViewById(R.id.buttonValider);
+        UECollection = new HashMap<>();
         initVue();
         ListView mListView = findViewById(R.id.list);
 
         StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0, numSemestre-1);
         stepsAdapter.addAll("View 1");
         mListView.setAdapter(stepsAdapter);
-        receptionUE();
 
-     // graphe = new Graphe(connexion.MapPrerequis); //TODO (dès que possible): Mettre en paramètre la map des prérequis donnés par le serveur
+        try {
+            TimeUnit.SECONDS.sleep(3); // TODO: 14/03/2020 A améliorer : on aimerait pouvoir agir dès que le serveur répond plutôt que d'attendre une durée fixe
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.d("PREREQUIS", connexion.MapPrerequis.toString());
+        graphe = new Graphe(connexion.MapPrerequis);
+        receptionUE();
 
         expListView = findViewById(R.id.UE_list);
         final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(this, new ArrayList<>(UECollection.keySet()), UECollection);
@@ -83,8 +90,6 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
 
     protected void initVue() {
         EcouteurDeBouton ecouteur = new EcouteurDeBouton(this, connexion);
-
-
         bouton.setOnClickListener(ecouteur);
         connexion.démarrerÉcoute();
     }
@@ -99,27 +104,20 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
         startActivity(intent);
     }
 
-    public void receptionUE() {
-            try {
-                TimeUnit.SECONDS.sleep(2); // TODO: 14/03/2020 A améliorer : on aimerait pouvoir agir dès que le serveur répond plutôt que d'attendre une durée fixe
-                UECollection = connexion.ListOfMaps.get(connexion.ListOfMaps.size()-1);
-
-
-                //TODO: 18/03/2020 : décommenter ce qui suit dès qu'on aura une transmission de la liste des prérequis par le serveur
-                /*
-                for(String discipline : ListOfMaps.get(ListOfMaps.size()-1).keySet()) {
-                    List<String> ListeUE = ListOfMaps.get(ListOfMaps.size()-1).get(discipline);
-                    for(String UE: ListeUE) {
-                        if(!graphe.selectionnable("Origine").contains(UE)) //TODO: 18/03/2020 Remplacer "Origine" par la liste des UE séléctionnées précédemment par l'étudiant
-                            ListeUE.remove(UE);
-                    }
-                    ListOfMaps.get(ListOfMaps.size()-1).put(discipline, ListeUE);
-                } */
-            }
-             catch (InterruptedException e) {
-                 // TODO: 13/03/2020  Créer une exception personnalisée qui dit que le serveur n'a pas envoyé la liste de maps
-                e.printStackTrace();
-            }
-        }
+    public List<String> UEvalidees() {
+        return new ArrayList<>();
     }
 
+    public void receptionUE() {
+                for(String discipline : connexion.ListOfMaps.get(connexion.ListOfMaps.size()-1).keySet()) {
+                    List<String> ListeUE = connexion.ListOfMaps.get(connexion.ListOfMaps.size()-1).get(discipline);
+                    List<String> Supression = new ArrayList<>(); //Liste des UE à supprimer
+                    for (String UE : ListeUE) {
+                            if (!graphe.selectionnable(UEvalidees()).contains(UE)) //TODO: 18/03/2020 Remplacer "Origine" par la liste des UE séléctionnées précédemment par l'étudiant
+                                Supression.add(UE);
+                    }
+                    ListeUE.removeAll(Supression);
+                    UECollection.put(discipline, ListeUE);
+                }
+        }
+    }

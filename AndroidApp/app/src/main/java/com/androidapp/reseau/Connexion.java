@@ -50,32 +50,17 @@ public class Connexion {
             ex.printStackTrace();
         }
 
-       /* mSocket.on(Net.VALIDATION, new Emitter.Listener() {
-                        @Override
-                        public void call(Object... args) {
-                            s = (String) args[0];
-                        }
-                    });*/
-
         mSocket.on(Net.PREREQUIS, new Emitter.Listener() {
             ObjectMapper objectMapper2 = new ObjectMapper();
 
             @Override
-
             public void call(Object... args) {
-
                 try {
                     MapPrerequis = objectMapper2.readValue(args[0].toString(), new TypeReference<Map<String, List<String>>>() {
                     });
-                    Log.d("TEST PREREQUIS",MapPrerequis.toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-        /*} catch (URISyntaxException e) {
-
-            e.printStackTrace();
-        }*/
             }
         });
     }

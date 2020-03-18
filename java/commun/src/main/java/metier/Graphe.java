@@ -34,12 +34,13 @@ public class Graphe {
         for(String UE : prerequis.keySet()) {
             List<String> aretes = new ArrayList<>(); //On crée une liste pour représenter les aretes de notre sommet
             aretes.addAll(origine); //Les arêtes pointent toutes vers les UE qui ne requierent aucun prérequis (car forcément on pourra toujours les séléctionner sans prendre en compte les prérequis)
-            aretes.addAll(graphe.get(UE));
+            if(graphe.get(UE)!=null) aretes.addAll(graphe.get(UE));
             for(String R: prerequis.get(UE)) {
                 //Cette boucle permet d'ajouter une arrête si une UE demande un prérequis
-                List<String> ajoutArrete = graphe.get(UE);
+                List<String> ajoutArrete = new ArrayList<>();
+                if(graphe.get(UE)!=null) ajoutArrete = graphe.get(UE);
                 ajoutArrete.add(R);
-                  graphe.put(UE, ajoutArrete);
+                graphe.put(UE, ajoutArrete);
             }
             graphe.put(UE, aretes);
         }
@@ -48,5 +49,20 @@ public class Graphe {
     /** @return la liste des UE séléctionnables après avoir validé l'UE passée en paramètre */
     public List<String> selectionnable(String UEValidée) {
         return graphe.get(UEValidée);
+    }
+
+    /** @return la liste des UE séléctionnables après avoir validé la liste d'UE passée en paramètre */
+    public List<String> selectionnable(List<String> UEValidées) {
+        HashSet<String> selectionnable = new HashSet<>();
+        selectionnable.addAll(graphe.get("Origine"));
+        for(String S: UEValidées) {
+            selectionnable.addAll(graphe.get(S));
+        }
+        return new ArrayList<>(selectionnable);
+    }
+
+    @Override
+    public String toString() {
+        return graphe.toString();
     }
 }
