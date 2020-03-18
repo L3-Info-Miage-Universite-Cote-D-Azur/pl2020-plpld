@@ -2,6 +2,8 @@ package com.androidapp.vue.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.androidapp.reseau.Connexion;
 import com.androidapp.vue.Vue;
 
 public class Semestre2Activity extends Semestre1Activity implements Vue {
@@ -18,6 +20,7 @@ public class Semestre2Activity extends Semestre1Activity implements Vue {
 
         Intent intent2=new Intent(Semestre2Activity.this, Semestre3Activity.class);
         intent2.putExtra("matièresChoisisS1",sname);
+        intent2.putExtra("matièresChoisisS2", Connexion.s);
         startActivity(intent2);
     }
 }

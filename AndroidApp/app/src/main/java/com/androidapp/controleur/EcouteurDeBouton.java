@@ -27,7 +27,7 @@ public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickL
         switch(v.getId()) {
             case R.id.buttonValider:
                 Log.d("POUR MONTRER", "EcouteurDeBouton : bouton valider cliqué");
-                if(vue.selection().size() < 3 || vue.selection().size() > 7)
+                /*if(vue.selection().size() < 3 || vue.selection().size() > 7)
                 {
                     vue.displayMsg(" Erreur ");
                 }
@@ -40,6 +40,12 @@ public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickL
 
 
                 }
+
+                 */
+                mSocket.envoyerMessage(Net.VALIDATION, (ToJSON) new ChoixUtilisateur(vue.selection()));
+                vue.displayMsg("Votre choix a été transmis au serveur");
+
+                vue.changementSemestre();
 
                 break;
         }
