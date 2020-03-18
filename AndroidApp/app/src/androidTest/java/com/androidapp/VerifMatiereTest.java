@@ -58,7 +58,7 @@ public class VerifMatiereTest {
 
         final String[] InformatiqueS2 = {"System 1. Unix et progra shell", "Programmation impérative"};
         final String[] MathS2 = { "Fondements 2", "Méthodes : approche discrète", "Complements 2"};
-        final String[] ChimieS2 = {"Réactions et reactivites chimiques","Thermodynamique chimique \\/ Options"};
+        final String[] ChimieS2 = {"Réactions et reactivites chimiques","Thermodynamique chimique / Options"};
         final String[] ElectroniqueS2 = { "Electronique analogique", "Communication sans fil"};
         final String[] GeographieS2 = { "Découverte 3" ,"Découverte 4", "Disciplinaire 2"};
         final String[] MIASHSS2 = { "Economie-Gestion S2"};
@@ -84,7 +84,7 @@ public class VerifMatiereTest {
 
         final String[] InformatiqueS4 = {"System 1. Unix et progra shell", "Programmation impérative", "Algorithmique 1", "Réseaux et télécommunication", "Systèmes 2 : Mécanisme internes des systèmes d'exploitation", "Introduction aux systèmes intelligents", "Technologie du Web"};
         final String[] MathS4 = { "Fondements 2", "Méthodes : approche discrète", "Complements 2", "Analyse", "Probabilités et Introduction à la Statistiques", "Algèbre", "Résolution numérique des systèmes d'équations linéaires et non-linéaires", "Méthodes : approche aléatoire"};
-        final String[] ChimieS4 = {"Reactions et reactivites chimiques", "Thermodynamique chimique \\/ Options", "Vision macroscopique des molécules", "Matériaux 2", "Chimie Organique Fonctionnelle 2", "Bloc de Chimie Expérimentale"};
+        final String[] ChimieS4 = {"Reactions et reactivites chimiques", "Thermodynamique chimique / Options", "Vision macroscopique des molécules", "Matériaux 2", "Chimie Organique Fonctionnelle 2", "Bloc de Chimie Expérimentale"};
         final String[] ElectroniqueS4 = { "Electronique analogique", "Communication sans fil", "Système optimisé en énergie", "Electronique analogique avancée", "Architecture des processeurs", "Systèmes embarqués 2"};
         final String[] GeographieS4 = { "Découverte 3" ,"Découverte 4", "Disciplinaire 2", "Disciplinaire 6", "Disciplinaire 7", "Disciplinaire 8", "Approfondissement hors géographie 2"};
         final String[] MIASHSS4 = { "Economie-Gestion S2", "Economie-Gestion S4", "Mathématiques pour la finance"};
@@ -162,11 +162,13 @@ public class VerifMatiereTest {
                 withId(R.id.btnpar)).perform(click());
 
         ViewInteraction clicGroupe;
+        ViewInteraction clicMatiere;
         ViewInteraction verifMatiere;
         ViewInteraction scrollView;
 
 
         int i = 0;
+        int NbMatiereChoisi = 0;
         for (ArrayList<String[]> semestre : listematiere) {
 
             for (String[] liste : semestre) {
@@ -178,7 +180,12 @@ public class VerifMatiereTest {
 
                     if (i == 9 && semestre == listeMatiereS1) { break; }
                     verifMatiere = onView(
-                            withText(strArray[i])).check(matches(isDisplayed()));
+                            withText(s)).check(matches(isDisplayed()));
+                    if (NbMatiereChoisi < 3) {
+                        clicMatiere = onView(
+                                withText(s)).perform(click());
+                        NbMatiereChoisi++;
+                    }
                 }
                 clicGroupe = onView(
                         withText(strArray[i])).perform(click());
@@ -187,6 +194,7 @@ public class VerifMatiereTest {
                 i++;
             }
             i = 0;
+            NbMatiereChoisi = 0;
             clicCommencer = onView(
                     withId(R.id.buttonValider)).perform(click());
         }
