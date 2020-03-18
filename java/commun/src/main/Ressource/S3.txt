@@ -42,7 +42,7 @@ Thermodynamique 1
 Outils et Méthodes 1
 $Science de la Terre
 Découverte des sciences de la terre
-Atmosphère, Océan, Climats
+Atmosphère; Océan; Climats
 Le temps en Géosciences
 Physique de la Terre
 Matériaux terrestres
@@ -52,4 +52,4 @@ Génétique. Evolution. Origine Vie et Biodiversité
 $CLE 1D (Continuum Licence Enseignement)
 Enseignements fondamentaux à l'école primaire 1
 $UE facultative
-Project Fablab
+Projet FabLab

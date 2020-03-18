@@ -13,6 +13,7 @@ import android.widget.Button;
 
 import com.androidapp.R;
 import com.androidapp.controleur.*;
+import com.androidapp.reseau.Connexion;
 import com.androidapp.vue.Vue;
 import com.androidapp.vue.adapter.*;
 import metier.*;
@@ -25,6 +26,7 @@ import static com.androidapp.vue.activity.HomeActivity.connexion;
 
 public class Semestre1Activity extends AppCompatActivity implements Vue {
     public static final String AUTOCONNECT = "AUTOCONNECT";
+    protected Graphe graphe;
     private Button bouton;
     private boolean autoconnect = true;
     protected Map<String, List<String>> UECollection;
@@ -50,6 +52,8 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
         stepsAdapter.addAll("View 1");
         mListView.setAdapter(stepsAdapter);
         receptionUE();
+
+        //graphe = new Graphe(); //TODO (dès que possible): Mettre en paramètre la map des prérequis donnés par le serveur
 
         expListView = findViewById(R.id.UE_list);
         final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(this, new ArrayList<>(UECollection.keySet()), UECollection);
@@ -87,12 +91,28 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
         return adapter.selection(new Matiere("S" + numSemestre));
     }
 
-    public void changementSemestre() { startActivity(new Intent(Semestre1Activity.this, Semestre2Activity.class)); }
+    public void changementSemestre() {
+        Intent intent=new Intent(Semestre1Activity.this, Semestre2Activity.class);
+        intent.putExtra("matièresChoisisS1", Connexion.s);
+        startActivity(intent);
+    }
 
     public void receptionUE() {
             try {
                 TimeUnit.SECONDS.sleep(2); // TODO: 14/03/2020 A améliorer : on aimerait pouvoir agir dès que le serveur répond plutôt que d'attendre une durée fixe
-                UECollection = ListOfMaps.get(ListOfMaps.size()-1);
+                UECollection = ListOfMaps.get(ListOfMaps.size() - 1);
+                //TODO: 18/03/2020 : décommenter ce qui suit dès qu'on aura une transmission de la liste des prérequis par le serveur
+                /*
+                UECollection = new HashMap<>();
+
+                for (String discipline : ListOfMaps.get(ListOfMaps.size() - 1).keySet()) {
+                    List<String> ListeUE = ListOfMaps.get(ListOfMaps.size() - 1).get(discipline);
+                    for (String UE : ListeUE) {
+                        if (!graphe.selectionnable("Origine").contains(UE)) //TODO: 18/03/2020 Remplacer "Origine" par la liste des UE séléctionnées précédemment par l'étudiant
+                            ListeUE.remove(UE);
+                    }
+                   UECollection.put(discipline, ListeUE);
+                } */
             }
              catch (InterruptedException e) {
                  // TODO: 13/03/2020  Créer une exception personnalisée qui dit que le serveur n'a pas envoyé la liste de maps

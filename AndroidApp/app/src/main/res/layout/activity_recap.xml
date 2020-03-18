@@ -22,25 +22,78 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Semestre 1:">
-        </TextView>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Semestre 2:">
-        </TextView>
-        <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Semestre 3:">
-        </TextView>
-        <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Semestre 4:">
-        </TextView>
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Semestre 1:">
+            </TextView>
+                <TextView
+                    android:id="@+id/semestre1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Matières choisies au s1">
+                </TextView>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Semestre 2:">
+                </TextView>
+                <TextView
+                    android:id="@+id/semestre2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Matières choisies au s2">
+                </TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Semestre 3:">
+                </TextView>
+                <TextView
+                    android:id="@+id/semestre3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Matières choisies au s3">
+                </TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Semestre 4:">
+                </TextView>
+                <TextView
+                    android:id="@+id/semestre4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Matières choisies au s4">
+                </TextView>
+            </LinearLayout>
+
+        </LinearLayout>
 </LinearLayout>
