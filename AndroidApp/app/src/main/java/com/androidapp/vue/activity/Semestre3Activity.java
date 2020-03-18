@@ -13,6 +13,11 @@ public class Semestre3Activity extends Semestre1Activity implements Vue {
 
     @Override
     public void changementSemestre() {
-        startActivity(new Intent(Semestre3Activity.this, Semestre4Activity.class));
+        Intent intent=getIntent();
+        final String sname=intent.getStringExtra("matièresChoisisS1");
+
+        Intent intent2=new Intent(Semestre3Activity.this, Semestre4Activity.class);
+        intent2.putExtra("matièresChoisisS1",sname);
+        startActivity(intent2);
     }
 }

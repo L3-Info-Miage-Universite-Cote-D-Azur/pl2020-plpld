@@ -13,6 +13,7 @@ import android.widget.Button;
 
 import com.androidapp.R;
 import com.androidapp.controleur.*;
+import com.androidapp.reseau.Connexion;
 import com.androidapp.vue.Vue;
 import com.androidapp.vue.adapter.*;
 import metier.*;
@@ -87,7 +88,11 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
         return adapter.selection(new Matiere("S" + numSemestre));
     }
 
-    public void changementSemestre() { startActivity(new Intent(Semestre1Activity.this, Semestre2Activity.class)); }
+    public void changementSemestre() {
+        Intent intent=new Intent(Semestre1Activity.this, Semestre2Activity.class);
+        intent.putExtra("matièresChoisisS1", Connexion.s);
+        startActivity(intent);
+    }
 
     public void receptionUE() {
             try {

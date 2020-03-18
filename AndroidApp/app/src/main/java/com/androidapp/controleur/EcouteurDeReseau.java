@@ -23,7 +23,6 @@ public class EcouteurDeReseau implements Emitter.Listener {
     @Override
     public void call(Object... args) {
         Log.d("POUR MONTRER", "" + args[0]);
-
         try {
             map = objectMapper.readValue(args[0].toString(), new TypeReference<Map<String,List<String>>>() {});
         } catch (IOException ex) {
