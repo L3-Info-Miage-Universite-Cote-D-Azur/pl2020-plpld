@@ -20,7 +20,7 @@ import metier.*;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-import static com.androidapp.controleur.EcouteurDeReseau.ListOfMaps;
+//import static com.androidapp.controleur.EcouteurDeReseau.ListOfMaps;
 import static com.androidapp.vue.activity.HomeActivity.connexion;
 
 
@@ -53,7 +53,7 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
         mListView.setAdapter(stepsAdapter);
         receptionUE();
 
-        //graphe = new Graphe(); //TODO (dès que possible): Mettre en paramètre la map des prérequis donnés par le serveur
+     // graphe = new Graphe(connexion.MapPrerequis); //TODO (dès que possible): Mettre en paramètre la map des prérequis donnés par le serveur
 
         expListView = findViewById(R.id.UE_list);
         final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(this, new ArrayList<>(UECollection.keySet()), UECollection);
@@ -83,6 +83,8 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
 
     protected void initVue() {
         EcouteurDeBouton ecouteur = new EcouteurDeBouton(this, connexion);
+
+
         bouton.setOnClickListener(ecouteur);
         connexion.démarrerÉcoute();
     }
@@ -100,18 +102,18 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
     public void receptionUE() {
             try {
                 TimeUnit.SECONDS.sleep(2); // TODO: 14/03/2020 A améliorer : on aimerait pouvoir agir dès que le serveur répond plutôt que d'attendre une durée fixe
-                UECollection = ListOfMaps.get(ListOfMaps.size() - 1);
+                UECollection = connexion.ListOfMaps.get(connexion.ListOfMaps.size()-1);
+
+
                 //TODO: 18/03/2020 : décommenter ce qui suit dès qu'on aura une transmission de la liste des prérequis par le serveur
                 /*
-                UECollection = new HashMap<>();
-
-                for (String discipline : ListOfMaps.get(ListOfMaps.size() - 1).keySet()) {
-                    List<String> ListeUE = ListOfMaps.get(ListOfMaps.size() - 1).get(discipline);
-                    for (String UE : ListeUE) {
-                        if (!graphe.selectionnable("Origine").contains(UE)) //TODO: 18/03/2020 Remplacer "Origine" par la liste des UE séléctionnées précédemment par l'étudiant
+                for(String discipline : ListOfMaps.get(ListOfMaps.size()-1).keySet()) {
+                    List<String> ListeUE = ListOfMaps.get(ListOfMaps.size()-1).get(discipline);
+                    for(String UE: ListeUE) {
+                        if(!graphe.selectionnable("Origine").contains(UE)) //TODO: 18/03/2020 Remplacer "Origine" par la liste des UE séléctionnées précédemment par l'étudiant
                             ListeUE.remove(UE);
                     }
-                   UECollection.put(discipline, ListeUE);
+                    ListOfMaps.get(ListOfMaps.size()-1).put(discipline, ListeUE);
                 } */
             }
              catch (InterruptedException e) {
