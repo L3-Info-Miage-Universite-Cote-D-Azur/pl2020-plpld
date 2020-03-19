@@ -10,10 +10,7 @@ import metier.Identité;
 import metier.ListeSemestre;
 import metier.Matiere;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -142,7 +139,7 @@ public class Serveur {
         String previousKey = null;
         BufferedReader br;
         try{
-            br = new BufferedReader(new FileReader(fichier));
+            br = new BufferedReader(new     InputStreamReader(getClass().getClassLoader().getResourceAsStream(fichier),"UTF-8"));
             String line = br.readLine();
             while(line != null)
             {
