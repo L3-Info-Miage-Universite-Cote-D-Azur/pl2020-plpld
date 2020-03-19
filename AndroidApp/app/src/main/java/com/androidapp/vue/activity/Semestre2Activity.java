@@ -30,6 +30,7 @@ public class Semestre2Activity extends Semestre1Activity implements Vue {
         Intent intent2=new Intent(Semestre2Activity.this, Semestre3Activity.class);
         intent2.putExtra("matièresChoisisS1",sname);
         intent2.putExtra("matièresChoisisS2", Connexion.s);
+
         startActivity(intent2);
     }
 }

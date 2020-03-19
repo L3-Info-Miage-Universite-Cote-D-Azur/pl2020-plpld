@@ -46,9 +46,16 @@ public class Connexion {
                     ListOfMaps.add(map);
                 }
             });
-                    } catch (URISyntaxException ex) {
+        } catch (URISyntaxException ex) {
             ex.printStackTrace();
         }
+
+        mSocket.on(Net.VALIDATION, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                s=(String)args[0];
+            }
+        });
 
         mSocket.on(Net.PREREQUIS, new Emitter.Listener() {
             ObjectMapper objectMapper2 = new ObjectMapper();

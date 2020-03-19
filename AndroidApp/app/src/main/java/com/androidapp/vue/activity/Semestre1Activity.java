@@ -101,6 +101,7 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
     public void changementSemestre() {
         Intent intent=new Intent(Semestre1Activity.this, Semestre2Activity.class);
         intent.putExtra("matièresChoisisS1", Connexion.s);
+
         startActivity(intent);
     }
 
