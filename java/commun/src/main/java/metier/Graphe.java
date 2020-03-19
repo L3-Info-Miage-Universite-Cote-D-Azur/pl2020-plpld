@@ -58,6 +58,7 @@ public class Graphe {
         for(String S: UEValidées) {
             selectionnable.addAll(graphe.get(S));
         }
+        selectionnable.removeAll(UEValidées);
         return new ArrayList<>(selectionnable);
     }
 

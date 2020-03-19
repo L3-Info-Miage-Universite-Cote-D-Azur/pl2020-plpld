@@ -110,11 +110,12 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
     }
 
     public void receptionUE() {
+        List<String> selectionnable = graphe.selectionnable(UEvalidees()); //Utilisation du graphe pour connaître la liste des UE selectionnables ce semestre après avoir validée les UE renvoyées par la méthode UEvalidees
                 for(String discipline : connexion.ListOfMaps.get(connexion.ListOfMaps.size()-1).keySet()) {
                     List<String> ListeUE = connexion.ListOfMaps.get(connexion.ListOfMaps.size()-1).get(discipline);
                     List<String> Supression = new ArrayList<>(); //Liste des UE à supprimer
                     for (String UE : ListeUE) {
-                            if (!graphe.selectionnable(UEvalidees()).contains(UE)) //TODO: 18/03/2020 Remplacer "Origine" par la liste des UE séléctionnées précédemment par l'étudiant
+                            if (!selectionnable.contains(UE)) //TODO: 18/03/2020 Remplacer "Origine" par la liste des UE séléctionnées précédemment par l'étudiant
                                 Supression.add(UE);
                     }
                     ListeUE.removeAll(Supression);
