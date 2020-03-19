@@ -5,7 +5,6 @@ import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.DataListener;
-import constantes.Net;
 import metier.ChoixUtilisateur;
 import metier.Identité;
 import metier.ListeSemestre;
@@ -15,7 +14,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +24,6 @@ import static constantes.Net.*;
  *  Classe du serveur, contenant toutes les méthodes pour la communication vers le client
  */
 public class Serveur {
-
 
     private final SocketIOServer server;
 
@@ -43,6 +40,7 @@ public class Serveur {
         s.démarrer();
     }
 
+    
     public Serveur(SocketIOServer server) {
         this.server = server;
 
@@ -87,7 +85,6 @@ public class Serveur {
 
     /**
      * Envoie le choix de l'étudiant au client
-     *
      * @param socketIOClient Le client
      * @param matiere La matière choisi par le client
      */
@@ -96,40 +93,48 @@ public class Serveur {
         socketIOClient.sendEvent(CHOIX, matiere.toString());
     }
 
-
     // TODO: 28/02/2020  Modifier cette méthode et la rendre plus utile
     /**
      *  Pour l'instant, cette méthode affiche un message de validation
      * @param socketIOClient
      * @param id  Identité du client
      */
-
     protected void nouveauClient(SocketIOClient socketIOClient, Identité id) {
         System.out.println(id+" vient de se connecter");
     }
-    protected void envoiePrerequis(SocketIOClient socketIOClient,String path)
-    {
+
+    /**
+     * Envoie le fichier des prerequis au client
+     * @param socketIOClient
+     * @param path Fichier des prerequis
+     */
+    protected void envoiePrerequis(SocketIOClient socketIOClient,String path) {
         socketIOClient.sendEvent(PREREQUIS,lireFichier(path));
     }
+
     /**
      *   Valide le choix de l'étudiant et transmet la liste des UEs choisit par l'étudiant au client
      * @param socketIOClient
      * @param SelectionUE Liste de matières
      */
-
     protected void validation(SocketIOClient socketIOClient, ChoixUtilisateur SelectionUE) {
         System.out.println("Votre sélection pour le semestre n°" + SelectionUE.getNumSemestre() + " (" + SelectionUE.toString() +") a été enregistrée.");
         socketIOClient.sendEvent(VALIDATION, SelectionUE.toString());
     }
 
-    protected void envoyerUE(SocketIOClient socketIOClient,String path)
-    {
+    /**
+     * Envoie la liste des UE au client
+     * @param socketIOClient
+     * @param path Liste des UE
+     */
+    protected void envoyerUE(SocketIOClient socketIOClient,String path) {
         socketIOClient.sendEvent(UE,lireFichier(path));
     }
 
-
     /**
-     * Démarre le serveur
+     * Permet de lire un fichier (UE ou prerequis) afin d'en faire un HashMap<String,Liste<String>>
+     * @param fichier Fichier a lire
+     * @return HashMap<String, Liste<String>>
      */
     public HashMap<String, List<String>> lireFichier(String fichier)
     {
@@ -159,11 +164,13 @@ public class Serveur {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return listeSemestre.getMapUE();
     }
+
+    /**
+     * Démarre le serveur
+     */
     private void démarrer() {
         server.start();
-
     }
 }
