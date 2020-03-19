@@ -33,6 +33,7 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
     protected ExpandableListView expListView;
     protected ExpandableListAdapter adapter;
     protected int numSemestre = 1;
+
     @Override
     public void displayMsg(String str) {
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
@@ -49,7 +50,7 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
         initVue();
         ListView mListView = findViewById(R.id.list);
 
-        StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0, numSemestre-1);
+        StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0, numSemestre - 1);
         stepsAdapter.addAll("View 1");
         mListView.setAdapter(stepsAdapter);
 
@@ -99,7 +100,7 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
     }
 
     public void changementSemestre() {
-        Intent intent=new Intent(Semestre1Activity.this, Semestre2Activity.class);
+        Intent intent = new Intent(Semestre1Activity.this, Semestre2Activity.class);
         intent.putExtra("matièresChoisisS1", Connexion.s);
 
         startActivity(intent);
@@ -111,15 +112,15 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
 
     public void receptionUE() {
         List<String> selectionnable = graphe.selectionnable(UEvalidees()); //Utilisation du graphe pour connaître la liste des UE selectionnables ce semestre après avoir validée les UE renvoyées par la méthode UEvalidees
-                for(String discipline : connexion.ListOfMaps.get(connexion.ListOfMaps.size()-1).keySet()) {
-                    List<String> ListeUE = connexion.ListOfMaps.get(connexion.ListOfMaps.size()-1).get(discipline);
-                    List<String> Supression = new ArrayList<>(); //Liste des UE à supprimer
-                    for (String UE : ListeUE) {
-                            if (!selectionnable.contains(UE)) //TODO: 18/03/2020 Remplacer "Origine" par la liste des UE séléctionnées précédemment par l'étudiant
-                                Supression.add(UE);
-                    }
-                    ListeUE.removeAll(Supression);
-                    UECollection.put(discipline, ListeUE);
-                }
+        for (String discipline : connexion.ListOfMaps.get(connexion.ListOfMaps.size() - 1).keySet()) {
+            List<String> ListeUE = connexion.ListOfMaps.get(connexion.ListOfMaps.size() - 1).get(discipline);
+            List<String> Supression = new ArrayList<>(); //Liste des UE à supprimer
+            for (String UE : ListeUE) {
+                if (!selectionnable.contains(UE))
+                    Supression.add(UE);
+            }
+                ListeUE.removeAll(Supression);
+                UECollection.put(discipline, ListeUE);
+            }
         }
     }
