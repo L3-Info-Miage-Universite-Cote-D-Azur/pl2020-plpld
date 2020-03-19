@@ -1,7 +1,5 @@
 package metier;
 
-import android.util.Log;
-
 import java.util.*;
 
 public class Graphe {
@@ -65,7 +63,6 @@ public class Graphe {
         for(String S: UEValidées) {
             selectionnable.addAll(graphe.get(S));
         }
-        Log.d("UE validées", UEValidées.toString());
         selectionnable.removeAll(UEValidées);
         return new ArrayList<>(selectionnable);
     }
