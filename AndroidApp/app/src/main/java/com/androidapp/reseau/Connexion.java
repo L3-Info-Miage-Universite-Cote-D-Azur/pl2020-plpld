@@ -30,7 +30,6 @@ public class Connexion {
     public void écouterRéseau() {
         try {
             mSocket = IO.socket("http://10.0.2.2:10101");
-            EcouteurDeReseau net = new EcouteurDeReseau();
             mSocket.on(Net.UE, new Emitter.Listener() {
                 @Override
                 public void call(Object... args) {
