@@ -21,6 +21,7 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 //import static com.androidapp.controleur.EcouteurDeReseau.ListOfMaps;
+import static com.androidapp.controleur.EcouteurDeBouton.selectionUE;
 import static com.androidapp.vue.activity.HomeActivity.connexion;
 
 
@@ -33,7 +34,6 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
     protected ExpandableListView expListView;
     protected ExpandableListAdapter adapter;
     protected int numSemestre = 1;
-    public static List <String> ueChoisis;
     @Override
     public void displayMsg(String str) {
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
@@ -102,15 +102,11 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
     public void changementSemestre() {
         Intent intent = new Intent(Semestre1Activity.this, Semestre2Activity.class);
         intent.putExtra("matièresChoisisS1", Connexion.s);
-
-        String s=Connexion.s;
-        ueChoisis=new ArrayList<>(Arrays.asList(s.split(",")));
-
         startActivity(intent);
     }
 
-    public List<String> UEvalidees() {
-        return new ArrayList<>();
+    public List<Matiere> UEvalidees() {
+        return selectionUE;
     }
 
     public void receptionUE() {

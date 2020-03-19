@@ -40,10 +40,18 @@ public class ChoixUtilisateur implements ToJSON {
 
     /**
      *  Retourne la liste des matières sélectionnées par l'utilisateur
-     * @return liste des matieres
+     * @return liste des matieres avec numéro de semestre
      */
     public List<Matiere> getChoix() {
         return Choix;
+    }
+
+    /**
+     *  Retourne la liste des matières sélectionnées par l'utilisateur
+     * @return liste des matieres sans numéro de semestre
+     */
+    public List<Matiere> getChoixS() {
+        return Choix.subList(1, Choix.size());
     }
 
     /**

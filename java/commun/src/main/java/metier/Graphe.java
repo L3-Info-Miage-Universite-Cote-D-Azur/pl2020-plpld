@@ -1,5 +1,7 @@
 package metier;
 
+import android.util.Log;
+
 import java.util.*;
 
 public class Graphe {
@@ -39,8 +41,8 @@ public class Graphe {
                 //Cette boucle permet d'ajouter une arrête si une UE demande un prérequis
                 List<String> ajoutArrete = new ArrayList<>();
                 if(graphe.get(UE)!=null) ajoutArrete = graphe.get(UE);
-                ajoutArrete.add(R);
-                graphe.put(UE, ajoutArrete);
+                ajoutArrete.add(UE);
+                graphe.put(R, ajoutArrete);
             }
             graphe.put(UE, aretes);
         }
@@ -52,12 +54,18 @@ public class Graphe {
     }
 
     /** @return la liste des UE séléctionnables après avoir validé la liste d'UE passée en paramètre */
-    public List<String> selectionnable(List<String> UEValidées) {
+    public List<String> selectionnable(List<Matiere> UE) {
+        List<String> L = new ArrayList<>();
+        for(Matiere M: UE) {
+            L.add(M.getNom());
+        }
+        List<String> UEValidées = L;
         HashSet<String> selectionnable = new HashSet<>();
         selectionnable.addAll(graphe.get("Origine"));
         for(String S: UEValidées) {
             selectionnable.addAll(graphe.get(S));
         }
+        Log.d("UE validées", UEValidées.toString());
         selectionnable.removeAll(UEValidées);
         return new ArrayList<>(selectionnable);
     }
