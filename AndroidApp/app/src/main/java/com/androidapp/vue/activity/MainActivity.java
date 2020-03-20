@@ -2,7 +2,6 @@ package com.androidapp.vue.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,14 +12,12 @@ import android.widget.Button;
 
 import com.androidapp.R;
 import com.androidapp.controleur.*;
-import com.androidapp.reseau.Connexion;
 import com.androidapp.vue.Vue;
 import com.androidapp.vue.adapter.*;
 import metier.*;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-import static com.androidapp.controleur.EcouteurDeBouton.selectionUE;
 import static com.androidapp.vue.activity.HomeActivity.connexion;
 
 
@@ -33,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements Vue {
     private ExpandableListView expListView;
     private ExpandableListAdapter adapter;
     private int numSemestre = 1;
+    private List<Matiere> selectionUE = new ArrayList<>();
+
     @Override
     public void displayMsg(String str) {
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
@@ -98,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements Vue {
     }
 
     public void changementSemestre() {
+        selectionUE.addAll(new ChoixUtilisateur(selection()).getChoixS());
         numSemestre++;
         initVue();
         //intent.putExtra("matièresChoisisS1", Connexion.s);
