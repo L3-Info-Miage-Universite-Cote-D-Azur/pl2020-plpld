@@ -66,12 +66,7 @@ public class MainActivity extends AppCompatActivity implements Vue {
         StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0, numSemestre-1);
         stepsAdapter.addAll("View " + numSemestre);
         mListView.setAdapter(stepsAdapter);
-
-        try {
-            TimeUnit.SECONDS.sleep(3); // TODO: 14/03/2020 A améliorer : on aimerait pouvoir agir dès que le serveur répond plutôt que d'attendre une durée fixe
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        while(connexion.ListOfMaps.size()!=numSemestre || connexion.MapPrerequis.size()==0) continue;
         Log.d("PREREQUIS", connexion.MapPrerequis.toString());
         graphe = new Graphe(connexion.MapPrerequis);
         receptionUE();
