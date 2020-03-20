@@ -62,8 +62,6 @@ public class Serveur {
             @Override
             public void onData(SocketIOClient socketIOClient, ChoixUtilisateur choix, AckRequest ackRequest) throws Exception {
                 validation(socketIOClient, choix);
-
-
                 switch (choix.getNumSemestre()) {
                     case 1:
                         envoyerUE(socketIOClient, S2);
@@ -75,7 +73,6 @@ public class Serveur {
                         envoyerUE(socketIOClient,S4);
                         break;
                 }
-                    System.out.println("semestre en cours : " + choix.getNumSemestre());
             }
         });
     }
