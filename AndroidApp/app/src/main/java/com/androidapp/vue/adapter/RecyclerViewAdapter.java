@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidapp.R;
 import com.androidapp.vue.activity.HomeActivity;
-import com.androidapp.vue.activity.Semestre1Activity;
 
 import java.util.ArrayList;
 import java.util.List;

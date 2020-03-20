@@ -20,20 +20,19 @@ import metier.*;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-//import static com.androidapp.controleur.EcouteurDeReseau.ListOfMaps;
 import static com.androidapp.controleur.EcouteurDeBouton.selectionUE;
 import static com.androidapp.vue.activity.HomeActivity.connexion;
 
 
-public class Semestre1Activity extends AppCompatActivity implements Vue {
+public class MainActivity extends AppCompatActivity implements Vue {
     public static final String AUTOCONNECT = "AUTOCONNECT";
     protected Graphe graphe;
     private Button bouton;
     private boolean autoconnect = true;
-    protected Map<String, List<String>> UECollection = new HashMap<>();
-    protected ExpandableListView expListView;
-    protected ExpandableListAdapter adapter;
-    protected int numSemestre = 1;
+    private Map<String, List<String>> UECollection = new HashMap<>();
+    private ExpandableListView expListView;
+    private ExpandableListAdapter adapter;
+    private int numSemestre = 1;
     @Override
     public void displayMsg(String str) {
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
@@ -43,15 +42,30 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.semestres);
+        initVue();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        bouton = findViewById(R.id.buttonValider);
+        if (autoconnect) {
+            initVue();
+        }
+    }
+
+    private void initVue() {
         autoconnect = getIntent().getBooleanExtra(AUTOCONNECT, true);
         bouton = findViewById(R.id.buttonValider);
         UECollection = new HashMap<>();
-        initVue();
+        EcouteurDeBouton ecouteur = new EcouteurDeBouton(this, connexion);
+        bouton.setOnClickListener(ecouteur);
+        connexion.démarrerÉcoute();
+
         ListView mListView = findViewById(R.id.list);
 
-        StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0, numSemestre - 1);
-        stepsAdapter.addAll("View 1");
+        StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0, numSemestre-1);
+        stepsAdapter.addAll("View " + numSemestre);
         mListView.setAdapter(stepsAdapter);
 
         try {
@@ -68,7 +82,6 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
         expListView.setAdapter(expListAdapter);
         adapter = expListAdapter;
         expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
                 final String selected = (String) expListAdapter.getChild(
@@ -80,36 +93,21 @@ public class Semestre1Activity extends AppCompatActivity implements Vue {
         });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        bouton = findViewById(R.id.buttonValider);
-        if (autoconnect) {
-            initVue();
-        }
-    }
-
-    protected void initVue() {
-        EcouteurDeBouton ecouteur = new EcouteurDeBouton(this, connexion);
-        bouton.setOnClickListener(ecouteur);
-        connexion.démarrerÉcoute();
-    }
-
     public List<Matiere> selection() {
         return adapter.selection(new Matiere("S" + numSemestre));
     }
 
     public void changementSemestre() {
-        Intent intent = new Intent(Semestre1Activity.this, Semestre2Activity.class);
-        intent.putExtra("matièresChoisisS1", Connexion.s);
-        startActivity(intent);
+        numSemestre++;
+        initVue();
+        //intent.putExtra("matièresChoisisS1", Connexion.s);
     }
 
-    public List<Matiere> UEvalidees() {
+    private List<Matiere> UEvalidees() {
         return selectionUE;
     }
 
-    public void receptionUE() {
+    private void receptionUE() {
         List<String> selectionnable = graphe.selectionnable(UEvalidees()); //Utilisation du graphe pour connaître la liste des UE selectionnables ce semestre après avoir validée les UE renvoyées par la méthode UEvalidees
         for (String discipline : connexion.ListOfMaps.get(connexion.ListOfMaps.size() - 1).keySet()) {
             List<String> ListeUE = connexion.ListOfMaps.get(connexion.ListOfMaps.size() - 1).get(discipline);
