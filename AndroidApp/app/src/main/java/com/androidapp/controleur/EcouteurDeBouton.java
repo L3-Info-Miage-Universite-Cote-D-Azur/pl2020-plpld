@@ -19,7 +19,6 @@ import metier.ToJSON;
 public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickListener {
     private final Connexion mSocket;
     private Vue vue;
-    public static List<Matiere> selectionUE = new ArrayList<>();
 
     public EcouteurDeBouton(Vue v, Connexion mSocket) {
         this.vue = v;
@@ -37,7 +36,6 @@ public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickL
                 }
                 else
                 {
-                    selectionUE.addAll(new ChoixUtilisateur(vue.selection()).getChoixS());
                     mSocket.envoyerMessage(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
                     vue.displayMsg("Votre choix a été transmis au serveur");
                     vue.changementSemestre();
