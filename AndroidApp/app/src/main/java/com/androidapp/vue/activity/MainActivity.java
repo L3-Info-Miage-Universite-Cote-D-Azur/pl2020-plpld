@@ -2,6 +2,7 @@ package com.androidapp.vue.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -93,9 +94,9 @@ public class MainActivity extends AppCompatActivity implements Vue {
 
     public void changementSemestre() {
         selectionUE.addAll(new ChoixUtilisateur(selection()).getChoixS());
+        if(numSemestre==4) startActivity(new Intent(MainActivity.this, RecapActivity.class));
         numSemestre++;
         initVue();
-        //intent.putExtra("matièresChoisisS1", Connexion.s);
     }
 
     private List<Matiere> UEvalidees() {
