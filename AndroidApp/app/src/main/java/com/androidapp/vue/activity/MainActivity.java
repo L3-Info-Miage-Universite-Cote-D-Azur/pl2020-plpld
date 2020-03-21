@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements Vue {
                     Supression.add(UE);
             }
                 ListeUE.removeAll(Supression);
+            if(ListeUE.size()!=0)
                 UECollection.put(discipline, ListeUE);
             }
         }
