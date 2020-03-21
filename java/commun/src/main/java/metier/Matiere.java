@@ -55,6 +55,7 @@ public class Matiere implements ToJSON {
         return identité;
     }
 
+    @Override
     public String toString() {
         return this.getNom();
     }
