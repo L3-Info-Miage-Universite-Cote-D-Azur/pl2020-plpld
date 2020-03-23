@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -16,6 +17,8 @@ import com.androidapp.controleur.*;
 import com.androidapp.vue.Vue;
 import com.androidapp.vue.adapter.*;
 import metier.*;
+
+import java.io.Serializable;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -32,7 +35,10 @@ public class MainActivity extends AppCompatActivity implements Vue {
     private ExpandableListAdapter adapter;
     private int numSemestre = 1;
     private List<Matiere> selectionUE = new ArrayList<>();
-
+    List<String> matièresChoisisS1=new ArrayList<>();
+    List<String> matièresChoisisS2=new ArrayList<>();
+    List<String> matièresChoisisS3=new ArrayList<>();
+    List<String> matièresChoisisS4=new ArrayList<>();
     @Override
     public void displayMsg(String str) {
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
@@ -42,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements Vue {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.semestres);
-        initVue();
+        //initVue();
     }
 
     @Override
@@ -86,6 +92,8 @@ public class MainActivity extends AppCompatActivity implements Vue {
                 return true;
             }
         });
+
+
     }
 
     public List<Matiere> selection() {
@@ -94,9 +102,47 @@ public class MainActivity extends AppCompatActivity implements Vue {
 
     public void changementSemestre() {
         selectionUE.addAll(new ChoixUtilisateur(selection()).getChoixS());
-        if(numSemestre==4) startActivity(new Intent(MainActivity.this, RecapActivity.class));
+        switch (numSemestre){
+            case 1:
+                for (int i=0;i<selectionUE.size();i++){
+                    matièresChoisisS1.add(selectionUE.get(i).toString());
+                }
+                break;
+            case 2:
+                for (int i=matièresChoisisS1.size();i<selectionUE.size();i++){
+                    matièresChoisisS2.add(selectionUE.get(i).toString());
+                }
+                break;
+            case 3:
+                for (int i=matièresChoisisS1.size()+matièresChoisisS2.size();i<selectionUE.size();i++){
+                    matièresChoisisS3.add(selectionUE.get(i).toString());
+                }
+                break;
+            case 4:
+                for (int i=matièresChoisisS1.size()+matièresChoisisS2.size()+matièresChoisisS3.size();i<selectionUE.size();i++){
+                    matièresChoisisS4.add(selectionUE.get(i).toString());
+                }
+                break;
+            default:
+                break;
+        }
+
         numSemestre++;
+
         initVue();
+        if(numSemestre==4){
+            bouton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(MainActivity.this, RecapActivity.class);
+                    intent.putExtra("matièresChoisisS1", String.valueOf(matièresChoisisS1));
+                    intent.putExtra("matièresChoisisS2",  String.valueOf(matièresChoisisS2));
+                    intent.putExtra("matièresChoisisS3",  String.valueOf(matièresChoisisS3));
+                    intent.putExtra("matièresChoisisS4",  "OSSAMA");
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
     private List<Matiere> UEvalidees() {
