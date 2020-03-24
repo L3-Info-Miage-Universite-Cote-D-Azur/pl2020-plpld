@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements Vue {
                     intent.putExtra("matièresChoisisS2",  String.valueOf(matièresChoisisS2));
                     intent.putExtra("matièresChoisisS3",  String.valueOf(matièresChoisisS3));
                     //intent.putExtra("matièresChoisisS4",  String.valueOf(matièresChoisisS4));
-                    intent.putExtra("matièresChoisisS4",  (new ChoixUtilisateur(vue.selection())).toString());
+                    intent.putExtra("matièresChoisisS4",  (new ChoixUtilisateur(vue.selection())).getChoixS().toString());
                     startActivity(intent);
                 }
             });
