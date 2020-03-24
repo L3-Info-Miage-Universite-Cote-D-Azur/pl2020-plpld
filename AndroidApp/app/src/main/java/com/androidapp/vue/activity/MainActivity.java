@@ -123,14 +123,6 @@ public class MainActivity extends AppCompatActivity implements Vue {
                     matièresChoisisS3.add(selectionUE.get(i).toString());
                 }
                 break;
-            /*case 4:
-                for (int i=matièresChoisisS1.size()+matièresChoisisS2.size()+matièresChoisisS3.size();i<selectionUE.size();i++){
-                    matièresChoisisS4.add("alors");
-                    matièresChoisisS4.add(selectionUE.get(i).toString());
-                }
-                break;
-
-             */
             default:
                 break;
         }
@@ -139,10 +131,6 @@ public class MainActivity extends AppCompatActivity implements Vue {
 
         initVue();
         if(numSemestre==4){
-            //selectionUE.addAll(new ChoixUtilisateur(selection()).getChoixS());
-            //for (int i=matièresChoisisS1.size()+matièresChoisisS2.size()+matièresChoisisS3.size();i<selectionUE.size();i++){
-            //  matièresChoisisS4.add(selectionUE.get(i).toString());
-            //}
             bouton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -153,7 +141,6 @@ public class MainActivity extends AppCompatActivity implements Vue {
                     intent.putExtra("matièresChoisisS1", String.valueOf(matièresChoisisS1));
                     intent.putExtra("matièresChoisisS2",  String.valueOf(matièresChoisisS2));
                     intent.putExtra("matièresChoisisS3",  String.valueOf(matièresChoisisS3));
-                    //intent.putExtra("matièresChoisisS4",  String.valueOf(matièresChoisisS4));
                     intent.putExtra("matièresChoisisS4",  (new ChoixUtilisateur(vue.selection())).getChoixS().toString());
                     startActivity(intent);
                 }
