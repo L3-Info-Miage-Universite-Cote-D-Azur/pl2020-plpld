@@ -35,5 +35,7 @@ public class RecapActivity extends AppCompatActivity {
 
         semestre4=(TextView)findViewById(R.id.semestre4);
         semestre4.setText(sname4);
+
+
     }
 }
