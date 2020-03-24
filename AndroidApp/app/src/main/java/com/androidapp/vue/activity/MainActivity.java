@@ -14,8 +14,11 @@ import android.widget.Button;
 
 import com.androidapp.R;
 import com.androidapp.controleur.*;
+import com.androidapp.reseau.Connexion;
 import com.androidapp.vue.Vue;
 import com.androidapp.vue.adapter.*;
+
+import constantes.Net;
 import metier.*;
 
 import java.io.Serializable;
@@ -23,7 +26,6 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 import static com.androidapp.vue.activity.HomeActivity.connexion;
-
 
 public class MainActivity extends AppCompatActivity implements Vue {
     public static final String AUTOCONNECT = "AUTOCONNECT";
@@ -33,12 +35,16 @@ public class MainActivity extends AppCompatActivity implements Vue {
     private Map<String, List<String>> UECollection = new HashMap<>();
     private ExpandableListView expListView;
     private ExpandableListAdapter adapter;
-    private int numSemestre = 1;
+
+
+    private  int numSemestre = 1;
     private List<Matiere> selectionUE = new ArrayList<>();
     List<String> matièresChoisisS1=new ArrayList<>();
     List<String> matièresChoisisS2=new ArrayList<>();
     List<String> matièresChoisisS3=new ArrayList<>();
     List<String> matièresChoisisS4=new ArrayList<>();
+    private final Connexion mSocket=connexion;
+    private Vue vue=this;
     @Override
     public void displayMsg(String str) {
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
@@ -48,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements Vue {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.semestres);
-        //initVue();
+        initVue();
     }
 
     @Override
@@ -93,7 +99,6 @@ public class MainActivity extends AppCompatActivity implements Vue {
             }
         });
 
-
     }
 
     public List<Matiere> selection() {
@@ -118,11 +123,14 @@ public class MainActivity extends AppCompatActivity implements Vue {
                     matièresChoisisS3.add(selectionUE.get(i).toString());
                 }
                 break;
-            case 4:
+            /*case 4:
                 for (int i=matièresChoisisS1.size()+matièresChoisisS2.size()+matièresChoisisS3.size();i<selectionUE.size();i++){
+                    matièresChoisisS4.add("alors");
                     matièresChoisisS4.add(selectionUE.get(i).toString());
                 }
                 break;
+
+             */
             default:
                 break;
         }
@@ -131,14 +139,22 @@ public class MainActivity extends AppCompatActivity implements Vue {
 
         initVue();
         if(numSemestre==4){
+            //selectionUE.addAll(new ChoixUtilisateur(selection()).getChoixS());
+            //for (int i=matièresChoisisS1.size()+matièresChoisisS2.size()+matièresChoisisS3.size();i<selectionUE.size();i++){
+            //  matièresChoisisS4.add(selectionUE.get(i).toString());
+            //}
             bouton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    mSocket.envoyerMessage(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
+                    vue.displayMsg("Votre choix a été transmis au serveur");
+                    matièresChoisisS4.add(new ChoixUtilisateur(vue.selection()).toString());
                     Intent intent=new Intent(MainActivity.this, RecapActivity.class);
                     intent.putExtra("matièresChoisisS1", String.valueOf(matièresChoisisS1));
                     intent.putExtra("matièresChoisisS2",  String.valueOf(matièresChoisisS2));
                     intent.putExtra("matièresChoisisS3",  String.valueOf(matièresChoisisS3));
-                    intent.putExtra("matièresChoisisS4",  "OSSAMA");
+                    //intent.putExtra("matièresChoisisS4",  String.valueOf(matièresChoisisS4));
+                    intent.putExtra("matièresChoisisS4",  (new ChoixUtilisateur(vue.selection())).toString());
                     startActivity(intent);
                 }
             });
