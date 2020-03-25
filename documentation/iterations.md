@@ -8,11 +8,11 @@
 
 <ins>**Itération 5:**</ins>      Création d'un écran récaptitulatif des cours choisis.Mise en place des premières règles à appliquer pour la séléction d'UE (via l'utilisation d'algo de graphes). On gérera en particulier les prérequis pour chaque UE et le nombre d'UE que l'étudiant peut choisir pour chaque semestre. Les prérequis pour chaque UE seront indiqués dans un fichier facilement modifiable. 
 
-<ins>**Itération 6:**</ins>      Mise en place d'un système de recherche des UE. Création d'un système d'enregistrement des parcours du client : le client doit pouvoir interrompre sa saisie et la reprendre plus tard. Le serveur doit enregistrer le choix d'UE effectuées après la validation. Mise en place d'un système de notifications si les prérequis ou les UE proposées changent entre la saisie de l'utilisateur et son retour sur l'application : l'utilisateur doit pouvoir voir facilement l'impacte que cela a sur son parcours.
+<ins>**Itération 6:**</ins>      Gestion de différents étudiants. Le serveur doit enregistrer les étudiants qui s'inscrivent, sauvegarder leurs données et permettre leur reconnexion. Donner la possibilité de revenir à des semestres précédents et de modifier sa séléction une fois le récapitulatif final atteint. Mise en place d'un système de recherche des UE. Mise en place d'un système de notifications si les prérequis ou les UE proposées changent entre la saisie de l'utilisateur et son retour sur l'application : l'utilisateur doit pouvoir voir facilement l'impacte que cela a sur son parcours.
 
-<ins>**Itération 7:**</ins>      Gestion de différents étudiants. Ajout d'une fonctionnalité de consultation permettant de consulter les UE selectionnées par chaque étudiant. Mise en place d'une description des UE (affichage d'un "popup" lorsque l'utilisateur appuie quelques secondes sur le nom d'une UE).
+<ins>**Itération 7:**</ins>      Création d'un système d'enregistrement des parcours du client : le client doit pouvoir interrompre sa saisie et la reprendre plus tard. Le serveur doit enregistrer le choix d'UE effectuées après la validation. Ajout d'une fonctionnalité de consultation permettant de consulter les UE selectionnées par chaque étudiant.
 
-<ins>**Itération 8:**</ins>      Amélioration de l'interface graphique : choix des couleurs, positions des élements sur l'écran etc. Finalisation des tests (au moins non graphiques).
+<ins>**Itération 8:**</ins>      Mise en place d'une description des UE (affichage d'un "popup" lorsque l'utilisateur appuie quelques secondes sur le nom d'une UE). Amélioration de l'interface graphique : choix des couleurs, positions des élements sur l'écran etc. Finalisation des tests (au moins non graphiques).
 
 <ins>**Itération 9:**</ins>      Amélioration de la compatiblité afin que l'application est un affichage compatible avec un maximum d'appareil Android. Finalisation de tous les tests unitaires.
 
