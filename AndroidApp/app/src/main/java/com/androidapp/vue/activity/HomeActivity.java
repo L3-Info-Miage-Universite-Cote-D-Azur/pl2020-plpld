@@ -24,8 +24,15 @@ public class HomeActivity extends AppCompatActivity {
         connexion.écouterRéseau();
         connexion.envoyerMessage(Net.CONNEXION, new Identité("AndroidApp"));
 
-        Button button=findViewById(R.id.btnpar);
-        button.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btninscription).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(HomeActivity.this, InscriptionActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.btnpar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(HomeActivity.this, MainActivity.class);

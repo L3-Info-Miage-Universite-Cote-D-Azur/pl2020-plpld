@@ -14,6 +14,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".vue.activity.MainActivity" />
         <activity android:name=".vue.activity.RecapActivity" />
+        <activity android:name=".vue.activity.InscriptionActivity" />
         <activity android:name=".vue.activity.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

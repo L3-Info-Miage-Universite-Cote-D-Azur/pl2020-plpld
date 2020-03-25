@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -21,9 +20,7 @@ import com.androidapp.vue.adapter.*;
 import constantes.Net;
 import metier.*;
 
-import java.io.Serializable;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 import static com.androidapp.vue.activity.HomeActivity.connexion;
 
@@ -53,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements Vue {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.semestres);
+        setContentView(R.layout.activity_main);
         initVue();
     }
 
