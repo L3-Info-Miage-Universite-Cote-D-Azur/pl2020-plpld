@@ -25,6 +25,15 @@
         android:text="Bienvenue à la plateforme de création de parcours.\nPour un nouveau parcours cliquez sur commencer un nouveau parcours:"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
+    <ListView
+        android:id="@+id/listview_user_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp">
+
+    </ListView>
+
     <Button
         android:id="@+id/btninscription"
         android:layout_width="match_parent"
