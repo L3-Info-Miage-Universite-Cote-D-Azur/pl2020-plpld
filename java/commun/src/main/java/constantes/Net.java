@@ -18,4 +18,5 @@ public class Net {
     public static final String FICHIER_PREREQUIS = "Prerequis.txt";
 
     public static final String PREREQUIS = "PREREQUIS";
+    public static final String NV_ETU = "Nouvel Etudiant";
 }
