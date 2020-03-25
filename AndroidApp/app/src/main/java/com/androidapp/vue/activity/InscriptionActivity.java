@@ -29,7 +29,12 @@ public class InscriptionActivity extends AppCompatActivity {
         findViewById(R.id.buttonValiderInscription).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Etudiant etudiant = new Etudiant(nom.getText().toString(), prénom.getText().toString(), numEtudiant.getText().toString(), dateNaissance.getText().toString(), mdp.getText().toString());
+                String[] naissance = dateNaissance.getText().toString().split("/");
+                if(naissance.length != 3) {
+                    Log.d("Erreur format", "Format de la date de naissance incorrect");
+                    //TODO 25-03-2020 : Création d'une exception en cas de saisie invalide
+                }
+                Etudiant etudiant = new Etudiant(nom.getText().toString(), prénom.getText().toString(), numEtudiant.getText().toString(), LocalDate.of(Integer.parseInt(naissance[2]), Integer.parseInt(naissance[1]), Integer.parseInt(naissance[0])), mdp.getText().toString());
                 startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
                 }
         });

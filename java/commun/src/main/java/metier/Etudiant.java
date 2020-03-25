@@ -6,9 +6,9 @@ public class Etudiant {
     final private String nom;
     final private String prénom;
     final private String numEtudiant;
-    final private String dateNaissance;
+    final private LocalDate dateNaissance;
     private String motDePasse;
-    public Etudiant(String nom, String prénom, String numEtudiant, String dateNaissance, String motDePasse) {
+    public Etudiant(String nom, String prénom, String numEtudiant, LocalDate dateNaissance, String motDePasse) {
         this.nom = nom;
         this.prénom = prénom;
         this.numEtudiant = numEtudiant;
