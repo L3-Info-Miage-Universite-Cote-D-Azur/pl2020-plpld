@@ -58,10 +58,7 @@ public class HomeActivity extends AppCompatActivity {
         openInputPopupDialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                // Create a AlertDialog Builder.
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(HomeActivity.this);
-                // Set title, icon, can not cancel properties.
                 alertDialogBuilder.setTitle("Connexion étudiant");
                 alertDialogBuilder.setIcon(R.drawable.ic_launcher_background);
                 alertDialogBuilder.setCancelable(false);
@@ -111,17 +108,15 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-
-    /* Initialize main activity ui controls ( button and listview ). */
     private void initMainActivityControls()
     {
         if(openInputPopupDialogButton == null)
         {
-            openInputPopupDialogButton = (Button)findViewById(R.id.btnpar);
+            openInputPopupDialogButton = findViewById(R.id.btnpar);
         }
         if(userDataListView == null)
         {
-            userDataListView = (ListView)findViewById(R.id.listview_user_data);
+            userDataListView = findViewById(R.id.listview_user_data);
         }
     }
 
@@ -135,19 +130,16 @@ public class HomeActivity extends AppCompatActivity {
         passwordEditText = popupInputDialogView.findViewById(R.id.password);
         saveUserDataButton = popupInputDialogView.findViewById(R.id.button_connexion);
         cancelUserDataButton = popupInputDialogView.findViewById(R.id.button_cancel_user_data);
-
-        // Display values from the main activity list view in user input edittext.
         initEditTextUserDataInPopupDialog();
     }
 
     private void initEditTextUserDataInPopupDialog()
     {
         List<String> userDataList = getExistUserDataInListView(userDataListView);
-        if(userDataList.size() == 3)
+        if(userDataList.size() == 2)
         {
             String userName = userDataList.get(0);
             String password = userDataList.get(1);
-            String email = userDataList.get(2);
             if(userNameEditText != null) {
                 userNameEditText.setText(userName);
             }
