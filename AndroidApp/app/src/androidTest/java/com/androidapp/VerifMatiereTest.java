@@ -28,7 +28,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 @RunWith(AndroidJUnit4.class)
 
 
-/////////// Ce test vérifie que toutes les UE pour chaque semestres se charge correctement ///////////
+/////////// Ce test vérifie que toutes les UE pour chaque activity_main se charge correctement ///////////
 
 public class VerifMatiereTest {
 
