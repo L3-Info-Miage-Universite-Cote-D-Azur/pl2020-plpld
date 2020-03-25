@@ -39,9 +39,9 @@ public class MainActivity extends AppCompatActivity implements Vue {
     List<String> matièresChoisisS1=new ArrayList<>();
     List<String> matièresChoisisS2=new ArrayList<>();
     List<String> matièresChoisisS3=new ArrayList<>();
-    List<String> matièresChoisisS4=new ArrayList<>();
     private final Connexion mSocket=connexion;
     private Vue vue=this;
+
     @Override
     public void displayMsg(String str) {
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
@@ -127,18 +127,39 @@ public class MainActivity extends AppCompatActivity implements Vue {
         numSemestre++;
 
         initVue();
+        final String smatièresChoisisS1 = matièresChoisisS1.toString()
+                .replace(", ", "\n")  //remove the commas
+                .replace("[", "")  //remove the right bracket
+                .replace("]", "")  //remove the left bracket
+                .trim();           //remove trailing spaces from partially initialized arrays
+        final String smatièresChoisisS2 = matièresChoisisS2.toString()
+                .replace(", ", "\n")
+                .replace("[", "")
+                .replace("]", "")
+                .trim();
+        final String smatièresChoisisS3 = matièresChoisisS3.toString()
+                .replace(", ", "\n")
+                .replace("[", "")
+                .replace("]", "")
+                .trim();
+
         if(numSemestre==4){
             bouton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    final String smatièresChoisisS4 = (new ChoixUtilisateur(vue.selection())).getChoixS().toString()
+                            .replace(", ", "\n")
+                            .replace("[", "")
+                            .replace("]", "")
+                            .trim();
                     mSocket.envoyerMessage(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
                     vue.displayMsg("Votre choix a été transmis au serveur");
-                    matièresChoisisS4.add(new ChoixUtilisateur(vue.selection()).toString());
                     Intent intent=new Intent(MainActivity.this, RecapActivity.class);
-                    intent.putExtra("matièresChoisisS1", String.valueOf(matièresChoisisS1));
-                    intent.putExtra("matièresChoisisS2",  String.valueOf(matièresChoisisS2));
-                    intent.putExtra("matièresChoisisS3",  String.valueOf(matièresChoisisS3));
-                    intent.putExtra("matièresChoisisS4",  (new ChoixUtilisateur(vue.selection())).getChoixS().toString());
+                    intent.putExtra("matièresChoisisS1", smatièresChoisisS1);
+                    intent.putExtra("matièresChoisisS2", smatièresChoisisS2);
+                    intent.putExtra("matièresChoisisS3",  smatièresChoisisS3);
+                    //intent.putExtra("matièresChoisisS4",  (new ChoixUtilisateur(vue.selection())).getChoixS().toString());
+                    intent.putExtra("matièresChoisisS4",  smatièresChoisisS4);
                     startActivity(intent);
                 }
             });
