@@ -3,6 +3,7 @@ package reseau;
 import Fichiers.GestionnaireDeFichiers;
 import com.corundumstudio.socketio.SocketIOClient;
 import metier.ChoixUtilisateur;
+import metier.Etudiant;
 import metier.Identité;
 import metier.Matiere;
 
@@ -16,6 +17,10 @@ public class GestionnaireDeReseau {
 
 
 
+    public void nouveauEtu(SocketIOClient socketIOClient, Etudiant etudiant)
+    {
+        System.out.println(" L'étudiant numero " + etudiant.getNumEtudiant() + " s'est inscrit");
+    }
 
     /**
      * Envoie le choix de l'étudiant au client

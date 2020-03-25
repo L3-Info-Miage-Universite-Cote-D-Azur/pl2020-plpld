@@ -6,10 +6,7 @@ import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.DataListener;
-import metier.ChoixUtilisateur;
-import metier.Identité;
-import metier.ListeSemestre;
-import metier.Matiere;
+import metier.*;
 import reseau.GestionnaireDeReseau;
 
 import java.io.*;
@@ -40,7 +37,7 @@ public class Serveur {
         s.démarrer();
     }
 
-    
+
     public Serveur(SocketIOServer server) {
         this.server = server;
 
@@ -52,6 +49,20 @@ public class Serveur {
                 NetHandler.envoiePrerequis(socketIOClient,FICHIER_PREREQUIS);
 
 
+            }
+        });
+        this.server.addEventListener(NV_ETU, Etudiant.class, new DataListener<>() {
+            @Override
+            public void onData(SocketIOClient socketIOClient, Etudiant etudiant, AckRequest ackRequest) throws Exception {
+                System.out.println(etudiant.getNom());
+                System.out.println(etudiant.getPrenom());
+                System.out.println(etudiant.getDateNaissance());
+
+                System.out.println(etudiant.getMotDePasse());
+                System.out.println(etudiant.getNumEtudiant());
+
+
+                NetHandler.nouveauEtu(socketIOClient,etudiant);
             }
         });
         this.server.addEventListener(CHOIX, Matiere.class, new DataListener<>() {
