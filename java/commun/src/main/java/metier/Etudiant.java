@@ -3,12 +3,12 @@ package metier;
 import java.time.LocalDate;
 
 public class Etudiant {
-    final String nom;
-    final String prénom;
-    final String numEtudiant;
-    final LocalDate dateNaissance;
-    String motDePasse;
-    Etudiant(String nom, String prénom, String numEtudiant, LocalDate dateNaissance, String motDePasse) {
+    final private String nom;
+    final private String prénom;
+    final private String numEtudiant;
+    final private String dateNaissance;
+    private String motDePasse;
+    public Etudiant(String nom, String prénom, String numEtudiant, String dateNaissance, String motDePasse) {
         this.nom = nom;
         this.prénom = prénom;
         this.numEtudiant = numEtudiant;
