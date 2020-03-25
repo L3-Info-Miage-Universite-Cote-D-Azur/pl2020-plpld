@@ -1,16 +1,44 @@
 package metier;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.time.LocalDate;
 
-public class Etudiant {
-    final private String nom;
-    final private String prénom;
-    final private String numEtudiant;
-    final private LocalDate dateNaissance;
-    private String motDePasse;
-    public Etudiant(String nom, String prénom, String numEtudiant, LocalDate dateNaissance, String motDePasse) {
+public class Etudiant implements ToJSON {
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setNumEtudiant(String numEtudiant) {
+        this.numEtudiant = numEtudiant;
+    }
+
+    public void setDateNaissance(String dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }
+
+    public void setNom(String nom) {
         this.nom = nom;
-        this.prénom = prénom;
+    }
+
+    private String nom;
+    private String prenom;
+    private String numEtudiant ;
+    private String dateNaissance ;
+    private String motDePasse;
+
+    public Etudiant() {}
+    public String getDateNaissance() {
+        return dateNaissance;
+    }
+    public Etudiant(String nom)
+    {
+        this.nom = nom;
+    }
+    public Etudiant(String nom, String prenom, String numEtudiant, String dateNaissance, String motDePasse) {
+        this.nom = nom;
+        this.prenom = prenom;
         this.numEtudiant = numEtudiant;
         this.dateNaissance = dateNaissance;
         this.motDePasse = motDePasse;
@@ -20,8 +48,8 @@ public class Etudiant {
         return nom;
     }
 
-    public String getPrénom() {
-        return prénom;
+    public String getPrenom() {
+        return prenom;
     }
 
     public String getNumEtudiant() {
@@ -30,5 +58,30 @@ public class Etudiant {
 
     public void setMotDePasse(String mdp) {
         motDePasse = mdp;
+    }
+    public String getMotDePasse() {
+        return motDePasse;
+    }
+
+    @Override
+    public JSONObject toJSON() {
+        JSONObject Etudiant = new JSONObject();
+        try{
+            Etudiant.put("nom",getNom());
+            Etudiant.put("prenom",getPrenom());
+            Etudiant.put("numEtudiant",getNumEtudiant());
+            Etudiant.put("dateNaissance",getDateNaissance());
+            Etudiant.put("motDePasse",getMotDePasse());
+
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return Etudiant;
+    }
+
+    public String toString() {
+        return this.getPrenom();
     }
 }
