@@ -16,6 +16,7 @@ import org.hamcrest.TypeSafeMatcher;
 import org.junit.*;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -35,14 +36,26 @@ public class SimulationParcoursTest {
     @Test
     public void graphicTest() throws InterruptedException {
 
+        ViewInteraction connexion;
         ViewInteraction verifMatiere;
         ViewInteraction clicGroupe;
         ViewInteraction clicMatiere;
         ViewInteraction scrollView;
+        ViewInteraction champs;
+        ViewInteraction clicCommencer;
 
-        ViewInteraction clicCommencer = onView(
-                withId(R.id.btnpar)).perform(click());
+        // Clique sur le bouton Commencer une inscription
+        connexion = onView(withId(R.id.btninscription)).perform(click());
 
+        // Remplissage des champs
+        champs = onView(withId(R.id.numEtudiant)).perform(click()).perform(typeText("jm529620")).perform(ViewActions.closeSoftKeyboard());
+        champs = onView(withId(R.id.nom)).perform(click()).perform(typeText("jean")).perform(ViewActions.closeSoftKeyboard());
+        champs = onView(withId(R.id.prénom)).perform(click()).perform(typeText("marc")).perform(ViewActions.closeSoftKeyboard());
+        champs = onView(withId(R.id.naissance)).perform(click()).perform(typeText("11/11/2011")).perform(ViewActions.closeSoftKeyboard());
+        champs = onView(withId(R.id.mdp)).perform(click()).perform(typeText("jmjmjmjm")).perform(ViewActions.closeSoftKeyboard());
+
+        // Clique sur le bouton valider
+        connexion = onView(withId(R.id.buttonValiderInscription)).perform(click());
 
         /////////////// Semestre 1 ///////////////
         clicGroupe = onView(
@@ -56,6 +69,8 @@ public class SimulationParcoursTest {
 
         clicGroupe = onView(
                 withText("Electronique")).perform(click());
+        scrollView = onView(
+                withId(R.id.UE_list)).perform(ViewActions.swipeUp());
         clicMatiere = onView(
                 withText("Electronique numerique - Bases")).perform(click());
         clicGroupe = onView(
@@ -73,7 +88,6 @@ public class SimulationParcoursTest {
                 withText("Méthodes : approche continue")).perform(click());
         clicCommencer = onView(
                 withId(R.id.buttonValider)).perform(click());
-
 
         /////////////// Semestre 2 ///////////////
         clicGroupe = onView(
@@ -93,25 +107,23 @@ public class SimulationParcoursTest {
                 withText("Mathématiques")).perform(click());
 
         clicGroupe = onView(
-                withText("MIASHS")).perform(click());
+                withText("Chimie")).perform(click());
         clicMatiere = onView(
-                withText("Economie-Gestion S2")).perform(click());
+                withText("Réactions et reactivites chimiques")).perform(click());
         clicGroupe = onView(
-                withText("MIASHS")).perform(click());
+                withText("Chimie")).perform(click());
 
         clicGroupe = onView(
                 withText("Physique")).perform(click());
         clicMatiere = onView(
-                withText("Mécanique 2")).perform(click());
-        clicMatiere = onView(
                 withText("Optique 1")).perform(click());
-        clicMatiere = onView(
-                withText("Mécanique 2")).perform(click());
         clicGroupe = onView(
                 withText("Physique")).perform(click());
 
         clicGroupe = onView(
                 withText("Electronique")).perform(click());
+        scrollView = onView(
+                withId(R.id.UE_list)).perform(ViewActions.swipeUp());
         clicMatiere = onView(
                 withText("Electronique analogique")).perform(click());
 
@@ -121,99 +133,70 @@ public class SimulationParcoursTest {
 
         /////////////// Semestre 3 ///////////////
         clicGroupe = onView(
-                withText("Informatique")).perform(click());
-        clicMatiere = onView(
-                withText("Structures de données et programmation C")).perform(click());
-        clicMatiere = onView(
-                withText("Bases de donnée")).perform(click());
-        clicGroupe = onView(
-                withText("Informatique")).perform(click());
-
-        clicGroupe = onView(
                 withText("Mathématiques")).perform(click());
         clicMatiere = onView(
-                withText("Méthodes : Mathématiques et ingénierie")).perform(click());
-        clicMatiere = onView(
-                withText("Complements 1")).perform(click());
-        clicMatiere = onView(
-                withText("Méthodes : Mathématiques et ingénierie")).perform(click());
-        clicMatiere = onView(
-                withText("Complements 1")).perform(click());
+                withText("Méthodes : approche continue")).perform(click());
         clicGroupe = onView(
                 withText("Mathématiques")).perform(click());
 
         clicGroupe = onView(
-                withText("Electronique")).perform(click());
+                withText("Géographie")).perform(click());
         clicMatiere = onView(
-                withText("Système embarqué")).perform(click());
+                withText("Disciplinaire 1")).perform(click());
         clicGroupe = onView(
-                withText("Electronique")).perform(click());
+                withText("Géographie")).perform(click());
 
         clicGroupe = onView(
-                withText("Géographie")).perform(click());
+                withText("Science de la vie")).perform(click());
         clicMatiere = onView(
-                withText("Decouverte 1")).perform(click());
+                withText("Org. Mécanismes Moléculaires Cellules Eucaryotes")).perform(click());
+        clicMatiere = onView(
+                withText("Génétique. Evolution. Origine Vie et Biodiversité")).perform(click());
         clicGroupe = onView(
-                withText("Géographie")).perform(click());
+                withText("Science de la vie")).perform(click());
 
         scrollView = onView(
                 withId(R.id.UE_list)).perform(ViewActions.swipeUp());
         clicGroupe = onView(
                 withText("MIASHS")).perform(click());
         clicMatiere = onView(
-                withText("Economie-Gestion S3")).perform(click());
-        clicMatiere = onView(
-                withText("Intro R")).perform(click());
+                withText("Economie-Gestion S1")).perform(click());
         clicGroupe = onView(
                 withText("MIASHS")).perform(click());
-
-        scrollView = onView(
-                withId(R.id.UE_list)).perform(ViewActions.swipeUp());
 
         clicCommencer = onView(
                 withId(R.id.buttonValider)).perform(click());
-        Thread.sleep(1000);
+
 
         /////////////// Semestre 4 ///////////////
-
-        clicGroupe = onView(
-                withText("Informatique")).perform(click());
-        clicMatiere = onView(
-                withText("Réseaux et télécommunication")).perform(click());
-        clicMatiere = onView(
-                withText("Algorithmique 1")).perform(click());
-        clicMatiere = onView(
-                withText("Systèmes 2 : Mécanisme internes des systèmes d'exploitation")).perform(click());
-        clicGroupe = onView(
-                withText("Informatique")).perform(click());
-
-        clicGroupe = onView(
-                withText("Mathématiques")).perform(click());
-        clicMatiere = onView(
-                withText("Analyse")).perform(click());
-        clicGroupe = onView(
-                withText("Mathématiques")).perform(click());
-
-        clicGroupe = onView(
-                withText("Physique")).perform(click());
-        clicMatiere = onView(
-                withText("Electromagnétisme 2")).perform(click());
-        clicMatiere = onView(
-                withText("Ondes")).perform(click());
-        clicMatiere = onView(
-                withText("Electromagnétisme 2")).perform(click());
-        clicGroupe = onView(
-                withText("Physique")).perform(click());
-
         clicGroupe = onView(
                 withText("Mathématiques")).perform(click());
         clicMatiere = onView(
                 withText("Méthodes : approche discrète")).perform(click());
+        clicMatiere = onView(
+                withText("Complements 2")).perform(click());
+        clicGroupe = onView(
+                withText("Mathématiques")).perform(click());
+
+        clicGroupe = onView(
+                withText("Géographie")).perform(click());
+        clicMatiere = onView(
+                withText("Disciplinaire 2")).perform(click());
+        clicGroupe = onView(
+                withText("Géographie")).perform(click());
+
+        clicGroupe = onView(
+                withText("Science de la Terre")).perform(click());
+        clicMatiere = onView(
+                withText("Structure et dynamique de la terre")).perform(click());
+        clicMatiere = onView(
+                withText("Atmosphère; Océan; Climats")).perform(click());
+        clicGroupe = onView(
+                withText("Science de la Terre")).perform(click());
 
         clicCommencer = onView(
                 withId(R.id.buttonValider)).perform(click());
 
-        Thread.sleep(10000);
 
         // Récape
         // Semestre 1
@@ -227,27 +210,24 @@ public class SimulationParcoursTest {
         verifMatiere = onView(withId(R.id.semestre2)).check(matches(withText(containsString("System 1. Unix et progra shell"))));
         verifMatiere = onView(withId(R.id.semestre2)).check(matches(withText(containsString("Programmation impérative"))));
         verifMatiere = onView(withId(R.id.semestre2)).check(matches(withText(containsString("Fondements 2"))));
-        verifMatiere = onView(withId(R.id.semestre2)).check(matches(withText(containsString("Economie-Gestion S2"))));
+        verifMatiere = onView(withId(R.id.semestre2)).check(matches(withText(containsString("Réactions et reactivites chimiques"))));
         verifMatiere = onView(withId(R.id.semestre2)).check(matches(withText(containsString("Optique 1"))));
         verifMatiere = onView(withId(R.id.semestre2)).check(matches(withText(containsString("Electronique analogique"))));
 
         // Semestre 3
-        verifMatiere = onView(withId(R.id.semestre3)).check(matches(withText(containsString("Structures de données et programmation C"))));
-        verifMatiere = onView(withId(R.id.semestre3)).check(matches(withText(containsString("Bases de donnée"))));
-        verifMatiere = onView(withId(R.id.semestre3)).check(matches(withText(containsString("Système embarqué"))));
-        verifMatiere = onView(withId(R.id.semestre3)).check(matches(withText(containsString("Decouverte 1"))));
-        verifMatiere = onView(withId(R.id.semestre3)).check(matches(withText(containsString("Economie-Gestion S3"))));
-        verifMatiere = onView(withId(R.id.semestre3)).check(matches(withText(containsString("Intro R"))));
+        verifMatiere = onView(withId(R.id.semestre3)).check(matches(withText(containsString("Méthodes : approche continue"))));
+        verifMatiere = onView(withId(R.id.semestre3)).check(matches(withText(containsString("Disciplinaire 1"))));
+        verifMatiere = onView(withId(R.id.semestre3)).check(matches(withText(containsString("Org. Mécanismes Moléculaires Cellules Eucaryotes"))));
+        verifMatiere = onView(withId(R.id.semestre3)).check(matches(withText(containsString("Génétique. Evolution. Origine Vie et Biodiversité"))));
+        verifMatiere = onView(withId(R.id.semestre3)).check(matches(withText(containsString("Economie-Gestion S1"))));
 
         // Semestre 4
-        verifMatiere = onView(withId(R.id.semestre4)).check(matches(withText(containsString("Réseaux et télécommunication"))));
-        verifMatiere = onView(withId(R.id.semestre4)).check(matches(withText(containsString("Algorithmique 1"))));
-        verifMatiere = onView(withId(R.id.semestre4)).check(matches(withText(containsString("Systèmes 2 : Mécanisme internes des systèmes d'exploitation"))));
-        verifMatiere = onView(withId(R.id.semestre4)).check(matches(withText(containsString("Analyse"))));
-        verifMatiere = onView(withId(R.id.semestre4)).check(matches(withText(containsString("Ondes"))));
         verifMatiere = onView(withId(R.id.semestre4)).check(matches(withText(containsString("Méthodes : approche discrète"))));
+        verifMatiere = onView(withId(R.id.semestre4)).check(matches(withText(containsString("Complements 2"))));
+        verifMatiere = onView(withId(R.id.semestre4)).check(matches(withText(containsString("Disciplinaire 2"))));
+        verifMatiere = onView(withId(R.id.semestre4)).check(matches(withText(containsString("Structure et dynamique de la terre"))));
+        verifMatiere = onView(withId(R.id.semestre4)).check(matches(withText(containsString("Atmosphère; Océan; Climats"))));
     }
-
 
 
     private static Matcher<View> childAtPosition(
