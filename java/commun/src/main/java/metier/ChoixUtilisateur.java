@@ -20,6 +20,7 @@ public class ChoixUtilisateur implements ToJSON {
      *  Le champ Choix sera initialisé avec ce paramètre
      * @param UserChoice  Liste de matière
      */
+    public ChoixUtilisateur(){};
     public ChoixUtilisateur(List<Matiere> UserChoice) {
         Choix = UserChoice;
     }
@@ -62,7 +63,8 @@ public class ChoixUtilisateur implements ToJSON {
     public JSONObject toJSON() {
         JSONObject liste = new JSONObject();
         try {
-            liste.put("liste choisie", getChoix().toString());
+            liste.put("Choix", getChoix().toString());
+            liste.put("numSemestre",getNumSemestre());
         } catch (JSONException e) {
             e.printStackTrace();}
         return liste;

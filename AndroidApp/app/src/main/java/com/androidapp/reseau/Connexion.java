@@ -78,7 +78,9 @@ public class Connexion {
     public void envoyerMessage(String msg, ToJSON obj) {
         mSocket.emit(msg, obj.toJSON());
     }
-
+    public void envoyerMessage2(String msg, ToJSON obj) {
+        mSocket.emit(msg, obj);
+    }
     public void disconnect() {
         if (mSocket != null) mSocket.disconnect();
     }

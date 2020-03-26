@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements Vue {
                             .replace("[", "")
                             .replace("]", "")
                             .trim();
-                    mSocket.envoyerMessage(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
+                    mSocket.envoyerMessage2(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
                     vue.displayMsg("Votre choix a été transmis au serveur");
                     Intent intent=new Intent(MainActivity.this, RecapActivity.class);
                     intent.putExtra("matièresChoisisS1", smatièresChoisisS1);
