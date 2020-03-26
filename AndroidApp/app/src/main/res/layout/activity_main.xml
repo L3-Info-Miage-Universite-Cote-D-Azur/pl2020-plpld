@@ -1,28 +1,40 @@
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-        <ListView
-            android:id="@+id/list"
+    <SearchView
+        android:id="@+id/searchUE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:queryHint="Chercher une UE"
+        android:iconifiedByDefault="false">
+    </SearchView>
+    <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="0dp"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
+            <ListView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
-        <ExpandableListView
-            android:id="@+id/UE_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="90dp"
-            android:layout_marginBottom="65dp">
-        </ExpandableListView>
+            <ExpandableListView
+                android:id="@+id/UE_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="90dp"
+                android:layout_marginBottom="65dp">
+            </ExpandableListView>
 
-        <Button
-            android:id="@+id/buttonValider"
-            android:layout_width="358dp"
-            android:layout_height="70dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:onClick="onClickBtn"
-            android:text="Valider" />
+            <Button
+                android:id="@+id/buttonValider"
+                android:layout_width="358dp"
+                android:layout_height="70dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:onClick="onClickBtn"
+                android:text="Valider" />
     </RelativeLayout>
+</LinearLayout>
+
