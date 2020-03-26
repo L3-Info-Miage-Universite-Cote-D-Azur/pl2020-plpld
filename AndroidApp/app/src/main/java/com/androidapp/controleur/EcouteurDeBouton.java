@@ -1,20 +1,13 @@
 package com.androidapp.controleur;
+
 import android.util.Log;
 import android.view.View;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.androidapp.reseau.*;
 import com.androidapp.R;
 import com.androidapp.vue.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import constantes.Net;
 import metier.ChoixUtilisateur;
-import metier.Matiere;
-import metier.ToJSON;
 
 public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickListener {
     private final Connexion mSocket;
@@ -30,10 +23,13 @@ public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickL
         switch(v.getId()) {
             case R.id.buttonValider:
                 Log.d("POUR MONTRER", "EcouteurDeBouton : bouton valider cliqué");
-                if(vue.selection().size() < 3 || vue.selection().size() > 7){
-                    vue.displayMsg(" Erreur ");
+                if (vue.selection().size()-1 < 3) {
+                    vue.displayMsg("Veuillez choisir aux minimums 3 matières");
                 }
-                else{
+                else if (vue.selection().size()-1 >= 8) {
+                    vue.displayMsg("Veuillez choisir aux maximums 7 matières");
+                }
+                else {
                     mSocket.envoyerMessage2(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
                     vue.displayMsg("Votre choix a été transmis au serveur");
                     vue.changementSemestre();
