@@ -8,6 +8,10 @@ import metier.Identité;
 import metier.Matiere;
 
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import static constantes.Net.*;
 import static constantes.Net.UE;
 
@@ -17,9 +21,10 @@ public class GestionnaireDeReseau {
 
 
 
-    public void nouveauEtu(SocketIOClient socketIOClient, Etudiant etudiant)
-    {
+    public void nouveauEtu(SocketIOClient socketIOClient, Etudiant etudiant) throws IOException {
         System.out.println(" L'étudiant numero " + etudiant.getNumEtudiant() + " s'est inscrit");
+        System.out.println( etudiant.getNumEtudiant() + " " + etudiant.getMotDePasse());
+        FileHandler.EcrireDansFichier("BD.txt",etudiant.getNumEtudiant() + " " + etudiant.getMotDePasse());
     }
 
     /**
@@ -32,6 +37,20 @@ public class GestionnaireDeReseau {
         socketIOClient.sendEvent(CHOIX, matiere.toString());
     }
 
+    public void nouvelleConnexion(SocketIOClient socketIOClient,Identité id)
+    {
+
+        System.out.println("Tentative de connexion...." + id.getNom());
+        if(FileHandler.trouverEtudiant(id.getNom())) {
+           System.out.println("accepté");
+           socketIOClient.sendEvent(NV_CONNEXION, "true");
+        }
+        else {
+            System.out.println("refusé");
+            socketIOClient.sendEvent(NV_CONNEXION, "false");
+        }
+
+    }
     // TODO: 28/02/2020  Modifier cette méthode et la rendre plus utile
     /**
      *  Pour l'instant, cette méthode affiche un message de validation
