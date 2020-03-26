@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements Vue {
         StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0, numSemestre-1);
         stepsAdapter.addAll("View " + numSemestre);
         mListView.setAdapter(stepsAdapter);
-        while(connexion.ListOfMaps.size()!=numSemestre || connexion.MapPrerequis.size()==0) continue;
+        while(connexion.ListOfMaps.size()<numSemestre || connexion.MapPrerequis.size()==0) continue;
         Log.d("PREREQUIS", connexion.MapPrerequis.toString());
         graphe = new Graphe(connexion.MapPrerequis);
         receptionUE();
@@ -128,16 +128,16 @@ public class MainActivity extends AppCompatActivity implements Vue {
 
     private List<Matiere> UEvalidees() {
         List<Matiere> validees = new ArrayList<>();
-        for(List<Matiere> UE: selectionUE.values()) {
-            validees.addAll(UE);
+        for(int i=1; i<numSemestre; i++) {
+            validees.addAll(selectionUE.get(i));
         }
         return validees;
     }
 
     private void receptionUE() {
         List<String> selectionnable = graphe.selectionnable(UEvalidees()); //Utilisation du graphe pour connaître la liste des UE selectionnables ce semestre après avoir validée les UE renvoyées par la méthode UEvalidees
-        for (String discipline : connexion.ListOfMaps.get(connexion.ListOfMaps.size() - 1).keySet()) {
-            List<String> ListeUE = connexion.ListOfMaps.get(connexion.ListOfMaps.size() - 1).get(discipline);
+        for (String discipline : connexion.ListOfMaps.get(numSemestre-1).keySet()) {
+            List<String> ListeUE = connexion.ListOfMaps.get(numSemestre-1).get(discipline);
             List<String> Supression = new ArrayList<>(); //Liste des UE à supprimer
             for (String UE : ListeUE) {
                 if (!selectionnable.contains(UE))
@@ -150,22 +150,11 @@ public class MainActivity extends AppCompatActivity implements Vue {
         }
 
         public void retourArriere(int semestre) {
-        /*
             if (semestre < numSemestre) {
                 numSemestre = semestre;
-                if (semestre <= 3) {
-                    matièresChoisisS3 = new ArrayList<>();
-                }
-                if (semestre <= 2) {
-                    matièresChoisisS2 = new ArrayList<>();
-                }
-                if (semestre == 1) {
-                    matièresChoisisS1 = new ArrayList<>();
-                }
-                selectionUE = new ArrayList<>();
                 initVue();
-            } /*/
-            if(semestre==numSemestre) {
+            }
+            else if(semestre==numSemestre) {
                 displayMsg("Vous êtes déjà en train d'effectuer votre selection pour le semestre n°" + semestre);
             }
             else {
