@@ -46,7 +46,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-       connexion = new Connexion();
+        connexion = new Connexion();
         connexion.écouterRéseau();
         connexion.envoyerMessage(Net.CONNEXION, new Identité("AndroidApp"));
 
@@ -61,6 +61,7 @@ public class HomeActivity extends AppCompatActivity {
         setTitle("Connexion étudiant");
         initMainActivityControls();
         openInputPopupDialogButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
 
@@ -77,7 +78,7 @@ public class HomeActivity extends AppCompatActivity {
                 saveUserDataButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
+                        connexion.démarrerÉcoute();
                         final String userName = userNameEditText.getText().toString();
                         final String password = passwordEditText.getText().toString();
 
@@ -104,7 +105,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-                                connexion.envoyerMessage(Net.NV_CONNEXION, new Identité(userName + " " + password));
+                        connexion.envoyerMessage(Net.NV_CONNEXION, new Identité(userName + " " + password));
                         try {
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {
