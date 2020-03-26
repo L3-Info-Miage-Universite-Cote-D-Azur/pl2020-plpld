@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Connexion {
     private Socket mSocket;
-
+    public Boolean ConnexionAutorisee = false;
     public List<Map<String, List<String>>> ListOfMaps = new ArrayList<Map<String,List<String>>>();
 
     public Map<String,List<String>> MapPrerequis = new HashMap<>();
@@ -56,6 +56,17 @@ public class Connexion {
             }
         });
 
+        mSocket.on(Net.NV_CONNEXION, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                Log.d("BOOLEAN",args[0].toString());
+                if(args[0].toString().equals("true"))
+                {
+                    Log.d("BOOLEAN","PASSE");
+
+                    ConnexionAutorisee = true;
+            }}
+        });
         mSocket.on(Net.PREREQUIS, new Emitter.Listener() {
             ObjectMapper objectMapper2 = new ObjectMapper();
 
