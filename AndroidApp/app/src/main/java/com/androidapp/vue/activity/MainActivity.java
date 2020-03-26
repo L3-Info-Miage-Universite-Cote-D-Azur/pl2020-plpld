@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity implements Vue {
     private final Connexion mSocket=connexion;
     private Vue vue=this;
 
-    private SearchView mySearchView;
-
     @Override
     public void displayMsg(String str) {
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
@@ -99,10 +97,12 @@ public class MainActivity extends AppCompatActivity implements Vue {
 
     }
 
+    @Override
     public List<Matiere> selection() {
         return adapter.selection(new Matiere("S" + numSemestre));
     }
 
+    @Override
     public void changementSemestre() {
         selectionUE.put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
         numSemestre++;
@@ -123,6 +123,20 @@ public class MainActivity extends AppCompatActivity implements Vue {
                     startActivity(intent);
                 }
             });
+        }
+    }
+
+    @Override
+    public void retourArriere(int semestre) {
+        if (semestre < numSemestre) {
+            numSemestre = semestre;
+            initVue();
+        }
+        else if(semestre==numSemestre) {
+            displayMsg("Vous êtes déjà en train d'effectuer votre selection pour le semestre n°" + semestre);
+        }
+        else {
+            displayMsg("Pour passer au semestre suivant cliquez sur valider");
         }
     }
 
@@ -148,18 +162,4 @@ public class MainActivity extends AppCompatActivity implements Vue {
                 UECollection.put(discipline, ListeUE);
             }
         }
-
-        public void retourArriere(int semestre) {
-            if (semestre < numSemestre) {
-                numSemestre = semestre;
-                initVue();
-            }
-            else if(semestre==numSemestre) {
-                displayMsg("Vous êtes déjà en train d'effectuer votre selection pour le semestre n°" + semestre);
-            }
-            else {
-                displayMsg("Pour passer au semestre suivant cliquez sur valider");
-            }
-        }
-
     }
