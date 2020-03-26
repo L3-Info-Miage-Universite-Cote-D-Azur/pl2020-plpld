@@ -1,6 +1,8 @@
 package com.androidapp.vue.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +18,6 @@ import com.androidapp.controleur.*;
 import com.androidapp.reseau.Connexion;
 import com.androidapp.vue.Vue;
 import com.androidapp.vue.adapter.*;
-
 import constantes.Net;
 import metier.*;
 
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements Vue {
     private Map<Integer, List<Matiere>> selectionUE = new HashMap<>();
     private final Connexion mSocket=connexion;
     private Vue vue=this;
+
+    private SearchView mySearchView;
 
     @Override
     public void displayMsg(String str) {
@@ -111,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements Vue {
                     selectionUE.put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
                     mSocket.envoyerMessage2(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
                     vue.displayMsg("Votre choix a été transmis au serveur");
+                    selectionUE.put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
                     Intent intent=new Intent(MainActivity.this, RecapActivity.class);
                     intent.putExtra("matièresChoisisS1", selectionUE.get(1).toString());
                     intent.putExtra("matièresChoisisS2", selectionUE.get(2).toString());
