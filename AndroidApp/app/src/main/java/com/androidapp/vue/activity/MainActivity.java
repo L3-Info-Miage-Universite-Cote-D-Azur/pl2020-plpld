@@ -32,13 +32,8 @@ public class MainActivity extends AppCompatActivity implements Vue {
     private Map<String, List<String>> UECollection = new HashMap<>();
     private ExpandableListView expListView;
     private ExpandableListAdapter adapter;
-
-
     private  int numSemestre = 1;
-    private List<Matiere> selectionUE = new ArrayList<>();
-    List<String> matièresChoisisS1=new ArrayList<>();
-    List<String> matièresChoisisS2=new ArrayList<>();
-    List<String> matièresChoisisS3=new ArrayList<>();
+    private Map<Integer, List<Matiere>> selectionUE = new HashMap<>();
     private final Connexion mSocket=connexion;
     private Vue vue=this;
 
@@ -65,10 +60,13 @@ public class MainActivity extends AppCompatActivity implements Vue {
 
     private void initVue() {
         autoconnect = getIntent().getBooleanExtra(AUTOCONNECT, true);
-        bouton = findViewById(R.id.buttonValider);
         UECollection = new HashMap<>();
         EcouteurDeBouton ecouteur = new EcouteurDeBouton(this, connexion);
-        bouton.setOnClickListener(ecouteur);
+        findViewById(R.id.buttonValider).setOnClickListener(ecouteur);
+        findViewById(R.id.s1).setOnClickListener(ecouteur);
+        findViewById(R.id.s2).setOnClickListener(ecouteur);
+        findViewById(R.id.s3).setOnClickListener(ecouteur);
+        findViewById(R.id.s4).setOnClickListener(ecouteur);
         connexion.démarrerÉcoute();
 
         ListView mListView = findViewById(R.id.list);
@@ -103,62 +101,20 @@ public class MainActivity extends AppCompatActivity implements Vue {
     }
 
     public void changementSemestre() {
-        selectionUE.addAll(new ChoixUtilisateur(selection()).getChoixS());
-        switch (numSemestre){
-            case 1:
-                for (int i=0;i<selectionUE.size();i++){
-                    matièresChoisisS1.add(selectionUE.get(i).toString());
-                }
-                break;
-            case 2:
-                for (int i=matièresChoisisS1.size();i<selectionUE.size();i++){
-                    matièresChoisisS2.add(selectionUE.get(i).toString());
-                }
-                break;
-            case 3:
-                for (int i=matièresChoisisS1.size()+matièresChoisisS2.size();i<selectionUE.size();i++){
-                    matièresChoisisS3.add(selectionUE.get(i).toString());
-                }
-                break;
-            default:
-                break;
-        }
-
+        selectionUE.put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
         numSemestre++;
-
         initVue();
-        final String smatièresChoisisS1 = matièresChoisisS1.toString()
-                .replace(", ", "\n")  //remove the commas
-                .replace("[", "")  //remove the right bracket
-                .replace("]", "")  //remove the left bracket
-                .trim();           //remove trailing spaces from partially initialized arrays
-        final String smatièresChoisisS2 = matièresChoisisS2.toString()
-                .replace(", ", "\n")
-                .replace("[", "")
-                .replace("]", "")
-                .trim();
-        final String smatièresChoisisS3 = matièresChoisisS3.toString()
-                .replace(", ", "\n")
-                .replace("[", "")
-                .replace("]", "")
-                .trim();
-
         if(numSemestre==4){
             bouton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    final String smatièresChoisisS4 = (new ChoixUtilisateur(vue.selection())).getChoixS().toString()
-                            .replace(", ", "\n")
-                            .replace("[", "")
-                            .replace("]", "")
-                            .trim();
                     mSocket.envoyerMessage2(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
                     vue.displayMsg("Votre choix a été transmis au serveur");
                     Intent intent=new Intent(MainActivity.this, RecapActivity.class);
-                    intent.putExtra("matièresChoisisS1", smatièresChoisisS1);
-                    intent.putExtra("matièresChoisisS2", smatièresChoisisS2);
-                    intent.putExtra("matièresChoisisS3",  smatièresChoisisS3);
-                    intent.putExtra("matièresChoisisS4",  smatièresChoisisS4);
+                    intent.putExtra("matièresChoisisS1", selectionUE.get(1).toString());
+                    intent.putExtra("matièresChoisisS2", selectionUE.get(2).toString());
+                    intent.putExtra("matièresChoisisS3",  selectionUE.get(3).toString());
+                    intent.putExtra("matièresChoisisS4",  selectionUE.get(3).toString());
                     startActivity(intent);
                 }
             });
@@ -166,7 +122,11 @@ public class MainActivity extends AppCompatActivity implements Vue {
     }
 
     private List<Matiere> UEvalidees() {
-        return selectionUE;
+        List<Matiere> validees = new ArrayList<>();
+        for(List<Matiere> UE: selectionUE.values()) {
+            validees.addAll(UE);
+        }
+        return validees;
     }
 
     private void receptionUE() {
@@ -183,4 +143,29 @@ public class MainActivity extends AppCompatActivity implements Vue {
                 UECollection.put(discipline, ListeUE);
             }
         }
+
+        public void retourArriere(int semestre) {
+        /*
+            if (semestre < numSemestre) {
+                numSemestre = semestre;
+                if (semestre <= 3) {
+                    matièresChoisisS3 = new ArrayList<>();
+                }
+                if (semestre <= 2) {
+                    matièresChoisisS2 = new ArrayList<>();
+                }
+                if (semestre == 1) {
+                    matièresChoisisS1 = new ArrayList<>();
+                }
+                selectionUE = new ArrayList<>();
+                initVue();
+            } /*/
+            if(semestre==numSemestre) {
+                displayMsg("Vous êtes déjà en train d'effectuer votre selection pour le semestre n°" + semestre);
+            }
+            else {
+                displayMsg("Pour passer au semestre suivant cliquez sur valider");
+            }
+        }
+
     }

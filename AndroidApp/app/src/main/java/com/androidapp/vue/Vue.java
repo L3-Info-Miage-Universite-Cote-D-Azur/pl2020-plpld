@@ -25,8 +25,14 @@ public interface Vue {
     List<Matiere> selection();
 
     /**
-     *  Permet la transition d'une activité à une autre
+     *  Permet la transition d'un semestre à un autre
      */
     void changementSemestre();
+
+    /**
+     *  Permet de revenir sur sa séléction d'un semestre déjà validé
+     * @param semestre le numéro du semestre auquel on souhaite retourné
+     */
+    void retourArriere(int semestre);
 }
 

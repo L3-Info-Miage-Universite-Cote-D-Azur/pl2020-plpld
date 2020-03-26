@@ -35,6 +35,27 @@ public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickL
                     vue.changementSemestre();
                 }
                 break;
+
+            case R.id.s1:
+                Log.d("Retour arrière", "Retour au semestre 1");
+                vue.retourArriere(1);
+                break;
+
+            case R.id.s2:
+                Log.d("Retour arrière", "Retour au semestre 2");
+                vue.retourArriere(2);
+                break;
+
+            case R.id.s3:
+                Log.d("Retour arrière", "Retour au semestre 3");
+                vue.retourArriere(3);
+                break;
+
+            case R.id.s4:
+                Log.d("Retour arrière", "Retour au semestre 4");
+                vue.retourArriere(4);
+                break;
+
         }
     }
 }

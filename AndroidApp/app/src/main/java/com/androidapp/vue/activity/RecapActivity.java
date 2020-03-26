@@ -19,10 +19,22 @@ public class RecapActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recap);
 
         Intent intent=getIntent();
-        String sname=intent.getStringExtra("matièresChoisisS1");
-        String sname2=intent.getStringExtra("matièresChoisisS2");
-        String sname3=intent.getStringExtra("matièresChoisisS3");
-        String sname4=intent.getStringExtra("matièresChoisisS4");
+        String sname=intent.getStringExtra("matièresChoisisS1").replace(", ", "\n")
+                .replace("[", "")
+                .replace("]", "")
+                .trim();
+        String sname2=intent.getStringExtra("matièresChoisisS2").replace(", ", "\n")
+                .replace("[", "")
+                .replace("]", "")
+                .trim();
+        String sname3=intent.getStringExtra("matièresChoisisS3").replace(", ", "\n")
+                .replace("[", "")
+                .replace("]", "")
+                .trim();
+        String sname4=intent.getStringExtra("matièresChoisisS4").replace(", ", "\n")
+                .replace("[", "")
+                .replace("]", "")
+                .trim();
 
         semestre1=(TextView)findViewById(R.id.semestre1);
         semestre1.setText(sname);
