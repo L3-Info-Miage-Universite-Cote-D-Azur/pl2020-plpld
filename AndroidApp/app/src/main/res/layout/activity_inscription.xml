@@ -19,36 +19,40 @@
         tools:layout_editor_absoluteY="16dp" />
 
     <EditText
+        android:id="@+id/numEtudiant"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:id="@+id/numEtudiant"
-        android:hint="Numéro étudiant"
-        android:paddingLeft="10dp"
         android:layout_margin="30dp"
+        android:background="@drawable/border"
+        android:hint="Numéro étudiant"
+        android:inputType="textShortMessage"
+        android:paddingLeft="10dp"
         android:textColorHint="#000"
-        android:textSize="22dp"
-        android:background="@drawable/border"/>
+        android:textSize="22dp" />
 
     <EditText
-        android:layout_width="250dp"
-        android:layout_height="40dp"
         android:id="@+id/nom"
-        android:hint="Nom de famille"
-        android:paddingLeft="10dp"
-        android:layout_margin="30dp"
-        android:textColorHint="#000"
-        android:textSize="22dp"
-        android:background="@drawable/border"/>
-    <EditText
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:id="@+id/prénom"
-        android:hint="Prénom"
-        android:paddingLeft="10dp"
         android:layout_margin="30dp"
+        android:background="@drawable/border"
+        android:hint="Nom de famille"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
         android:textColorHint="#000"
-        android:textSize="22dp"
-        android:background="@drawable/border"/>
+        android:textSize="22dp" />
+
+    <EditText
+        android:id="@+id/prénom"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_margin="30dp"
+        android:background="@drawable/border"
+        android:hint="Prénom"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        android:textColorHint="#000"
+        android:textSize="22dp" />
 
     <EditText
         android:layout_width="250dp"
