@@ -51,6 +51,12 @@ public class Serveur {
 
             }
         });
+        this.server.addEventListener(NV_CONNEXION, Identité.class, new DataListener<>() {
+            @Override
+            public void onData(SocketIOClient socketIOClient, Identité etudiant, AckRequest ackRequest) throws Exception {
+                NetHandler.nouvelleConnexion(socketIOClient,etudiant);
+            }
+        });
         this.server.addEventListener(NV_ETU, Etudiant.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Etudiant etudiant, AckRequest ackRequest) throws Exception {
