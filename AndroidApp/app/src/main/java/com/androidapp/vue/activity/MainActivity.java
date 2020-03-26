@@ -108,13 +108,14 @@ public class MainActivity extends AppCompatActivity implements Vue {
             bouton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    selectionUE.put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
                     mSocket.envoyerMessage2(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
                     vue.displayMsg("Votre choix a été transmis au serveur");
                     Intent intent=new Intent(MainActivity.this, RecapActivity.class);
                     intent.putExtra("matièresChoisisS1", selectionUE.get(1).toString());
                     intent.putExtra("matièresChoisisS2", selectionUE.get(2).toString());
                     intent.putExtra("matièresChoisisS3",  selectionUE.get(3).toString());
-                    intent.putExtra("matièresChoisisS4",  selectionUE.get(3).toString());
+                    intent.putExtra("matièresChoisisS4",  selectionUE.get(4).toString());
                     startActivity(intent);
                 }
             });

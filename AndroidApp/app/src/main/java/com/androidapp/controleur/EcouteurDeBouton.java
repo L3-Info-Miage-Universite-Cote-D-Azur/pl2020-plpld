@@ -24,10 +24,10 @@ public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickL
             case R.id.buttonValider:
                 Log.d("POUR MONTRER", "EcouteurDeBouton : bouton valider cliqué");
                 if (vue.selection().size()-1 < 3) {
-                    vue.displayMsg("Veuillez choisir aux minimums 3 matières");
+                    vue.displayMsg("Veuillez choisir au minimum 3 matières");
                 }
                 else if (vue.selection().size()-1 >= 8) {
-                    vue.displayMsg("Veuillez choisir aux maximums 7 matières");
+                    vue.displayMsg("Veuillez choisir au maximum 7 matières");
                 }
                 else {
                     mSocket.envoyerMessage2(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
