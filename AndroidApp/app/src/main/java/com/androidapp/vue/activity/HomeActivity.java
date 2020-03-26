@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +25,9 @@ import java.util.Map;
 import java.util.Set;
 
 import constantes.Net;
+import metier.Etudiant;
 import metier.Identité;
+import metier.ToJSON;
 
 public class HomeActivity extends AppCompatActivity {
     public static Connexion connexion;
@@ -35,13 +38,15 @@ public class HomeActivity extends AppCompatActivity {
     private EditText passwordEditText = null;
     private Button saveUserDataButton = null;
     private Button cancelUserDataButton = null;
+    private Button buttonConnexion = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        connexion = new Connexion();
+       connexion = new Connexion();
         connexion.écouterRéseau();
         connexion.envoyerMessage(Net.CONNEXION, new Identité("AndroidApp"));
 
@@ -58,6 +63,7 @@ public class HomeActivity extends AppCompatActivity {
         openInputPopupDialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(HomeActivity.this);
                 alertDialogBuilder.setTitle("Connexion étudiant");
                 alertDialogBuilder.setIcon(R.drawable.ic_launcher_background);
@@ -71,8 +77,9 @@ public class HomeActivity extends AppCompatActivity {
                 saveUserDataButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String userName = userNameEditText.getText().toString();
-                        String password = passwordEditText.getText().toString();
+
+                        final String userName = userNameEditText.getText().toString();
+                        final String password = passwordEditText.getText().toString();
 
                         String[] titleArr = { "Numéro étudiant", "Mot de passe"};
                         String[] dataArr = {userName, password};
@@ -93,9 +100,34 @@ public class HomeActivity extends AppCompatActivity {
                         userDataListView.setAdapter(simpleAdapter);
 
                         alertDialog.cancel();
-                        Intent intent=new Intent(HomeActivity.this, MainActivity.class);
-                        startActivity(intent);
-                    }
+
+
+
+
+                                connexion.envoyerMessage(Net.NV_CONNEXION, new Identité(userName + " " + password));
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        if(connexion.ConnexionAutorisee)
+                                {
+
+
+                                    Intent intent=new Intent(HomeActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                }
+
+                                else
+                                {
+                                    Log.d("CONNEXION", "connexion refusée");
+                                    ////
+                                }
+                              //  startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
+                            }
+
+
+
                 });
 
                 cancelUserDataButton.setOnClickListener(new View.OnClickListener() {
