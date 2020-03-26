@@ -16,3 +16,6 @@
 -----------------------------------------------
 
 - [X] Possibilité de revenir en arrière sur la sélection en cliquant sur le semestre souhaité sur la barre de progression.
+-----------------------------------------------
+
+- [X] Simplification des SemestreActivity grâce à l'héritage.
