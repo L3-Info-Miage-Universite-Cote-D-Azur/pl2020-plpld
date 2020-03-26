@@ -15,8 +15,8 @@ public class Matiere implements ToJSON {
      * La matière prend un nom par défaut.
      */
     public Matiere() {
-        this("nom par défaut");
-    }
+
+    };
 
     /**
      * Constructeur prenant le nom de la matière comme paramètre
