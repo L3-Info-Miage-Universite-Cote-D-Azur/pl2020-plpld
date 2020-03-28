@@ -13,6 +13,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.FileHandler;
 
 import static constantes.Net.*;
 
@@ -29,7 +30,6 @@ public class Serveur {
         Configuration config = new Configuration();
         config.setHostname("127.0.0.1");
         config.setPort(10101);
-
         // creation du serveur
         SocketIOServer server = new SocketIOServer(config);
 
@@ -46,7 +46,7 @@ public class Serveur {
             public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) throws Exception {
                 NetHandler.nouveauClient(socketIOClient, id);
                 NetHandler.envoyerUE(socketIOClient,S1);
-                NetHandler.envoiePrerequis(socketIOClient,FICHIER_PREREQUIS);
+                NetHandler.envoiePrerequis(socketIOClient);
 
 
             }
@@ -100,5 +100,6 @@ public class Serveur {
 
     private void démarrer() {
         server.start();
+
     }
 }

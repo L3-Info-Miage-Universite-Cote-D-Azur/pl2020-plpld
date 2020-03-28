@@ -64,10 +64,9 @@ public class GestionnaireDeReseau {
     /**
      * Envoie le fichier des prerequis au client
      * @param socketIOClient
-     * @param path Fichier des prerequis
      */
-    public void envoiePrerequis(SocketIOClient socketIOClient,String path) {
-        socketIOClient.sendEvent(PREREQUIS, FileHandler.lireFichier(path));
+    public void envoiePrerequis(SocketIOClient socketIOClient) {
+        socketIOClient.sendEvent(PREREQUIS, FileHandler.constructionPrerequis());
     }
 
     /**
