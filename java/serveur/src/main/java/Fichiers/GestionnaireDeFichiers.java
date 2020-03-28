@@ -7,8 +7,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import static constantes.Net.BD;
+import static constantes.Net.*;
 
 public class GestionnaireDeFichiers {
 
@@ -40,7 +41,36 @@ public class GestionnaireDeFichiers {
         }
         return listeSemestre.getMapUE();
     }
+    public HashMap<String, List<String>> constructionPrerequis()
+    {
 
+        ListeSemestre listePrerequis = new ListeSemestre();
+        List<Map<String,List<String>>> listofMaps = new ArrayList<>();
+        listofMaps.add(lireFichier(S1));
+        listofMaps.add(lireFichier(S2));
+        listofMaps.add(lireFichier(S3));
+        listofMaps.add(lireFichier(S4));
+
+
+        for(int i = 0; i < listofMaps.size();i++) {
+            for (Map.Entry<String, List<String>> entry : listofMaps.get(i).entrySet()) {
+                for(String str :  entry.getValue())
+                {
+                    listePrerequis.add(str, new ArrayList<>());
+                }
+
+            }
+        }
+
+        for(Map.Entry<String, List<String>> entry : lireFichier(FICHIER_PREREQUIS).entrySet())
+        {
+            listePrerequis.add(entry.getKey(),entry.getValue());
+        }
+
+
+        return listePrerequis.getMapUE();
+
+    }
     public void EcrireDansFichier(String fichier,String str) throws IOException {
 
 
@@ -86,4 +116,11 @@ public class GestionnaireDeFichiers {
 
         return false;
     }
+
+ /*   public void ecrireParcours(String numEtudiant,Map<String,List<String>>)
+    {
+
+        Map<String, Map<String,List<String>>> choixEtudiant;
+
+    }*/
 }
