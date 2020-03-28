@@ -39,3 +39,6 @@ colors.scheme.xml
 debugger.xml
 notifications.xml
 vcs.xml
+
+#pour les fichiers textes locaux
+java/BD.txt

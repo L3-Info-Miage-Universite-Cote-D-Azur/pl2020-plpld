@@ -7,11 +7,11 @@
     <parent>
         <groupId>PLPLD</groupId> <!-- à changer par le nom du groupe -->
         <artifactId>Projet-Licence-PLPLD</artifactId> <!-- et le nom du projet -->
-        <version>0.6</version>
+        <version>0.7</version>
     </parent>
 
     <artifactId>commun</artifactId> <!-- et le nom du projet -->
-    <version>0.6</version>
+    <version>0.7</version>
 
 
 
