@@ -41,6 +41,13 @@ public class Serveur {
     public Serveur(SocketIOServer server) {
         this.server = server;
 
+
+        this.server.addEventListener(CONFIRMATION, Identité.class, new DataListener<Identité>() {
+            @Override
+            public void onData(SocketIOClient socketIOClient, Identité identité, AckRequest ackRequest) throws Exception {
+                NetHandler.nouvelleConfirmation(socketIOClient,identité);
+            }
+        });
         this.server.addEventListener(CONNEXION, Identité.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) throws Exception {

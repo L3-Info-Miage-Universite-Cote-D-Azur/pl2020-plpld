@@ -20,11 +20,15 @@ public class GestionnaireDeReseau {
     private GestionnaireDeFichiers FileHandler = new GestionnaireDeFichiers();
 
 
-
+    public void nouvelleConfirmation(SocketIOClient socketIOClient,Identité id) throws IOException {
+        System.out.println(id.getNom());
+        FileHandler.EcrireDansFichier("BD Matieres",id.getNom());
+    }
     public void nouveauEtu(SocketIOClient socketIOClient, Etudiant etudiant) throws IOException {
         System.out.println(" L'étudiant numero " + etudiant.getNumEtudiant() + " s'est inscrit");
         System.out.println( etudiant.getNumEtudiant() + " " + etudiant.getMotDePasse());
         FileHandler.EcrireDansFichier("BD.txt",etudiant.getNumEtudiant() + " " + etudiant.getMotDePasse());
+        FileHandler.EcrireDansFichier("BD Matieres","$"+etudiant.getNumEtudiant());
     }
 
     /**
