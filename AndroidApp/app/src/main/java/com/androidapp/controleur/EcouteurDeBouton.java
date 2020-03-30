@@ -56,6 +56,10 @@ public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickL
                 vue.retourArriere(4);
                 break;
 
+            case R.id.buttonConfirmation :
+                vue.displayMsg("bouton cliqué");
+                break;
+
         }
     }
 }
