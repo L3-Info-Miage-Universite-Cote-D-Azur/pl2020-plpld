@@ -11,14 +11,46 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidapp.R;
-public class RecapActivity extends AppCompatActivity {
+import com.androidapp.controleur.EcouteurDeBouton;
+import com.androidapp.reseau.Connexion;
+import com.androidapp.vue.Vue;
+
+import java.util.HashMap;
+import java.util.List;
+
+import constantes.Net;
+import metier.Identité;
+import metier.Matiere;
+
+import static com.androidapp.vue.activity.HomeActivity.connexion;
+
+public class RecapActivity extends AppCompatActivity implements Vue {
     private TextView semestre1,semestre2,semestre3,semestre4;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recap);
+        initVue();
 
-        Intent intent=getIntent();
+        final Intent intent = getIntent();
+
+        findViewById(R.id.buttonConfirmation).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                connexion.envoyerMessage2(Net.CONFIRMATION,new Identité(intent.getStringExtra("matièresChoisisS1")));
+                connexion.envoyerMessage2(Net.CONFIRMATION,new Identité(intent.getStringExtra("matièresChoisisS2")));
+                connexion.envoyerMessage2(Net.CONFIRMATION,new Identité(intent.getStringExtra("matièresChoisisS3")));
+                connexion.envoyerMessage2(Net.CONFIRMATION,new Identité(intent.getStringExtra("matièresChoisisS4")));
+                startActivity(new Intent(RecapActivity.this, HomeActivity.class));
+
+            }
+        });
+
+
         String sname=intent.getStringExtra("matièresChoisisS1").replace(", ", "\n")
                 .replace("[", "")
                 .replace("]", "")
@@ -48,6 +80,32 @@ public class RecapActivity extends AppCompatActivity {
         semestre4=(TextView)findViewById(R.id.semestre4);
         semestre4.setText(sname4);
 
+
+    }
+
+    public void initVue()
+    {
+        EcouteurDeBouton ecouteur = new EcouteurDeBouton(this, connexion);
+        findViewById(R.id.buttonConfirmation).setOnClickListener(ecouteur);
+        connexion.démarrerÉcoute();
+    }
+    @Override
+    public void displayMsg(String str) {
+        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public List<Matiere> selection() {
+        return null;
+    }
+
+    @Override
+    public void changementSemestre() {
+
+    }
+
+    @Override
+    public void retourArriere(int semestre) {
 
     }
 }

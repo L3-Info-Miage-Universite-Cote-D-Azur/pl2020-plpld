@@ -18,6 +18,7 @@ public class Net {
     public static final String BD = "BD.txt";
     public static final String LOGS = "Logs";
     public static final String NV_CONNEXION = "Nouvelle Connexion";
+    public static final String CONFIRMATION = "Confirmation";
 }
 
 
