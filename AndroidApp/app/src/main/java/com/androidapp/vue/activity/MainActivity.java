@@ -15,6 +15,7 @@ import android.widget.Button;
 
 import com.androidapp.R;
 import com.androidapp.controleur.*;
+import com.androidapp.exception.ConnexionServeurException;
 import com.androidapp.reseau.Connexion;
 import com.androidapp.vue.Vue;
 import com.androidapp.vue.adapter.*;
@@ -75,7 +76,17 @@ public class MainActivity extends AppCompatActivity implements Vue {
         StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0, numSemestre-1);
         stepsAdapter.addAll("View " + numSemestre);
         mListView.setAdapter(stepsAdapter);
-        while(connexion.ListOfMaps.size()<numSemestre || connexion.MapPrerequis.size()==0) continue;
+        long tempsDepart=System.currentTimeMillis();
+        while(connexion.ListOfMaps.size()<numSemestre || connexion.MapPrerequis.size()==0) {
+            if(System.currentTimeMillis()-tempsDepart>6000) {
+                Log.d("Erreur", "Pas de réponse du serveur");
+                try {
+                    throw new ConnexionServeurException(6000, this, android.os.Process.myPid());
+                } catch (ConnexionServeurException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
         Log.d("PREREQUIS", connexion.MapPrerequis.toString());
         graphe = new Graphe(connexion.MapPrerequis);
         receptionUE();

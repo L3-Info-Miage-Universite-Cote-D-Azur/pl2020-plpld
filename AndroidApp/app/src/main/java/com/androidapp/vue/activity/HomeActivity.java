@@ -3,6 +3,7 @@ package com.androidapp.vue.activity;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,7 +39,6 @@ public class HomeActivity extends AppCompatActivity {
     private EditText passwordEditText = null;
     private Button saveUserDataButton = null;
     private Button cancelUserDataButton = null;
-    private Button buttonConnexion = null;
 
 
     @Override
@@ -49,7 +49,9 @@ public class HomeActivity extends AppCompatActivity {
         connexion = new Connexion();
         connexion.écouterRéseau();
         connexion.envoyerMessage(Net.CONNEXION, new Identité("AndroidApp"));
-
+        if (getIntent().hasExtra("Erreur")) {
+            popupErreur(getIntent().getStringExtra("Erreur"));
+        }
         findViewById(R.id.btninscription).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -203,5 +205,22 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
         return ret;
+    }
+
+    private void popupErreur(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Erreur");
+        builder.setMessage(message);
+        builder.setCancelable(true);
+
+        builder.setNeutralButton(
+                "Compris",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert11 = builder.create();
+        alert11.show();
     }
 }
