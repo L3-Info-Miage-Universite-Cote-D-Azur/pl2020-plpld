@@ -16,9 +16,9 @@ public class ConnexionServeurException extends Exception{
     public ConnexionServeurException(long tempsAttente, AppCompatActivity context, int pid) {
         this.tempsAttente = tempsAttente;
         this.context = context;
-        Toast.makeText(context, "La connexion au serveur a échoué, assurez vous que le serveur est bien actif", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
         Intent Home = new Intent(context, HomeActivity.class);
-        Home.putExtra("Erreur", "La connexion au serveur n'a pas pu s'effectuer correctement (pas de réponse après " + tempsAttente/1000 + " secondes d'attente). Vérifiez l'état du serveur et réessayez.");
+        Home.putExtra("Erreur", "La connexion au serveur a échoué malgré " + tempsAttente/1000 + " secondes d'attente. Vérifiez l'état du serveur et réessayez.");
         context.startActivity(Home);
         android.os.Process.killProcess(pid);
     }
