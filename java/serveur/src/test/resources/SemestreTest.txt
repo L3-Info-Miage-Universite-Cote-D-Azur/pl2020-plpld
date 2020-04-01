@@ -1,0 +1,40 @@
+$Informatique
+Bases de l'informatique
+Introduction à l'informatique par le web
+Structures de données et programmation C
+Bases de donnée
+System 1. Unix et progra shell
+Programmation impérative
+$Mathématiques
+Fondements 1
+Méthodes : approche continue
+Complements 1
+Méthodes : Mathématiques et ingénierie
+Méthodes : approche géométrique
+$Chimie
+Structure Microscopique de la Matière
+Réactions et reactivites chimiques
+$Electronique
+Electronique numerique - Bases
+Electronique analogique
+Communication sans fil
+$Géographie
+Decouverte 1
+Decouverte 2
+Disciplinaire 1
+Découverte 4
+$MIASHS
+Economie-Gestion S1
+Intro R
+$Physique
+Mécanique 1
+$Science de la Terre
+Structure et dynamique de la terre
+Atmosphère; Océan; Climats
+$Science de la vie
+Physiologie. Neurologie. Enzymologie. Methodologie
+Diversité du Vivant
+$CLE 1D (Continuum Licence Enseignement)
+Enseignements fondamentaux à l'école primaire 1
+$UE facultative
+Projet FabLab
