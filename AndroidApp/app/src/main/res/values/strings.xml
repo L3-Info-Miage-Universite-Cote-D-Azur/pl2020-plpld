@@ -3,4 +3,7 @@
     <string name="Maths">Mathématiques</string>
     <string name="Physique">Physique</string>
     <string name="Informatique">Informatique</string>
+    <string name="app_label">Search</string>
+    <string name="search_hint">Search Me</string>
+    <string name="search">Search</string>
 </resources>

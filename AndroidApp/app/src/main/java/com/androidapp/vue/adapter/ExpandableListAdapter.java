@@ -49,26 +49,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return childPosition;
     }
 
-    @Override
-    public View getChildView(final int groupPosition, final int childPosition,
-                             boolean isLastChild, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = context.getLayoutInflater();
 
-        if (convertView == null) {
-            convertView = inflater.inflate(R.layout.child_item, null);
-        }
-        mRecyclerView = convertView.findViewById(R.id.recycler_view);
-        if(AdapterCollection.containsKey(groupPosition))
-            mAdapter = AdapterCollection.get(groupPosition);
-        else
-            mAdapter = new RecyclerViewAdapter(getListData(UE.get(groupPosition)));
-        LinearLayoutManager manager = new LinearLayoutManager(context);
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(manager);
-        mRecyclerView.setAdapter(mAdapter);
-        AdapterCollection.put(groupPosition, mAdapter);
-        return mRecyclerView;
-    }
 
     private List<Model> getListData(String discipline) {
         mModelList = new ArrayList<>();
@@ -124,6 +105,27 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
+    public View getChildView(final int groupPosition, final int childPosition,
+                             boolean isLastChild, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = context.getLayoutInflater();
+
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.child_item, null);
+        }
+        mRecyclerView = convertView.findViewById(R.id.recycler_view);
+        if(AdapterCollection.containsKey(groupPosition))
+            mAdapter = AdapterCollection.get(groupPosition);
+        else
+            mAdapter = new RecyclerViewAdapter(getListData(UE.get(groupPosition)));
+        LinearLayoutManager manager = new LinearLayoutManager(context);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(manager);
+        mRecyclerView.setAdapter(mAdapter);
+        AdapterCollection.put(groupPosition, mAdapter);
+        return mRecyclerView;
+    }
+
+    @Override
     public boolean hasStableIds() {
         return true;
     }
@@ -132,4 +134,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
     }
+
+
+
 }

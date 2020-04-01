@@ -1,15 +1,20 @@
 package com.androidapp.vue.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuItemCompat;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 import android.widget.Button;
 
@@ -35,6 +40,27 @@ public class MainActivity extends AppCompatActivity implements Vue {
     private  int numSemestre = 1;
     private Map<Integer, List<Matiere>> selectionUE = new HashMap<>();
     private Vue vue=this;
+    private MenuItem searchItem;
+    private SearchManager searchManager;
+    private android.widget.SearchView searchView;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        searchItem = menu.findItem(R.id.action_search);
+        searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setSearchableInfo
+                (searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconifiedByDefault(false);
+        //searchView.setOnQueryTextListener(this);
+        //searchView.setOnCloseListener(this);
+        searchView.requestFocus();
+
+        return true;
+    }
+
+
 
     @Override
     public void displayMsg(String str) {
@@ -45,6 +71,8 @@ public class MainActivity extends AppCompatActivity implements Vue {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         initVue();
     }
 
