@@ -14,7 +14,7 @@ public class Etudiant implements ToJSON {
         this.numEtudiant = numEtudiant;
     }
 
-    public void setDateNaissance(String dateNaissance) {
+    public void setDateNaissance(LocalDate dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
 
@@ -25,18 +25,18 @@ public class Etudiant implements ToJSON {
     private String nom;
     private String prenom;
     private String numEtudiant ;
-    private String dateNaissance ;
+    private LocalDate dateNaissance;
     private String motDePasse;
 
     public Etudiant() {}
-    public String getDateNaissance() {
+    public LocalDate getDateNaissance() {
         return dateNaissance;
     }
     public Etudiant(String nom)
     {
         this.nom = nom;
     }
-    public Etudiant(String nom, String prenom, String numEtudiant, String dateNaissance, String motDePasse) {
+    public Etudiant(String nom, String prenom, String numEtudiant, LocalDate dateNaissance, String motDePasse) {
         this.nom = nom;
         this.prenom = prenom;
         this.numEtudiant = numEtudiant;
