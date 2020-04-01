@@ -54,11 +54,23 @@ Il est demandé :
 
 > Si une information est manquante pour une discipline, appliquer les mêmes informations que pour une discipline dont on aurait les informations, mais en structurant bien les données. 
 
-> Pouvoir changer les données "facilement" : listes des cours, description des cours, "pré-requis", etc. (sans mettre à jour l'application)
+> Pouvoir changer les données "facilement" : listes des cours, description des cours, "pré-requis", etc. (sans mettre à jour l'application).
 
-> Il faut pouvoir ré-évaluer les "parcours" (pré-requis) : par exemple pour un parcours fait le 03/03 et les règles qui changent le 04/03, il faut que l'utilisateur sache que les règles ont changées depuis et qu'il puisse vérifier si les changement ont un impact
+> Il faut pouvoir ré-évaluer les "parcours" (pré-requis) : par exemple pour un parcours fait le 03/03 et les règles qui changent le 04/03, il faut que l'utilisateur sache que les règles ont changées depuis et qu'il puisse vérifier si les changement ont un impact.
 
 Document complémentaire [ici](https://lms.univ-cotedazur.fr/pluginfile.php/112034/course/section/17947/modalites%20obtention%20L%20Info%20mars%202020.pdf)
 
 ### Modificaiton n°2:
-> Prendre en compte l'évolution 2 du sujet (à déterminer) le 1er avril 2020.
+Il est demandé d'intégrer au moins 2 des 4 améliorations suivantes :
+> Rajouter les cours de L3 (disponible pour certaines disciplines) et le fait de pouvoir taguer un parcours publié par un autre étudiant.e. en tant que "parcours type pour une discipline" ou pour un objectif comme intégrer l'INSPE (Institut national supérieur du professorat et de le l'éducation : professeur.e.s des écoles, CAPES, AGREG, etc).
+
+>Fixer les cours de L3 ou mention Disciplinaire comme objectifs à atteindre (ce qui restreint les choix).
+
+>Intégrer un parcours en partie fait (par exemple le S1 ou le S2, il reste les autres semestres/cours à choisir).
+
+>Pourvoir partager/récupérer son parcours (via courriel, un fichier texte, réseau sociaux...).
+
+Les cours de L3 Info se trouvent [ici](http://i3s.unice.fr/master-info/programme/l3/) (les conditions d'accès sont sur la page L2)
+
+Les cours de L3 MIAGE se trouvent [ici](https://lms.univ-cotedazur.fr/pluginfile.php/112034/course/section/17947/LICENCE%203%20MIASHS%20parcours%20MIAGE.xlsx)
+Les conditions d'accès pour la L3 MIAGE se trouvent [ici](https://lms.univ-cotedazur.fr/pluginfile.php/112034/course/section/17947/Lic_MIASHS_MIAGE_modalites_obtention_prov_08_3_2020-1.pdf)
