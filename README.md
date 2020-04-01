@@ -73,4 +73,5 @@ Il est demandé d'intégrer au moins 2 des 4 améliorations suivantes :
 Les cours de L3 Info se trouvent [ici](http://i3s.unice.fr/master-info/programme/l3/) (les conditions d'accès sont sur la page L2)
 
 Les cours de L3 MIAGE se trouvent [ici](https://lms.univ-cotedazur.fr/pluginfile.php/112034/course/section/17947/LICENCE%203%20MIASHS%20parcours%20MIAGE.xlsx)
+
 Les conditions d'accès pour la L3 MIAGE se trouvent [ici](https://lms.univ-cotedazur.fr/pluginfile.php/112034/course/section/17947/Lic_MIASHS_MIAGE_modalites_obtention_prov_08_3_2020-1.pdf)
