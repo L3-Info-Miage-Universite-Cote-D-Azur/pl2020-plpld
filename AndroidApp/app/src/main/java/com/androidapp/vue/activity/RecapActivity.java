@@ -22,8 +22,6 @@ import constantes.Net;
 import metier.Identité;
 import metier.Matiere;
 
-import static com.androidapp.vue.activity.HomeActivity.connexion;
-
 public class RecapActivity extends AppCompatActivity implements Vue {
     private TextView semestre1,semestre2,semestre3,semestre4;
 
@@ -41,10 +39,10 @@ public class RecapActivity extends AppCompatActivity implements Vue {
         findViewById(R.id.buttonConfirmation).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                connexion.envoyerMessage2(Net.CONFIRMATION,new Identité(intent.getStringExtra("matièresChoisisS1")));
-                connexion.envoyerMessage2(Net.CONFIRMATION,new Identité(intent.getStringExtra("matièresChoisisS2")));
-                connexion.envoyerMessage2(Net.CONFIRMATION,new Identité(intent.getStringExtra("matièresChoisisS3")));
-                connexion.envoyerMessage2(Net.CONFIRMATION,new Identité(intent.getStringExtra("matièresChoisisS4")));
+                Connexion.CONNEXION.envoyerMessage2(Net.CONFIRMATION,new Identité(intent.getStringExtra("matièresChoisisS1")));
+                Connexion.CONNEXION.envoyerMessage2(Net.CONFIRMATION,new Identité(intent.getStringExtra("matièresChoisisS2")));
+                Connexion.CONNEXION.envoyerMessage2(Net.CONFIRMATION,new Identité(intent.getStringExtra("matièresChoisisS3")));
+                Connexion.CONNEXION.envoyerMessage2(Net.CONFIRMATION,new Identité(intent.getStringExtra("matièresChoisisS4")));
                 startActivity(new Intent(RecapActivity.this, HomeActivity.class));
 
             }
@@ -85,9 +83,9 @@ public class RecapActivity extends AppCompatActivity implements Vue {
 
     public void initVue()
     {
-        EcouteurDeBouton ecouteur = new EcouteurDeBouton(this, connexion);
+        EcouteurDeBouton ecouteur = new EcouteurDeBouton(this, Connexion.CONNEXION);
         findViewById(R.id.buttonConfirmation).setOnClickListener(ecouteur);
-        connexion.démarrerÉcoute();
+        Connexion.CONNEXION.démarrerÉcoute();
     }
     @Override
     public void displayMsg(String str) {

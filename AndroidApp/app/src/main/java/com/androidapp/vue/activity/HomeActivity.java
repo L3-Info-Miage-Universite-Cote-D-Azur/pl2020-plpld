@@ -31,7 +31,6 @@ import metier.Identité;
 import metier.ToJSON;
 
 public class HomeActivity extends AppCompatActivity {
-    public static Connexion connexion;
     private Button openInputPopupDialogButton = null;
     private ListView userDataListView = null;
     private View popupInputDialogView = null;
@@ -46,9 +45,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        connexion = new Connexion();
-        connexion.écouterRéseau();
-        connexion.envoyerMessage(Net.CONNEXION, new Identité("AndroidApp"));
+        Connexion.CONNEXION.écouterRéseau();
+        Connexion.CONNEXION.envoyerMessage(Net.CONNEXION, new Identité("AndroidApp"));
         if (getIntent().hasExtra("Erreur")) {
             popupErreur(getIntent().getStringExtra("Erreur"));
         }
@@ -80,7 +78,7 @@ public class HomeActivity extends AppCompatActivity {
                 saveUserDataButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        connexion.démarrerÉcoute();
+                        Connexion.CONNEXION.démarrerÉcoute();
                         final String userName = userNameEditText.getText().toString();
                         final String password = passwordEditText.getText().toString();
 
@@ -107,13 +105,13 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-                        connexion.envoyerMessage(Net.NV_CONNEXION, new Identité(userName + " " + password));
+                        Connexion.CONNEXION.envoyerMessage(Net.NV_CONNEXION, new Identité(userName + " " + password));
                         try {
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        if(connexion.ConnexionAutorisee)
+                        if(Connexion.CONNEXION.ConnexionAutorisee)
                                 {
 
 

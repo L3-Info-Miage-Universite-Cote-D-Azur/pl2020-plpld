@@ -19,7 +19,8 @@ import com.androidapp.vue.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class Connexion {
+public enum Connexion {
+    CONNEXION;
     private Socket mSocket;
     public Boolean ConnexionAutorisee = false;
     public List<Map<String, List<String>>> ListOfMaps = new ArrayList<Map<String,List<String>>>();

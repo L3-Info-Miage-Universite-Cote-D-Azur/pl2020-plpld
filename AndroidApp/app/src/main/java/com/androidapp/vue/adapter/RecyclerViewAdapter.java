@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidapp.R;
-import com.androidapp.vue.activity.HomeActivity;
+import com.androidapp.reseau.Connexion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 model.setSelected(!model.isSelected());
                 holder.view.setBackgroundColor(model.isSelected() ? Color.CYAN : Color.WHITE);
                 Log.d("POUR MONTRER", "on a cliqué sur " + model.getText());
-                HomeActivity.connexion.envoyerMessage(Net.CHOIX, (ToJSON) new Matiere(model.getText()));
+                Connexion.CONNEXION.envoyerMessage(Net.CHOIX, (ToJSON) new Matiere(model.getText()));
             }
         });
     }

@@ -24,8 +24,6 @@ import metier.*;
 
 import java.util.*;
 
-import static com.androidapp.vue.activity.HomeActivity.connexion;
-
 public class MainActivity extends AppCompatActivity implements Vue {
     public static final String AUTOCONNECT = "AUTOCONNECT";
     protected Graphe graphe;
@@ -36,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements Vue {
     private ExpandableListAdapter adapter;
     private  int numSemestre = 1;
     private Map<Integer, List<Matiere>> selectionUE = new HashMap<>();
-    private final Connexion mSocket=connexion;
     private Vue vue=this;
 
     @Override
@@ -63,13 +60,13 @@ public class MainActivity extends AppCompatActivity implements Vue {
     private void initVue() {
         autoconnect = getIntent().getBooleanExtra(AUTOCONNECT, true);
         UECollection = new HashMap<>();
-        EcouteurDeBouton ecouteur = new EcouteurDeBouton(this, connexion);
+        EcouteurDeBouton ecouteur = new EcouteurDeBouton(this, Connexion.CONNEXION);
         findViewById(R.id.buttonValider).setOnClickListener(ecouteur);
         findViewById(R.id.s1).setOnClickListener(ecouteur);
         findViewById(R.id.s2).setOnClickListener(ecouteur);
         findViewById(R.id.s3).setOnClickListener(ecouteur);
         findViewById(R.id.s4).setOnClickListener(ecouteur);
-        connexion.démarrerÉcoute();
+        Connexion.CONNEXION.démarrerÉcoute();
 
         ListView mListView = findViewById(R.id.list);
 
@@ -77,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements Vue {
         stepsAdapter.addAll("View " + numSemestre);
         mListView.setAdapter(stepsAdapter);
         long tempsDepart=System.currentTimeMillis();
-        while(connexion.ListOfMaps.size()<numSemestre || connexion.MapPrerequis.size()==0) {
+        while(Connexion.CONNEXION.ListOfMaps.size()<numSemestre || Connexion.CONNEXION.MapPrerequis.size()==0) {
             if(System.currentTimeMillis()-tempsDepart>6000) {
                 Log.d("Erreur", "Pas de réponse du serveur");
                 try {
@@ -87,8 +84,8 @@ public class MainActivity extends AppCompatActivity implements Vue {
                 }
             }
         }
-        Log.d("PREREQUIS", connexion.MapPrerequis.toString());
-        graphe = new Graphe(connexion.MapPrerequis);
+        Log.d("PREREQUIS", Connexion.CONNEXION.MapPrerequis.toString());
+        graphe = new Graphe(Connexion.CONNEXION.MapPrerequis);
         receptionUE();
 
         expListView = findViewById(R.id.UE_list);
@@ -123,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements Vue {
                 @Override
                 public void onClick(View v) {
                     selectionUE.put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
-                    mSocket.envoyerMessage2(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
+                    Connexion.CONNEXION.envoyerMessage2(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
                     vue.displayMsg("Votre choix a été transmis au serveur");
                     selectionUE.put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
                     Intent intent=new Intent(MainActivity.this, RecapActivity.class);
@@ -161,8 +158,8 @@ public class MainActivity extends AppCompatActivity implements Vue {
 
     private void receptionUE() {
         List<String> selectionnable = graphe.selectionnable(UEvalidees()); //Utilisation du graphe pour connaître la liste des UE selectionnables ce semestre après avoir validée les UE renvoyées par la méthode UEvalidees
-        for (String discipline : connexion.ListOfMaps.get(numSemestre-1).keySet()) {
-            List<String> ListeUE = connexion.ListOfMaps.get(numSemestre-1).get(discipline);
+        for (String discipline : Connexion.CONNEXION.ListOfMaps.get(numSemestre-1).keySet()) {
+            List<String> ListeUE = Connexion.CONNEXION.ListOfMaps.get(numSemestre-1).get(discipline);
             List<String> Supression = new ArrayList<>(); //Liste des UE à supprimer
             for (String UE : ListeUE) {
                 if (!selectionnable.contains(UE))
