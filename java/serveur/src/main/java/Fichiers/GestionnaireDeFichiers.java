@@ -1,6 +1,5 @@
 package Fichiers;
 
-import constantes.Net;
 import metier.ListeSemestre;
 
 import java.io.*;
@@ -21,8 +20,7 @@ public class GestionnaireDeFichiers {
         String previousKey = null;
         BufferedReader br;
         try{
-
-            br = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(fichier),"UTF-8"));
+            br = new BufferedReader(new FileReader(fichier));
             String line = br.readLine();
             while(line != null){
                 if(line.contains("$")){
@@ -43,7 +41,7 @@ public class GestionnaireDeFichiers {
         }
         return listeSemestre.getMapUE();
     }
-    public HashMap<String, List<String>> constructionPrerequis()
+    public HashMap<String, List<String>> constructionPrerequis(String S1, String S2, String S3, String S4, String Prerequis)
     {
 
         ListeSemestre listePrerequis = new ListeSemestre();
@@ -64,7 +62,7 @@ public class GestionnaireDeFichiers {
             }
         }
 
-        for(Map.Entry<String, List<String>> entry : lireFichier(FICHIER_PREREQUIS).entrySet())
+        for(Map.Entry<String, List<String>> entry : lireFichier(Prerequis).entrySet())
         {
             listePrerequis.add(entry.getKey(),entry.getValue());
         }
@@ -90,12 +88,12 @@ public class GestionnaireDeFichiers {
 
     }
 
-    public Boolean trouverEtudiant(String logs)
+    public Boolean trouverEtudiant(String fichier, String logs)
     {
         BufferedReader br;
         try
         {
-            br = new BufferedReader(new FileReader(BD));
+            br = new BufferedReader(new FileReader(fichier));
             String line = br.readLine();
             while(line != null)
             {

@@ -45,7 +45,7 @@ public class GestionnaireDeReseau {
     {
 
         System.out.println("Tentative de connexion...." + id.getNom());
-        if(FileHandler.trouverEtudiant(id.getNom())) {
+        if(FileHandler.trouverEtudiant(BD, id.getNom())) {
            System.out.println("accepté");
            socketIOClient.sendEvent(NV_CONNEXION, "true");
         }
@@ -70,7 +70,7 @@ public class GestionnaireDeReseau {
      * @param socketIOClient
      */
     public void envoiePrerequis(SocketIOClient socketIOClient) {
-        socketIOClient.sendEvent(PREREQUIS, FileHandler.constructionPrerequis());
+        socketIOClient.sendEvent(PREREQUIS, FileHandler.constructionPrerequis(S1, S2, S3, S4, FICHIER_PREREQUIS));
     }
 
     /**
