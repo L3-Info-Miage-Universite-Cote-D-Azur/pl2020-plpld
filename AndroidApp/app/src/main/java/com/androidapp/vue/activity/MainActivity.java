@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements Vue {
 
 
 
+
+
     @Override
     public void displayMsg(String str) {
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
@@ -72,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements Vue {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         initVue();
     }
