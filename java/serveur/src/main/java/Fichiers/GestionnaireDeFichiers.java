@@ -21,8 +21,8 @@ public class GestionnaireDeFichiers {
         String previousKey = null;
         BufferedReader br;
         try{
-            FileReader filereader = new FileReader(fichier);
-            br = new BufferedReader(filereader);
+
+            br = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(fichier),"UTF-8"));
             String line = br.readLine();
             while(line != null){
                 if(line.contains("$")){
