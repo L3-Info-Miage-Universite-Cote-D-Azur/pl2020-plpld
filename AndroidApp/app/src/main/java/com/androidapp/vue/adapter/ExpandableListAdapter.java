@@ -8,6 +8,7 @@ import java.util.Map;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,11 +38,18 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public ExpandableListAdapter(Activity context , List<String> UE , Map<String, List<String>> UECollections) {
         this.context = context;
 
-        this.UE = UE;
-        this.UECollections = UECollections;
+        //this.UE = UE;
+        //this.UECollections = UECollections;
+        this.UE =new ArrayList<>();
+        this.UE.addAll(UE);
+        this.UECollections =new HashMap<>();
+        this.UECollections.putAll(UECollections);
 
-        this.UEOriginal =UE;
-        this.UeCollectionsOriginal =UECollections;
+
+        this.UEOriginal =new ArrayList<>();
+        UEOriginal.addAll(UE);
+        this.UeCollectionsOriginal =new HashMap<>();
+        UeCollectionsOriginal.putAll(UECollections);
 
         AdapterCollection = new LinkedHashMap<>(getGroupCount()); //On crée une collection de RecyclerViewAdapter pour récupérer la séléction de l'utilisateur (un adaptateur pour chaque discipline sur laquelle l'utilisateur clique)
     }
@@ -145,13 +153,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         UE.clear();
         UECollections.clear();
-
         if (query.isEmpty()) {
             UE.addAll(UEOriginal);
             UECollections.putAll(UeCollectionsOriginal);
-
         } else {
-            Map<String, List<String>> newUECollections = new HashMap<>();
             for (String s : UEOriginal) {
                 ArrayList<String> ueDes = new ArrayList<>();
                 for (String ue : UeCollectionsOriginal.get(s)) {
@@ -160,9 +165,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                     }
                 }
                 if (ueDes.size() > 0) {
-                    newUECollections.put(s, ueDes);
                     UE.add(s);
-                    UECollections.putAll(newUECollections);
+                    UECollections.put(s,ueDes);
                 }
             }
         }
