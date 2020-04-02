@@ -124,6 +124,19 @@ public class RecapActivity extends AppCompatActivity implements Vue {
 
             }});
 
+        /**
+         * Todo Iteration 8 : Modifier le retour arrière pour tomber sur le semestre 4
+         */
+        findViewById(R.id.RetourArriereRecap).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public  void onClick(View v)
+            {
+                Intent Intent = new Intent(RecapActivity.this, MainActivity.class);
+                int semestre = 4;
+                intent.putExtra("semestre", semestre);
+                startActivity(Intent);
+            }});
+
     }
 
     public void initVue()

@@ -111,6 +111,14 @@
         </LinearLayout>
 
     <Button
+        android:id="@+id/RetourArriereRecap"
+        android:layout_width="358dp"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Recommencer mon parcours" />
+
+    <Button
         android:id="@+id/buttonConfirmation"
         android:layout_width="358dp"
         android:layout_height="70dp"
@@ -118,6 +126,7 @@
         android:layout_centerHorizontal="true"
         android:onClick="onClickBtn"
         android:text="Finaliser mon inscription" />
+
     <Button
         android:id="@+id/buttonPartager"
         android:layout_width="358dp"
