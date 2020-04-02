@@ -167,7 +167,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             }
         }
 
-
         notifyDataSetChanged();
 
     }
