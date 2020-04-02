@@ -124,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         expListView = findViewById(R.id.UE_list);
         final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(this, new ArrayList<>(UECollection.keySet()), UECollection);
         expListView.setAdapter(expListAdapter);
+
         adapter = expListAdapter;
         expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             public boolean onChildClick(ExpandableListView parent, View v,

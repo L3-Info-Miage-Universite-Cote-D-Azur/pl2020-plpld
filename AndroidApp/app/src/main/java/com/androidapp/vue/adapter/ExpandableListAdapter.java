@@ -151,9 +151,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             UECollections.putAll(UeCollectionsOriginal);
 
         } else {
+            Map<String, List<String>> newUECollections = new HashMap<>();
             for (String s : UEOriginal) {
                 ArrayList<String> ueDes = new ArrayList<>();
-                Map<String, List<String>> newUECollections = new HashMap<>();
                 for (String ue : UeCollectionsOriginal.get(s)) {
                     if (ue.toLowerCase().contains(query)) {
                         ueDes.add(ue);
@@ -166,6 +166,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 }
             }
         }
+
 
         notifyDataSetChanged();
 
