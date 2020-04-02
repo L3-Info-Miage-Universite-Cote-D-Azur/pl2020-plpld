@@ -1,6 +1,7 @@
 package com.androidapp.vue.adapter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,42 +31,24 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private RecyclerViewAdapter mAdapter;
     private Map<Integer, RecyclerViewAdapter> AdapterCollection;
 
+    private List<String> UEOriginal;
+    private Map<String, List<String>> UeCollectionsOriginal;
 
-    public ExpandableListAdapter(Activity context, List<String> UE,
-                                 Map<String, List<String>> UECollections) {
+    public ExpandableListAdapter(Activity context , List<String> UE , Map<String, List<String>> UECollections) {
         this.context = context;
-        this.UECollections = UECollections;
+
         this.UE = UE;
+        this.UECollections = UECollections;
+
+        this.UEOriginal =UE;
+        this.UeCollectionsOriginal =UECollections;
+
         AdapterCollection = new LinkedHashMap<>(getGroupCount()); //On crée une collection de RecyclerViewAdapter pour récupérer la séléction de l'utilisateur (un adaptateur pour chaque discipline sur laquelle l'utilisateur clique)
     }
 
     @Override
-    public Object getChild(int groupPosition, int childPosition) {
-        return UECollections.get(UE.get(groupPosition)).get(childPosition);
-    }
-
-    @Override
-    public long getChildId(int groupPosition, int childPosition) {
-        return childPosition;
-    }
-
-
-
-    private List<Model> getListData(String discipline) {
-        mModelList = new ArrayList<>();
-        for(String UE: UECollections.get(discipline)) {
-            mModelList.add(new Model(UE));
-        }
-        return mModelList;
-    }
-
-    public List<Matiere> selection(Matiere numSemestre) {
-        List<Matiere> Selection = new ArrayList<Matiere>();
-        Selection.add(numSemestre);
-        for(Map.Entry<Integer, RecyclerViewAdapter> R: AdapterCollection.entrySet()) {
-            Selection.addAll(R.getValue().selection());
-        }
-        return Selection;
+    public int getGroupCount() {
+        return UE.size();
     }
 
     @Override
@@ -79,13 +62,23 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public int getGroupCount() {
-        return UE.size();
+    public Object getChild(int groupPosition, int childPosition) {
+        return UECollections.get(UE.get(groupPosition)).get(childPosition);
     }
 
     @Override
     public long getGroupId(int groupPosition) {
         return groupPosition;
+    }
+
+    @Override
+    public long getChildId(int groupPosition, int childPosition) {
+        return childPosition;
+    }
+
+    @Override
+    public boolean hasStableIds() {
+        return true;
     }
 
     @Override
@@ -126,15 +119,56 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public boolean hasStableIds() {
-        return true;
-    }
-
-    @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
     }
 
+    private List<Model> getListData(String discipline) {
+        mModelList = new ArrayList<>();
+        for(String UE: UECollections.get(discipline)) {
+            mModelList.add(new Model(UE));
+        }
+        return mModelList;
+    }
 
+    public List<Matiere> selection(Matiere numSemestre) {
+        List<Matiere> Selection = new ArrayList<Matiere>();
+        Selection.add(numSemestre);
+        for(Map.Entry<Integer, RecyclerViewAdapter> R: AdapterCollection.entrySet()) {
+            Selection.addAll(R.getValue().selection());
+        }
+        return Selection;
+    }
+
+    public void filterData(String query) {
+        query = query.toLowerCase();
+
+        UE.clear();
+        UECollections.clear();
+
+        if (query.isEmpty()) {
+            UE.addAll(UEOriginal);
+            UECollections.putAll(UeCollectionsOriginal);
+
+        } else {
+            for (String s : UEOriginal) {
+                ArrayList<String> ueDes = new ArrayList<>();
+                Map<String, List<String>> newUECollections = new HashMap<>();
+                for (String ue : UeCollectionsOriginal.get(s)) {
+                    if (ue.toLowerCase().contains(query)) {
+                        ueDes.add(ue);
+                    }
+                }
+                if (ueDes.size() > 0) {
+                    newUECollections.put(s, ueDes);
+                    UE.add(s);
+                    UECollections.putAll(newUECollections);
+                }
+            }
+        }
+
+        notifyDataSetChanged();
+
+    }
 
 }

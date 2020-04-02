@@ -29,7 +29,7 @@ import metier.*;
 
 import java.util.*;
 
-public class MainActivity extends AppCompatActivity implements Vue {
+public class MainActivity extends AppCompatActivity implements Vue ,SearchView.OnQueryTextListener,SearchView.OnCloseListener {
     public static final String AUTOCONNECT = "AUTOCONNECT";
     protected Graphe graphe;
     private Button bouton;
@@ -53,15 +53,12 @@ public class MainActivity extends AppCompatActivity implements Vue {
         searchView.setSearchableInfo
                 (searchManager.getSearchableInfo(getComponentName()));
         searchView.setIconifiedByDefault(false);
-        //searchView.setOnQueryTextListener(this);
-        //searchView.setOnCloseListener(this);
+        searchView.setOnQueryTextListener(this);
+        searchView.setOnCloseListener(this);
         searchView.requestFocus();
 
         return true;
     }
-
-
-
 
 
     @Override
@@ -76,8 +73,12 @@ public class MainActivity extends AppCompatActivity implements Vue {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+
         initVue();
+
+        expandAll();
     }
 
     @Override
@@ -201,4 +202,72 @@ public class MainActivity extends AppCompatActivity implements Vue {
                 UECollection.put(discipline, ListeUE);
             }
         }
+
+    private void expandAll() {
+        int count = adapter.getGroupCount();
+        for (int i = 0; i < count; i++) {
+            expListView.expandGroup(i);
+        } //end for (int i = 0; i < count; i++)
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    /**
+     * The user is attempting to close the SearchView.
+     *
+     * @return true if the listener wants to override the default behavior of clearing the
+     * text field and dismissing it, false otherwise.
+     */
+    @Override
+    public boolean onClose() {
+        adapter.filterData("");
+        expandAll();
+        return false;
+    }
+
+    /**
+     * Called when the user submits the query. This could be due to a key press on the
+     * keyboard or due to pressing a submit button.
+     * The listener can override the standard behavior by returning true
+     * to indicate that it has handled the submit request. Otherwise return false to
+     * let the SearchView handle the submission by launching any associated intent.
+     *
+     * @param query the query text that is to be submitted
+     * @return true if the query has been handled by the listener, false to let the
+     * SearchView perform the default action.
+     */
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        adapter.filterData(query);
+        expandAll();
+        return false;
+    }
+
+    /**
+     * Called when the query text is changed by the user.
+     *
+     * @param newText the new content of the query text field.
+     * @return false if the SearchView should perform the default action of showing any
+     * suggestions if available, true if the action was handled by the listener.
+     */
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        adapter.filterData(newText);
+        expandAll();
+        return false;
+    }
+}
