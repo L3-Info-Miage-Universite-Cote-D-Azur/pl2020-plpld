@@ -25,8 +25,8 @@ public class FichierTest {
     @Before
     public void setup() {
         fichiers = new GestionnaireDeFichiers();
-        semestreTest = "src/test/resources/SemestreTest.txt";
-        prerequisTest = "src/test/resources/PrerequisTest.txt";
+        semestreTest = "SemestreTest.txt";
+        prerequisTest = "PrerequisTest.txt";
         baseDonnee = "src/test/resources/BaseDonneeTest.txt";
         ecrireFichierTest = "src/test/resources/EcrireFichierTest.txt";
     }
