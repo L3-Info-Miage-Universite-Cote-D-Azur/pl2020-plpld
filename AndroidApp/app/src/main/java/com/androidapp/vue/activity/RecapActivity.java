@@ -36,32 +36,50 @@ public class RecapActivity extends AppCompatActivity implements Vue {
 
         final Intent intent = getIntent();
 
+
+      /*  Intent i = new Intent(Intent.ACTION_SEND);
+        i.setType("message/rfc822");
+        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"recipient@example.com"});
+        i.putExtra(Intent.EXTRA_SUBJECT, "subject of email");
+        i.putExtra(Intent.EXTRA_TEXT   , intent.getStringExtra("matièresChoisisS1") + intent.getStringExtra("matièresChoisisS2")
+                + intent.getStringExtra("matièresChoisisS3") + intent.getStringExtra("matièresChoisisS4"));
+        try {
+            startActivity(Intent.createChooser(i, "Send mail..."));
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(RecapActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+        }*/
+
+
+
         findViewById(R.id.buttonConfirmation).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 Connexion.CONNEXION.envoyerMessage2(Net.CONFIRMATION,new Identité(intent.getStringExtra("matièresChoisisS1")));
                 Connexion.CONNEXION.envoyerMessage2(Net.CONFIRMATION,new Identité(intent.getStringExtra("matièresChoisisS2")));
                 Connexion.CONNEXION.envoyerMessage2(Net.CONFIRMATION,new Identité(intent.getStringExtra("matièresChoisisS3")));
                 Connexion.CONNEXION.envoyerMessage2(Net.CONFIRMATION,new Identité(intent.getStringExtra("matièresChoisisS4")));
+               
                 startActivity(new Intent(RecapActivity.this, HomeActivity.class));
 
             }
         });
 
 
-        String sname=intent.getStringExtra("matièresChoisisS1").replace(", ", "\n")
+        final String sname=intent.getStringExtra("matièresChoisisS1").replace(", ", "\n")
                 .replace("[", "")
                 .replace("]", "")
                 .trim();
-        String sname2=intent.getStringExtra("matièresChoisisS2").replace(", ", "\n")
+        final String sname2=intent.getStringExtra("matièresChoisisS2").replace(", ", "\n")
                 .replace("[", "")
                 .replace("]", "")
                 .trim();
-        String sname3=intent.getStringExtra("matièresChoisisS3").replace(", ", "\n")
+        final String sname3=intent.getStringExtra("matièresChoisisS3").replace(", ", "\n")
                 .replace("[", "")
                 .replace("]", "")
                 .trim();
-        String sname4=intent.getStringExtra("matièresChoisisS4").replace(", ", "\n")
+        final String sname4=intent.getStringExtra("matièresChoisisS4").replace(", ", "\n")
                 .replace("[", "")
                 .replace("]", "")
                 .trim();
@@ -78,6 +96,33 @@ public class RecapActivity extends AppCompatActivity implements Vue {
         semestre4=(TextView)findViewById(R.id.semestre4);
         semestre4.setText(sname4);
 
+        findViewById(R.id.buttonPartager).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public  void onClick(View v)
+            {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT,
+                        " Bonjour  [Nom du destinataire] ! " +
+                        "     \n\n Voici mon choix de parcours :" +
+                        "        \n  \n  Semestre 1 \n \n" +
+                        sname  +
+                                "\n \n  Semestre 2 \n \n "
+                        + sname2 +
+                                 "   \n  \n  Semestre 3 \n \n"
+                        +  sname3 +
+                             "   \n  \n  Semestre 4 \n \n"
+                        + sname4);
+
+
+                sendIntent.setType("text/plain");
+
+                Intent shareIntent = Intent.createChooser(sendIntent, null);
+                startActivity(shareIntent);
+
+
+
+            }});
 
     }
 
