@@ -5,5 +5,9 @@
     <string name="Informatique">Informatique</string>
     <string name="app_label">Search</string>
     <string name="search_hint">Search Me</string>
-    <string name="search">Search</string>
+    <string name="search">recherche</string>
+    <string name="hello">Hello!</string>
+    <string name="test">test!</string>
+    <string name="parcourspredefini">Choix du parcours prédéfini</string>
+    <string name="choix">Veuillez choisir un type de parcours</string>
 </resources>

@@ -1,8 +1,12 @@
 package com.androidapp.vue.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +20,13 @@ import java.util.regex.Pattern;
 
 import constantes.Net;
 import metier.Etudiant;
+
+import static constantes.Net.CHIMIE;
+import static constantes.Net.HISTOIRE;
+import static constantes.Net.INFORMATIQUE;
+import static constantes.Net.MATHS;
+import static constantes.Net.PHYSIQUE;
+import static constantes.Net.SVT;
 
 public class InscriptionActivity extends AppCompatActivity {
 
@@ -32,9 +43,14 @@ public class InscriptionActivity extends AppCompatActivity {
         final EditText dateNaissance = findViewById(R.id.naissance);
         final EditText mdp = findViewById(R.id.mdp);
 
+
+
+
         findViewById(R.id.buttonValiderInscription).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 boolean saisieCorrecte = true;
                 if (nom.getText().toString().matches("[^a-zA-Z -]*")) {
                     nom.setError("Votre nom (écrit en lettre) est obligatoire");
@@ -58,12 +74,83 @@ public class InscriptionActivity extends AppCompatActivity {
                     saisieCorrecte=false;
                 }
                 if(saisieCorrecte) {
+
+
                     Etudiant etu = new Etudiant(nom.getText().toString(), prénom.getText().toString(),
                             numEtudiant.getText().toString(), LocalDate.of(Integer.parseInt(naissance[2]), Integer.parseInt(naissance[1]), Integer.parseInt(naissance[0])), mdp.getText().toString());
 
+
+
                     Connexion.CONNEXION.envoyerMessage(Net.NV_ETU, etu);
 
-                    startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
+
+
+                    final AlertDialog.Builder builder2 = new AlertDialog.Builder(InscriptionActivity.this);
+                    builder2.setTitle(R.string.parcourspredefini)
+                            .setItems(R.array.parcours, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    switch (which)
+                                    {
+                                        case MATHS:
+                                            break;
+                                        case SVT :
+                                            break;
+
+                                        case PHYSIQUE :
+                                            break;
+                                        case CHIMIE :
+                                            break;
+                                        case INFORMATIQUE :
+                                            break;
+                                        case HISTOIRE :
+                                            break;
+                                    }
+
+
+
+                                }});
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(InscriptionActivity.this);
+                    builder.setTitle(R.string.choix)
+                            .setItems(R.array.choix, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    switch(which)
+                                    {
+                                        case  0 :
+                                            startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
+                                            break;
+
+                                        case 1 :
+                                            builder2.create();
+                                            builder2.show();
+                                            break;
+
+                                    }
+                                }
+                            });
+
+
+
+
+
+
+
+                    builder.create();
+                    builder.show();
+
+
+
+
+
+
+
+
+
+
+
+                  //  startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
                 }
                 }
         });

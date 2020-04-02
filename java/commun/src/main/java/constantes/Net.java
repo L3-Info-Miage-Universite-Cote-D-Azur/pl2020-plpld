@@ -19,6 +19,15 @@ public class Net {
     public static final String LOGS = "Logs";
     public static final String NV_CONNEXION = "Nouvelle Connexion";
     public static final String CONFIRMATION = "Confirmation";
+    public static final int MATHS = 0;
+    public static final int SVT = 1;
+    public static final int PHYSIQUE = 2;
+    public static final int CHIMIE = 3;
+    public static final int INFORMATIQUE = 4;
+    public static final int HISTOIRE = 5;
+
+
+
 }
 
 

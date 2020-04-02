@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="choix">
+        <item>Parcours personalisé</item>
+        <item>Parcours prédéfini</item>
+    </string-array>
+    <string-array name="parcours">
+        <item>Maths</item>
+        <item>SVT</item>
+        <item>Physique</item>
+        <item>Chimie</item>
+        <item>Informatique</item>
+        <item>Histoire</item>
+
+    </string-array>
+</resources>
+
+
