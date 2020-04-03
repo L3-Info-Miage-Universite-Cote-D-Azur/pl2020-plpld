@@ -114,16 +114,19 @@ public class HomeActivity extends AppCompatActivity {
                         }
                         if(Connexion.CONNEXION.ConnexionAutorisee)
                                 {
+                                    ConnexionDialogs connexionDialogs2 = new ConnexionDialogs();
+                                    connexionDialogs2.onCreateDialog(savedInstanceState,HomeActivity.this,true);
 
 
                                     Intent intent=new Intent(HomeActivity.this, MainActivity.class);
                                     startActivity(intent);
-                                }
+
+                                    }
 
                                 else
                                 {
                                     ConnexionDialogs connexionDialogs = new ConnexionDialogs();
-                                    connexionDialogs.onCreateDialog(savedInstanceState,HomeActivity.this);
+                                    connexionDialogs.onCreateDialog(savedInstanceState,HomeActivity.this,false);
 
                                 }
                               //  startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
