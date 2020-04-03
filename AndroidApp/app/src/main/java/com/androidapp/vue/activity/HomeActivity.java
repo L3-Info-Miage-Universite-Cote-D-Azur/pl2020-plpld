@@ -15,6 +15,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import com.androidapp.Dialogs.ConnexionDialogs;
 import com.androidapp.R;
 import com.androidapp.reseau.Connexion;
 
@@ -41,7 +42,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
@@ -121,8 +122,9 @@ public class HomeActivity extends AppCompatActivity {
 
                                 else
                                 {
-                                    Log.d("CONNEXION", "connexion refusée");
-                                    ////
+                                    ConnexionDialogs connexionDialogs = new ConnexionDialogs();
+                                    connexionDialogs.onCreateDialog(savedInstanceState,HomeActivity.this);
+
                                 }
                               //  startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
                             }
