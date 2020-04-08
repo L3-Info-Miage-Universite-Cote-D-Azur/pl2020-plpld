@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     private MenuItem searchItem;
     private SearchManager searchManager;
     private android.widget.SearchView searchView;
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
