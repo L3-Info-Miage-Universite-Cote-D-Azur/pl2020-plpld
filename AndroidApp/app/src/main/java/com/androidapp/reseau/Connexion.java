@@ -22,12 +22,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public enum Connexion {
     CONNEXION;
     private Socket mSocket;
-    public Boolean ConnexionAutorisee = false;
-    public List<Map<String, List<String>>> ListOfMaps = new ArrayList<Map<String,List<String>>>();
-
-    public Map<String,List<String>> MapPrerequis = new HashMap<>();
-
-    public static String s;
+    private Boolean ConnexionAutorisee = false;
+    private List<Map<String, List<String>>> ListOfMaps = new ArrayList<Map<String,List<String>>>();
+    private Vue mainVue;
+    private Map<String,List<String>> MapPrerequis = new HashMap<>();
+    private String s;
     public void écouterRéseau() {
         try {
             mSocket = IO.socket("http://10.0.2.2:10101");
@@ -42,7 +41,6 @@ public enum Connexion {
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
-
                     ListOfMaps.add(map);
                 }
             });
@@ -76,6 +74,7 @@ public enum Connexion {
                 try {
                     MapPrerequis = objectMapper2.readValue(args[0].toString(), new TypeReference<Map<String, List<String>>>() {
                     });
+                    mainVue.receptionUE(ListOfMaps);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -93,11 +92,20 @@ public enum Connexion {
     public void envoyerMessage2(String msg, ToJSON obj) {
         mSocket.emit(msg, obj);
     }
+    public void setMainVue(Vue v) {mainVue = v;}
     public void disconnect() {
         if (mSocket != null) mSocket.disconnect();
     }
 
     public void envoyer(String msg) {
         mSocket.emit(msg);
+    }
+
+    public Boolean getConnexionAutorisee() {
+        return ConnexionAutorisee;
+    }
+
+    public void setConnexionAutorisee(Boolean connexionAutorisee) {
+        ConnexionAutorisee = connexionAutorisee;
     }
 }

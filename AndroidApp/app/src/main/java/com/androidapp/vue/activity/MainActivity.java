@@ -8,6 +8,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     private ExpandableListAdapter adapter;
     private  int numSemestre = 1;
     private Map<Integer, List<Matiere>> selectionUE = new HashMap<>();
+    private List<Map<String, List<String>>> ListePrerequis;
+
     private Vue vue=this;
     private MenuItem searchItem;
     private SearchManager searchManager;
@@ -70,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Connexion.CONNEXION.setMainVue(this);
+        Connexion.CONNEXION.envoyerMessage(Net.CONNEXION, new Identité("AndroidApp"));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -77,8 +82,6 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 
         initVue();
-
-        expandAll();
     }
 
     @Override
@@ -93,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     private void initVue() {
         autoconnect = getIntent().getBooleanExtra(AUTOCONNECT, true);
         UECollection = new HashMap<>();
-        EcouteurDeBouton ecouteur = new EcouteurDeBouton(this, Connexion.CONNEXION);
+        EcouteurDeBouton ecouteur = new EcouteurDeBouton(this);
         findViewById(R.id.buttonValider).setOnClickListener(ecouteur);
         findViewById(R.id.s1).setOnClickListener(ecouteur);
         findViewById(R.id.s2).setOnClickListener(ecouteur);
@@ -106,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0, numSemestre-1);
         stepsAdapter.addAll("View " + numSemestre);
         mListView.setAdapter(stepsAdapter);
+        /*
         long tempsDepart=System.currentTimeMillis();
         while(Connexion.CONNEXION.ListOfMaps.size()<numSemestre || Connexion.CONNEXION.MapPrerequis.size()==0) {
             if(System.currentTimeMillis()-tempsDepart>6000) {
@@ -116,26 +120,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
                     e.printStackTrace();
                 }
             }
-        }
-        Log.d("PREREQUIS", Connexion.CONNEXION.MapPrerequis.toString());
-        graphe = new Graphe(Connexion.CONNEXION.MapPrerequis);
-        receptionUE();
-
-        expListView = findViewById(R.id.UE_list);
-        final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(this, new ArrayList<>(UECollection.keySet()), UECollection);
-        expListView.setAdapter(expListAdapter);
-
-        adapter = expListAdapter;
-        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            public boolean onChildClick(ExpandableListView parent, View v,
-                                        int groupPosition, int childPosition, long id) {
-                final String selected = (String) expListAdapter.getChild(
-                        groupPosition, childPosition);
-                Toast.makeText(getBaseContext(), selected, Toast.LENGTH_LONG)
-                        .show();
-                return true;
-            }
-        });
+        } */
     }
 
     @Override
@@ -189,19 +174,53 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         return validees;
     }
 
-    private void receptionUE() {
+
+    public void receptionUE(List<Map<String, List<String>>> ListOfMaps) {
+        ListePrerequis = ListOfMaps;
+        receptionUE();
+    }
+
+    public void receptionUE() {
+        Log.d("PREREQUIS", ListePrerequis.get(numSemestre-1).toString());
+        graphe = new Graphe(ListePrerequis.get(numSemestre-1));
         List<String> selectionnable = graphe.selectionnable(UEvalidees()); //Utilisation du graphe pour connaître la liste des UE selectionnables ce semestre après avoir validée les UE renvoyées par la méthode UEvalidees
-        for (String discipline : Connexion.CONNEXION.ListOfMaps.get(numSemestre-1).keySet()) {
-            List<String> ListeUE = Connexion.CONNEXION.ListOfMaps.get(numSemestre-1).get(discipline);
+        for (String discipline : ListePrerequis.get(numSemestre-1).keySet()) {
+            List<String> ListeUE = ListePrerequis.get(numSemestre-1).get(discipline);
             List<String> Supression = new ArrayList<>(); //Liste des UE à supprimer
+            /*
             for (String UE : ListeUE) {
                 if (!selectionnable.contains(UE))
                     Supression.add(UE);
             }
-                ListeUE.removeAll(Supression);
+            ListeUE.removeAll(Supression); */
             if(ListeUE.size()!=0)
                 UECollection.put(discipline, ListeUE);
-            }
+        }
+        expList();
+        }
+
+        private void expList() {
+            expListView = findViewById(R.id.UE_list);
+            final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(this, new ArrayList<>(UECollection.keySet()), UECollection);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Log.d("UECOLLECTION", UECollection.toString());
+                    expListView.setAdapter(expListAdapter);
+
+                    adapter = expListAdapter;
+                    expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+                        public boolean onChildClick(ExpandableListView parent, View v,
+                                                    int groupPosition, int childPosition, long id) {
+                            final String selected = (String) expListAdapter.getChild(
+                                    groupPosition, childPosition);
+                            Toast.makeText(getBaseContext(), selected, Toast.LENGTH_LONG)
+                                    .show();
+                            return true;
+                        }
+                    });
+                }
+            });
         }
 
     private void expandAll() {

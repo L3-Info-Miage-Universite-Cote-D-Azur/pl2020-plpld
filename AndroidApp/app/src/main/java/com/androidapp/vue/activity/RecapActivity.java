@@ -22,7 +22,7 @@ import constantes.Net;
 import metier.Identité;
 import metier.Matiere;
 
-public class RecapActivity extends AppCompatActivity implements Vue {
+public class RecapActivity extends AppCompatActivity {
     private TextView semestre1,semestre2,semestre3,semestre4;
 
     @Override
@@ -141,27 +141,8 @@ public class RecapActivity extends AppCompatActivity implements Vue {
 
     public void initVue()
     {
-        EcouteurDeBouton ecouteur = new EcouteurDeBouton(this, Connexion.CONNEXION);
+        EcouteurDeBouton ecouteur = new EcouteurDeBouton();
         findViewById(R.id.buttonConfirmation).setOnClickListener(ecouteur);
         Connexion.CONNEXION.démarrerÉcoute();
-    }
-    @Override
-    public void displayMsg(String str) {
-        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public List<Matiere> selection() {
-        return null;
-    }
-
-    @Override
-    public void changementSemestre() {
-
-    }
-
-    @Override
-    public void retourArriere(int semestre) {
-
     }
 }

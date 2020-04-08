@@ -10,12 +10,13 @@ import constantes.Net;
 import metier.ChoixUtilisateur;
 
 public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickListener {
-    private final Connexion mSocket;
     private Vue vue;
 
-    public EcouteurDeBouton(Vue v, Connexion mSocket) {
+    public EcouteurDeBouton() {
+    }
+
+    public EcouteurDeBouton(Vue v) {
         this.vue = v;
-        this.mSocket = mSocket;
     }
 
     @Override
@@ -30,7 +31,7 @@ public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickL
                     vue.displayMsg("Veuillez choisir au maximum 7 matières");
                 }
                 else {
-                    mSocket.envoyerMessage2(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
+                    Connexion.CONNEXION.envoyerMessage2(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
                     vue.displayMsg("Votre choix a été transmis au serveur");
                     vue.changementSemestre();
                 }

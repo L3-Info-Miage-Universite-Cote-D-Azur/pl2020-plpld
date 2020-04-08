@@ -47,7 +47,6 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         Connexion.CONNEXION.écouterRéseau();
-        Connexion.CONNEXION.envoyerMessage(Net.CONNEXION, new Identité("AndroidApp"));
         if (getIntent().hasExtra("Erreur")) {
             popupErreur(getIntent().getStringExtra("Erreur"));
         }
@@ -112,7 +111,7 @@ public class HomeActivity extends AppCompatActivity {
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        if(Connexion.CONNEXION.ConnexionAutorisee)
+                        if(Connexion.CONNEXION.getConnexionAutorisee())
                                 {
                                     ConnexionDialogs connexionDialogs2 = new ConnexionDialogs();
                                     connexionDialogs2.onCreateDialog(savedInstanceState,HomeActivity.this,true);

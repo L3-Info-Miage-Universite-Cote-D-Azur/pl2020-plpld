@@ -5,6 +5,7 @@ import com.androidapp.reseau.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import metier.Matiere;
 
@@ -34,5 +35,11 @@ public interface Vue {
      * @param semestre le numéro du semestre auquel on souhaite retourné
      */
     void retourArriere(int semestre);
+
+    /**
+     *  Permet la gestion des pérequisrécéption depuis le serveur
+     * @param Prerequis la liste de prérequis envoyées par le serveur
+     */
+    void receptionUE(List<Map<String, List<String>>> ListOfMaps);
 }
 
