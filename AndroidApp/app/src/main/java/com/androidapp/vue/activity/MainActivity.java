@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     private ExpandableListAdapter adapter;
     private  int numSemestre = 1;
     private Map<Integer, List<Matiere>> selectionUE = new HashMap<>();
-    private List<Map<String, List<String>>> ListePrerequis;
+    private List<Map<String, List<String>>> ListePrerequis = new ArrayList<>();
 
     private Vue vue=this;
     private MenuItem searchItem;
@@ -175,15 +175,15 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     }
 
 
-    public void receptionUE(List<Map<String, List<String>>> ListOfMaps) {
-        ListePrerequis = ListOfMaps;
+    public void receptionUE(Map<String, List<String>> Prerequis) {
+        ListePrerequis.add(Prerequis);
         receptionUE();
     }
 
     public void receptionUE() {
         Log.d("PREREQUIS", ListePrerequis.get(numSemestre-1).toString());
         graphe = new Graphe(ListePrerequis.get(numSemestre-1));
-        List<String> selectionnable = graphe.selectionnable(UEvalidees()); //Utilisation du graphe pour connaître la liste des UE selectionnables ce semestre après avoir validée les UE renvoyées par la méthode UEvalidees
+        //List<String> selectionnable = graphe.selectionnable(UEvalidees()); //Utilisation du graphe pour connaître la liste des UE selectionnables ce semestre après avoir validée les UE renvoyées par la méthode UEvalidees
         for (String discipline : ListePrerequis.get(numSemestre-1).keySet()) {
             List<String> ListeUE = ListePrerequis.get(numSemestre-1).get(discipline);
             List<String> Supression = new ArrayList<>(); //Liste des UE à supprimer

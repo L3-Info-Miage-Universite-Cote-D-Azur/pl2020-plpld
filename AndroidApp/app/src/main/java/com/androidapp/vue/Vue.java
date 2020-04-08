@@ -40,6 +40,6 @@ public interface Vue {
      *  Permet la gestion des pérequisrécéption depuis le serveur
      * @param Prerequis la liste de prérequis envoyées par le serveur
      */
-    void receptionUE(List<Map<String, List<String>>> ListOfMaps);
+    void receptionUE(Map<String, List<String>> Prerequis);
 }
 

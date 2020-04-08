@@ -42,6 +42,7 @@ public enum Connexion {
                         ex.printStackTrace();
                     }
                     ListOfMaps.add(map);
+                    mainVue.receptionUE(map);
                 }
             });
         } catch (URISyntaxException ex) {
@@ -74,7 +75,6 @@ public enum Connexion {
                 try {
                     MapPrerequis = objectMapper2.readValue(args[0].toString(), new TypeReference<Map<String, List<String>>>() {
                     });
-                    mainVue.receptionUE(ListOfMaps);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
