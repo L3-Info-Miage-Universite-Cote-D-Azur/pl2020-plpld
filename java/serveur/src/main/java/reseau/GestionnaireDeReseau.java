@@ -20,56 +20,54 @@ public class GestionnaireDeReseau {
     private GestionnaireDeFichiers FileHandler = new GestionnaireDeFichiers();
 
 
-    public void nouvelleConfirmation(SocketIOClient socketIOClient,Identité id) throws IOException {
+    public void nouvelleConfirmation(Identité id) throws IOException {
         System.out.println(id.getNom());
         FileHandler.EcrireDansFichier("BD Matieres",id.getNom());
     }
-    public void nouveauEtu(SocketIOClient socketIOClient, Etudiant etudiant) throws IOException {
+    public void nouveauEtu(Etudiant etudiant) throws IOException {
         System.out.println(" L'étudiant numero " + etudiant.getNumEtudiant() + " s'est inscrit");
         System.out.println( etudiant.getNumEtudiant() + " " + etudiant.getMotDePasse());
         FileHandler.EcrireDansFichier("BD.txt",etudiant.getNumEtudiant() + " " + etudiant.getMotDePasse());
         FileHandler.EcrireDansFichier("BD Matieres","$"+etudiant.getNumEtudiant());
     }
 
-    /**
-     * Envoie le choix de l'étudiant au client
-     * @param socketIOClient Le client
-     * @param matiere La matière choisi par le client
-     */
-    public void nouveauChoix(SocketIOClient socketIOClient, Matiere matiere) {
+
+    public void nouveauChoix(Identité id,Matiere matiere) {
         System.out.println(matiere.toString());
-        socketIOClient.sendEvent(CHOIX, matiere.toString());
+        //socketIOClient.sendEvent(CHOIX, matiere.toString());
     }
 
-    public void nouvelleConnexion(SocketIOClient socketIOClient,Identité id)
+    public boolean nouvelleConnexion(Identité id)
     {
 
         System.out.println("Tentative de connexion...." + id.getNom());
         if(FileHandler.trouverEtudiant(BD, id.getNom())) {
            System.out.println("accepté");
-           socketIOClient.sendEvent(NV_CONNEXION, "true");
+           return true;
+           //socketIOClient.sendEvent(NV_CONNEXION, "true");
         }
         else {
             System.out.println("refusé");
-            socketIOClient.sendEvent(NV_CONNEXION, "false");
+            return false;
+           // socketIOClient.sendEvent(NV_CONNEXION, "false");
         }
 
     }
-    // TODO: 28/02/2020  Modifier cette méthode et la rendre plus utile
+  /*  // TODO: 28/02/2020  Modifier cette méthode et la rendre plus utile
     /**
      *  Pour l'instant, cette méthode affiche un message de validation
      * @param socketIOClient
      * @param id  Identité du client
-     */
+
     public void nouveauClient(SocketIOClient socketIOClient, Identité id) {
         System.out.println(id+" vient de se connecter");
     }
-
+*/
     /**
      * Envoie le fichier des prerequis au client
      * @param socketIOClient
      */
-    public void envoiePrerequis(SocketIOClient socketIOClient) {
+   /* public void envoiePrerequis(SocketIOClient socketIOClient) {
         socketIOClient.sendEvent(PREREQUIS, FileHandler.constructionPrerequis(S1, S2, S3, S4, FICHIER_PREREQUIS));
     }
 
@@ -88,7 +86,7 @@ public class GestionnaireDeReseau {
      * @param socketIOClient
      * @param path Liste des UE
      */
-    public void envoyerUE(SocketIOClient socketIOClient,String path) {
+   /* public void envoyerUE(String path) {
         socketIOClient.sendEvent(UE,FileHandler.lireFichier(path));
-    }
+    }*/
 }

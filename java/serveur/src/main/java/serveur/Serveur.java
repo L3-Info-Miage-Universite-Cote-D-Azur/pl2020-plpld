@@ -13,6 +13,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.FileHandler;
 
 import static constantes.Net.*;
@@ -24,6 +25,8 @@ public class Serveur {
 
     private final SocketIOServer server;
     private GestionnaireDeReseau NetHandler = new GestionnaireDeReseau();
+    private GestionnaireDeFichiers FileHandler = new GestionnaireDeFichiers();
+    private Map<Identité,SocketIOClient> mapEtudiants = new HashMap<>();
 
     public static final void main(String [] args) {
         // config  com.corundumstudio.socketio.Configuration;
@@ -40,28 +43,32 @@ public class Serveur {
 
     public Serveur(SocketIOServer server) {
         this.server = server;
+        this.server.addEventListener(CONNEXION, Identité.class, new DataListener<>() {
+            @Override
+            public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) throws Exception {
+                mapEtudiants.put(id,socketIOClient); // On ajoute une nouvelle connexion
+            //  NetHandler.nouveauClient(mapEtudiants.get(socketIOClient), id);
+                envoyerUE(mapEtudiants.get(id),S1);
+                envoiePrerequis(mapEtudiants.get(id));
 
+
+            }});
 
         this.server.addEventListener(CONFIRMATION, Identité.class, new DataListener<Identité>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité identité, AckRequest ackRequest) throws Exception {
-                NetHandler.nouvelleConfirmation(socketIOClient,identité);
+                NetHandler.nouvelleConfirmation(identité);
             }
         });
-        this.server.addEventListener(CONNEXION, Identité.class, new DataListener<>() {
-            @Override
-            public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) throws Exception {
-                NetHandler.nouveauClient(socketIOClient, id);
-                NetHandler.envoyerUE(socketIOClient,S1);
-                NetHandler.envoiePrerequis(socketIOClient);
 
-
-            }
-        });
         this.server.addEventListener(NV_CONNEXION, Identité.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité etudiant, AckRequest ackRequest) throws Exception {
-                NetHandler.nouvelleConnexion(socketIOClient,etudiant);
+                if(NetHandler.nouvelleConnexion(etudiant))
+                    socketIOClient.sendEvent(NV_CONNEXION, "true");
+                else
+                    socketIOClient.sendEvent(NV_CONNEXION, "false");
+
             }
         });
         this.server.addEventListener(NV_ETU, Etudiant.class, new DataListener<>() {
@@ -75,13 +82,13 @@ public class Serveur {
                 System.out.println(etudiant.getNumEtudiant());
 
 
-                NetHandler.nouveauEtu(socketIOClient,etudiant);
+                NetHandler.nouveauEtu(etudiant);
             }
         });
         this.server.addEventListener(CHOIX, Matiere.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Matiere matiere, AckRequest ackRequest) throws Exception {
-               NetHandler.nouveauChoix(socketIOClient,matiere);
+               nouveauChoix(socketIOClient,matiere);
             }
         });
 
@@ -89,18 +96,20 @@ public class Serveur {
             @Override
             public void onData(SocketIOClient socketIOClient, ChoixUtilisateur choix, AckRequest ackRequest) throws Exception {
                 NetHandler.validation(socketIOClient, choix);
-                switch (choix.getNumSemestre()) {
-                    case 1:
-                        NetHandler.envoyerUE(socketIOClient, S2);
-                        break;
-                    case 2 :
-                        NetHandler.envoyerUE(socketIOClient,S3);
-                        break;
-                    case 3 :
-                        NetHandler.envoyerUE(socketIOClient,S4);
-                        break;
-                }
-            }
+                if(mapEtudiants.containsValue(socketIOClient)) {
+                    switch (choix.getNumSemestre()) {
+                        case 1:
+                            envoyerUE((socketIOClient), S2);
+
+                            break;
+                        case 2:
+                            envoyerUE((socketIOClient), S3);
+                            break;
+                        case 3:
+                            envoyerUE((socketIOClient), S4);
+                            break;
+                    }
+                } }
         });
     }
 
@@ -109,4 +118,20 @@ public class Serveur {
         server.start();
 
     }
+
+    public void envoyerUE(SocketIOClient socketIOClient,String path)
+    {
+        socketIOClient.sendEvent(UE,FileHandler.lireFichier(path));
+    }
+
+    public void envoiePrerequis(SocketIOClient socketIOClient) {
+        socketIOClient.sendEvent(PREREQUIS, FileHandler.constructionPrerequis(S1, S2, S3, S4, FICHIER_PREREQUIS));
+    }
+
+    public void nouveauChoix(SocketIOClient socketIOClient,Matiere matiere)
+    {
+        socketIOClient.sendEvent(CHOIX, matiere.toString());
+    }
+
+
 }
