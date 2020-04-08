@@ -52,6 +52,13 @@ public class RecapActivity extends AppCompatActivity {
         findViewById(R.id.buttonConfirmation).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+<<<<<<< HEAD
+=======
+                Connexion.CONNEXION.envoyerMessage2(Net.CONFIRMATION,new Identité(Connexion.CONNEXION.selectionUE.get(1).toString()));
+                Connexion.CONNEXION.envoyerMessage2(Net.CONFIRMATION,new Identité(Connexion.CONNEXION.selectionUE.get(2).toString()));
+                Connexion.CONNEXION.envoyerMessage2(Net.CONFIRMATION,new Identité(Connexion.CONNEXION.selectionUE.get(3).toString()));
+                Connexion.CONNEXION.envoyerMessage2(Net.CONFIRMATION,new Identité(Connexion.CONNEXION.selectionUE.get(4).toString()));
+>>>>>>> master
                 startActivity(new Intent(RecapActivity.this, HomeActivity.class));
             }
         });
