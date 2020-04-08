@@ -30,24 +30,26 @@ public enum Connexion {
     public void écouterRéseau() {
         try {
             mSocket = IO.socket("http://10.0.2.2:10101");
-            mSocket.on(Net.UE, new Emitter.Listener() {
-                @Override
-                public void call(Object... args) {
-                    ObjectMapper objectMapper = new ObjectMapper();
-                    HashMap<String, List<String>> map = null;
-                    try {
-                        map = objectMapper.readValue(args[0].toString(), new TypeReference<Map<String, List<String>>>() {
-                        });
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                    ListOfMaps.add(map);
-                    mainVue.receptionUE(map);
-                }
-            });
         } catch (URISyntaxException ex) {
             ex.printStackTrace();
         }
+
+        mSocket.on(Net.UE, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                ObjectMapper objectMapper = new ObjectMapper();
+                HashMap<String, List<String>> map = null;
+                try {
+                    map = objectMapper.readValue(args[0].toString(), new TypeReference<Map<String, List<String>>>() {
+                    });
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                ListOfMaps.add(map);
+                if(mainVue!=null)
+                mainVue.receptionUE(map);
+            }
+        });
 
         mSocket.on(Net.VALIDATION, new Emitter.Listener() {
             @Override

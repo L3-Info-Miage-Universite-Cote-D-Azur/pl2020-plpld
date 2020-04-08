@@ -1,7 +1,11 @@
 $Fondements 2
 Fondements 1
+$Fondements 3
+Fondements 2
 $Complements 2
 Complements 1
+$Découverte 2
+Decouverte 1
 $Découverte 3
 Decouverte 2
 $Découverte 4
