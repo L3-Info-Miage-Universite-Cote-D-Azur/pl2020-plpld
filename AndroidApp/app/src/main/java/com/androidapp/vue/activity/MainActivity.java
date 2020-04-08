@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     private MenuItem searchItem;
     private SearchManager searchManager;
     private android.widget.SearchView searchView;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -176,23 +177,26 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
 
 
     public void receptionUE(Map<String, List<String>> UE) {
+        Log.d("Liste des prérequis : ", Connexion.CONNEXION.MapPrerequis.toString());
         ListeUE.add(UE);
         receptionUE();
     }
 
-    public void receptionUE() {
-        Log.d("PREREQUIS", ListeUE.get(numSemestre-1).toString());
+    private void receptionUE() {
+        Log.d("Liste des UE du semestre : ", ListeUE.get(numSemestre-1).toString());
         graphe = new Graphe(Connexion.CONNEXION.MapPrerequis);
         List<String> selectionnable = graphe.selectionnable(UEvalidees()); //Utilisation du graphe pour connaître la liste des UE selectionnables ce semestre après avoir validée les UE renvoyées par la méthode UEvalidees
+        Log.d("Liste des UE du validées : ", UEvalidees().toString());
         for (String discipline : ListeUE.get(numSemestre-1).keySet()) {
+            List<String> List = ListeUE.get(numSemestre-1).get(discipline);
             List<String> Supression = new ArrayList<>(); //Liste des UE à supprimer
-            for (String UE : ListeUE.get(numSemestre-1).get(discipline)) {
+            for (String UE : List) {
                 if (!selectionnable.contains(UE))
                     Supression.add(UE);
             }
-            ListeUE.removeAll(Supression);
-            if(ListeUE.size()!=0)
-                UECollection.put(discipline, ListeUE.get(numSemestre-1).get(discipline));
+            List.removeAll(Supression);
+            if(List.size()!=0)
+                UECollection.put(discipline, List);
         }
         expList();
         }
