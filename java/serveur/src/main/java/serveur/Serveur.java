@@ -48,7 +48,7 @@ public class Serveur {
             public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) throws Exception {
                 mapEtudiants.put(id,socketIOClient); // On ajoute une nouvelle connexion
             //  NetHandler.nouveauClient(mapEtudiants.get(socketIOClient), id);
-                envoyerUE(mapEtudiants.get(id),S1);
+                //envoyerUE(mapEtudiants.get(id),S1);
                 envoiePrerequis(mapEtudiants.get(id));
 
 
@@ -64,8 +64,12 @@ public class Serveur {
         this.server.addEventListener(NV_CONNEXION, Identité.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité etudiant, AckRequest ackRequest) throws Exception {
-                if(NetHandler.nouvelleConnexion(etudiant))
+                if(NetHandler.nouvelleConnexion(etudiant)) {
                     socketIOClient.sendEvent(NV_CONNEXION, "true");
+                    envoyerUE(socketIOClient,S1);
+
+
+                }
                 else
                     socketIOClient.sendEvent(NV_CONNEXION, "false");
 
@@ -81,6 +85,7 @@ public class Serveur {
                 System.out.println(etudiant.getMotDePasse());
                 System.out.println(etudiant.getNumEtudiant());
 
+                envoyerUE(socketIOClient,S1);
 
                 NetHandler.nouveauEtu(etudiant);
             }
@@ -98,6 +103,7 @@ public class Serveur {
                 NetHandler.validation(socketIOClient, choix);
                 if(mapEtudiants.containsValue(socketIOClient)) {
                     switch (choix.getNumSemestre()) {
+
                         case 1:
                             envoyerUE((socketIOClient), S2);
 
@@ -111,6 +117,15 @@ public class Serveur {
                     }
                 } }
         });
+        this.server.addEventListener(ENVOIE_S1, Identité.class, new DataListener<>() {
+            @Override
+            public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) throws Exception {
+                System.out.println("UE A ETE ENVOYEE");
+                if(mapEtudiants.containsValue(socketIOClient))
+                     envoyerUE(socketIOClient, S1);
+            }
+        });
+
     }
 
 

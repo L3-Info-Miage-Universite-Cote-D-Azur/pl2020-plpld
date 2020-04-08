@@ -77,13 +77,15 @@ public class GestionnaireDeReseau {
      * @param SelectionUE Liste de matières
      */
     public void validation(SocketIOClient socketIOClient, ChoixUtilisateur SelectionUE) {
-        System.out.println("Votre sélection pour le semestre n°" + SelectionUE.getNumSemestre() + " (" + SelectionUE.toString() +") a été enregistrée.");
-        socketIOClient.sendEvent(VALIDATION, SelectionUE.toString());
-    }
+        if(SelectionUE != null)
+        {
+            socketIOClient.sendEvent(VALIDATION, SelectionUE.toString());
+          System.out.println("Votre sélection pour le semestre n°" + SelectionUE.getNumSemestre() + " (" + SelectionUE.toString() +") a été enregistrée.");
+    }}
 
     /**
      * Envoie la liste des UE au client
-     * @param socketIOClient
+     * @param socketIOClientgit
      * @param path Liste des UE
      */
    /* public void envoyerUE(String path) {

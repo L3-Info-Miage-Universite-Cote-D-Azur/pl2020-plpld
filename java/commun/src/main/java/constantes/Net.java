@@ -26,6 +26,8 @@ public class Net {
     public static final int INFORMATIQUE = 4;
     public static final int HISTOIRE = 5;
 
+    public static final String ENVOIE_S1 = "Envoie S1";
+
 
 
 }

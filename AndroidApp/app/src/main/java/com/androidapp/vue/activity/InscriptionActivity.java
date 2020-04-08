@@ -20,6 +20,7 @@ import java.util.regex.Pattern;
 
 import constantes.Net;
 import metier.Etudiant;
+import metier.Identité;
 
 import static constantes.Net.CHIMIE;
 import static constantes.Net.HISTOIRE;
@@ -76,7 +77,7 @@ public class InscriptionActivity extends AppCompatActivity {
                 if(saisieCorrecte) {
 
 
-                    Etudiant etu = new Etudiant(nom.getText().toString(), prénom.getText().toString(),
+                    final Etudiant etu = new Etudiant(nom.getText().toString(), prénom.getText().toString(),
                             numEtudiant.getText().toString(), LocalDate.of(Integer.parseInt(naissance[2]), Integer.parseInt(naissance[1]), Integer.parseInt(naissance[0])), mdp.getText().toString());
 
 
@@ -96,7 +97,6 @@ public class InscriptionActivity extends AppCompatActivity {
                                             break;
                                         case SVT :
                                             break;
-
                                         case PHYSIQUE :
                                             break;
                                         case CHIMIE :
@@ -120,6 +120,8 @@ public class InscriptionActivity extends AppCompatActivity {
                                     {
                                         case  0 :
                                             startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
+                                            Connexion.CONNEXION.envoyerMessage(Net.NV_ETU, etu);
+
                                             break;
 
                                         case 1 :
