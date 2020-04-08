@@ -12,4 +12,5 @@
     <string name="choix">Veuillez choisir un type de parcours</string>
     <string name="identifiant">Cette combinaison d\'identifiants n\'est pas valide ! Veuillez réessayer</string>
     <string name="ok">Ok</string>
+    <string name="ConnexionReussie">"Connexion réussie ! vous êtes connecté "</string>
 </resources>
