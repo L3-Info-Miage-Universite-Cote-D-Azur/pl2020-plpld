@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     private ExpandableListAdapter adapter;
     private  int numSemestre = 1;
     private Map<Integer, List<Matiere>> selectionUE = new HashMap<>();
-    private List<Map<String, List<String>>> ListePrerequis = new ArrayList<>();
+    private List<Map<String, List<String>>> ListeUE = new ArrayList<>();
 
     private Vue vue=this;
     private MenuItem searchItem;
@@ -157,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         if (semestre < numSemestre) {
             numSemestre = semestre;
             initVue();
+            receptionUE();
         }
         else if(semestre==numSemestre) {
             displayMsg("Vous êtes déjà en train d'effectuer votre selection pour le semestre n°" + semestre);
@@ -175,26 +176,24 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     }
 
 
-    public void receptionUE(Map<String, List<String>> Prerequis) {
-        ListePrerequis.add(Prerequis);
+    public void receptionUE(Map<String, List<String>> UE) {
+        ListeUE.add(UE);
         receptionUE();
     }
 
     public void receptionUE() {
-        Log.d("PREREQUIS", ListePrerequis.get(numSemestre-1).toString());
-        graphe = new Graphe(ListePrerequis.get(numSemestre-1));
-        //List<String> selectionnable = graphe.selectionnable(UEvalidees()); //Utilisation du graphe pour connaître la liste des UE selectionnables ce semestre après avoir validée les UE renvoyées par la méthode UEvalidees
-        for (String discipline : ListePrerequis.get(numSemestre-1).keySet()) {
-            List<String> ListeUE = ListePrerequis.get(numSemestre-1).get(discipline);
+        Log.d("PREREQUIS", ListeUE.get(numSemestre-1).toString());
+        graphe = new Graphe(Connexion.CONNEXION.MapPrerequis);
+        List<String> selectionnable = graphe.selectionnable(UEvalidees()); //Utilisation du graphe pour connaître la liste des UE selectionnables ce semestre après avoir validée les UE renvoyées par la méthode UEvalidees
+        for (String discipline : ListeUE.get(numSemestre-1).keySet()) {
             List<String> Supression = new ArrayList<>(); //Liste des UE à supprimer
-            /*
-            for (String UE : ListeUE) {
+            for (String UE : ListeUE.get(numSemestre-1).get(discipline)) {
                 if (!selectionnable.contains(UE))
                     Supression.add(UE);
             }
-            ListeUE.removeAll(Supression); */
+            ListeUE.removeAll(Supression);
             if(ListeUE.size()!=0)
-                UECollection.put(discipline, ListeUE);
+                UECollection.put(discipline, ListeUE.get(numSemestre-1).get(discipline));
         }
         expList();
         }

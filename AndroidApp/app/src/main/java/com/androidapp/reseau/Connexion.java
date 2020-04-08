@@ -25,7 +25,7 @@ public enum Connexion {
     private Boolean ConnexionAutorisee = false;
     private List<Map<String, List<String>>> ListOfMaps = new ArrayList<Map<String,List<String>>>();
     private Vue mainVue;
-    private Map<String,List<String>> MapPrerequis = new HashMap<>();
+    public Map<String,List<String>> MapPrerequis = new HashMap<>();
     private String s;
     public void écouterRéseau() {
         try {

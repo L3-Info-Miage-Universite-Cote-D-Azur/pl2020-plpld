@@ -37,9 +37,9 @@ public interface Vue {
     void retourArriere(int semestre);
 
     /**
-     *  Permet la gestion des pérequisrécéption depuis le serveur
-     * @param Prerequis la liste de prérequis envoyées par le serveur
+     *  Permet la gestion de la récéption des UE depuis le serveur
+     * @param UE la liste des UE envoyées par le serveur
      */
-    void receptionUE(Map<String, List<String>> Prerequis);
+    void receptionUE(Map<String, List<String>> UE);
 }
 
