@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
                             }
                             else {
                                 displayMsg("Erreur serveur");
+                                startActivity(new Intent(MainActivity.this, HomeActivity.class));
                             }
                         }
                     }, 6000);

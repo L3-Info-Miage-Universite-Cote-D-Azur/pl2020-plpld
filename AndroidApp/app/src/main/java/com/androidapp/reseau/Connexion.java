@@ -24,11 +24,10 @@ public enum Connexion {
     CONNEXION;
     private Socket mSocket;
     private Boolean ConnexionAutorisee = false;
-    private List<Map<String, List<String>>> ListOfMaps = new ArrayList<Map<String,List<String>>>();
     private Vue mainVue;
     public Map<String,List<String>> MapPrerequis = new HashMap<>();
     public Map<Integer, List<Matiere>> selectionUE = new HashMap<>();
-    private String s;
+
     public void écouterRéseau() {
         try {
             mSocket = IO.socket("http://10.0.2.2:10101");
@@ -44,11 +43,10 @@ public enum Connexion {
                 try {
                     map = objectMapper.readValue(args[0].toString(), new TypeReference<Map<String, List<String>>>() {
                     });
+                    mainVue.receptionUE(map);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-                ListOfMaps.add(map);
-                mainVue.receptionUE(map);
             }
         });
 
@@ -60,18 +58,10 @@ public enum Connexion {
                 try {
                     map = objectMapper.readValue(args[0].toString(), new TypeReference<Map<String, List<String>>>() {
                     });
+                    mainVue.receptionUE(map);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-                ListOfMaps.add(map);
-                mainVue.receptionUE(map);
-            }
-        });
-
-        mSocket.on(Net.VALIDATION, new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                s=(String)args[0];
             }
         });
 
