@@ -12,6 +12,7 @@ import constantes.Net;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+import metier.Matiere;
 import metier.ToJSON;
 
 import com.androidapp.controleur.*;
@@ -26,6 +27,7 @@ public enum Connexion {
     private List<Map<String, List<String>>> ListOfMaps = new ArrayList<Map<String,List<String>>>();
     private Vue mainVue;
     public Map<String,List<String>> MapPrerequis = new HashMap<>();
+    public Map<Integer, List<Matiere>> selectionUE = new HashMap<>();
     private String s;
     public void écouterRéseau() {
         try {

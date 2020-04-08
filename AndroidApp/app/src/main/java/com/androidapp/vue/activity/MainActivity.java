@@ -41,35 +41,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     private ExpandableListView expListView;
     private ExpandableListAdapter adapter;
     private  int numSemestre = 1;
-    private Map<Integer, List<Matiere>> selectionUE = new HashMap<>();
     private List<Map<String, List<String>>> ListeUE = new ArrayList<>();
-
-    private Vue vue=this;
-    private MenuItem searchItem;
-    private SearchManager searchManager;
-    private android.widget.SearchView searchView;
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        searchItem = menu.findItem(R.id.action_search);
-        searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-        searchView.setSearchableInfo
-                (searchManager.getSearchableInfo(getComponentName()));
-        searchView.setIconifiedByDefault(false);
-        searchView.setOnQueryTextListener(this);
-        searchView.setOnCloseListener(this);
-        searchView.requestFocus();
-
-        return true;
-    }
-
-
-    @Override
-    public void displayMsg(String str) {
-        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +56,11 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 
         initVue();
+    }
+
+    @Override
+    public void displayMsg(String str) {
+        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -142,22 +119,18 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
 
     @Override
     public void changementSemestre() {
-        selectionUE.put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
+        Connexion.CONNEXION.selectionUE.put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
         numSemestre++;
         initVue();
         if(numSemestre==4){
             bouton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    selectionUE.put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
+                    Connexion.CONNEXION.selectionUE.put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
                     Connexion.CONNEXION.envoyerMessage2(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
                     vue.displayMsg("Votre choix a été transmis au serveur");
-                    selectionUE.put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
+                    Connexion.CONNEXION.selectionUE.put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
                     Intent intent=new Intent(MainActivity.this, RecapActivity.class);
-                    intent.putExtra("matièresChoisisS1", selectionUE.get(1).toString());
-                    intent.putExtra("matièresChoisisS2", selectionUE.get(2).toString());
-                    intent.putExtra("matièresChoisisS3",  selectionUE.get(3).toString());
-                    intent.putExtra("matièresChoisisS4",  selectionUE.get(4).toString());
                     startActivity(intent);
                 }
             });
@@ -182,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     private List<Matiere> UEvalidees() {
         List<Matiere> validees = new ArrayList<>();
         for(int i=1; i<numSemestre; i++) {
-            validees.addAll(selectionUE.get(i));
+            validees.addAll(Connexion.CONNEXION.selectionUE.get(i));
         }
         return validees;
     }
@@ -200,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         if(Connexion.CONNEXION.MapPrerequis.size()==0)
             graphe=new Graphe(ListeUE.get(numSemestre-1));
         List<String> selectionnable = graphe.selectionnable(UEvalidees()); //Utilisation du graphe pour connaître la liste des UE selectionnables ce semestre après avoir validée les UE renvoyées par la méthode UEvalidees
-        Log.d("Liste des UE du validées : ", UEvalidees().toString());
+        Log.d("Liste des UE validées : ", UEvalidees().toString());
         for (String discipline : ListeUE.get(numSemestre-1).keySet()) {
             List<String> List = ListeUE.get(numSemestre-1).get(discipline);
             List<String> Supression = new ArrayList<>(); //Liste des UE à supprimer
@@ -244,6 +217,31 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         for (int i = 0; i < count; i++) {
             expListView.expandGroup(i);
         } //end for (int i = 0; i < count; i++)
+    }
+
+
+
+
+    //Pour la barre de recherche:
+    private Vue vue=this;
+    private MenuItem searchItem;
+    private SearchManager searchManager;
+    private android.widget.SearchView searchView;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        searchItem = menu.findItem(R.id.action_search);
+        searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setSearchableInfo
+                (searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconifiedByDefault(false);
+        searchView.setOnQueryTextListener(this);
+        searchView.setOnCloseListener(this);
+        searchView.requestFocus();
+
+        return true;
     }
 
     @Override

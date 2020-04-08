@@ -23,8 +23,6 @@ import metier.Identité;
 import metier.Matiere;
 
 public class RecapActivity extends AppCompatActivity {
-    private TextView semestre1,semestre2,semestre3,semestre4;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -54,47 +52,30 @@ public class RecapActivity extends AppCompatActivity {
         findViewById(R.id.buttonConfirmation).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                Connexion.CONNEXION.envoyerMessage2(Net.CONFIRMATION,new Identité(intent.getStringExtra("matièresChoisisS1")));
-                Connexion.CONNEXION.envoyerMessage2(Net.CONFIRMATION,new Identité(intent.getStringExtra("matièresChoisisS2")));
-                Connexion.CONNEXION.envoyerMessage2(Net.CONFIRMATION,new Identité(intent.getStringExtra("matièresChoisisS3")));
-                Connexion.CONNEXION.envoyerMessage2(Net.CONFIRMATION,new Identité(intent.getStringExtra("matièresChoisisS4")));
-               
                 startActivity(new Intent(RecapActivity.this, HomeActivity.class));
-
             }
         });
 
 
-        final String sname=intent.getStringExtra("matièresChoisisS1").replace(", ", "\n")
+        ((TextView) findViewById(R.id.semestre1)).setText(Connexion.CONNEXION.selectionUE.get(1).toString().replace(", ", "\n")
                 .replace("[", "")
                 .replace("]", "")
-                .trim();
-        final String sname2=intent.getStringExtra("matièresChoisisS2").replace(", ", "\n")
+                .trim());
+
+        ((TextView) findViewById(R.id.semestre2)).setText(Connexion.CONNEXION.selectionUE.get(2).toString().replace(", ", "\n")
                 .replace("[", "")
                 .replace("]", "")
-                .trim();
-        final String sname3=intent.getStringExtra("matièresChoisisS3").replace(", ", "\n")
+                .trim());
+
+        ((TextView) findViewById(R.id.semestre3)).setText(Connexion.CONNEXION.selectionUE.get(3).toString().replace(", ", "\n")
                 .replace("[", "")
                 .replace("]", "")
-                .trim();
-        final String sname4=intent.getStringExtra("matièresChoisisS4").replace(", ", "\n")
+                .trim());
+
+        ((TextView) findViewById(R.id.semestre4)).setText(Connexion.CONNEXION.selectionUE.get(4).toString().replace(", ", "\n")
                 .replace("[", "")
                 .replace("]", "")
-                .trim();
-
-        semestre1=(TextView)findViewById(R.id.semestre1);
-        semestre1.setText(sname);
-
-        semestre2=(TextView)findViewById(R.id.semestre2);
-        semestre2.setText(sname2);
-
-        semestre3=(TextView)findViewById(R.id.semestre3);
-        semestre3.setText(sname3);
-
-        semestre4=(TextView)findViewById(R.id.semestre4);
-        semestre4.setText(sname4);
+                .trim());
 
         findViewById(R.id.buttonPartager).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,22 +87,16 @@ public class RecapActivity extends AppCompatActivity {
                         " Bonjour  [Nom du destinataire] ! " +
                         "     \n\n Voici mon choix de parcours :" +
                         "        \n  \n  Semestre 1 \n \n" +
-                        sname  +
+                        Connexion.CONNEXION.selectionUE.get(1)  +
                                 "\n \n  Semestre 2 \n \n "
-                        + sname2 +
+                        + Connexion.CONNEXION.selectionUE.get(2) +
                                  "   \n  \n  Semestre 3 \n \n"
-                        +  sname3 +
+                        +  Connexion.CONNEXION.selectionUE.get(3) +
                              "   \n  \n  Semestre 4 \n \n"
-                        + sname4);
-
-
+                        + Connexion.CONNEXION.selectionUE.get(4));
                 sendIntent.setType("text/plain");
-
                 Intent shareIntent = Intent.createChooser(sendIntent, null);
                 startActivity(shareIntent);
-
-
-
             }});
 
         /**
