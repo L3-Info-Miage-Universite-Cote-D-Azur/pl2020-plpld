@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuItemCompat;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     private  int numSemestre = 1;
     private Map<Integer, List<Matiere>> selectionUE = new HashMap<>();
     private List<Map<String, List<String>>> ListeUE = new ArrayList<>();
+    private boolean reponseServeur = false;
 
     private Vue vue=this;
     private MenuItem searchItem;
@@ -74,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Connexion.CONNEXION.setMainVue(this);
-        Connexion.CONNEXION.envoyerMessage(Net.CONNEXION, new Identité("AndroidApp"));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -94,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     }
 
     private void initVue() {
+        final ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "","En attente d'une réponse serveur..." , true);
         autoconnect = getIntent().getBooleanExtra(AUTOCONNECT, true);
         UECollection = new HashMap<>();
         EcouteurDeBouton ecouteur = new EcouteurDeBouton(this);
@@ -109,18 +112,18 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0, numSemestre-1);
         stepsAdapter.addAll("View " + numSemestre);
         mListView.setAdapter(stepsAdapter);
-        /*
-        long tempsDepart=System.currentTimeMillis();
-        while(Connexion.CONNEXION.ListOfMaps.size()<numSemestre || Connexion.CONNEXION.MapPrerequis.size()==0) {
-            if(System.currentTimeMillis()-tempsDepart>6000) {
-                Log.d("Erreur", "Pas de réponse du serveur");
-                try {
-                    throw new ConnexionServeurException(6000, this, android.os.Process.myPid());
-                } catch (ConnexionServeurException e) {
-                    e.printStackTrace();
+        dialog.show();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                Log.d("Réponse serveur", String.valueOf(reponseServeur));
+                if(reponseServeur) {
+                    dialog.dismiss();
                 }
+                //Sinon écrire code en cas d'erreur connexion serveur
             }
-        } */
+        }, 3000);
+        reponseServeur = false;
     }
 
     @Override
@@ -185,6 +188,8 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     private void receptionUE() {
         Log.d("Liste des UE du semestre : ", ListeUE.get(numSemestre-1).toString());
         graphe = new Graphe(Connexion.CONNEXION.MapPrerequis);
+        if(Connexion.CONNEXION.MapPrerequis.size()==0)
+            graphe=new Graphe(ListeUE.get(numSemestre-1));
         List<String> selectionnable = graphe.selectionnable(UEvalidees()); //Utilisation du graphe pour connaître la liste des UE selectionnables ce semestre après avoir validée les UE renvoyées par la méthode UEvalidees
         Log.d("Liste des UE du validées : ", UEvalidees().toString());
         for (String discipline : ListeUE.get(numSemestre-1).keySet()) {
@@ -218,6 +223,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
                                     groupPosition, childPosition);
                             Toast.makeText(getBaseContext(), selected, Toast.LENGTH_LONG)
                                     .show();
+                            reponseServeur = true;
                             return true;
                         }
                     });

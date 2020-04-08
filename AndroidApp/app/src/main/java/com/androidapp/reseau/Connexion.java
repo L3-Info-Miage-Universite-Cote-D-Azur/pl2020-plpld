@@ -46,7 +46,6 @@ public enum Connexion {
                     ex.printStackTrace();
                 }
                 ListOfMaps.add(map);
-                if(mainVue!=null)
                 mainVue.receptionUE(map);
             }
         });

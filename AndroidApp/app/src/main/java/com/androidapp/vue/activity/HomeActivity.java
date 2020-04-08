@@ -47,6 +47,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         Connexion.CONNEXION.écouterRéseau();
+        Connexion.CONNEXION.envoyerMessage(Net.CONNEXION, new Identité("AndroidApp"));
         if (getIntent().hasExtra("Erreur")) {
             popupErreur(getIntent().getStringExtra("Erreur"));
         }
