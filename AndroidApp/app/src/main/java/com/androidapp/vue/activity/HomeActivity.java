@@ -117,7 +117,6 @@ public class HomeActivity extends AppCompatActivity {
                                     ConnexionDialogs connexionDialogs2 = new ConnexionDialogs();
                                     connexionDialogs2.onCreateDialog(savedInstanceState,HomeActivity.this,true);
 
-                                    Connexion.CONNEXION.envoyerMessage2(Net.ENVOIE_S1,new Identité("test"));
 
                                     Intent intent=new Intent(HomeActivity.this, MainActivity.class);
                                     startActivity(intent);

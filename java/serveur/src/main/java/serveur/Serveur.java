@@ -66,9 +66,6 @@ public class Serveur {
             public void onData(SocketIOClient socketIOClient, Identité etudiant, AckRequest ackRequest) throws Exception {
                 if(NetHandler.nouvelleConnexion(etudiant)) {
                     socketIOClient.sendEvent(NV_CONNEXION, "true");
-                    envoyerUE(socketIOClient,S1);
-
-
                 }
                 else
                     socketIOClient.sendEvent(NV_CONNEXION, "false");
@@ -84,8 +81,6 @@ public class Serveur {
 
                 System.out.println(etudiant.getMotDePasse());
                 System.out.println(etudiant.getNumEtudiant());
-
-                envoyerUE(socketIOClient,S1);
 
                 NetHandler.nouveauEtu(etudiant);
             }

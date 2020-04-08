@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     private  int numSemestre = 1;
     private Map<Integer, List<Matiere>> selectionUE = new HashMap<>();
     private List<Map<String, List<String>>> ListeUE = new ArrayList<>();
-    private boolean reponseServeur = false;
 
     private Vue vue=this;
     private MenuItem searchItem;
@@ -78,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         setContentView(R.layout.activity_main);
         Connexion.CONNEXION.setMainVue(this);
 
+        Connexion.CONNEXION.envoyerMessage2(Net.ENVOIE_S1,new Identité("test"));
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -113,17 +113,26 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         stepsAdapter.addAll("View " + numSemestre);
         mListView.setAdapter(stepsAdapter);
         dialog.show();
-        Handler handler = new Handler();
+        final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                Log.d("Réponse serveur", String.valueOf(reponseServeur));
-                if(reponseServeur) {
+                if(ListeUE.size()>=numSemestre) {
                     dialog.dismiss();
                 }
-                //Sinon écrire code en cas d'erreur connexion serveur
+                else {
+                    handler.postDelayed(new Runnable() {
+                        public void run() {
+                            if(ListeUE.size()>=numSemestre) {
+                                dialog.dismiss();
+                            }
+                            else {
+                                displayMsg("Erreur serveur");
+                            }
+                        }
+                    }, 6000);
+                }
             }
-        }, 3000);
-        reponseServeur = false;
+        }, 500);
     }
 
     @Override
@@ -223,7 +232,6 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
                                     groupPosition, childPosition);
                             Toast.makeText(getBaseContext(), selected, Toast.LENGTH_LONG)
                                     .show();
-                            reponseServeur = true;
                             return true;
                         }
                     });
