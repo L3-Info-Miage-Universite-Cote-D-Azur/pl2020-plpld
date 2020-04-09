@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import constantes.Net;
+import metier.Identité;
 import metier.ToJSON;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
@@ -45,11 +46,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 model.setSelected(!model.isSelected());
                 holder.view.setBackgroundColor(model.isSelected() ? Color.CYAN : Color.WHITE);
                 Log.d("POUR MONTRER", "on a cliqué sur " + model.getText());
-                try {
-                    Connexion.CONNEXION.envoyerMessage2(Net.CHOIX, (ToJSON) new JSONObject(model.getText()));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                Connexion.CONNEXION.envoyerMessage2(Net.CHOIX, new Identité(model.getText()));
             }
         });
     }

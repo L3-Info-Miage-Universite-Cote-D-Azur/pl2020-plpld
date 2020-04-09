@@ -82,10 +82,10 @@ public class Serveur {
             }
         });
 
-        this.server.addEventListener(CHOIX, String.class, new DataListener<>() {
+        this.server.addEventListener(CHOIX, Identité.class, new DataListener<>() {
             @Override
-            public void onData(SocketIOClient socketIOClient, String matiere, AckRequest ackRequest) {
-               nouveauChoix(socketIOClient,matiere);
+            public void onData(SocketIOClient socketIOClient, Identité matiere, AckRequest ackRequest) {
+               nouveauChoix(socketIOClient, matiere.getNom());
             }
         });
 
