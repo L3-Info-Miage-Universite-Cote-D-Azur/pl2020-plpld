@@ -14,6 +14,14 @@ $Disciplinaire 2
 Disciplinaire 1
 $Economie-Gestion S2
 Economie-Gestion S1
+$Electronique analogique avancée
+Electronique analogique
+$Système optimisé en énergie
+Electronique analogique
+$Système embarqué
+Electronique numerique - Bases
+$Architecture des processeurs
+Electronique numerique - Bases
 $Mécanique 2
 Mécanique 1
 $Enseignements fondamentaux à l'école primaire 2
