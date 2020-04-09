@@ -33,7 +33,7 @@ public class ServeurTest {
 
     @Test
     public void envoyerUETest() {
-        String semestreTest = "SemestreTest.txt";
+        String semestreTest = "SemestreTest.txt";           // Fichier de test
         serveur.envoyerUE(socketIOClient, semestreTest);
         Mockito.verify(socketIOClient).sendEvent(Mockito.eq(UE), Mockito.anyMap());
     }
@@ -44,10 +44,16 @@ public class ServeurTest {
         Mockito.verify(socketIOClient).sendEvent(Mockito.eq(PREREQUIS), Mockito.anyMap());
     }
 
+    @Test
+    public void envoiePredefini() {
+        String PredefiniTest = "PredefiniTest.txt";         // Fichier de test
+        serveur.envoiePredefini(socketIOClient, PredefiniTest);
+        Mockito.verify(socketIOClient).sendEvent(Mockito.eq(PREDEFINI), Mockito.anyMap());
+    }
 
     @Test
     public void nouveauChoixTest() {
-        serveur.nouveauChoix(socketIOClient, matiere);
+        serveur.nouveauChoix(socketIOClient, "Math");
         Mockito.verify(socketIOClient).sendEvent(Mockito.eq(CHOIX), Mockito.anyString());
     }
 }
