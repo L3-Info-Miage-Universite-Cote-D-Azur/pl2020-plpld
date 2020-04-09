@@ -56,6 +56,9 @@ public class SimulationParcoursTest {
 
         // Clique sur le bouton valider
         connexion = onView(withId(R.id.buttonValiderInscription)).perform(click());
+        
+        // Clique sur parcours personnaliser
+        connexion = onView(withText("Parcours personalisé")).perform(click());
 
         /////////////// Semestre 1 ///////////////
         clicGroupe = onView(
@@ -171,6 +174,7 @@ public class SimulationParcoursTest {
         /////////////// Semestre 4 ///////////////
         clicGroupe = onView(
                 withText("Mathématiques")).perform(click());
+        Thread.sleep(2000);
         clicMatiere = onView(
                 withText("Méthodes : approche discrète")).perform(click());
         clicMatiere = onView(
@@ -187,6 +191,7 @@ public class SimulationParcoursTest {
 
         clicGroupe = onView(
                 withText("Science de la Terre")).perform(click());
+        Thread.sleep(2000);
         clicMatiere = onView(
                 withText("Structure et dynamique de la terre")).perform(click());
         clicMatiere = onView(
