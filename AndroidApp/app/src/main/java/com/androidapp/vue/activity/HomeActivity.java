@@ -144,6 +144,12 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Connexion.CONNEXION.predefini = "Personnalisé";
+    }
+
     private void initMainActivityControls()
     {
         if(openInputPopupDialogButton == null)

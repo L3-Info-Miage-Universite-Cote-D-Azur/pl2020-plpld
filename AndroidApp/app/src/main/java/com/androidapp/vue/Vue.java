@@ -41,5 +41,11 @@ public interface Vue {
      * @param UE la liste des UE envoyées par le serveur
      */
     void receptionUE(Map<String, List<String>> UE);
+
+    /**
+     *  Permet la gestion de la récéption des parcours prédéfinis depuis le serveur
+     * @param Predefini la liste des parcours prédéfnis envoyées par le serveur
+     */
+    void receptionPredefini(Map<String, List<String>> Predefini);
 }
 

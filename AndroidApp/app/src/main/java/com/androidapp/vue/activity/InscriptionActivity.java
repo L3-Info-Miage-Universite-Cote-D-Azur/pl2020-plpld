@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,8 +14,6 @@ import com.androidapp.R;
 import com.androidapp.reseau.Connexion;
 
 import java.time.LocalDate;
-import java.time.Month;
-import java.util.regex.Pattern;
 
 import constantes.Net;
 import metier.Etudiant;
@@ -30,11 +27,8 @@ import static constantes.Net.PHYSIQUE;
 import static constantes.Net.SVT;
 
 public class InscriptionActivity extends AppCompatActivity {
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         Connexion.CONNEXION.démarrerÉcoute();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription);
@@ -44,14 +38,9 @@ public class InscriptionActivity extends AppCompatActivity {
         final EditText dateNaissance = findViewById(R.id.naissance);
         final EditText mdp = findViewById(R.id.mdp);
 
-
-
-
         findViewById(R.id.buttonValiderInscription).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 boolean saisieCorrecte = true;
                 if (nom.getText().toString().matches("[^a-zA-Z -]*")) {
                     nom.setError("Votre nom (écrit en lettre) est obligatoire");
@@ -75,40 +64,32 @@ public class InscriptionActivity extends AppCompatActivity {
                     saisieCorrecte=false;
                 }
                 if(saisieCorrecte) {
-
-
                     final Etudiant etu = new Etudiant(nom.getText().toString(), prénom.getText().toString(),
                             numEtudiant.getText().toString(), LocalDate.of(Integer.parseInt(naissance[2]), Integer.parseInt(naissance[1]), Integer.parseInt(naissance[0])), mdp.getText().toString());
-
-
-
                     Connexion.CONNEXION.envoyerMessage(Net.NV_ETU, etu);
-
-
 
                     final AlertDialog.Builder builder2 = new AlertDialog.Builder(InscriptionActivity.this);
                     builder2.setTitle(R.string.parcourspredefini)
                             .setItems(R.array.parcours, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-
                                     switch (which)
                                     {
                                         case MATHS:
-                                            break;
+                                            Connexion.CONNEXION.predefini = "Mathématiques";
                                         case SVT :
-                                            break;
+                                            Connexion.CONNEXION.predefini = "SVT";
                                         case PHYSIQUE :
-                                            break;
+                                            Connexion.CONNEXION.predefini = "Physique";
                                         case CHIMIE :
-                                            break;
+                                            Connexion.CONNEXION.predefini = "Chimie";
                                         case INFORMATIQUE :
-                                            break;
+                                            Connexion.CONNEXION.predefini = "Informatique";
                                         case HISTOIRE :
-                                            break;
+                                            Connexion.CONNEXION.predefini = "Histoire";
+                                        default:
+                                            startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
+                                            Connexion.CONNEXION.envoyerMessage(Net.NV_ETU, etu);
                                     }
-
-
-
                                 }});
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(InscriptionActivity.this);
@@ -121,9 +102,7 @@ public class InscriptionActivity extends AppCompatActivity {
                                         case  0 :
                                             startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
                                             Connexion.CONNEXION.envoyerMessage(Net.NV_ETU, etu);
-
                                             break;
-
                                         case 1 :
                                             builder2.create();
                                             builder2.show();
@@ -132,26 +111,8 @@ public class InscriptionActivity extends AppCompatActivity {
                                     }
                                 }
                             });
-
-
-
-
-
-
-
                     builder.create();
                     builder.show();
-
-
-
-
-
-
-
-
-
-
-
                   //  startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
                 }
                 }

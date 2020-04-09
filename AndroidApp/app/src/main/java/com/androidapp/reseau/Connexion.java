@@ -27,6 +27,8 @@ public enum Connexion {
     private Vue mainVue;
     public Map<String,List<String>> MapPrerequis = new HashMap<>();
     public Map<Integer, List<Matiere>> selectionUE = new HashMap<>();
+    public Map<String,List<String>> MapPredefini = new HashMap<>();
+    public String predefini = "Personnalisé";
 
     public void écouterRéseau() {
         try {
@@ -39,11 +41,11 @@ public enum Connexion {
             @Override
             public void call(Object... args) {
                 ObjectMapper objectMapper = new ObjectMapper();
-                HashMap<String, List<String>> map = null;
                 try {
-                    map = objectMapper.readValue(args[0].toString(), new TypeReference<Map<String, List<String>>>() {
+                    HashMap<String, List<String>> map = objectMapper.readValue(args[0].toString(), new TypeReference<Map<String, List<String>>>() {
                     });
                     mainVue.receptionUE(map);
+                    MapPredefini = map;
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -54,11 +56,24 @@ public enum Connexion {
             @Override
             public void call(Object... args) {
                 ObjectMapper objectMapper = new ObjectMapper();
-                HashMap<String, List<String>> map = null;
                 try {
-                    map = objectMapper.readValue(args[0].toString(), new TypeReference<Map<String, List<String>>>() {
+                    HashMap<String, List<String>> map = objectMapper.readValue(args[0].toString(), new TypeReference<Map<String, List<String>>>() {
                     });
                     mainVue.receptionUE(map);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
+        mSocket.on(Net.PREDEFINI, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                ObjectMapper objectMapper = new ObjectMapper();
+                try {
+                    HashMap<String, List<String>> map = objectMapper.readValue(args[0].toString(), new TypeReference<Map<String, List<String>>>() {
+                    });
+                    mainVue.receptionPredefini(map);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }

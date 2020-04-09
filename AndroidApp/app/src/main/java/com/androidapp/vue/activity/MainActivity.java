@@ -49,7 +49,10 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         setContentView(R.layout.activity_main);
         Connexion.CONNEXION.setMainVue(this);
 
-        Connexion.CONNEXION.envoyerMessage2(Net.ENVOIE_S1,new Identité("test"));
+        if(Connexion.CONNEXION.predefini.equals("Personnalisé") && !Connexion.CONNEXION.MapPredefini.containsKey(Connexion.CONNEXION.predefini))
+        Connexion.CONNEXION.envoyerMessage2(Net.ENVOIE_S1, new Identité("S1"));
+        else
+        Connexion.CONNEXION.envoyerMessage2(Net.ENVOIE_PREDEFINI, new Identité("PREDEFINI"));
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -212,6 +215,11 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
                 }
             });
         }
+
+    public void receptionPredefini(Map<String, List<String>> Predefini) {
+        Log.d("Parcours prédéfini séléctionné : ", Predefini.toString());
+        //Connexion.CONNEXION.predefini =  "Personnalisé";
+    }
 
     private void expandAll() {
         int count = adapter.getGroupCount();

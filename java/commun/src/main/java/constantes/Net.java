@@ -14,6 +14,8 @@ public class Net {
     public static final String S4= "S4.txt";
     public static final String FICHIER_PREREQUIS = "Prerequis.txt";
     public static final String PREREQUIS = "PREREQUIS";
+    public static final String FICHIER_PREDEFINI = "Parcours_predefinis.txt";
+    public static final String PREDEFINI = "PREDEFINI";
     public static final String NV_ETU = "Nouvel Etudiant";
     public static final String BD = "BD.txt";
     public static final String LOGS = "Logs";
@@ -27,9 +29,7 @@ public class Net {
     public static final int HISTOIRE = 5;
 
     public static final String ENVOIE_S1 = "Envoie S1";
-
-
-
+    public static final String ENVOIE_PREDEFINI = "Envoie parcours prédéfinis";
 }
 
 

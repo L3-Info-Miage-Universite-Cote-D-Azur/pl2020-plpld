@@ -2,8 +2,9 @@ $Informatique
 Bases de l'informatique
 Introduction à l'informatique par le web
 Structures de données et programmation C
-Bases de donnée
+Bases de données
 Outils formels pour l'informatique
+Algo & prog avec R
 $Mathématiques
 Fondements 1
 Méthodes : approche continue

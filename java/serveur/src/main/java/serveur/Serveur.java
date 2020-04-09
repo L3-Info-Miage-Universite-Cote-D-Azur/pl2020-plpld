@@ -45,13 +45,9 @@ public class Serveur {
         this.server = server;
         this.server.addEventListener(CONNEXION, Identité.class, new DataListener<>() {
             @Override
-            public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) throws Exception {
-                mapEtudiants.put(id,socketIOClient); // On ajoute une nouvelle connexion
-            //  NetHandler.nouveauClient(mapEtudiants.get(socketIOClient), id);
-                //envoyerUE(mapEtudiants.get(id),S1);
+            public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) {
+                mapEtudiants.put(id,socketIOClient);
                 envoiePrerequis(mapEtudiants.get(id));
-
-
             }});
 
         this.server.addEventListener(CONFIRMATION, Identité.class, new DataListener<Identité>() {
@@ -87,14 +83,14 @@ public class Serveur {
         });
         this.server.addEventListener(CHOIX, Matiere.class, new DataListener<>() {
             @Override
-            public void onData(SocketIOClient socketIOClient, Matiere matiere, AckRequest ackRequest) throws Exception {
+            public void onData(SocketIOClient socketIOClient, Matiere matiere, AckRequest ackRequest) {
                nouveauChoix(socketIOClient,matiere);
             }
         });
 
         this.server.addEventListener(VALIDATION, ChoixUtilisateur.class, new DataListener<>() {
             @Override
-            public void onData(SocketIOClient socketIOClient, ChoixUtilisateur choix, AckRequest ackRequest) throws Exception {
+            public void onData(SocketIOClient socketIOClient, ChoixUtilisateur choix, AckRequest ackRequest) {
                 NetHandler.validation(socketIOClient, choix);
                 if(mapEtudiants.containsValue(socketIOClient)) {
                     switch (choix.getNumSemestre()) {
@@ -112,21 +108,26 @@ public class Serveur {
                     }
                 } }
         });
+
         this.server.addEventListener(ENVOIE_S1, Identité.class, new DataListener<>() {
             @Override
-            public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) throws Exception {
-                System.out.println("UE A ETE ENVOYEE");
+            public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) {
                 if(mapEtudiants.containsValue(socketIOClient))
                      envoyerUE(socketIOClient, S1);
             }
         });
 
+        this.server.addEventListener(ENVOIE_PREDEFINI, Identité.class, new DataListener<>() {
+            @Override
+            public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) {
+                envoiePredefini(socketIOClient, FICHIER_PREDEFINI);
+            }
+        });
     }
 
 
     private void démarrer() {
         server.start();
-
     }
 
     public void envoyerUE(SocketIOClient socketIOClient,String path)
@@ -138,10 +139,18 @@ public class Serveur {
         socketIOClient.sendEvent(PREREQUIS, FileHandler.constructionPrerequis(S1, S2, S3, S4, FICHIER_PREREQUIS));
     }
 
+    /**
+     * Envoie le fichier des parcours prédéfinis au client
+     * @param socketIOClient
+     * @param path Fichier des prédéfinis
+     */
+    public void envoiePredefini(SocketIOClient socketIOClient,String path) {
+        System.out.println("Envoi du parcours prédéfini");
+        socketIOClient.sendEvent(PREDEFINI, FileHandler.lireFichier(path));
+    }
+
     public void nouveauChoix(SocketIOClient socketIOClient,Matiere matiere)
     {
         socketIOClient.sendEvent(CHOIX, matiere.toString());
     }
-
-
 }
