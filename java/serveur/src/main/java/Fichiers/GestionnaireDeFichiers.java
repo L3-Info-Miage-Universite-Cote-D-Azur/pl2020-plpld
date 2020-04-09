@@ -38,6 +38,42 @@ public class GestionnaireDeFichiers {
         return listeSemestre.getMapUE();
     }
 
+    public Map<String, Map<Integer, List<String>>> lireFichierPredefini(String fichier) {
+        //La map suivante contient en clé le nom du parcours prédéfini et en valeur une autre map ayant pour clé le num du semestre et pour valeur la liste des UE prédéfinis pour ce semestre
+        Map<String, Map<Integer, List<String>>> Predefini = new HashMap();
+        int numSemestre = 1;
+        BufferedReader br;
+        String previousKey = null;
+        try{
+            br = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(fichier),"UTF-8"));
+            String line = br.readLine();
+            while(line != null){
+                if(line.contains("$$")) {
+                    line = line.replace("$$","");
+                    numSemestre = Integer.parseInt(line);
+                    Predefini.get(previousKey).put(numSemestre, new ArrayList<>());
+                }
+                else if(line.contains("$")){
+                    line = line.replace("$","");
+                    previousKey = line;
+                    numSemestre = 1;
+                    Predefini.put(previousKey, new HashMap<>());
+                }
+                else{
+                    Predefini.get(previousKey).get(numSemestre).add(line);
+                }
+                line = br.readLine();
+            }
+            br.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Envoi de la map prédéfini " + Predefini.toString());
+        return Predefini;
+    }
+
     public HashMap<String, List<String>> constructionPrerequis(String S1, String S2, String S3, String S4, String Prerequis)
     {
         ListeSemestre listePrerequis = new ListeSemestre();

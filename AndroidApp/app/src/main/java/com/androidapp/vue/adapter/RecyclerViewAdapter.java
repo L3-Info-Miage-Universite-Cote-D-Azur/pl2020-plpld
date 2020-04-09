@@ -11,11 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.androidapp.R;
 import com.androidapp.reseau.Connexion;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import constantes.Net;
-import metier.Matiere;
 import metier.ToJSON;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
@@ -43,16 +45,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 model.setSelected(!model.isSelected());
                 holder.view.setBackgroundColor(model.isSelected() ? Color.CYAN : Color.WHITE);
                 Log.d("POUR MONTRER", "on a cliqué sur " + model.getText());
-                Connexion.CONNEXION.envoyerMessage(Net.CHOIX, (ToJSON) new Matiere(model.getText()));
+                try {
+                    Connexion.CONNEXION.envoyerMessage2(Net.CHOIX, (ToJSON) new JSONObject(model.getText()));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
 
-    public List<Matiere> selection() {
-        List<Matiere> Selection = new ArrayList<>();
+    public List<String> selection() {
+        List<String> Selection = new ArrayList<>();
         for (Model model : mModelList) {
             if (model.isSelected()) {
-                Selection.add(new Matiere(model.getText()));
+                Selection.add(model.getText());
             }
         }
         return Selection;

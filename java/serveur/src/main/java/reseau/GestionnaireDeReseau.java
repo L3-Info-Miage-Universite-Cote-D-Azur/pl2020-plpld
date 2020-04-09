@@ -5,7 +5,6 @@ import com.corundumstudio.socketio.SocketIOClient;
 import metier.ChoixUtilisateur;
 import metier.Etudiant;
 import metier.Identité;
-import metier.Matiere;
 
 
 import java.io.File;
@@ -32,8 +31,8 @@ public class GestionnaireDeReseau {
     }
 
 
-    public void nouveauChoix(Identité id,Matiere matiere) {
-        System.out.println(matiere.toString());
+    public void nouveauChoix(Identité id,String matiere) {
+        System.out.println(matiere);
         //socketIOClient.sendEvent(CHOIX, matiere.toString());
     }
 

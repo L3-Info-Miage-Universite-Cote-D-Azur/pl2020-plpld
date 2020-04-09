@@ -20,7 +20,6 @@ import java.util.List;
 
 import constantes.Net;
 import metier.Identité;
-import metier.Matiere;
 
 public class RecapActivity extends AppCompatActivity {
     @Override

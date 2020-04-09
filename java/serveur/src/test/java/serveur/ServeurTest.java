@@ -4,7 +4,6 @@ import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import metier.ChoixUtilisateur;
 import metier.Identité;
-import metier.Matiere;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -17,7 +16,7 @@ public class ServeurTest {
 
     SocketIOClient socketIOClient;
 
-    Matiere matiere;
+    String matiere;
     ChoixUtilisateur choixUtilisateur;
     Identité identité;
 
@@ -26,7 +25,6 @@ public class ServeurTest {
         serveur = new Serveur(Mockito.mock(SocketIOServer.class));
         serveur = Mockito.spy(serveur);
         socketIOClient = Mockito.mock(SocketIOClient.class);
-        matiere = Mockito.mock(Matiere.class);
         choixUtilisateur = Mockito.mock(ChoixUtilisateur.class);
         identité = Mockito.mock(Identité.class);
     }

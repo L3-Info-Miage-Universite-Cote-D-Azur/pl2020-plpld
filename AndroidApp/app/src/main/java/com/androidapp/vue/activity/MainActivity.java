@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Selection;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
                 else {
                     handler.postDelayed(new Runnable() {
                         public void run() {
-                            if(ListeUE.size()>=numSemestre) {
+                            if(ListeUE.size()>=numSemestre || Connexion.CONNEXION.selectionUE.containsKey(numSemestre)) {
                                 dialog.dismiss();
                             }
                             else {
@@ -117,8 +118,8 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     }
 
     @Override
-    public List<Matiere> selection() {
-        return adapter.selection(new Matiere("S" + numSemestre));
+    public List<String> selection() {
+        return adapter.selection("S" + numSemestre);
     }
 
     @Override
@@ -134,8 +135,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
                     Connexion.CONNEXION.envoyerMessage2(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
                     vue.displayMsg("Votre choix a été transmis au serveur");
                     Connexion.CONNEXION.selectionUE.put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
-                    Intent intent=new Intent(MainActivity.this, RecapActivity.class);
-                    startActivity(intent);
+                    startActivity(new Intent(MainActivity.this, RecapActivity.class));
                 }
             });
         }
@@ -156,8 +156,8 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         }
     }
 
-    private List<Matiere> UEvalidees() {
-        List<Matiere> validees = new ArrayList<>();
+    private List<String> UEvalidees() {
+        List<String> validees = new ArrayList<>();
         for(int i=1; i<numSemestre; i++) {
             validees.addAll(Connexion.CONNEXION.selectionUE.get(i));
         }
@@ -216,9 +216,23 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
             });
         }
 
-    public void receptionPredefini(Map<String, List<String>> Predefini) {
-        Log.d("Parcours prédéfini séléctionné : ", Predefini.toString());
-        //Connexion.CONNEXION.predefini =  "Personnalisé";
+    public void receptionPredefini(Map<String, Map<Integer, List<String>>> Predefini) {
+        Log.d("Parcours prédéfini séléctionné : ", Connexion.CONNEXION.predefini);
+        Log.d("Liste des parcours prédéfinis : ", Predefini.toString());
+        if(!Connexion.CONNEXION.MapPredefini.containsKey(Connexion.CONNEXION.predefini)) {
+            Log.d("Erreur", "Chargement du parcours séléctionné introuvable.");
+            Connexion.CONNEXION.envoyerMessage2(Net.ENVOIE_S1, new Identité("S1"));
+        }
+        else {
+            for (int i = 1; i <= 4; i++) {
+                numSemestre = i;
+                if (Connexion.CONNEXION.MapPredefini.get(Connexion.CONNEXION.predefini).containsKey(i))
+                    Connexion.CONNEXION.selectionUE.put(i, Connexion.CONNEXION.MapPredefini.get(Connexion.CONNEXION.predefini).get(i));
+                if(i==4)
+                    startActivity(new Intent(MainActivity.this, RecapActivity.class));
+            }
+        }
+        Connexion.CONNEXION.predefini =  "Personnalisé";
     }
 
     private void expandAll() {

@@ -76,27 +76,31 @@ public class InscriptionActivity extends AppCompatActivity {
                                     {
                                         case MATHS:
                                             Connexion.CONNEXION.predefini = "Mathématiques";
+                                            break;
                                         case SVT :
                                             Connexion.CONNEXION.predefini = "SVT";
+                                            break;
                                         case PHYSIQUE :
                                             Connexion.CONNEXION.predefini = "Physique";
+                                            break;
                                         case CHIMIE :
                                             Connexion.CONNEXION.predefini = "Chimie";
+                                            break;
                                         case INFORMATIQUE :
                                             Connexion.CONNEXION.predefini = "Informatique";
+                                            break;
                                         case HISTOIRE :
                                             Connexion.CONNEXION.predefini = "Histoire";
-                                        default:
-                                            startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
-                                            Connexion.CONNEXION.envoyerMessage(Net.NV_ETU, etu);
+                                            break;
                                     }
+                                    startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
+                                    Connexion.CONNEXION.envoyerMessage(Net.NV_ETU, etu);
                                 }});
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(InscriptionActivity.this);
                     builder.setTitle(R.string.choix)
                             .setItems(R.array.choix, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-
                                     switch(which)
                                     {
                                         case  0 :
@@ -107,7 +111,6 @@ public class InscriptionActivity extends AppCompatActivity {
                                             builder2.create();
                                             builder2.show();
                                             break;
-
                                     }
                                 }
                             });

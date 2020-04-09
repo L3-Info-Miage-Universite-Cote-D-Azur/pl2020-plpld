@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidapp.R;
 
-import metier.Matiere;
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
@@ -139,8 +138,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return mModelList;
     }
 
-    public List<Matiere> selection(Matiere numSemestre) {
-        List<Matiere> Selection = new ArrayList<Matiere>();
+    public List<String> selection(String numSemestre) {
+        List<String> Selection = new ArrayList<String>();
         Selection.add(numSemestre);
         for(Map.Entry<Integer, RecyclerViewAdapter> R: AdapterCollection.entrySet()) {
             Selection.addAll(R.getValue().selection());

@@ -52,10 +52,10 @@ public class Graphe {
     }
 
     /** @return la liste des UE séléctionnables après avoir validé la liste d'UE passée en paramètre */
-    public List<String> selectionnable(List<Matiere> UE) {
+    public List<String> selectionnable(List<String> UE) {
         List<String> L = new ArrayList<>();
-        for(Matiere M: UE) {
-            L.add(M.getNom());
+        for(String M: UE) {
+            L.add(M);
         }
         List<String> UEValidées = L;
         HashSet<String> selectionnable = new HashSet<>();

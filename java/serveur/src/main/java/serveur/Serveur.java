@@ -81,9 +81,10 @@ public class Serveur {
                 NetHandler.nouveauEtu(etudiant);
             }
         });
-        this.server.addEventListener(CHOIX, Matiere.class, new DataListener<>() {
+
+        this.server.addEventListener(CHOIX, String.class, new DataListener<>() {
             @Override
-            public void onData(SocketIOClient socketIOClient, Matiere matiere, AckRequest ackRequest) {
+            public void onData(SocketIOClient socketIOClient, String matiere, AckRequest ackRequest) {
                nouveauChoix(socketIOClient,matiere);
             }
         });
@@ -94,7 +95,6 @@ public class Serveur {
                 NetHandler.validation(socketIOClient, choix);
                 if(mapEtudiants.containsValue(socketIOClient)) {
                     switch (choix.getNumSemestre()) {
-
                         case 1:
                             envoyerUE((socketIOClient), S2);
 
@@ -109,9 +109,9 @@ public class Serveur {
                 } }
         });
 
-        this.server.addEventListener(ENVOIE_S1, Identité.class, new DataListener<>() {
+        this.server.addEventListener(ENVOIE_S1, String.class, new DataListener<>() {
             @Override
-            public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) {
+            public void onData(SocketIOClient socketIOClient, String matiere, AckRequest ackRequest) {
                 if(mapEtudiants.containsValue(socketIOClient))
                      envoyerUE(socketIOClient, S1);
             }
@@ -146,10 +146,10 @@ public class Serveur {
      */
     public void envoiePredefini(SocketIOClient socketIOClient,String path) {
         System.out.println("Envoi du parcours prédéfini");
-        socketIOClient.sendEvent(PREDEFINI, FileHandler.lireFichier(path));
+        socketIOClient.sendEvent(PREDEFINI, FileHandler.lireFichierPredefini(path));
     }
 
-    public void nouveauChoix(SocketIOClient socketIOClient,Matiere matiere)
+    public void nouveauChoix(SocketIOClient socketIOClient, String matiere)
     {
         socketIOClient.sendEvent(CHOIX, matiere.toString());
     }

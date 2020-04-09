@@ -9,7 +9,6 @@ import java.util.List;
  * Value (List<String>) : Liste des matières correspondant a son domaine (Bases de linfo, ...)
  */
 public class ListeSemestre {
-
     /**
      * @return HashMap
      */

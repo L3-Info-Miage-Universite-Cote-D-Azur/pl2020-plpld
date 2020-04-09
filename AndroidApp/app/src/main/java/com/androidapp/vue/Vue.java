@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import metier.Matiere;
-
 /**
  *  Vue de l'écran
  *
@@ -23,7 +21,7 @@ public interface Vue {
     /**
      *  Retourne la selection des UEs de l'utilisateur
      */
-    List<Matiere> selection();
+    List<String> selection();
 
     /**
      *  Permet la transition d'un semestre à un autre
@@ -46,6 +44,6 @@ public interface Vue {
      *  Permet la gestion de la récéption des parcours prédéfinis depuis le serveur
      * @param Predefini la liste des parcours prédéfnis envoyées par le serveur
      */
-    void receptionPredefini(Map<String, List<String>> Predefini);
+    void receptionPredefini(Map<String, Map<Integer, List<String>>> Predefini);
 }
 

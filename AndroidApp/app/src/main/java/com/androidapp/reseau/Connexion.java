@@ -12,7 +12,6 @@ import constantes.Net;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
-import metier.Matiere;
 import metier.ToJSON;
 
 import com.androidapp.controleur.*;
@@ -26,8 +25,8 @@ public enum Connexion {
     private Boolean ConnexionAutorisee = false;
     private Vue mainVue;
     public Map<String,List<String>> MapPrerequis = new HashMap<>();
-    public Map<Integer, List<Matiere>> selectionUE = new HashMap<>();
-    public Map<String,List<String>> MapPredefini = new HashMap<>();
+    public Map<Integer, List<String>> selectionUE = new HashMap<>();
+    public Map<String, Map<Integer, List<String>>> MapPredefini = new HashMap<>();
     public String predefini = "Personnalisé";
 
     public void écouterRéseau() {
@@ -45,7 +44,6 @@ public enum Connexion {
                     HashMap<String, List<String>> map = objectMapper.readValue(args[0].toString(), new TypeReference<Map<String, List<String>>>() {
                     });
                     mainVue.receptionUE(map);
-                    MapPredefini = map;
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -71,8 +69,9 @@ public enum Connexion {
             public void call(Object... args) {
                 ObjectMapper objectMapper = new ObjectMapper();
                 try {
-                    HashMap<String, List<String>> map = objectMapper.readValue(args[0].toString(), new TypeReference<Map<String, List<String>>>() {
+                    Map<String, Map<Integer, List<String>>> map = objectMapper.readValue(args[0].toString(), new TypeReference<Map<String, Map<Integer, List<String>>>>() {
                     });
+                    MapPredefini = map;
                     mainVue.receptionPredefini(map);
                 } catch (IOException ex) {
                     ex.printStackTrace();

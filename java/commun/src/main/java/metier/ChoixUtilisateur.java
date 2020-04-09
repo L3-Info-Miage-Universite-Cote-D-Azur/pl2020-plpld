@@ -12,16 +12,17 @@ import java.util.List;
  *  Objet convertible en JSON pour que le serveur puisse recevoir l'information
  */
 public class ChoixUtilisateur implements ToJSON {
-    private List<Matiere> Choix;
+    private List<String> Choix;
     private int numSemestre;
 
+
+    public ChoixUtilisateur(){};
     /**
      *  Constructeur prenant en paramètre une liste de matière.
      *  Le champ Choix sera initialisé avec ce paramètre
      * @param UserChoice  Liste de matière
      */
-    public ChoixUtilisateur(){};
-    public ChoixUtilisateur(List<Matiere> UserChoice) {
+    public ChoixUtilisateur(List<String> UserChoice) {
         Choix = UserChoice;
     }
 
@@ -30,11 +31,11 @@ public class ChoixUtilisateur implements ToJSON {
      *  La chaine de caractère est analysée puis décomposée en UE afin de créer une nouvelle liste
      */
     public ChoixUtilisateur(String S) {
-        Choix = new ArrayList<Matiere>();
+        Choix = new ArrayList<String>();
         S = S.replace("[", "");
         S = S.replace("]", "");
         for(String UE: new ArrayList<String>(Arrays.asList(S.split(",")))) {
-            Choix.add(new Matiere(UE));
+            Choix.add(UE);
         };
         numSemestre();
     }
@@ -43,7 +44,7 @@ public class ChoixUtilisateur implements ToJSON {
      *  Retourne la liste des matières sélectionnées par l'utilisateur
      * @return liste des matieres avec numéro de semestre
      */
-    public List<Matiere> getChoix() {
+    public List<String> getChoix() {
         return Choix;
     }
 
@@ -51,7 +52,7 @@ public class ChoixUtilisateur implements ToJSON {
      *  Retourne la liste des matières sélectionnées par l'utilisateur
      * @return liste des matieres sans numéro de semestre
      */
-    public List<Matiere> getChoixS() {
+    public List<String> getChoixS() {
         return Choix.subList(1, Choix.size());
     }
 
@@ -79,7 +80,7 @@ public class ChoixUtilisateur implements ToJSON {
      * Permet d'obtenir le numero du semestre correspondant a la liste des matieres
      */
     private void numSemestre() {
-        numSemestre = Choix.get(0).getNom().charAt(1)-48;
+        numSemestre = Choix.get(0).charAt(1)-48;
         Choix.remove(0);
     }
 

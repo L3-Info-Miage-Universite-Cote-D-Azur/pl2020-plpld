@@ -13,12 +13,12 @@ public class ChoixUtilisateurTest {
     private ChoixUtilisateur choixChimie;
     private ChoixUtilisateur choixListe;
 
-    private Matiere matiereMath;
-    private Matiere matiereInfo;
-    private Matiere matierePhysique;
-    private Matiere matiereChimie;
+    private String matiereMath;
+    private String matiereInfo;
+    private String matierePhysique;
+    private String matiereChimie;
 
-    private ArrayList<Matiere> liteMatiere;
+    private ArrayList<String> liteMatiere;
 
     @Before
     public void setup() {
@@ -28,12 +28,12 @@ public class ChoixUtilisateurTest {
         choixPhysique = new ChoixUtilisateur("Physique");
         choixChimie = new ChoixUtilisateur("Chimie");
 
-        matiereMath = new Matiere("Mathématiques");
-        matiereInfo = new Matiere("Informatique");
-        matierePhysique = new Matiere("Physique");
-        matiereChimie = new Matiere("Chimie");
+        matiereMath = new String("Mathématiques");
+        matiereInfo = new String("Informatique");
+        matierePhysique = new String("Physique");
+        matiereChimie = new String("Chimie");
 
-        liteMatiere = new ArrayList<Matiere>();
+        liteMatiere = new ArrayList<String>();
         liteMatiere.add(matiereMath);
         liteMatiere.add(matiereInfo);
         liteMatiere.add(matierePhysique);
@@ -46,16 +46,16 @@ public class ChoixUtilisateurTest {
     @Test
     public void testString() {
         //Test d'égalité sur un seul choix de matière
-        assertEquals(choixMath.getChoix().get(0).getNom(), matiereMath.getNom());
-        assertEquals(choixInfo.getChoix().get(0).getNom(), matiereInfo.getNom());
-        assertEquals(choixPhysique.getChoix().get(0).getNom(), matierePhysique.getNom());
-        assertEquals(choixChimie.getChoix().get(0).getNom(), matiereChimie.getNom());
+        assertEquals(choixMath.getChoix().get(0), matiereMath);
+        assertEquals(choixInfo.getChoix().get(0), matiereInfo);
+        assertEquals(choixPhysique.getChoix().get(0), matierePhysique);
+        assertEquals(choixChimie.getChoix().get(0), matiereChimie);
 
         //Test d'égalité sur plusieurs choix de matières (liste des matière choixListe)
-        assertEquals(choixListe.getChoix().get(0).getNom(), "Mathématiques");
-        assertEquals(choixListe.getChoix().get(1).getNom(), "Informatique");
-        assertEquals(choixListe.getChoix().get(2).getNom(), "Physique");
-        assertEquals(choixListe.getChoix().get(3).getNom(), "Chimie");
+        assertEquals(choixListe.getChoix().get(0), "Mathématiques");
+        assertEquals(choixListe.getChoix().get(1), "Informatique");
+        assertEquals(choixListe.getChoix().get(2), "Physique");
+        assertEquals(choixListe.getChoix().get(3), "Chimie");
 
         //choixListe.toString() renvoie une la liste des matières
         assertEquals(choixListe.toString(), "[Mathématiques, Informatique, Physique, Chimie]");
