@@ -3,12 +3,12 @@ package Fichiers;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class FichierTest {
@@ -16,9 +16,11 @@ public class FichierTest {
     private GestionnaireDeFichiers fichiers;
     private HashMap<String, List<String>> hashMapS1;
     private HashMap<String, List<String>> hashMapPrerequis;
+    private Map<String, Map<Integer, List<String>>> mapPredefini;
     private HashMap<String, List<String>> constructionPrerequis;
     private String semestreTest;
     private String prerequisTest;
+    private String predefiniTest;
     private String baseDonnee;
     private String ecrireFichierTest;
 
@@ -27,6 +29,7 @@ public class FichierTest {
         fichiers = new GestionnaireDeFichiers();
         semestreTest = "SemestreTest.txt";
         prerequisTest = "PrerequisTest.txt";
+        predefiniTest = "PredefiniTest.txt";
         baseDonnee = "src/test/resources/BaseDonneeTest.txt";
         ecrireFichierTest = "src/test/resources/EcrireFichierTest.txt";
     }
@@ -92,6 +95,40 @@ public class FichierTest {
         assertEquals(hashMapPrerequis.get("Economie-Gestion S2").get(0), "Economie-Gestion S1");
         assertEquals(hashMapPrerequis.get("Mécanique 2").get(0), "Mécanique 1");
         assertEquals(hashMapPrerequis.get("Enseignements fondamentaux à l'école primaire 2").get(0), "Enseignements fondamentaux à l'école primaire 1");
+    }
+
+
+    @Test
+    public void lireFichierPredefini() {
+        // On vérifie un fichier type parcours predefini
+        mapPredefini = fichiers.lireFichierPredefini(predefiniTest);
+
+        // La taille est 1 car il y a que le parcours d'informatique
+        assertEquals(mapPredefini.size(), 1);
+
+        // On vérifie que le parcours est bien Informatique
+        assertTrue(mapPredefini.containsKey("Informatique"));
+
+        // Semestre 1
+        assertEquals(mapPredefini.get("Informatique").get(1).get(0), "Bases de l'informatique");
+        assertEquals(mapPredefini.get("Informatique").get(1).get(1), "Introduction à l'informatique par le web");
+
+        // Semestre 2
+        assertEquals(mapPredefini.get("Informatique").get(2).get(0), "System 1. Unix et progra shell");
+        assertEquals(mapPredefini.get("Informatique").get(2).get(1), "Programmation impérative");
+
+        // Semestre 3
+        assertEquals(mapPredefini.get("Informatique").get(3).get(0), "Structures de données et programmation C");
+        assertEquals(mapPredefini.get("Informatique").get(3).get(1), "Bases de données");
+        assertEquals(mapPredefini.get("Informatique").get(3).get(2), "Outils formels pour l'informatique");
+        assertEquals(mapPredefini.get("Informatique").get(3).get(3), "Algo & prog avec R");
+
+        // Semestre 4
+        assertEquals(mapPredefini.get("Informatique").get(4).get(0), "Algorithmique 1");
+        assertEquals(mapPredefini.get("Informatique").get(4).get(1), "Réseaux et télécommunication");
+        assertEquals(mapPredefini.get("Informatique").get(4).get(2), "Systèmes 2 : Mécanisme internes des systèmes d'exploitation");
+        assertEquals(mapPredefini.get("Informatique").get(4).get(3), "Introduction aux systèmes intelligents");
+        assertEquals(mapPredefini.get("Informatique").get(4).get(4), "Technologie du Web");
     }
 
 

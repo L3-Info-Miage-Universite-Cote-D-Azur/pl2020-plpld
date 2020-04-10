@@ -13,10 +13,9 @@ import static constantes.Net.*;
 @RunWith(MockitoJUnitRunner.class)
 public class ReseauTest {
 
-    GestionnaireDeReseau gestionnaireResau;
-    SocketIOClient socketIOClient;
-
-    ChoixUtilisateur choixUtilisateur;
+    private GestionnaireDeReseau gestionnaireResau;
+    private SocketIOClient socketIOClient;
+    private ChoixUtilisateur choixUtilisateur;
 
     @Before
     public void setup() {
@@ -25,7 +24,6 @@ public class ReseauTest {
         socketIOClient = Mockito.mock(SocketIOClient.class);
         choixUtilisateur = Mockito.mock(ChoixUtilisateur.class);
     }
-
 
 
     @Test

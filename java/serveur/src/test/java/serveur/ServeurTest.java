@@ -2,33 +2,23 @@ package serveur;
 
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
-import metier.ChoixUtilisateur;
-import metier.Identité;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-
 import static constantes.Net.*;
+
 
 public class ServeurTest {
 
-    Serveur serveur;
-
-    SocketIOClient socketIOClient;
-
-    String matiere;
-    ChoixUtilisateur choixUtilisateur;
-    Identité identité;
+    private Serveur serveur;
+    private SocketIOClient socketIOClient;
 
     @Before
     public void setup() {
         serveur = new Serveur(Mockito.mock(SocketIOServer.class));
         serveur = Mockito.spy(serveur);
         socketIOClient = Mockito.mock(SocketIOClient.class);
-        choixUtilisateur = Mockito.mock(ChoixUtilisateur.class);
-        identité = Mockito.mock(Identité.class);
     }
-
 
 
     @Test

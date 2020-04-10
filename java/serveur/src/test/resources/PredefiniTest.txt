@@ -1,0 +1,18 @@
+$Informatique
+$$1
+Bases de l'informatique
+Introduction à l'informatique par le web
+$$2
+System 1. Unix et progra shell
+Programmation impérative
+$$3
+Structures de données et programmation C
+Bases de données
+Outils formels pour l'informatique
+Algo & prog avec R
+$$4
+Algorithmique 1
+Réseaux et télécommunication
+Systèmes 2 : Mécanisme internes des systèmes d'exploitation
+Introduction aux systèmes intelligents
+Technologie du Web
