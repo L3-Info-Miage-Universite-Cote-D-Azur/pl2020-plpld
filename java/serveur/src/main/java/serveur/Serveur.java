@@ -25,30 +25,11 @@ public class Serveur {
     public void setNetHandler(GestionnaireDeReseau netHandler) {
         NetHandler = netHandler;
     }
-
-
-
-
-
     private GestionnaireDeReseau NetHandler;
     private Map<Identité,SocketIOClient> mapEtudiants = new HashMap<>();
 
-    public static final void main(String [] args) {
-        // config  com.corundumstudio.socketio.Configuration;
-        Configuration config = new Configuration();
-        config.setHostname("127.0.0.1");
-        config.setPort(10101);
-        // creation du serveur
-        SocketIOServer server = new SocketIOServer(config);
-        GestionnaireDeReseau NetHandler = new GestionnaireDeReseau();
-        Serveur s = new Serveur(server);
-        s.démarrer();
-    }
-
-
     public Serveur(SocketIOServer server) {
         this.server = server;
-        this.NetHandler = NetHandler;
         this.server.addEventListener(CONNEXION, Identité.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) {
