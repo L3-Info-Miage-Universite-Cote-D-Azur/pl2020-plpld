@@ -16,3 +16,10 @@ Réseaux et télécommunication
 Systèmes 2 : Mécanisme internes des systèmes d'exploitation
 Introduction aux systèmes intelligents
 Technologie du Web
+$Informatique (L1)
+$$1
+Bases de l'informatique
+Introduction à l'informatique par le web
+$$2
+System 1. Unix et progra shell
+Programmation impérative

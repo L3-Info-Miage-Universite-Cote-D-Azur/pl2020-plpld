@@ -49,17 +49,15 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Connexion.CONNEXION.setMainVue(this);
-
-        if(Connexion.CONNEXION.predefini.equals("Personnalisé") && !Connexion.CONNEXION.MapPredefini.containsKey(Connexion.CONNEXION.predefini))
         Connexion.CONNEXION.envoyerMessage2(Net.ENVOIE_S1, new Identité("S1"));
-        else
-        Connexion.CONNEXION.envoyerMessage2(Net.ENVOIE_PREDEFINI, new Identité("PREDEFINI"));
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 
         initVue();
+        if(!Connexion.CONNEXION.predefini.equals("Personnalisé") && !Connexion.CONNEXION.MapPredefini.containsKey(Connexion.CONNEXION.predefini))
+        Connexion.CONNEXION.envoyerMessage2(Net.ENVOIE_PREDEFINI, new Identité("PREDEFINI"));
     }
 
     @Override
@@ -95,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         mListView.setAdapter(stepsAdapter);
         dialog.show();
         final Handler handler = new Handler();
+        Log.d("ListeUESize", String.valueOf(ListeUE.size()));
         handler.postDelayed(new Runnable() {
             public void run() {
                 if(ListeUE.size()>=numSemestre) {
@@ -167,6 +166,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
 
     public void receptionUE(Map<String, List<String>> UE) {
         Log.d("Liste des prérequis : ", Connexion.CONNEXION.MapPrerequis.toString());
+        Log.d("NUM SEMESTRE : ", String.valueOf(numSemestre));
         ListeUE.add(UE);
         receptionUE();
     }
@@ -190,7 +190,11 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
                 UECollection.put(discipline, List);
         }
         expList();
-        }
+    }
+
+    public void receptionTout(List<Map<String, List<String>>> ListeUE) {
+        this.ListeUE = ListeUE;
+    }
 
         private void expList() {
             expListView = findViewById(R.id.UE_list);
@@ -219,20 +223,26 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     public void receptionPredefini(Map<String, Map<Integer, List<String>>> Predefini) {
         Log.d("Parcours prédéfini séléctionné : ", Connexion.CONNEXION.predefini);
         Log.d("Liste des parcours prédéfinis : ", Predefini.toString());
-        if(!Connexion.CONNEXION.MapPredefini.containsKey(Connexion.CONNEXION.predefini)) {
-            Log.d("Erreur", "Chargement du parcours séléctionné introuvable.");
-            Connexion.CONNEXION.envoyerMessage2(Net.ENVOIE_S1, new Identité("S1"));
-        }
-        else {
-            for (int i = 1; i <= 4; i++) {
-                numSemestre = i;
-                if (Connexion.CONNEXION.MapPredefini.get(Connexion.CONNEXION.predefini).containsKey(i))
-                    Connexion.CONNEXION.selectionUE.put(i, Connexion.CONNEXION.MapPredefini.get(Connexion.CONNEXION.predefini).get(i));
-                if(i==4)
-                    startActivity(new Intent(MainActivity.this, RecapActivity.class));
+        while (Connexion.CONNEXION.MapPredefini.get(Connexion.CONNEXION.predefini).containsKey(numSemestre)) {
+                Connexion.CONNEXION.selectionUE.put(numSemestre, Connexion.CONNEXION.MapPredefini.get(Connexion.CONNEXION.predefini).get(numSemestre));
+                numSemestre++;
             }
-        }
-        Connexion.CONNEXION.predefini =  "Personnalisé";
+            if(numSemestre==4)
+                startActivity(new Intent(MainActivity.this, RecapActivity.class));
+            Connexion.CONNEXION.predefini = "Personnalisé";
+            new Thread()
+            {
+                public void run()
+                {
+                    MainActivity.this.runOnUiThread(new Runnable()
+                    {
+                        public void run()
+                        {
+                            initVue();
+                        }
+                    });
+                }
+            }.start();
     }
 
     private void expandAll() {

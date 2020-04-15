@@ -74,23 +74,23 @@ public class InscriptionActivity extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     switch (which)
                                     {
-                                        case MATHS:
+                                        case 0:
                                             Connexion.CONNEXION.predefini = "Mathématiques";
                                             break;
-                                        case SVT :
+                                        case 1 :
                                             Connexion.CONNEXION.predefini = "SVT";
                                             break;
-                                        case PHYSIQUE :
+                                        case 2 :
                                             Connexion.CONNEXION.predefini = "Physique";
                                             break;
-                                        case CHIMIE :
+                                        case 3 :
                                             Connexion.CONNEXION.predefini = "Chimie";
                                             break;
-                                        case INFORMATIQUE :
+                                        case 4 :
                                             Connexion.CONNEXION.predefini = "Informatique";
                                             break;
-                                        case HISTOIRE :
-                                            Connexion.CONNEXION.predefini = "Histoire";
+                                        case 5 :
+                                            Connexion.CONNEXION.predefini = "Informatique (L1)";
                                             break;
                                     }
                                     startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
