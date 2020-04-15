@@ -9,12 +9,8 @@ import com.corundumstudio.socketio.listener.DataListener;
 import metier.*;
 import reseau.GestionnaireDeReseau;
 
-import java.io.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.logging.FileHandler;
 
 import static constantes.Net.*;
 
@@ -117,9 +113,9 @@ public class Serveur {
             }
         });
 
-        this.server.addEventListener(ENVOIE_PREDEFINI, Identité.class, new DataListener<>() {
+        this.server.addEventListener(ENVOIE_PREDEFINI, String.class, new DataListener<>() {
             @Override
-            public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) {
+            public void onData(SocketIOClient socketIOClient, String parcours, AckRequest ackRequest) {
                 envoiePredefini(socketIOClient, FICHIER_PREDEFINI);
             }
         });
