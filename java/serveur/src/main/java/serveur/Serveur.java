@@ -6,6 +6,7 @@ import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.DataListener;
+import constantes.Net;
 import metier.*;
 import reseau.GestionnaireDeReseau;
 
@@ -19,9 +20,17 @@ import static constantes.Net.*;
  */
 public class Serveur {
 
-    private final SocketIOServer server;
-    private GestionnaireDeReseau NetHandler = new GestionnaireDeReseau();
-    private GestionnaireDeFichiers FileHandler = new GestionnaireDeFichiers();
+    private SocketIOServer server;
+
+    public void setNetHandler(GestionnaireDeReseau netHandler) {
+        NetHandler = netHandler;
+    }
+
+
+
+
+
+    private GestionnaireDeReseau NetHandler;
     private Map<Identité,SocketIOClient> mapEtudiants = new HashMap<>();
 
     public static final void main(String [] args) {
@@ -31,7 +40,7 @@ public class Serveur {
         config.setPort(10101);
         // creation du serveur
         SocketIOServer server = new SocketIOServer(config);
-
+        GestionnaireDeReseau NetHandler = new GestionnaireDeReseau();
         Serveur s = new Serveur(server);
         s.démarrer();
     }
@@ -39,6 +48,7 @@ public class Serveur {
 
     public Serveur(SocketIOServer server) {
         this.server = server;
+        this.NetHandler = NetHandler;
         this.server.addEventListener(CONNEXION, Identité.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) {
@@ -122,17 +132,17 @@ public class Serveur {
     }
 
 
-    private void démarrer() {
+    public void démarrer() {
         server.start();
     }
 
     public void envoyerUE(SocketIOClient socketIOClient,String path)
     {
-        socketIOClient.sendEvent(UE,FileHandler.lireFichier(path));
+        socketIOClient.sendEvent(UE,NetHandler.lireFichier(path));
     }
 
     public void envoiePrerequis(SocketIOClient socketIOClient) {
-        socketIOClient.sendEvent(PREREQUIS, FileHandler.constructionPrerequis(S1, S2, S3, S4, FICHIER_PREREQUIS));
+        socketIOClient.sendEvent(PREREQUIS, NetHandler.lireConstructionPrerequis(S1, S2, S3, S4, FICHIER_PREREQUIS));
     }
 
     /**
@@ -142,7 +152,7 @@ public class Serveur {
      */
     public void envoiePredefini(SocketIOClient socketIOClient,String path) {
         System.out.println("Envoi du parcours prédéfini");
-        socketIOClient.sendEvent(PREDEFINI, FileHandler.lireFichierPredefini(path));
+        socketIOClient.sendEvent(PREDEFINI, NetHandler.lireFichierPredefini(path));
     }
 
     public void nouveauChoix(SocketIOClient socketIOClient, String matiere)

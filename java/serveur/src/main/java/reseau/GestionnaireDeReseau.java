@@ -10,6 +10,9 @@ import metier.Identité;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static constantes.Net.*;
 import static constantes.Net.UE;
@@ -81,6 +84,19 @@ public class GestionnaireDeReseau {
             socketIOClient.sendEvent(VALIDATION, SelectionUE.toString());
           System.out.println("Votre sélection pour le semestre n°" + SelectionUE.getNumSemestre() + " (" + SelectionUE.toString() +") a été enregistrée.");
     }}
+
+    public Map<String, Map<Integer, List<String>>> lireFichierPredefini(String path) {
+        return FileHandler.lireFichierPredefini(path);
+    }
+
+    public HashMap<String, List<String>> lireConstructionPrerequis(String s1, String s2, String s3, String s4, String fichierPrerequis) {
+        return FileHandler.constructionPrerequis(s1,s2,s3,s4,fichierPrerequis);
+    }
+
+    public HashMap<String, List<String>> lireFichier(String path) {
+        return FileHandler.lireFichier(path);
+    }
+
 
     /**
      * Envoie la liste des UE au client
