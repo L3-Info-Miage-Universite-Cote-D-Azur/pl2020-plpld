@@ -25,8 +25,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private List<Model> mModelList;
 
+
     public RecyclerViewAdapter(List<Model> modelList) {
-        mModelList = modelList;
+        this.mModelList = modelList;
     }
 
     @Override
@@ -36,7 +37,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final Model model = mModelList.get(position);
         holder.textView.setText(model.getText());
         holder.view.setBackgroundColor(model.isSelected() ? Color.CYAN : Color.WHITE);

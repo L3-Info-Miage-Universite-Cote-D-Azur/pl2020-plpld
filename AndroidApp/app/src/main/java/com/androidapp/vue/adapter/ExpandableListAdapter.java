@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import android.app.Activity;
 import android.content.Context;
+import android.database.DataSetObserver;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,26 +30,27 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private List<Model> mModelList;
     private RecyclerView mRecyclerView;
     private RecyclerViewAdapter mAdapter;
+
+
     private Map<Integer, RecyclerViewAdapter> AdapterCollection;
 
+
     private List<String> UEOriginal;
-    private Map<String, List<String>> UeCollectionsOriginal;
+    private Map<String, List<String>> UECollectionsOriginal;
 
     public ExpandableListAdapter(Activity context , List<String> UE , Map<String, List<String>> UECollections) {
         this.context = context;
 
-        //this.UE = UE;
-        //this.UECollections = UECollections;
+
         this.UE =new ArrayList<>();
         this.UE.addAll(UE);
         this.UECollections =new HashMap<>();
         this.UECollections.putAll(UECollections);
 
-
-        this.UEOriginal =new ArrayList<>();
+        UEOriginal=new ArrayList<>();
         UEOriginal.addAll(UE);
-        this.UeCollectionsOriginal =new HashMap<>();
-        UeCollectionsOriginal.putAll(UECollections);
+        UECollectionsOriginal=new HashMap<>();
+        UECollectionsOriginal.putAll(UECollections);
 
         AdapterCollection = new LinkedHashMap<>(getGroupCount()); //On crée une collection de RecyclerViewAdapter pour récupérer la séléction de l'utilisateur (un adaptateur pour chaque discipline sur laquelle l'utilisateur clique)
     }
@@ -121,6 +123,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
         AdapterCollection.put(groupPosition, mAdapter);
         return mRecyclerView;
     }
@@ -152,25 +155,29 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         UE.clear();
         UECollections.clear();
+        AdapterCollection.clear();
+        
         if (query.isEmpty()) {
             UE.addAll(UEOriginal);
-            UECollections.putAll(UeCollectionsOriginal);
+            UECollections.putAll(UECollectionsOriginal);
         } else {
             for (String s : UEOriginal) {
-                ArrayList<String> ueDes = new ArrayList<>();
-                for (String ue : UeCollectionsOriginal.get(s)) {
-                    if (ue.toLowerCase().contains(query)) {
-                        ueDes.add(ue);
+                ArrayList<String> ueDeS = new ArrayList<>();
+                for (String ue : UECollectionsOriginal.get(s)) {
+                    if (ue.toLowerCase().contains(query) ) {
+                        ueDeS.add(ue);
                     }
                 }
-                if (ueDes.size() > 0) {
+                if (ueDeS.size() > 0) {
                     UE.add(s);
-                    UECollections.put(s,ueDes);
+                    UECollections.put(s,ueDeS);
                 }
             }
+
         }
 
         notifyDataSetChanged();
+
 
     }
 

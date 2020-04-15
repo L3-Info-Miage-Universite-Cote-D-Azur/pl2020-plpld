@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     private boolean autoconnect = true;
     private Map<String, List<String>> UECollection = new HashMap<>();
     private ExpandableListView expListView;
+    private ExpandableListAdapter expListAdapter;
+
+
     private ExpandableListAdapter adapter;
     private  int numSemestre = 1;
     private List<Map<String, List<String>>> ListeUE = new ArrayList<>();
@@ -198,13 +201,12 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
 
         private void expList() {
             expListView = findViewById(R.id.UE_list);
-            final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(this, new ArrayList<>(UECollection.keySet()), UECollection);
+            expListAdapter = new ExpandableListAdapter(this, new ArrayList<>(UECollection.keySet()), UECollection);
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     Log.d("UECOLLECTION", UECollection.toString());
                     expListView.setAdapter(expListAdapter);
-
                     adapter = expListAdapter;
                     expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
                         public boolean onChildClick(ExpandableListView parent, View v,
@@ -292,7 +294,6 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         return super.onOptionsItemSelected(item);
     }
 
-
     /**
      * The user is attempting to close the SearchView.
      *
@@ -301,8 +302,8 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
      */
     @Override
     public boolean onClose() {
-        adapter.filterData("");
-        expandAll();
+        expListAdapter.filterData("");
+        //expandAll();
         return false;
     }
 
@@ -319,7 +320,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
      */
     @Override
     public boolean onQueryTextSubmit(String query) {
-        adapter.filterData(query);
+        expListAdapter.filterData(query);
         expandAll();
         return false;
     }
@@ -333,8 +334,12 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
      */
     @Override
     public boolean onQueryTextChange(String newText) {
-        adapter.filterData(newText);
+        expListAdapter.filterData(newText);
         expandAll();
         return false;
     }
+
+
+
+
 }
