@@ -30,6 +30,7 @@ public class Net {
 
     public static final String ENVOIE_S1 = "Envoie S1";
     public static final String ENVOIE_PREDEFINI = "Envoie parcours prédéfinis";
+    public static final String ENVOIE_TOUT = "Envoie toutes les UE";
 }
 
 

@@ -79,6 +79,20 @@ public enum Connexion {
             }
         });
 
+        mSocket.on(Net.ENVOIE_TOUT, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                ObjectMapper objectMapper = new ObjectMapper();
+                try {
+                    List<Map<String, List<String>>> ListeUE = objectMapper.readValue(args[0].toString(), new TypeReference<List<Map<String, List<String>>>>() {
+                    });
+                    mainVue.receptionTout(ListeUE);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
         mSocket.on(Net.NV_CONNEXION, new Emitter.Listener() {
             @Override
             public void call(Object... args) {

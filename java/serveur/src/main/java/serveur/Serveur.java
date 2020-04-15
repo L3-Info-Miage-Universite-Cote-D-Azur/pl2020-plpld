@@ -103,7 +103,6 @@ public class Serveur {
                     switch (choix.getNumSemestre()) {
                         case 1:
                             envoyerUE((socketIOClient), S2);
-
                             break;
                         case 2:
                             envoyerUE((socketIOClient), S3);
@@ -115,9 +114,9 @@ public class Serveur {
                 } }
         });
 
-        this.server.addEventListener(ENVOIE_S1, String.class, new DataListener<>() {
+        this.server.addEventListener(ENVOIE_S1, Identité.class, new DataListener<>() {
             @Override
-            public void onData(SocketIOClient socketIOClient, String matiere, AckRequest ackRequest) {
+            public void onData(SocketIOClient socketIOClient, Identité matiere, AckRequest ackRequest) {
                 if(mapEtudiants.containsValue(socketIOClient))
                      envoyerUE(socketIOClient, S1);
             }
@@ -127,6 +126,7 @@ public class Serveur {
             @Override
             public void onData(SocketIOClient socketIOClient, String parcours, AckRequest ackRequest) {
                 envoiePredefini(socketIOClient, FICHIER_PREDEFINI);
+                envoyerTout(socketIOClient, S1, S2, S3, S4);
             }
         });
     }
@@ -139,6 +139,11 @@ public class Serveur {
     public void envoyerUE(SocketIOClient socketIOClient,String path)
     {
         socketIOClient.sendEvent(UE,NetHandler.lireFichier(path));
+    }
+
+    public void envoyerTout(SocketIOClient socketIOClient, String S1, String S2, String S3, String S4)
+    {
+        socketIOClient.sendEvent(ENVOIE_TOUT, FileHandler.lireTout(S1, S2, S3, S4));
     }
 
     public void envoiePrerequis(SocketIOClient socketIOClient) {
@@ -155,8 +160,9 @@ public class Serveur {
         socketIOClient.sendEvent(PREDEFINI, NetHandler.lireFichierPredefini(path));
     }
 
+
     public void nouveauChoix(SocketIOClient socketIOClient, String matiere)
     {
-        socketIOClient.sendEvent(CHOIX, matiere.toString());
+        socketIOClient.sendEvent(CHOIX, matiere);
     }
 }

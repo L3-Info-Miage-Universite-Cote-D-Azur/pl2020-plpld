@@ -74,6 +74,15 @@ public class GestionnaireDeFichiers {
         return Predefini;
     }
 
+    public List<Map<String, List<String>>> lireTout(String S1, String S2, String S3, String S4) {
+        List ListeUE = new ArrayList<>();
+        ListeUE.add(lireFichier(S1));
+        ListeUE.add(lireFichier(S2));
+        ListeUE.add(lireFichier(S3));
+        ListeUE.add(lireFichier(S4));
+        return ListeUE;
+    }
+
     public HashMap<String, List<String>> constructionPrerequis(String S1, String S2, String S3, String S4, String Prerequis)
     {
         ListeSemestre listePrerequis = new ListeSemestre();
