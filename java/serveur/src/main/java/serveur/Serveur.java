@@ -143,7 +143,7 @@ public class Serveur {
 
     public void envoyerTout(SocketIOClient socketIOClient, String S1, String S2, String S3, String S4)
     {
-        socketIOClient.sendEvent(ENVOIE_TOUT, FileHandler.lireTout(S1, S2, S3, S4));
+        socketIOClient.sendEvent(ENVOIE_TOUT, NetHandler.lireTout(S1, S2, S3, S4));
     }
 
     public void envoiePrerequis(SocketIOClient socketIOClient) {
