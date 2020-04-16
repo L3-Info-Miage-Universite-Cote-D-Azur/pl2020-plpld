@@ -37,15 +37,31 @@
     <Button
         android:id="@+id/btninscription"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FF4500"
+        android:layout_height="60dp"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/custom_button2"
         android:text="Commencer une inscription" />
 
     <Button
         android:id="@+id/btnpar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#8BC34A"
+        android:layout_height="60dp"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/custom_button2"
         android:text="Commencer un nouveau parcours" />
 
 </LinearLayout>

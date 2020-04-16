@@ -8,11 +8,14 @@ import java.util.Map;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.androidapp.R;
@@ -115,6 +118,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
         AdapterCollection.put(groupPosition, mAdapter);
+
+
         return mRecyclerView;
     }
 

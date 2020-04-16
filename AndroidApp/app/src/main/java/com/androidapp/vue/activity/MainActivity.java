@@ -267,8 +267,8 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        searchItem = menu.findItem(R.id.action_search);
-        searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        //searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setSearchableInfo
                 (searchManager.getSearchableInfo(getComponentName()));
         searchView.setIconifiedByDefault(false);
@@ -336,6 +336,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     @Override
     public boolean onQueryTextSubmit(String query) {
         expListAdapter.filterData(query);
+        //collapseAll();
         expandAll();
         return false;
     }
