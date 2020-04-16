@@ -74,6 +74,10 @@ dependencies {
     // Pour les tests JSON
     testImplementation 'org.json:json:20190722'
     implementation 'com.muditsen.multilevelrecyclerview:multilevelview:1.0.0'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.powermock:powermock:1.6.5'
+    testImplementation 'org.powermock:powermock-module-junit4:1.6.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test:rules:1.1.0'
