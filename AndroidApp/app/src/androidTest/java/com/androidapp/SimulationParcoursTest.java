@@ -3,11 +3,27 @@ package com.androidapp;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
+import org.junit.jupiter.api.Disabled;
 import org.junit.runner.RunWith;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.rule.ActivityTestRule;
+import com.androidapp.reseau.Connexion;
+import com.androidapp.reseau.RecevoirMessage;
+import com.androidapp.vue.Vue;
 import com.androidapp.vue.activity.HomeActivity;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.*;
+import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import constantes.Net;
+import io.socket.client.IO;
+import io.socket.emitter.Emitter;
+import io.socket.client.Socket;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.typeText;
@@ -23,10 +39,87 @@ import static org.hamcrest.core.StringContains.containsString;
 public class SimulationParcoursTest {
 
 
+    @Before
+    public void setup() throws URISyntaxException {
+
+        Socket socket = Mockito.mock(Socket.class);
+
+
+        Connexion.CONNEXION.setSocket(socket);
+
+
+        final HashMap<String, List<String>> UE = new HashMap<String, List<String>>();
+        UE.put("Informatique", new ArrayList<String>() {{
+            add("Base de l'info");
+        }});
+
+        final HashMap<String, List<String>> Pre = new HashMap<String, List<String>>();
+        Pre.put("Informatique", new ArrayList<String>());
+        
+        RecevoirMessage connexion = Mockito.mock(RecevoirMessage.class);
+
+
+
+        Mockito.doAnswer(new Answer() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                Connexion.CONNEXION.mainVue.receptionUE(UE);
+                return null;
+            }
+        }).when(connexion).recevoirMessage(Mockito.eq(Net.UE), Mockito.any(Emitter.Listener.class));
+
+
+        Mockito.doAnswer(new Answer() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                Connexion.CONNEXION.mainVue.receptionUE(Pre);
+                return null;
+            }
+        }).when(connexion).recevoirMessage(Mockito.eq(Net.PREREQUIS), Mockito.any(Emitter.Listener.class));
+
+        /*
+        Mockito.doAnswer(new Answer() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                Connexion.CONNEXION.mainVue.receptionUE(UE);
+                return null;
+            }
+        }).when(connexion).recevoirMessage(Mockito.eq(Net.ENVOIE_S1), Mockito.any(Emitter.Listener.class));
+
+
+        Mockito.doAnswer(new Answer() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                Connexion.CONNEXION.mainVue.receptionUE(UE);
+                return null;
+            }
+        }).when(connexion).recevoirMessage(Mockito.eq(Net.PREDEFINI), Mockito.any(Emitter.Listener.class));
+
+
+        Mockito.doAnswer(new Answer() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                Connexion.CONNEXION.mainVue.receptionUE(UE);
+                return null;
+            }
+        }).when(connexion).recevoirMessage(Mockito.eq(Net.ENVOIE_TOUT), Mockito.any(Emitter.Listener.class));
+        */
+
+        Mockito.doAnswer(new Answer() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                Connexion.CONNEXION.ConnexionAutorisee = true;
+                return null;
+            }
+        }).when(connexion).recevoirMessage(Mockito.eq(Net.NV_CONNEXION), Mockito.any(Emitter.Listener.class));
+
+    }
+
     @Rule
     public ActivityTestRule<HomeActivity> mActivityTestRule = new ActivityTestRule<>(HomeActivity.class);
 
 
+    @Disabled
     @Test
     public void graphicTest() throws InterruptedException {
 
@@ -55,6 +148,7 @@ public class SimulationParcoursTest {
         connexion = onView(withText("Parcours personalisé")).perform(click());
 
         /////////////// Semestre 1 ///////////////
+        Thread.sleep(4000);
         clicGroupe = onView(
                 withText("Informatique")).perform(click());
         clicMatiere = onView(

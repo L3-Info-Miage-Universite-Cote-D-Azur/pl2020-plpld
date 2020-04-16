@@ -19,24 +19,31 @@ import com.androidapp.vue.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public enum Connexion {
+public enum Connexion implements RecevoirMessage {
     CONNEXION;
     private Socket mSocket;
-    private Boolean ConnexionAutorisee = false;
-    private Vue mainVue;
+    public Boolean ConnexionAutorisee = false;
+    public Vue mainVue;
     public Map<String,List<String>> MapPrerequis = new HashMap<>();
     public Map<Integer, List<String>> selectionUE = new HashMap<>();
     public Map<String, Map<Integer, List<String>>> MapPredefini = new HashMap<>();
     public String predefini = "Personnalisé";
 
-    public void écouterRéseau() {
+
+
+    Connexion() {
         try {
             mSocket = IO.socket("http://10.0.2.2:10101");
         } catch (URISyntaxException ex) {
             ex.printStackTrace();
         }
+    }
 
-        mSocket.on(Net.UE, new Emitter.Listener() {
+
+    public void écouterRéseau() {
+
+
+        recevoirMessage(Net.UE, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
                 ObjectMapper objectMapper = new ObjectMapper();
@@ -50,7 +57,9 @@ public enum Connexion {
             }
         });
 
-        mSocket.on(Net.ENVOIE_S1, new Emitter.Listener() {
+
+
+        recevoirMessage(Net.ENVOIE_S1, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
                 ObjectMapper objectMapper = new ObjectMapper();
@@ -64,7 +73,7 @@ public enum Connexion {
             }
         });
 
-        mSocket.on(Net.PREDEFINI, new Emitter.Listener() {
+        recevoirMessage(Net.PREDEFINI, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
                 ObjectMapper objectMapper = new ObjectMapper();
@@ -79,7 +88,8 @@ public enum Connexion {
             }
         });
 
-        mSocket.on(Net.ENVOIE_TOUT, new Emitter.Listener() {
+
+        recevoirMessage(Net.ENVOIE_TOUT, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
                 ObjectMapper objectMapper = new ObjectMapper();
@@ -93,7 +103,7 @@ public enum Connexion {
             }
         });
 
-        mSocket.on(Net.NV_CONNEXION, new Emitter.Listener() {
+        recevoirMessage(Net.NV_CONNEXION, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
                 Log.d("BOOLEAN",args[0].toString());
@@ -102,11 +112,12 @@ public enum Connexion {
                     Log.d("BOOLEAN","PASSE");
 
                     ConnexionAutorisee = true;
-            }}
+                }}
         });
-        mSocket.on(Net.PREREQUIS, new Emitter.Listener() {
-            ObjectMapper objectMapper2 = new ObjectMapper();
 
+
+        recevoirMessage(Net.PREREQUIS, new Emitter.Listener() {
+            ObjectMapper objectMapper2 = new ObjectMapper();
             @Override
             public void call(Object... args) {
                 try {
@@ -117,6 +128,16 @@ public enum Connexion {
                 }
             }
         });
+
+
+    }
+
+    public void setSocket(Socket socket) {
+        mSocket = socket;
+    }
+
+    public void recevoirMessage(String event, Emitter.Listener fn) {
+        mSocket.on(event, fn);
     }
 
     public void démarrerÉcoute() {
@@ -126,10 +147,15 @@ public enum Connexion {
     public void envoyerMessage(String msg, ToJSON obj) {
         mSocket.emit(msg, obj.toJSON());
     }
+
     public void envoyerMessage2(String msg, ToJSON obj) {
         mSocket.emit(msg, obj);
     }
-    public void setMainVue(Vue v) {mainVue = v;}
+
+    public void setMainVue(Vue v) {
+        mainVue = v;
+    }
+
     public void disconnect() {
         if (mSocket != null) mSocket.disconnect();
     }
