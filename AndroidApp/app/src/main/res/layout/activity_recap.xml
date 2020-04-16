@@ -114,16 +114,28 @@
         android:id="@+id/RetourArriereRecap"
         android:layout_width="358dp"
         android:layout_height="70dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/custom_button"
         android:text="Recommencer mon parcours" />
 
     <Button
         android:id="@+id/buttonConfirmation"
         android:layout_width="358dp"
         android:layout_height="70dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/custom_button"
         android:onClick="onClickBtn"
         android:text="Finaliser mon inscription" />
 
@@ -131,18 +143,17 @@
         android:id="@+id/buttonPartager"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:layout_gravity="bottom|right"
         android:background="@drawable/custom_button3"
         android:onClick="onClickBtn"
-        android:text="Partager"
         android:textColor="#FFFFFF"
-        android:textSize="20sp" />
+        android:text="Partager"/>
 
 </LinearLayout>
