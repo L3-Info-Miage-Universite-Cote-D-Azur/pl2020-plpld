@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
                     });
                 }
             });
-            //only one group is expanded at one time (the previous one is collapsed )
+            //only one group can be expanded at one time (the previous one is collapsed )
             expListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
                 int previousItem = -1;
                 @Override
