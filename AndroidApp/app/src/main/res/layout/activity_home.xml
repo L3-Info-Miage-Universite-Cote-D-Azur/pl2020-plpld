@@ -13,7 +13,7 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="188dp"
-        app:srcCompat="@drawable/uni_logo"
+        app:srcCompat="@mipmap/uni_logo"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="29dp" />
 

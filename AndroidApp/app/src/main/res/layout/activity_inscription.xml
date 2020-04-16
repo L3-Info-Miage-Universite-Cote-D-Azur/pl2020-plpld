@@ -82,7 +82,10 @@
         android:id="@+id/buttonValiderInscription"
         android:layout_width="358dp"
         android:layout_height="70dp"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:background="@drawable/custom_button4"
         android:text="Valider" />
     </LinearLayout>
