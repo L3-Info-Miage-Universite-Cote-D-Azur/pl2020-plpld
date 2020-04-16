@@ -257,21 +257,6 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
             }.start();
     }
 
-    private void expandAll() {
-        int count = adapter.getGroupCount();
-        for (int i = 0; i < count; i++) {
-            expListView.expandGroup(i);
-        } //end for (int i = 0; i < count; i++)
-    }
-
-    private void collapseAll() {
-        int count = adapter.getGroupCount();
-        for (int i = 0; i < count; i++) {
-            expListView.collapseGroup(i);
-        } //end for (int i = 0; i < count; i++)
-    }
-
-
     //Pour la barre de recherche:
     private Vue vue=this;
     private MenuItem searchItem;
@@ -290,7 +275,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         searchView.setOnQueryTextListener(this);
         searchView.setOnCloseListener(this);
         searchView.requestFocus();
-
+        searchView.setQueryHint("Chercher une UE");
         return true;
     }
 
@@ -307,6 +292,21 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private void expandAll() {
+        int count = adapter.getGroupCount();
+        for (int i = 0; i < count; i++) {
+            expListView.expandGroup(i);
+        } //end for (int i = 0; i < count; i++)
+    }
+
+    private void collapseAll() {
+        int count = adapter.getGroupCount();
+        for (int i = 0; i < count; i++) {
+            expListView.collapseGroup(i);
+        } //end for (int i = 0; i < count; i++)
     }
 
     /**
