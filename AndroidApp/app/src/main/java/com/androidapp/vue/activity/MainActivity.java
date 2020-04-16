@@ -220,6 +220,16 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
                     });
                 }
             });
+            //only one group is expanded at one time (the previous one is collapsed )
+            expListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+                int previousItem = -1;
+                @Override
+                public void onGroupExpand(int groupPosition) {
+                    if(groupPosition != previousItem )
+                        expListView.collapseGroup(previousItem );
+                    previousItem = groupPosition;
+                }
+            });
         }
 
     public void receptionPredefini(Map<String, Map<Integer, List<String>>> Predefini) {
@@ -254,7 +264,12 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         } //end for (int i = 0; i < count; i++)
     }
 
-
+    private void collapseAll() {
+        int count = adapter.getGroupCount();
+        for (int i = 0; i < count; i++) {
+            expListView.collapseGroup(i);
+        } //end for (int i = 0; i < count; i++)
+    }
 
 
     //Pour la barre de recherche:
@@ -303,7 +318,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     @Override
     public boolean onClose() {
         expListAdapter.filterData("");
-        //expandAll();
+        expandAll();
         return false;
     }
 
@@ -338,8 +353,5 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         expandAll();
         return false;
     }
-
-
-
 
 }

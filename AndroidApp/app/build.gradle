@@ -25,6 +25,7 @@ android {
 }
 
 dependencies {
+    implementation("com.google.guava:guava:29.0-android")
     implementation (
             [group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.4.1'],
             [group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.4.1'],

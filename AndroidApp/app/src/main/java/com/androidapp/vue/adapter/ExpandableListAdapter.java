@@ -7,19 +7,21 @@ import java.util.List;
 import java.util.Map;
 import android.app.Activity;
 import android.content.Context;
-import android.database.DataSetObserver;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidapp.R;
+import com.google.common.collect.MapDifference;
+import com.google.common.collect.Maps;
 
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
@@ -31,16 +33,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private RecyclerView mRecyclerView;
     private RecyclerViewAdapter mAdapter;
 
-
     private Map<Integer, RecyclerViewAdapter> AdapterCollection;
-
-
     private List<String> UEOriginal;
     private Map<String, List<String>> UECollectionsOriginal;
 
     public ExpandableListAdapter(Activity context , List<String> UE , Map<String, List<String>> UECollections) {
         this.context = context;
-
 
         this.UE =new ArrayList<>();
         this.UE.addAll(UE);
@@ -105,7 +103,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         item.setText(UEName);
         return convertView;
     }
-
     @Override
     public View getChildView(final int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
@@ -173,7 +170,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                     UECollections.put(s,ueDeS);
                 }
             }
-
         }
 
         notifyDataSetChanged();
