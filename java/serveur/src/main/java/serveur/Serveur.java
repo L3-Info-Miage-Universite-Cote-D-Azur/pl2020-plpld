@@ -20,22 +20,41 @@ import static constantes.Net.*;
  */
 public class Serveur {
 
+    /**
+     *   Variable socketIOServer, le serveur.
+     */
     private SocketIOServer server;
 
-    public void setNetHandler(GestionnaireDeReseau netHandler) {
-        NetHandler = netHandler;
-    }
+    /**
+     *  variable GestionnaireDeReseau, qui joue le role de passerelle entre le gestionnaire de fichier et le serveur
+     */
+
     private GestionnaireDeReseau NetHandler;
+
+    /**
+     *  map qui gère les connexions des différents étudiants, chaque étudiant est relié a une connexion
+     */
     private Map<Identité,SocketIOClient> mapEtudiants = new HashMap<>();
 
     public Serveur(SocketIOServer server) {
         this.server = server;
+
+        /**
+         *  Evenement de connexion qui gère la connexion d'un étudiant, la connexion est enregistrée dans la map.
+         *  Les prérequis de chaque parcours sont alors envoyés au client par le serveur
+         */
+
         this.server.addEventListener(CONNEXION, Identité.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) {
                 mapEtudiants.put(id,socketIOClient);
                 envoiePrerequis(mapEtudiants.get(id));
             }});
+
+        /**
+         *  Evenement de confirmation finale du choix du parcours de l'étudiant
+         *  le choix de l'étudiant est enregistré dans un fichier
+         */
 
         this.server.addEventListener(CONFIRMATION, Identité.class, new DataListener<Identité>() {
             @Override
@@ -44,6 +63,9 @@ public class Serveur {
             }
         });
 
+        /**
+         * Evenement qui gère les tentatives de connexion des étudiants à l'application
+         */
         this.server.addEventListener(NV_CONNEXION, Identité.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité etudiant, AckRequest ackRequest) throws Exception {
@@ -55,6 +77,11 @@ public class Serveur {
 
             }
         });
+
+        /**
+         * Evenement qui gère les nouvelles inscriptions des étudiants à l'application
+         * l'étudiant est ensuite enregistré dans la base de donnée
+         */
         this.server.addEventListener(NV_ETU, Etudiant.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Etudiant etudiant, AckRequest ackRequest) throws Exception {
@@ -69,13 +96,18 @@ public class Serveur {
             }
         });
 
+        /**
+         *  Evenement qui gère les choix de l'étudiant en fonction de sa selection de matière
+         */
         this.server.addEventListener(CHOIX, Identité.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité matiere, AckRequest ackRequest) {
                nouveauChoix(socketIOClient, matiere.getNom());
             }
         });
-
+        /**
+         *  Evenement qui gère la validation des UE de chaque semestre
+         */
         this.server.addEventListener(VALIDATION, ChoixUtilisateur.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, ChoixUtilisateur choix, AckRequest ackRequest) {
@@ -94,7 +126,9 @@ public class Serveur {
                     }
                 } }
         });
-
+        /**
+         *  Evenement qui gère l'envoie du S1 au client
+         */
         this.server.addEventListener(ENVOIE_S1, Identité.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité matiere, AckRequest ackRequest) {
@@ -102,7 +136,9 @@ public class Serveur {
                      envoyerUE(socketIOClient, S1);
             }
         });
-
+        /**
+         *  Evenement qui gère l'envoie des pre
+         */
         this.server.addEventListener(ENVOIE_PREDEFINI, String.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, String parcours, AckRequest ackRequest) {
@@ -141,9 +177,18 @@ public class Serveur {
         socketIOClient.sendEvent(PREDEFINI, NetHandler.lireFichierPredefini(path));
     }
 
-
+    /**
+     *  Envoie le choix de l'UE au client
+     * @param socketIOClient
+     * @param matiere matiere selectionnée
+     */
     public void nouveauChoix(SocketIOClient socketIOClient, String matiere)
     {
         socketIOClient.sendEvent(CHOIX, matiere);
+    }
+
+
+    public void setNetHandler(GestionnaireDeReseau netHandler) {
+        NetHandler = netHandler;
     }
 }
