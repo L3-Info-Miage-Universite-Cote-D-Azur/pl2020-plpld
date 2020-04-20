@@ -8,6 +8,12 @@ public class Graphe {
 
     private Map<String, List<String>> prerequis;
     private Map<String, List<String>> graphe;
+    public Map<String, List<String>> getGraphe() {
+        return graphe;
+    }
+    public void setGraphe(Map<String, List<String>> graphe) {
+        this.graphe = graphe;
+    }
 
     public Graphe(Map<String, List<String>> prerequis) {
         this.prerequis = prerequis;
