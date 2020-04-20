@@ -6,34 +6,13 @@ import org.json.JSONObject;
 import java.time.LocalDate;
 
 public class Etudiant implements ToJSON {
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public void setNumEtudiant(String numEtudiant) {
-        this.numEtudiant = numEtudiant;
-    }
-
-    public void setDateNaissance(LocalDate dateNaissance) {
-        this.dateNaissance = dateNaissance;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
     private String nom;
     private String prenom;
     private String numEtudiant ;
     private LocalDate dateNaissance;
     private String motDePasse;
 
-    public Etudiant() {}
-    public LocalDate getDateNaissance() {
-        return dateNaissance;
-    }
-    public Etudiant(String nom)
-    {
+    public Etudiant(String nom) {
         this.nom = nom;
     }
     public Etudiant(String nom, String prenom, String numEtudiant, LocalDate dateNaissance, String motDePasse) {
@@ -43,6 +22,7 @@ public class Etudiant implements ToJSON {
         this.dateNaissance = dateNaissance;
         this.motDePasse = motDePasse;
     }
+    public Etudiant() {}
 
     public String getNom() {
         return nom;
@@ -56,13 +36,34 @@ public class Etudiant implements ToJSON {
         return numEtudiant;
     }
 
-    public void setMotDePasse(String mdp) {
-        motDePasse = mdp;
+    public LocalDate getDateNaissance() {
+        return dateNaissance;
     }
+
+
     public String getMotDePasse() {
         return motDePasse;
     }
 
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setNumEtudiant(String numEtudiant) {
+        this.numEtudiant = numEtudiant;
+    }
+
+    public void setDateNaissance(LocalDate dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }
+
+    public void setMotDePasse(String mdp) {
+        motDePasse = mdp;
+    }
     @Override
     public JSONObject toJSON() {
         JSONObject Etudiant = new JSONObject();
@@ -72,9 +73,6 @@ public class Etudiant implements ToJSON {
             Etudiant.put("numEtudiant",getNumEtudiant());
             Etudiant.put("dateNaissance",getDateNaissance());
             Etudiant.put("motDePasse",getMotDePasse());
-
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
