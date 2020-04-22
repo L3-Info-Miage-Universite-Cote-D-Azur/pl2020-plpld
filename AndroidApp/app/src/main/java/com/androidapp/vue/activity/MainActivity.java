@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     private ExpandableListView expListView;
     private ExpandableListAdapter expListAdapter;
 
+    private boolean inQuery=false;
 
     private ExpandableListAdapter adapter;
     private  int numSemestre = 1;
@@ -221,14 +222,18 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
                 }
             });
             //only one group can be expanded at one time (the previous one is collapsed )
+
             expListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
                 int previousItem = -1;
                 @Override
                 public void onGroupExpand(int groupPosition) {
-                    if(groupPosition != previousItem )
-                        expListView.collapseGroup(previousItem );
-                    previousItem = groupPosition;
-                }
+                    if (!inQuery ){
+                        if(groupPosition != previousItem )
+                            expListView.collapseGroup(previousItem );
+                        previousItem = groupPosition;
+                    }
+                    }
+
             });
         }
 
@@ -294,7 +299,6 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         return super.onOptionsItemSelected(item);
     }
 
-
     private void expandAll() {
         int count = adapter.getGroupCount();
         for (int i = 0; i < count; i++) {
@@ -302,11 +306,11 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         } //end for (int i = 0; i < count; i++)
     }
 
-    private void collapseAll() {
-        int count = adapter.getGroupCount();
-        for (int i = 0; i < count; i++) {
-            expListView.collapseGroup(i);
-        } //end for (int i = 0; i < count; i++)
+    private boolean query(String newText){
+        inQuery=!newText.isEmpty();
+        expListAdapter.filterData(newText);
+        expandAll();
+        return false;
     }
 
     /**
@@ -317,9 +321,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
      */
     @Override
     public boolean onClose() {
-        expListAdapter.filterData("");
-        expandAll();
-        return false;
+        return query("");
     }
 
     /**
@@ -335,10 +337,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
      */
     @Override
     public boolean onQueryTextSubmit(String query) {
-        expListAdapter.filterData(query);
-        //collapseAll();
-        expandAll();
-        return false;
+        return query(query);
     }
 
     /**
@@ -350,9 +349,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
      */
     @Override
     public boolean onQueryTextChange(String newText) {
-        expListAdapter.filterData(newText);
-        expandAll();
-        return false;
+        return query(newText);
     }
-
+    
 }

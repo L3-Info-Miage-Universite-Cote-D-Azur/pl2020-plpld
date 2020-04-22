@@ -52,5 +52,5 @@ public class GraphTest {
         assertEquals(graphe.getGraphe(),graph);
     }
 
-    
+
 }

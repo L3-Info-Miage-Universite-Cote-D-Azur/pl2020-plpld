@@ -34,6 +34,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private List<String> UEOriginal;
     private Map<String, List<String>> UECollectionsOriginal;
 
+    private Map<String,List<Model>> modelMap;
+    private Map<String,List<Model>> modelMapOriginal;
+    private List<Model> models;
+
     public ExpandableListAdapter(Activity context , List<String> UE , Map<String, List<String>> UECollections) {
         this.context = context;
 
@@ -48,6 +52,20 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         UECollectionsOriginal.putAll(UECollections);
 
         AdapterCollection = new LinkedHashMap<>(getGroupCount()); //On crée une collection de RecyclerViewAdapter pour récupérer la séléction de l'utilisateur (un adaptateur pour chaque discipline sur laquelle l'utilisateur clique)
+
+        modelMapOriginal=new HashMap<>();
+        modelMap=new HashMap<>();
+
+        models=new ArrayList<>();
+        for (String s : UECollectionsOriginal.keySet()){
+            for (String ue : UECollectionsOriginal.get(s)){
+                Model m =new Model(ue);
+                models.add(m);
+                modelMapOriginal.put(s,models);
+                modelMap.put(s,models);
+            }
+            models=new ArrayList<>();
+        }
     }
 
     @Override
@@ -112,7 +130,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         if(AdapterCollection.containsKey(groupPosition))
             mAdapter = AdapterCollection.get(groupPosition);
         else
-            mAdapter = new RecyclerViewAdapter(getListData(UE.get(groupPosition)));
+            //mAdapter = new RecyclerViewAdapter(modelMap.get(UE.get(groupPosition)));
+            mAdapter = new RecyclerViewAdapter(getListData(UE.get(groupPosition),groupPosition,UE));
+
         LinearLayoutManager manager = new LinearLayoutManager(context);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(manager);
@@ -127,11 +147,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return true;
     }
 
-    private List<Model> getListData(String discipline) {
+    private List<Model> getListData(String discipline,int groupPosition,List<String> a) {
         mModelList = new ArrayList<>();
-        for(String UE: UECollections.get(discipline)) {
-            mModelList.add(new Model(UE));
-        }
+        //for(String UE: UECollections.get(discipline)) {
+            //mModelList.add(new Model(UE)); //get model de la map ue et model
+
+        mModelList.addAll(modelMap.get(a.get(groupPosition)));
+
         return mModelList;
     }
 
@@ -150,21 +172,31 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         UE.clear();
         UECollections.clear();
         AdapterCollection.clear();
+        modelMap.clear();
+
         
         if (query.isEmpty()) {
             UE.addAll(UEOriginal);
             UECollections.putAll(UECollectionsOriginal);
+            modelMap.putAll(modelMapOriginal);
         } else {
             for (String s : UEOriginal) {
+                ArrayList<Model>  models=new ArrayList<>();
                 ArrayList<String> ueDeS = new ArrayList<>();
                 for (String ue : UECollectionsOriginal.get(s)) {
                     if (ue.toLowerCase().contains(query) ) {
                         ueDeS.add(ue);
+                        for (Model m : modelMapOriginal.get(s)){
+                            if(m.getText().equals(ue)){
+                                models.add(m);
+                            }
+                        }
                     }
                 }
                 if (ueDeS.size() > 0) {
                     UE.add(s);
                     UECollections.put(s,ueDeS);
+                    modelMap.put(s,models);
                 }
             }
         }

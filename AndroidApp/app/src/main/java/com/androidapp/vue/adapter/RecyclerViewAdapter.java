@@ -1,10 +1,12 @@
 package com.androidapp.vue.adapter;
+import android.app.Activity;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,8 +25,11 @@ import metier.ToJSON;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
-    private List<Model> mModelList;
+    public List<Model> getmModelList() {
+        return mModelList;
+    }
 
+    private List<Model> mModelList;
 
     public RecyclerViewAdapter(List<Model> modelList) {
         this.mModelList = modelList;
