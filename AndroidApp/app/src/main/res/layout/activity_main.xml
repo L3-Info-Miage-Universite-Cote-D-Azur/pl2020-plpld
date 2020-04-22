@@ -37,8 +37,7 @@
             android:layout_marginLeft="8dp"
             android:layout_width="92dp"
             android:layout_height="62dp"
-            android:id="@+id/s1"
-            android:onClick="actionS1">
+            android:id="@+id/s1">
         </RelativeLayout>
 
         <RelativeLayout
@@ -46,8 +45,7 @@
             android:layout_marginLeft="100dp"
             android:layout_width="100dp"
             android:layout_height="62dp"
-            android:id="@+id/s2"
-            android:onClick="actionS2">
+            android:id="@+id/s2">
         </RelativeLayout>
 
         <RelativeLayout
@@ -55,8 +53,7 @@
             android:layout_marginLeft="200dp"
             android:layout_width="100dp"
             android:layout_height="62dp"
-            android:id="@+id/s3"
-            android:onClick="actionS3">
+            android:id="@+id/s3">
         </RelativeLayout>
 
         <RelativeLayout
@@ -64,8 +61,7 @@
             android:layout_marginLeft="300dp"
             android:layout_width="100dp"
             android:layout_height="62dp"
-            android:id="@+id/s4"
-            android:onClick="actionS4">
+            android:id="@+id/s4">
         </RelativeLayout>
     </RelativeLayout>
 
@@ -86,7 +82,6 @@
         android:textColor="#000000"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:onClick="onClickBtn"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"

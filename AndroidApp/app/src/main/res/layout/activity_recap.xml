@@ -110,6 +110,10 @@
 
         </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
 
     <Button
         android:id="@+id/RetourArriereRecap"
@@ -131,28 +135,29 @@
             android:layout_height="70dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="90dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/custom_button"
-            android:text="Finaliser mon inscription"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:text="Finaliser mon inscription" />
 
         <Button
             android:id="@+id/buttonPartager"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_gravity="bottom|right"
+            android:layout_alignRight="@id/buttonConfirmation"
+            android:layout_marginTop="170dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="60dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/custom_button3"
-            android:text="Partager"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:text="Partager"/>
+    </RelativeLayout>
 
 </LinearLayout>
