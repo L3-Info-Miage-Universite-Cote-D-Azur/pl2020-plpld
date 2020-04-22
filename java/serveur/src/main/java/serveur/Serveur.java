@@ -61,7 +61,7 @@ public class Serveur {
         this.server.addEventListener(CONFIRMATION, ChoixUtilisateur.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, ChoixUtilisateur choix, AckRequest ackRequest) throws Exception {
-                NetHandler.nouvelleConfirmation(choix,getKey(socketIOClient).getNom());
+                NetHandler.nouvelleConfirmation(choix);
             }
         });
 

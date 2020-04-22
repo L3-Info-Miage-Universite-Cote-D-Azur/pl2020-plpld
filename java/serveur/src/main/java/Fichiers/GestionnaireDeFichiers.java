@@ -116,6 +116,16 @@ public class GestionnaireDeFichiers {
         out.flush();
         out.close();
     }
+    public void EcrireDansFichierListe(String fichier,List<String> list) throws IOException {
+
+        FileWriter fw = new FileWriter(fichier, true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        PrintWriter out = new PrintWriter(bw);
+        for(String str : list)
+            out.println(str);
+        out.flush();
+        out.close();
+    }
 
     public Boolean trouverEtudiant(String fichier, String logs)
     {

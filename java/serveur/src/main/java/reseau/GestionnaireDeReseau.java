@@ -26,11 +26,11 @@ public class GestionnaireDeReseau {
      *  objet GestionnaireDeFichiers qui communique avec la classe
      */
     private GestionnaireDeFichiers FileHandler = new GestionnaireDeFichiers();
+    private String tmpNum;
 
-
-    public void nouvelleConfirmation(ChoixUtilisateur choix,String str) throws IOException {
+    public void nouvelleConfirmation(ChoixUtilisateur choix) throws IOException {
         System.out.println(choix.toString());
-        FileHandler.EcrireDansFichier("BD Matieres" +str,choix.toString());
+        FileHandler.EcrireDansFichierListe(tmpNum,choix.getChoix());
 
     }
 
@@ -42,6 +42,7 @@ public class GestionnaireDeReseau {
     public void nouveauEtu(Etudiant etudiant) throws IOException {
         System.out.println(" L'étudiant numero " + etudiant.getNumEtudiant() + " s'est inscrit");
         System.out.println( etudiant.getNumEtudiant() + " " + etudiant.getMotDePasse());
+        tmpNum = etudiant.getNumEtudiant();
         FileHandler.EcrireDansFichier("BD.txt",etudiant.getNumEtudiant() + " " + etudiant.getMotDePasse());
         FileHandler.EcrireDansFichier("BD Matieres","$"+etudiant.getNumEtudiant());
     }
