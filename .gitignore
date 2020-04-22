@@ -42,4 +42,4 @@ vcs.xml
 
 #pour les fichiers textes locaux
 java/BD.txt
-java/BD Matieres
+java/BD*
