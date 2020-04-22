@@ -1,20 +1,26 @@
 package metier;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Etudiant implements ToJSON {
     private String nom;
     private String prenom;
     private String numEtudiant ;
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate dateNaissance;
     private String motDePasse;
 
     public Etudiant(String nom) {
         this.nom = nom;
     }
+
+
     public Etudiant(String nom, String prenom, String numEtudiant, LocalDate dateNaissance, String motDePasse) {
         this.nom = nom;
         this.prenom = prenom;
@@ -22,6 +28,16 @@ public class Etudiant implements ToJSON {
         this.dateNaissance = dateNaissance;
         this.motDePasse = motDePasse;
     }
+
+    public Etudiant(String nom, String prenom, String numEtudiant, String dateNaissance, String motDePasse) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.numEtudiant = numEtudiant;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        this.dateNaissance = LocalDate.parse(dateNaissance, formatter);
+        this.motDePasse = motDePasse;
+    }
+
     public Etudiant() {}
 
     public String getNom() {
@@ -64,6 +80,7 @@ public class Etudiant implements ToJSON {
     public void setMotDePasse(String mdp) {
         motDePasse = mdp;
     }
+
     @Override
     public JSONObject toJSON() {
         JSONObject Etudiant = new JSONObject();
@@ -71,7 +88,7 @@ public class Etudiant implements ToJSON {
             Etudiant.put("nom",getNom());
             Etudiant.put("prenom",getPrenom());
             Etudiant.put("numEtudiant",getNumEtudiant());
-            Etudiant.put("dateNaissance",getDateNaissance());
+            Etudiant.put("dateNaissance",getDateNaissance().toString());
             Etudiant.put("motDePasse",getMotDePasse());
         } catch (JSONException e) {
             e.printStackTrace();

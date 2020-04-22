@@ -19,9 +19,7 @@ public class Main {
     public static final void main(String[] args)
 
     {
-
      GestionnaireDeReseau NetHandler = new GestionnaireDeReseau();
-     GestionnaireDeFichiers FileHandler = new GestionnaireDeFichiers();
 
         Configuration config = new Configuration();
         config.setHostname("127.0.0.1");
