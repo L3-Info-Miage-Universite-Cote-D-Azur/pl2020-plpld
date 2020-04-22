@@ -76,25 +76,29 @@ public class InscriptionActivity extends AppCompatActivity {
                                     {
                                         case 0:
                                             Connexion.CONNEXION.predefini = "Mathématiques";
+                                            startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
                                             break;
                                         case 1 :
                                             Connexion.CONNEXION.predefini = "SVT";
+                                            startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
                                             break;
                                         case 2 :
                                             Connexion.CONNEXION.predefini = "Physique";
+                                            startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
                                             break;
                                         case 3 :
                                             Connexion.CONNEXION.predefini = "Chimie";
+                                            startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
                                             break;
                                         case 4 :
                                             Connexion.CONNEXION.predefini = "Informatique";
+                                            startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
                                             break;
                                         case 5 :
                                             Connexion.CONNEXION.predefini = "Informatique (L1)";
+                                            startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
                                             break;
                                     }
-                                    startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
-                                    Connexion.CONNEXION.envoyerMessage(Net.NV_ETU, etu);
                                 }});
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(InscriptionActivity.this);

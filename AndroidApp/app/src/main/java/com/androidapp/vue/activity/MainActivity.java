@@ -53,14 +53,10 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         setContentView(R.layout.activity_main);
         Connexion.CONNEXION.setMainVue(this);
         Connexion.CONNEXION.envoyerMessage2(Net.ENVOIE_S1, new Identité("S1"));
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-
         initVue();
-        if(!Connexion.CONNEXION.predefini.equals("Personnalisé") && !Connexion.CONNEXION.MapPredefini.containsKey(Connexion.CONNEXION.predefini))
-        Connexion.CONNEXION.envoyerMessage2(Net.ENVOIE_PREDEFINI, new Identité("PREDEFINI"));
     }
 
     @Override
@@ -72,12 +68,16 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     protected void onResume() {
         super.onResume();
         bouton = findViewById(R.id.buttonValider);
-        if (autoconnect) {
-            initVue();
-        }
+            if (autoconnect) {
+                initVue();
+            }
     }
 
     private void initVue() {
+        if(!Connexion.CONNEXION.predefini.equals("Personnalisé")) {
+            ListeUE = new ArrayList<>();
+            Connexion.CONNEXION.envoyerMessage2(Net.ENVOIE_PREDEFINI, new Identité("PREDEFINI"));
+        }
         final ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "","En attente d'une réponse serveur..." , true);
         autoconnect = getIntent().getBooleanExtra(AUTOCONNECT, true);
         UECollection = new HashMap<>();
@@ -199,10 +199,10 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         this.ListeUE = ListeUE;
     }
 
-        private void expList() {
-            expListView = findViewById(R.id.UE_list);
-            expListAdapter = new ExpandableListAdapter(this, new ArrayList<>(UECollection.keySet()), UECollection);
-            runOnUiThread(new Runnable() {
+    private void expList() {
+        expListView = findViewById(R.id.UE_list);
+        expListAdapter = new ExpandableListAdapter(this, new ArrayList<>(UECollection.keySet()), UECollection);
+        runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     Log.d("UECOLLECTION", UECollection.toString());
@@ -233,15 +233,17 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         }
 
     public void receptionPredefini(Map<String, Map<Integer, List<String>>> Predefini) {
+        if(Connexion.CONNEXION.predefini.equals("Personnalisé")) return;
         Log.d("Parcours prédéfini séléctionné : ", Connexion.CONNEXION.predefini);
         Log.d("Liste des parcours prédéfinis : ", Predefini.toString());
         while (Connexion.CONNEXION.MapPredefini.get(Connexion.CONNEXION.predefini).containsKey(numSemestre)) {
                 Connexion.CONNEXION.selectionUE.put(numSemestre, Connexion.CONNEXION.MapPredefini.get(Connexion.CONNEXION.predefini).get(numSemestre));
                 numSemestre++;
             }
-            if(numSemestre==4)
+            if(numSemestre==5)
                 startActivity(new Intent(MainActivity.this, RecapActivity.class));
             Connexion.CONNEXION.predefini = "Personnalisé";
+            Log.d("Numéro du semestre", String.valueOf(numSemestre));
             new Thread()
             {
                 public void run()
