@@ -23,15 +23,15 @@ public class ChoixUtilisateurTest {
     @Before
     public void setup() {
         //Initialisation
-        choixMath = new ChoixUtilisateur("Mathématiques");
-        choixInfo = new ChoixUtilisateur("Informatique");
-        choixPhysique = new ChoixUtilisateur("Physique");
-        choixChimie = new ChoixUtilisateur("Chimie");
+        choixMath = new ChoixUtilisateur(new ArrayList<String>() {{ add("Mathématiques"); }});
+        choixInfo = new ChoixUtilisateur(new ArrayList<String>() {{ add("Informatique"); }});
+        choixPhysique = new ChoixUtilisateur(new ArrayList<String>() {{ add("Physique"); }});
+        choixChimie = new ChoixUtilisateur(new ArrayList<String>() {{ add("Chimie"); }});
 
-        matiereMath = new String("Mathématiques");
-        matiereInfo = new String("Informatique");
-        matierePhysique = new String("Physique");
-        matiereChimie = new String("Chimie");
+        matiereMath = "Mathématiques";
+        matiereInfo = "Informatique";
+        matierePhysique = "Physique";
+        matiereChimie = "Chimie";
 
         liteMatiere = new ArrayList<String>();
         liteMatiere.add(matiereMath);
@@ -46,6 +46,7 @@ public class ChoixUtilisateurTest {
     @Test
     public void testString() {
         //Test d'égalité sur un seul choix de matière
+        System.out.println(choixMath.getChoix());
         assertEquals(choixMath.getChoix().get(0), matiereMath);
         assertEquals(choixInfo.getChoix().get(0), matiereInfo);
         assertEquals(choixPhysique.getChoix().get(0), matierePhysique);
@@ -65,12 +66,12 @@ public class ChoixUtilisateurTest {
     @Test
     public void toJSON() {
         // Test du JSON avec un seul choix de matière
-        assertEquals(choixMath.toJSON().toString(), "{\"liste choisie\":\"[Mathématiques]\"}");
-        assertEquals(choixInfo.toJSON().toString(), "{\"liste choisie\":\"[Informatique]\"}");
-        assertEquals(choixPhysique.toJSON().toString(), "{\"liste choisie\":\"[Physique]\"}");
-        assertEquals(choixChimie.toJSON().toString(), "{\"liste choisie\":\"[Chimie]\"}");
+        assertEquals(choixMath.toJSON().toString(), "{\"numSemestre\":" + choixMath.getNumSemestre() + ",\"Choix\":\"[Mathématiques]\"}");
+        assertEquals(choixInfo.toJSON().toString(), "{\"numSemestre\":" + choixInfo.getNumSemestre() + ",\"Choix\":\"[Informatique]\"}");
+        assertEquals(choixPhysique.toJSON().toString(), "{\"numSemestre\":" + choixPhysique.getNumSemestre() + ",\"Choix\":\"[Physique]\"}");
+        assertEquals(choixChimie.toJSON().toString(), "{\"numSemestre\":" + choixChimie.getNumSemestre() + ",\"Choix\":\"[Chimie]\"}");
 
         // Test du JSON avec une liste de choix de matières
-        assertEquals(choixListe.toJSON().toString(), "{\"liste choisie\":\"[Mathématiques, Informatique, Physique, Chimie]\"}");
+        assertEquals(choixListe.toJSON().toString(), "{\"numSemestre\":" + choixListe.getNumSemestre() + ",\"Choix\":\"[Mathématiques, Informatique, Physique, Chimie]\"}");
     }
 }
