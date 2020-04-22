@@ -5,17 +5,11 @@ import com.corundumstudio.socketio.SocketIOClient;
 import metier.ChoixUtilisateur;
 import metier.Etudiant;
 import metier.Identité;
-
-
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import static constantes.Net.*;
-import static constantes.Net.UE;
 
 public class GestionnaireDeReseau {
 
@@ -97,7 +91,7 @@ public class GestionnaireDeReseau {
         return FileHandler.lireFichier(path);
     }
 
-    public Object lireTout(String s1, String s2, String s3, String s4) {
+    public List<Map<String, List<String>>> lireTout(String s1, String s2, String s3, String s4) {
         return FileHandler.lireTout(s1,s2,s3,s4);
     }
 
