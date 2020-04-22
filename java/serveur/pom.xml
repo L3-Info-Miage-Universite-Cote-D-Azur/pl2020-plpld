@@ -7,11 +7,11 @@
     <parent>
         <groupId>PLPLD</groupId> <!-- à changer par le nom du groupe -->
         <artifactId>Projet-Licence-PLPLD</artifactId> <!-- et le nom du projet -->
-        <version>0.9</version>
+        <version>1.0</version>
     </parent>
 
     <artifactId>serveur</artifactId> <!-- et le nom du projet -->
-    <version>0.9</version>
+    <version>1.0</version>
 
 
 
@@ -125,7 +125,7 @@
         <dependency>
             <groupId>PLPLD</groupId>
             <artifactId>commun</artifactId>
-            <version>0.9</version>
+            <version>1.0</version>
         </dependency>
 
 
@@ -160,7 +160,7 @@
         <dependency>
             <groupId>PLPLD</groupId>
             <artifactId>commun</artifactId>
-            <version>0.9</version>
+            <version>1.0</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
