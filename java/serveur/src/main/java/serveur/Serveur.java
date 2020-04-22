@@ -34,6 +34,7 @@ public class Serveur {
     /**
      *  map qui gère les connexions des différents étudiants, chaque étudiant est relié a une connexion
      */
+
     private Map<Identité,SocketIOClient> mapEtudiants = new HashMap<>();
 
     public Serveur(SocketIOServer server) {
@@ -47,6 +48,7 @@ public class Serveur {
         this.server.addEventListener(CONNEXION, Identité.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) {
+
                 mapEtudiants.put(id,socketIOClient);
                 envoiePrerequis(mapEtudiants.get(id));
             }});
@@ -56,10 +58,10 @@ public class Serveur {
          *  le choix de l'étudiant est enregistré dans un fichier
          */
 
-        this.server.addEventListener(CONFIRMATION, Identité.class, new DataListener<Identité>() {
+        this.server.addEventListener(CONFIRMATION, ChoixUtilisateur.class, new DataListener<>() {
             @Override
-            public void onData(SocketIOClient socketIOClient, Identité identité, AckRequest ackRequest) throws Exception {
-                NetHandler.nouvelleConfirmation(identité);
+            public void onData(SocketIOClient socketIOClient, ChoixUtilisateur choix, AckRequest ackRequest) throws Exception {
+                NetHandler.nouvelleConfirmation(choix,getKey(socketIOClient).getNom());
             }
         });
 
@@ -186,7 +188,15 @@ public class Serveur {
     {
         socketIOClient.sendEvent(CHOIX, matiere);
     }
+    public Identité getKey(SocketIOClient socketIOClient)
+    {
+        for(Map.Entry<Identité,SocketIOClient> entry : mapEtudiants.entrySet())
+            if(socketIOClient.equals(entry.getValue()))
+                return entry.getKey();
 
+        return null;
+
+    }
 
     public void setNetHandler(GestionnaireDeReseau netHandler) {
         NetHandler = netHandler;

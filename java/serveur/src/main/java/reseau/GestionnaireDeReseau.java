@@ -9,28 +9,41 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import static constantes.Net.*;
+import static constantes.Net.UE;
+
+/**
+ *  Classe GestionnaireDeRéseau, cette classe sert de passerelle entre le serveur et GestionnaireDeFichier
+ *  afin de faciliter la communication entre les classes
+ */
 
 public class GestionnaireDeReseau {
 
+
+
+    /**
+     *  objet GestionnaireDeFichiers qui communique avec la classe
+     */
     private GestionnaireDeFichiers FileHandler = new GestionnaireDeFichiers();
 
 
-    public void nouvelleConfirmation(Identité id) throws IOException {
-        System.out.println(id.getNom());
-        FileHandler.EcrireDansFichier("BD Matieres",id.getNom());
+    public void nouvelleConfirmation(ChoixUtilisateur choix,String str) throws IOException {
+        System.out.println(choix.toString());
+        FileHandler.EcrireDansFichier("BD Matieres" +str,choix.toString());
+
     }
+
+    /**
+     *
+     * @param etudiant
+     * @throws IOException
+     */
     public void nouveauEtu(Etudiant etudiant) throws IOException {
         System.out.println(" L'étudiant numero " + etudiant.getNumEtudiant() + " s'est inscrit");
         System.out.println( etudiant.getNumEtudiant() + " " + etudiant.getMotDePasse());
         FileHandler.EcrireDansFichier("BD.txt",etudiant.getNumEtudiant() + " " + etudiant.getMotDePasse());
         FileHandler.EcrireDansFichier("BD Matieres","$"+etudiant.getNumEtudiant());
-    }
-
-
-    public void nouveauChoix(Identité id,String matiere) {
-        System.out.println(matiere);
-        //socketIOClient.sendEvent(CHOIX, matiere.toString());
     }
 
     public boolean nouvelleConnexion(Identité id)
@@ -45,20 +58,9 @@ public class GestionnaireDeReseau {
         else {
             System.out.println("refusé");
             return false;
-           // socketIOClient.sendEvent(NV_CONNEXION, "false");
         }
-
     }
-  /*  // TODO: 28/02/2020  Modifier cette méthode et la rendre plus utile
-    /**
-     *  Pour l'instant, cette méthode affiche un message de validation
-     * @param socketIOClient
-     * @param id  Identité du client
 
-    public void nouveauClient(SocketIOClient socketIOClient, Identité id) {
-        System.out.println(id+" vient de se connecter");
-    }
-*/
     /**
      * Envoie le fichier des prerequis au client
      * @param socketIOClient
@@ -95,13 +97,4 @@ public class GestionnaireDeReseau {
         return FileHandler.lireTout(s1,s2,s3,s4);
     }
 
-
-    /**
-     * Envoie la liste des UE au client
-     * @param socketIOClientgit
-     * @param path Liste des UE
-     */
-   /* public void envoyerUE(String path) {
-        socketIOClient.sendEvent(UE,FileHandler.lireFichier(path));
-    }*/
 }

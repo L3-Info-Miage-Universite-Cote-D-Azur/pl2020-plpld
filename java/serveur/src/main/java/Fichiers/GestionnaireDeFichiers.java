@@ -113,6 +113,8 @@ public class GestionnaireDeFichiers {
         BufferedWriter bw = new BufferedWriter(fw);
         PrintWriter out = new PrintWriter(bw);
         out.println(str);
+        out.flush();
+        out.close();
     }
 
     public Boolean trouverEtudiant(String fichier, String logs)

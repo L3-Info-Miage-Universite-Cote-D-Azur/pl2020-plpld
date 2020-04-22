@@ -15,10 +15,12 @@ import com.androidapp.controleur.EcouteurDeBouton;
 import com.androidapp.reseau.Connexion;
 import com.androidapp.vue.Vue;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import constantes.Net;
+import metier.ChoixUtilisateur;
 import metier.Identité;
 
 public class RecapActivity extends AppCompatActivity {
@@ -52,10 +54,14 @@ public class RecapActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Connexion.CONNEXION.envoyerMessage2(Net.CONFIRMATION,new Identité(Connexion.CONNEXION.selectionUE.get(1).toString()));
-                Connexion.CONNEXION.envoyerMessage2(Net.CONFIRMATION,new Identité(Connexion.CONNEXION.selectionUE.get(2).toString()));
-                Connexion.CONNEXION.envoyerMessage2(Net.CONFIRMATION,new Identité(Connexion.CONNEXION.selectionUE.get(3).toString()));
-                Connexion.CONNEXION.envoyerMessage2(Net.CONFIRMATION,new Identité(Connexion.CONNEXION.selectionUE.get(4).toString()));
+                List<String> tmpList = new ArrayList<>();
+                for(int i = 1; i < 5;i++) {
+                    tmpList.add(Connexion.CONNEXION.selectionUE.get(i).toString());
+
+
+                }
+
+                Connexion.CONNEXION.envoyerMessage2(Net.CONFIRMATION,new ChoixUtilisateur(tmpList));
 
                 startActivity(new Intent(RecapActivity.this, HomeActivity.class));
             }
