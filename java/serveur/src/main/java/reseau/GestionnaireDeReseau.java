@@ -98,4 +98,7 @@ public class GestionnaireDeReseau {
         return FileHandler.lireTout(s1,s2,s3,s4);
     }
 
+    public void setFileHandler(GestionnaireDeFichiers fileHandler) {
+        FileHandler = fileHandler;
+    }
 }
