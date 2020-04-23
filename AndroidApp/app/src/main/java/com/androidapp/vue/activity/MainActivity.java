@@ -222,7 +222,6 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
                 }
             });
             //only one group can be expanded at one time (the previous one is collapsed )
-
             expListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
                 int previousItem = -1;
                 @Override
@@ -275,7 +274,6 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-        //searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setSearchableInfo
                 (searchManager.getSearchableInfo(getComponentName()));
         searchView.setIconifiedByDefault(false);
@@ -288,9 +286,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // Handle action bar item clicks here. The action bar will automatically handle clicks on the Home/Up button, so long as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
