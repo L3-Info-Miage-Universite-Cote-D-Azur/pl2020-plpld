@@ -24,6 +24,7 @@
 
         <activity android:name=".vue.activity.RecapActivity" />
         <activity android:name=".vue.activity.InscriptionActivity" />
+        <activity android:name=".vue.activity.ResetPasswordActivity" />
 
         <activity android:name=".vue.activity.HomeActivity">
             <intent-filter>

@@ -54,8 +54,13 @@ public class HomeActivity extends AppCompatActivity {
         findViewById(R.id.btninscription).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(HomeActivity.this, InscriptionActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(HomeActivity.this, InscriptionActivity.class));
+            }
+        });
+        findViewById(R.id.btnmdpoublie).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, ResetPasswordActivity.class));
             }
         });
 
