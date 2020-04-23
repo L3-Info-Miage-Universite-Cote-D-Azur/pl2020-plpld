@@ -4,27 +4,18 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.androidapp.R;
 import com.androidapp.reseau.Connexion;
-
 import java.time.LocalDate;
-
 import constantes.Net;
 import metier.Etudiant;
-import metier.Identité;
 
-import static constantes.Net.CHIMIE;
-import static constantes.Net.HISTOIRE;
-import static constantes.Net.INFORMATIQUE;
-import static constantes.Net.MATHS;
-import static constantes.Net.PHYSIQUE;
-import static constantes.Net.SVT;
+/**
+ * Classe qui gère l'inscription d'un nouvel étudiant, si confirmée, cette inscription est ensuite enregistrée par le serveur
+ */
 
 public class InscriptionActivity extends AppCompatActivity {
     @Override
@@ -32,14 +23,40 @@ public class InscriptionActivity extends AppCompatActivity {
         Connexion.CONNEXION.démarrerÉcoute();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription);
+
+        /**
+         *  Le champ du nom de l'étudiant
+         */
         final EditText nom = findViewById(R.id.nom);
+
+        /**
+         *  Le champ du prénom de l'étudiant
+         */
         final EditText prénom = findViewById(R.id.prénom);
+        /**
+         *  Le champ du numéro de l'étudiant
+         */
         final EditText numEtudiant = findViewById(R.id.numEtudiant);
+        /**
+         *  Le champ de la date de naissance de l'étudiant
+         */
         final EditText dateNaissance = findViewById(R.id.naissance);
+        /**
+         *  Le champ du mot de passe choisi par l'étudiant
+         */
         final EditText mdp = findViewById(R.id.mdp);
 
+        /**
+         *  Bouton valider
+         */
         findViewById(R.id.buttonValiderInscription).setOnClickListener(new View.OnClickListener() {
             @Override
+
+            /**
+             *  Ici, on vérifie que le format des différentes informations entrée par l'utilisateur sont valides.
+             *  Si la saisie est correcte, l'étudiant est crée puis envoyé au serveur qui traitera la requête du client.
+             *  Le serveur enregistre l'étudiant et ses possibles choix d'UE.
+             */
             public void onClick(View v) {
                 boolean saisieCorrecte = true;
                 if (nom.getText().toString().matches("[^a-zA-Z -]*")) {
@@ -64,14 +81,23 @@ public class InscriptionActivity extends AppCompatActivity {
                     saisieCorrecte=false;
                 }
                 if(saisieCorrecte) {
+
+                    // Création de l'étudiant
                     final Etudiant etu = new Etudiant(nom.getText().toString(), prénom.getText().toString(),
                             numEtudiant.getText().toString(), LocalDate.of(Integer.parseInt(naissance[2]), Integer.parseInt(naissance[1]), Integer.parseInt(naissance[0])), mdp.getText().toString());
                     Connexion.CONNEXION.envoyerMessage(Net.NV_ETU, etu);
 
+                    // Création d'un Dialog android
                     final AlertDialog.Builder builder2 = new AlertDialog.Builder(InscriptionActivity.this);
                     builder2.setTitle(R.string.parcourspredefini)
                             .setItems(R.array.parcours, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
+
+                                    /**
+                                     *  Choix du parcours prédéfini de l'étudiant, il doit appuyer sur le parcours de son choix.
+                                     *  Le choix est envoyé au serveur qui interprète cette information et renvoie le parcours correspondant au client.
+                                     *  L'étudiant aura alors un parcours déjà fait, pour les premiers semestres du moins.
+                                     */
                                     switch (which)
                                     {
                                         case 0:
@@ -101,6 +127,9 @@ public class InscriptionActivity extends AppCompatActivity {
                                     }
                                 }});
 
+                    /**
+                     *  Sinon, l'étudiant opte pour un parcours personnalisé, ou il doit choisir de lui même toutes ses UE pour les 4 semestres
+                     */
                     AlertDialog.Builder builder = new AlertDialog.Builder(InscriptionActivity.this);
                     builder.setTitle(R.string.choix)
                             .setItems(R.array.choix, new DialogInterface.OnClickListener() {
@@ -120,7 +149,7 @@ public class InscriptionActivity extends AppCompatActivity {
                             });
                     builder.create();
                     builder.show();
-                  //  startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
+
                 }
                 }
         });
