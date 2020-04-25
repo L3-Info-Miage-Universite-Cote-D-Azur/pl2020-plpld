@@ -21,6 +21,7 @@ public class Net {
     public static final String LOGS = "Logs";
     public static final String NV_CONNEXION = "Nouvelle Connexion";
     public static final String CONFIRMATION = "Confirmation";
+    public static final String RESET_PASSWORD = "Réinitialisation du mot de passe";
     public static final int MATHS = 0;
     public static final int SVT = 1;
     public static final int PHYSIQUE = 2;
@@ -31,6 +32,7 @@ public class Net {
     public static final String ENVOIE_S1 = "Envoie S1";
     public static final String ENVOIE_PREDEFINI = "Envoie parcours prédéfinis";
     public static final String ENVOIE_TOUT = "Envoie toutes les UE";
+    public static final String ENVOIE_PASSWORD = "Envoie du mot de passe";
 }
 
 

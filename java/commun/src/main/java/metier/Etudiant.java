@@ -20,6 +20,11 @@ public class Etudiant implements ToJSON {
         this.nom = nom;
     }
 
+    public Etudiant(String numEtudiant, LocalDate dateNaissance) {
+        this.numEtudiant = numEtudiant;
+        this.dateNaissance = dateNaissance;
+    }
+
 
     public Etudiant(String nom, String prenom, String numEtudiant, LocalDate dateNaissance, String motDePasse) {
         this.nom = nom;

@@ -32,7 +32,7 @@ public class GestionnaireDeReseau {
 
     public void nouvelleConfirmation(ChoixUtilisateur choix) throws IOException {
         System.out.println(choix.toString());
-        FileHandler.EcrireDansFichierListe(tmpNum,choix.getChoix());
+        FileHandler.EcrireDansFichierListe(tmpNum + ".txt",choix.getChoix());
 
     }
 
@@ -42,12 +42,12 @@ public class GestionnaireDeReseau {
      * @throws IOException
      */
     public void nouveauEtu(Etudiant etudiant) throws IOException {
-        System.out.println(" L'étudiant numero " + etudiant.getNumEtudiant() + " s'est inscrit");
+        System.out.println("L'étudiant numero " + etudiant.getNumEtudiant() + " s'est inscrit");
         System.out.println( etudiant.getNumEtudiant() + " " + etudiant.getMotDePasse());
         tmpNum = etudiant.getNumEtudiant();
         FileHandler.EcrireDansFichier("BD.txt",etudiant.getNumEtudiant() + " " + etudiant.getMotDePasse());
-        FileHandler.EcrireDansFichier("BD Matieres","$"+etudiant.getNumEtudiant());
-        FileHandler.EnregistrerInfoEtudiant("BD INFO ETUDIANTS",etudiant);
+        FileHandler.EcrireDansFichier("BD Matieres.txt","$"+etudiant.getNumEtudiant());
+        FileHandler.EnregistrerInfoEtudiant("BD INFO ETUDIANTS.txt",etudiant);
     }
 
     public boolean nouvelleConnexion(Identité id)
@@ -63,14 +63,6 @@ public class GestionnaireDeReseau {
             System.out.println("refusé");
             return false;
         }
-    }
-
-    /**
-     * Envoie le fichier des prerequis au client
-     * @param socketIOClient
-     */
-   /* public void envoiePrerequis(SocketIOClient socketIOClient) {
-        socketIOClient.sendEvent(PREREQUIS, FileHandler.constructionPrerequis(S1, S2, S3, S4, FICHIER_PREREQUIS));
     }
 
     /**
@@ -96,6 +88,8 @@ public class GestionnaireDeReseau {
     public HashMap<String, List<String>> lireFichier(String path) {
         return FileHandler.lireFichier(path);
     }
+
+    public Etudiant getEtudiant(String numEtudiant) {return FileHandler.getEtudiant("BD INFO ETUDIANTS.txt", numEtudiant); }
 
     public List<Map<String, List<String>>> lireTout(String s1, String s2, String s3, String s4) {
         return FileHandler.lireTout(s1,s2,s3,s4);

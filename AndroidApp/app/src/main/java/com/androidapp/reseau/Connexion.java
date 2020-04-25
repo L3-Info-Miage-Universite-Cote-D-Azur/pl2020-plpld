@@ -9,6 +9,7 @@ import constantes.Net;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+import metier.Etudiant;
 import metier.ToJSON;
 import com.androidapp.vue.*;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -47,6 +48,8 @@ public enum Connexion implements RecevoirMessage {
      *  La map des parcours prédefini, qui sera construite à la reception des messages du serveur
      */
     public Map<String, Map<Integer, List<String>>> MapPredefini = new HashMap<>();
+
+    public Etudiant etudiant;
 
 
     public String predefini = "Personnalisé";
@@ -179,7 +182,18 @@ public enum Connexion implements RecevoirMessage {
             }
         });
 
-
+        recevoirMessage(Net.ENVOIE_PASSWORD, new Emitter.Listener() {
+            ObjectMapper objectMapper2 = new ObjectMapper();
+            @Override
+            public void call(Object... args) {
+                try {
+                    etudiant = objectMapper2.readValue(args[0].toString(), new TypeReference<Etudiant>() {
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public void setSocket(Socket socket) {

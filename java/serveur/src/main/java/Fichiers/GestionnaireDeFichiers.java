@@ -3,6 +3,8 @@ package Fichiers;
 import metier.Etudiant;
 import metier.ListeSemestre;
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -171,7 +173,7 @@ public class GestionnaireDeFichiers {
         out.close();
     }
 
-    public Etudiant GetEtudiant(String fichier,String numEtudiant)
+    public Etudiant getEtudiant(String fichier,String numEtudiant)
     {
         BufferedReader br;
         try
@@ -189,7 +191,7 @@ public class GestionnaireDeFichiers {
                        line = br.readLine();
                        tmpList.add(line);
                    }
-                   return new Etudiant(tmpList.get(0),tmpList.get(1),num,tmpList.get(2),tmpList.get(3));
+                   return new Etudiant(tmpList.get(0),tmpList.get(1),num, LocalDate.parse(tmpList.get(2)),tmpList.get(3));
                 }
                 line = br.readLine();
             }

@@ -12,6 +12,7 @@ import reseau.GestionnaireDeReseau;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import static constantes.Net.*;
 
@@ -48,7 +49,6 @@ public class Serveur {
         this.server.addEventListener(CONNEXION, Identité.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) {
-
                 mapEtudiants.put(id,socketIOClient);
                 envoiePrerequis(mapEtudiants.get(id));
             }});
@@ -101,10 +101,10 @@ public class Serveur {
         /**
          *  Evenement qui gère les choix de l'étudiant en fonction de sa selection de matière
          */
-        this.server.addEventListener(CHOIX, Identité.class, new DataListener<>() {
+        this.server.addEventListener(CHOIX, String.class, new DataListener<>() {
             @Override
-            public void onData(SocketIOClient socketIOClient, Identité matiere, AckRequest ackRequest) {
-               nouveauChoix(socketIOClient, matiere.getNom());
+            public void onData(SocketIOClient socketIOClient, String matiere, AckRequest ackRequest) {
+               nouveauChoix(socketIOClient, matiere);
             }
         });
         /**
@@ -139,7 +139,7 @@ public class Serveur {
             }
         });
         /**
-         *  Evenement qui gère l'envoie des pre
+         *  Evenement qui gère l'envoie des parcours prédéfinis
          */
         this.server.addEventListener(ENVOIE_PREDEFINI, String.class, new DataListener<>() {
             @Override
@@ -148,6 +148,23 @@ public class Serveur {
                 envoyerTout(socketIOClient, S1, S2, S3, S4);
             }
         });
+
+        /**
+         *  Evenement qui gère l'envoi d'un mot de passe oublié
+         */
+        this.server.addEventListener(RESET_PASSWORD, Etudiant.class, new DataListener<>() {
+            @Override
+            public void onData(SocketIOClient socketIOClient, Etudiant et, AckRequest ackRequest) {
+                System.out.println("Demande de réinitialisation du mot de passe.");
+                System.out.println(et.getNumEtudiant());
+                if(Objects.nonNull(NetHandler.getEtudiant(et.getNumEtudiant()))) {
+                    if(NetHandler.getEtudiant(et.getNumEtudiant()).getDateNaissance().equals(et.getDateNaissance())) {
+                        socketIOClient.sendEvent(ENVOIE_PASSWORD, NetHandler.getEtudiant(et.getNumEtudiant()));
+                        return;
+                    }
+                }
+                socketIOClient.sendEvent(ENVOIE_PASSWORD, new Etudiant("Combinaison invalide"));
+            }});
     }
 
 
@@ -165,6 +182,10 @@ public class Serveur {
         socketIOClient.sendEvent(ENVOIE_TOUT, NetHandler.lireTout(S1, S2, S3, S4));
     }
 
+    /**
+     * Envoie le fichier des prerequis au client
+     * @param socketIOClient
+     */
     public void envoiePrerequis(SocketIOClient socketIOClient) {
         socketIOClient.sendEvent(PREREQUIS, NetHandler.lireConstructionPrerequis(S1, S2, S3, S4, FICHIER_PREREQUIS));
     }
@@ -187,15 +208,6 @@ public class Serveur {
     public void nouveauChoix(SocketIOClient socketIOClient, String matiere)
     {
         socketIOClient.sendEvent(CHOIX, matiere);
-    }
-    public Identité getKey(SocketIOClient socketIOClient)
-    {
-        for(Map.Entry<Identité,SocketIOClient> entry : mapEtudiants.entrySet())
-            if(socketIOClient.equals(entry.getValue()))
-                return entry.getKey();
-
-        return null;
-
     }
 
     public void setNetHandler(GestionnaireDeReseau netHandler) {
