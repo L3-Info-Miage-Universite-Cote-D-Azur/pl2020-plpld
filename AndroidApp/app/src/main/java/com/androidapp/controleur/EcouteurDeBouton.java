@@ -9,7 +9,11 @@ import com.androidapp.vue.*;
 import constantes.Net;
 import metier.ChoixUtilisateur;
 
+/**
+ *  Classe EcouteurDeBouton, qui gère les différents cas quand l'utilisateur appuie sur un bouton en fonction de l'état de l'application.
+ */
 public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickListener {
+
     private Vue vue;
 
     public EcouteurDeBouton() {
@@ -20,10 +24,16 @@ public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickL
     }
 
     @Override
+
+
     public void onClick(View v) {
         switch(v.getId()) {
+
+            /**
+             *  Gestion du bouton valider pour chaque semestre, si l'utilisateur sélectionne un nombre d'UE
+             *  dans le bon intervalle,sa selection est transmise au serveur et le semestre change
+             */
             case R.id.buttonValider:
-                Log.d("POUR MONTRER", "EcouteurDeBouton : bouton valider cliqué");
                 if (vue.selection().size()-1 < 3) {
                     vue.displayMsg("Veuillez choisir au minimum 3 matières");
                 }
@@ -36,29 +46,23 @@ public class EcouteurDeBouton extends AppCompatActivity implements View.OnClickL
                     vue.changementSemestre();
                 }
                 break;
-
+            /**
+             *  Gestion du retour en arrière pour chaque semestre
+             */
             case R.id.s1:
-                Log.d("Retour arrière", "Retour au semestre 1");
                 vue.retourArriere(1);
                 break;
 
             case R.id.s2:
-                Log.d("Retour arrière", "Retour au semestre 2");
                 vue.retourArriere(2);
                 break;
 
             case R.id.s3:
-                Log.d("Retour arrière", "Retour au semestre 3");
                 vue.retourArriere(3);
                 break;
 
             case R.id.s4:
-                Log.d("Retour arrière", "Retour au semestre 4");
                 vue.retourArriere(4);
-                break;
-
-            case R.id.buttonConfirmation :
-                vue.displayMsg("bouton cliqué");
                 break;
 
         }

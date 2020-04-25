@@ -1,16 +1,17 @@
 package com.androidapp.Dialogs;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
-
 import com.androidapp.R;
-import com.androidapp.vue.activity.MainActivity;
+
+
+/**
+ *  Classe ConnexionDialogs qui s'occupe de créer des Dialogs Android pour la connexion de l'étudiant.
+ *  Un Dialog est affiché sur l'écran, qui informe l'utilisateur si la connexion est réussie ou non
+ */
 
 public class ConnexionDialogs extends DialogFragment {
 
@@ -30,6 +31,7 @@ public class ConnexionDialogs extends DialogFragment {
                             }
                         });
 
+                // On crée le dialog
                 builder.create();
                 builder.setCancelable(false);
                 builder.show();
