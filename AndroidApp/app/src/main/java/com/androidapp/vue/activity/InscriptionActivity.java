@@ -138,7 +138,7 @@ public class InscriptionActivity extends AppCompatActivity {
                                     {
                                         case  0 :
                                             startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
-                                            Connexion.CONNEXION.envoyerMessage(Net.NV_ETU, etu);
+                                          //  Connexion.CONNEXION.envoyerMessage(Net.NV_ETU, etu);
                                             break;
                                         case 1 :
                                             builder2.create();

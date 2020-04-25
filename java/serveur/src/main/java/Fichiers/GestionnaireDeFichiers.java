@@ -1,5 +1,6 @@
 package Fichiers;
 
+import metier.Etudiant;
 import metier.ListeSemestre;
 import java.io.*;
 import java.util.ArrayList;
@@ -155,6 +156,50 @@ public class GestionnaireDeFichiers {
         out.println(str);
         out.flush();
         out.close();
+    }
+
+    public void EnregistrerInfoEtudiant(String fichier, Etudiant etudiant) throws IOException {
+        FileWriter fw = new FileWriter(fichier, true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        PrintWriter out = new PrintWriter(bw);
+        out.println(etudiant.getNumEtudiant());
+        out.println(etudiant.getNom());
+        out.println(etudiant.getPrenom());
+        out.println(etudiant.getDateNaissance().toString());
+        out.println(etudiant.getMotDePasse());
+        out.flush();
+        out.close();
+    }
+
+    public Etudiant GetEtudiant(String fichier,String numEtudiant)
+    {
+        BufferedReader br;
+        try
+        {
+            br = new BufferedReader(new FileReader(fichier));
+            String line = br.readLine();
+            while(line != null)
+            {
+                System.out.println(line);
+                if(line.equals(numEtudiant))
+                {
+                   String num = line;
+                   List<String> tmpList = new ArrayList<>();
+                   for(int i = 0; i < 5; i ++) {
+                       line = br.readLine();
+                       tmpList.add(line);
+                   }
+                   return new Etudiant(tmpList.get(0),tmpList.get(1),num,tmpList.get(2),tmpList.get(3));
+                }
+                line = br.readLine();
+            }
+            br.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**

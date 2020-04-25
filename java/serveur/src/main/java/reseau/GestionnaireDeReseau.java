@@ -5,6 +5,8 @@ import com.corundumstudio.socketio.SocketIOClient;
 import metier.ChoixUtilisateur;
 import metier.Etudiant;
 import metier.Identité;
+
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -45,6 +47,7 @@ public class GestionnaireDeReseau {
         tmpNum = etudiant.getNumEtudiant();
         FileHandler.EcrireDansFichier("BD.txt",etudiant.getNumEtudiant() + " " + etudiant.getMotDePasse());
         FileHandler.EcrireDansFichier("BD Matieres","$"+etudiant.getNumEtudiant());
+        FileHandler.EnregistrerInfoEtudiant("BD INFO ETUDIANTS",etudiant);
     }
 
     public boolean nouvelleConnexion(Identité id)
