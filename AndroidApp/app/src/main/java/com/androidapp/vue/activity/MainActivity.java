@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
                 else {
                     handler.postDelayed(new Runnable() {
                         public void run() {
-                            if(ListeUE.size()>=numSemestre || Connexion.CONNEXION.selectionUE.containsKey(numSemestre)) {
+                            if(ListeUE.size()>=numSemestre || Connexion.CONNEXION.getSelectionUE().containsKey(numSemestre)) {
                                 dialog.dismiss();
                             }
                             else {
@@ -127,17 +127,17 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
 
     @Override
     public void changementSemestre() {
-        Connexion.CONNEXION.selectionUE.put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
+        Connexion.CONNEXION.getSelectionUE().put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
         numSemestre++;
         initVue();
         if(numSemestre==4){
             bouton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Connexion.CONNEXION.selectionUE.put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
+                    Connexion.CONNEXION.getSelectionUE().put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
                     Connexion.CONNEXION.envoyerMessage2(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
                     vue.displayMsg("Votre choix a été transmis au serveur");
-                    Connexion.CONNEXION.selectionUE.put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
+                    Connexion.CONNEXION.getSelectionUE().put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
                     startActivity(new Intent(MainActivity.this, RecapActivity.class));
                 }
             });
@@ -162,14 +162,14 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     private List<String> UEvalidees() {
         List<String> validees = new ArrayList<>();
         for(int i=1; i<numSemestre; i++) {
-            validees.addAll(Connexion.CONNEXION.selectionUE.get(i));
+            validees.addAll(Connexion.CONNEXION.getSelectionUE().get(i));
         }
         return validees;
     }
 
 
     public void receptionUE(Map<String, List<String>> UE) {
-        Log.d("Liste des prérequis : ", Connexion.CONNEXION.MapPrerequis.toString());
+        Log.d("Liste des prérequis : ", Connexion.CONNEXION.getMapPrerequis().toString());
         Log.d("NUM SEMESTRE : ", String.valueOf(numSemestre));
         ListeUE.add(UE);
         receptionUE();
@@ -177,8 +177,8 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
 
     private void receptionUE() {
         Log.d("Liste des UE du semestre : ", ListeUE.get(numSemestre-1).toString());
-        graphe = new Graphe(Connexion.CONNEXION.MapPrerequis);
-        if(Connexion.CONNEXION.MapPrerequis.size()==0)
+        graphe = new Graphe(Connexion.CONNEXION.getMapPrerequis());
+        if(Connexion.CONNEXION.getMapPrerequis().size()==0)
             graphe=new Graphe(ListeUE.get(numSemestre-1));
         List<String> selectionnable = graphe.selectionnable(UEvalidees()); //Utilisation du graphe pour connaître la liste des UE selectionnables ce semestre après avoir validée les UE renvoyées par la méthode UEvalidees
         Log.d("Liste des UE validées : ", UEvalidees().toString());
@@ -240,8 +240,8 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         if(Connexion.CONNEXION.predefini.equals("Personnalisé")) return;
         Log.d("Parcours prédéfini séléctionné : ", Connexion.CONNEXION.predefini);
         Log.d("Liste des parcours prédéfinis : ", Predefini.toString());
-        while (Connexion.CONNEXION.MapPredefini.get(Connexion.CONNEXION.predefini).containsKey(numSemestre)) {
-                Connexion.CONNEXION.selectionUE.put(numSemestre, Connexion.CONNEXION.MapPredefini.get(Connexion.CONNEXION.predefini).get(numSemestre));
+        while (Connexion.CONNEXION.getMapPredefini().get(Connexion.CONNEXION.predefini).containsKey(numSemestre)) {
+                Connexion.CONNEXION.getSelectionUE().put(numSemestre, Connexion.CONNEXION.getMapPredefini().get(Connexion.CONNEXION.predefini).get(numSemestre));
                 numSemestre++;
             }
             if(numSemestre==5)

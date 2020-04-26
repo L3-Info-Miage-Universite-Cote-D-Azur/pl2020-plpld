@@ -2,11 +2,9 @@ package com.androidapp.vue.activity;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -14,24 +12,23 @@ import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-
 import com.androidapp.Dialogs.ConnexionDialogs;
 import com.androidapp.R;
 import com.androidapp.reseau.Connexion;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import constantes.Net;
-import metier.Etudiant;
 import metier.Identité;
-import metier.ToJSON;
 
+/**
+ * Classe HomeActivity, qui gère l'écran d'accueil
+ */
 public class HomeActivity extends AppCompatActivity {
+
     private Button openInputPopupDialogButton = null;
     private ListView userDataListView = null;
     private View popupInputDialogView = null;

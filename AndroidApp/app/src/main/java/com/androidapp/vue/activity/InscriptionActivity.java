@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.androidapp.Dialogs.ConnexionDialogs;
 import com.androidapp.R;
 import com.androidapp.reseau.Connexion;
 import java.time.LocalDate;
@@ -19,7 +21,7 @@ import metier.Etudiant;
 
 public class InscriptionActivity extends AppCompatActivity {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         Connexion.CONNEXION.démarrerÉcoute();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription);
@@ -86,6 +88,22 @@ public class InscriptionActivity extends AppCompatActivity {
                     final Etudiant etu = new Etudiant(nom.getText().toString(), prénom.getText().toString(),
                             numEtudiant.getText().toString(), LocalDate.of(Integer.parseInt(naissance[2]), Integer.parseInt(naissance[1]), Integer.parseInt(naissance[0])), mdp.getText().toString());
                     Connexion.CONNEXION.envoyerMessage(Net.NV_ETU, etu);
+
+                    if(Connexion.CONNEXION.isInscriptionAutorisee())
+                    {
+                        ConnexionDialogs connexionDialogs2 = new ConnexionDialogs();
+                        connexionDialogs2.onCreateDialog(savedInstanceState,InscriptionActivity.this,true);
+
+
+                        Intent intent=new Intent(InscriptionActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                        ConnexionDialogs connexionDialogs = new ConnexionDialogs();
+                        connexionDialogs.onCreateDialog(savedInstanceState,InscriptionActivity.this,false);
+
+                    }
 
                     // Création d'un Dialog android
                     final AlertDialog.Builder builder2 = new AlertDialog.Builder(InscriptionActivity.this);

@@ -49,7 +49,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String num = numEtudiant.getText().toString().trim();
                 String date = dateNaissance.getText().toString().trim();
-                Connexion.CONNEXION.etudiant = null;
+                Connexion.CONNEXION.setEtudiant(null);
 
                 if (TextUtils.isEmpty(num) || TextUtils.isEmpty(date)) {
                     Toast.makeText(getApplicationContext(), "Merci d'entrer votre numéro étudiant et votre date de naissance.", Toast.LENGTH_SHORT).show();
@@ -62,23 +62,23 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     public void run() {
-                        if(Objects.nonNull(Connexion.CONNEXION.etudiant)) {
+                        if(Objects.nonNull(Connexion.CONNEXION.getEtudiant())) {
                             dialog.dismiss();
-                            if(Connexion.CONNEXION.etudiant.getNom().equals("Combinaison invalide"))
+                            if(Connexion.CONNEXION.getEtudiant().getNom().equals("Combinaison invalide"))
                                 displayMsg("La combinaison numEtudiant/date de naissance entrée n'est pas correcte.");
                             else
-                                popup("Votre mot de passe est " + Connexion.CONNEXION.etudiant.getMotDePasse());
+                                popup("Votre mot de passe est " + Connexion.CONNEXION.getEtudiant().getMotDePasse());
                             return;
                         }
                         else {
                             handler.postDelayed(new Runnable() {
                                 public void run() {
                                     dialog.dismiss();
-                                    if(Objects.nonNull(Connexion.CONNEXION.etudiant)) {
-                                        if (Connexion.CONNEXION.etudiant.getNom().equals("Combinaison invalide")) {
+                                    if(Objects.nonNull(Connexion.CONNEXION.getEtudiant())) {
+                                        if (Connexion.CONNEXION.getEtudiant().getNom().equals("Combinaison invalide")) {
                                             displayMsg("La combinaison numEtudiant/date de naissance est incorrecte.");
                                         } else {
-                                            popup("Votre mot de passe est " + Connexion.CONNEXION.etudiant.getMotDePasse());
+                                            popup("Votre mot de passe est " + Connexion.CONNEXION.getEtudiant().getMotDePasse());
                                         }
                                     }
                                     else {

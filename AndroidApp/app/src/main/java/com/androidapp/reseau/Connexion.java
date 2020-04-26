@@ -12,6 +12,7 @@ import io.socket.emitter.Emitter;
 import metier.Etudiant;
 import metier.ToJSON;
 import com.androidapp.vue.*;
+import com.androidapp.vue.activity.InscriptionActivity;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -26,33 +27,36 @@ public enum Connexion implements RecevoirMessage {
      */
     private Socket mSocket;
 
+
     /**
      *  Boolean qui traite si la connexion d'un étudiant est autorisée
      */
 
-    public Boolean ConnexionAutorisee = false;
+    private Boolean ConnexionAutorisee = false;
     /**
      *  La variable de la vue principale
      */
-    public Vue mainVue;
+    private Vue mainVue;
     /**
      *  La map des prerequis pour chaque UE, qui sera construite à la reception du message du serveur
      */
-    public Map<String,List<String>> MapPrerequis = new HashMap<>();
+    private Map<String,List<String>> MapPrerequis = new HashMap<>();
     /**
      *  La map des selection des UE du l'utilisateur
      */
-    public Map<Integer, List<String>> selectionUE = new HashMap<>();
+    private Map<Integer, List<String>> selectionUE = new HashMap<>();
 
     /**
      *  La map des parcours prédefini, qui sera construite à la reception des messages du serveur
      */
-    public Map<String, Map<Integer, List<String>>> MapPredefini = new HashMap<>();
+    private Map<String, Map<Integer, List<String>>> MapPredefini = new HashMap<>();
 
-    public Etudiant etudiant;
+
+    private Etudiant etudiant;
 
 
     public String predefini = "Personnalisé";
+    private boolean InscriptionAutorisee = false;
 
 
     /**
@@ -194,7 +198,18 @@ public enum Connexion implements RecevoirMessage {
                 }
             }
         });
+
+        recevoirMessage(Net.NV_ETU, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                if(args[0].toString().equals("true"))
+                {
+                    InscriptionAutorisee = true;
+                }}
+        });
+
     }
+
 
     public void setSocket(Socket socket) {
         mSocket = socket;
@@ -235,4 +250,41 @@ public enum Connexion implements RecevoirMessage {
     public void setConnexionAutorisee(Boolean connexionAutorisee) {
         ConnexionAutorisee = connexionAutorisee;
     }
+
+    public Socket getmSocket() {
+        return mSocket;
+    }
+
+    public Vue getMainVue() {
+        return mainVue;
+    }
+
+    public Map<String, List<String>> getMapPrerequis() {
+        return MapPrerequis;
+    }
+
+    public Map<Integer, List<String>> getSelectionUE() {
+        return selectionUE;
+    }
+
+    public Map<String, Map<Integer, List<String>>> getMapPredefini() {
+        return MapPredefini;
+    }
+
+    public Etudiant getEtudiant() {
+        return etudiant;
+    }
+
+    public String getPredefini() {
+        return predefini;
+    }
+
+    public boolean isInscriptionAutorisee() {
+        return InscriptionAutorisee;
+    }
+
+    public void setEtudiant(Etudiant etudiant) {
+        this.etudiant = etudiant;
+    }
+
 }

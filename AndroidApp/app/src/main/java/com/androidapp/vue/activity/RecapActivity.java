@@ -39,7 +39,7 @@ public class RecapActivity extends AppCompatActivity {
 
                 List<String> tmpList = new ArrayList<>();
                 for(int i = 1; i < 5;i++)
-                    tmpList.add(Connexion.CONNEXION.selectionUE.get(i).toString());
+                    tmpList.add(Connexion.CONNEXION.getSelectionUE().get(i).toString());
 
                 // La liste est envoyée au serveur puis stockée dans une base de donnée
                 Connexion.CONNEXION.envoyerMessage2(Net.CONFIRMATION,new ChoixUtilisateur(tmpList));
@@ -53,22 +53,22 @@ public class RecapActivity extends AppCompatActivity {
         /**
          *  Ici, on désérialise les map reçues
          */
-        ((TextView) findViewById(R.id.semestre1)).setText(Connexion.CONNEXION.selectionUE.get(1).toString().replace(", ", "\n")
+        ((TextView) findViewById(R.id.semestre1)).setText(Connexion.CONNEXION.getSelectionUE().get(1).toString().replace(", ", "\n")
                 .replace("[", "")
                 .replace("]", "")
                 .trim());
 
-        ((TextView) findViewById(R.id.semestre2)).setText(Connexion.CONNEXION.selectionUE.get(2).toString().replace(", ", "\n")
+        ((TextView) findViewById(R.id.semestre2)).setText(Connexion.CONNEXION.getSelectionUE().get(2).toString().replace(", ", "\n")
                 .replace("[", "")
                 .replace("]", "")
                 .trim());
 
-        ((TextView) findViewById(R.id.semestre3)).setText(Connexion.CONNEXION.selectionUE.get(3).toString().replace(", ", "\n")
+        ((TextView) findViewById(R.id.semestre3)).setText(Connexion.CONNEXION.getSelectionUE().get(3).toString().replace(", ", "\n")
                 .replace("[", "")
                 .replace("]", "")
                 .trim());
 
-        ((TextView) findViewById(R.id.semestre4)).setText(Connexion.CONNEXION.selectionUE.get(4).toString().replace(", ", "\n")
+        ((TextView) findViewById(R.id.semestre4)).setText(Connexion.CONNEXION.getSelectionUE().get(4).toString().replace(", ", "\n")
                 .replace("[", "")
                 .replace("]", "")
                 .trim());
@@ -89,13 +89,13 @@ public class RecapActivity extends AppCompatActivity {
                         " Bonjour  [Nom du destinataire] ! " +
                         "     \n\n Voici mon choix de parcours :" +
                         "        \n  \n  Semestre 1 \n \n" +
-                        Connexion.CONNEXION.selectionUE.get(1)  +
+                        Connexion.CONNEXION.getSelectionUE().get(1)  +
                                 "\n \n  Semestre 2 \n \n "
-                        + Connexion.CONNEXION.selectionUE.get(2) +
+                        + Connexion.CONNEXION.getSelectionUE().get(2) +
                                  "   \n  \n  Semestre 3 \n \n"
-                        +  Connexion.CONNEXION.selectionUE.get(3) +
+                        +  Connexion.CONNEXION.getSelectionUE().get(3) +
                              "   \n  \n  Semestre 4 \n \n"
-                        + Connexion.CONNEXION.selectionUE.get(4));
+                        + Connexion.CONNEXION.getSelectionUE().get(4));
                 sendIntent.setType("text/plain");
                 Intent shareIntent = Intent.createChooser(sendIntent, null);
                 startActivity(shareIntent);
