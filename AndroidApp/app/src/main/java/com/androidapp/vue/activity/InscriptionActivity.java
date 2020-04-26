@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.androidapp.Dialogs.ConnexionDialogs;
@@ -82,15 +84,20 @@ public class InscriptionActivity extends AppCompatActivity {
                     mdp.setError("Votre mot de passe doit contenir au moins 6 caractères");
                     saisieCorrecte=false;
                 }
+                if(nom.getText().toString().isEmpty() || prénom.getText().toString().isEmpty() || numEtudiant.getText().toString().isEmpty() ||
+                        dateNaissance.getText().toString().isEmpty() || mdp.getText().toString().isEmpty()){
+                    Toast.makeText(InscriptionActivity.this,"Veuillez remplir les champs manquants avant de valider",Toast.LENGTH_LONG);
+                    saisieCorrecte=false;
+                }
 
+                if(saisieCorrecte) {
 
                     // Création de l'étudiant
                     final Etudiant etu = new Etudiant(nom.getText().toString(), prénom.getText().toString(),
                             numEtudiant.getText().toString(), LocalDate.of(Integer.parseInt(naissance[2]), Integer.parseInt(naissance[1]), Integer.parseInt(naissance[0])), mdp.getText().toString());
                     Connexion.CONNEXION.envoyerMessage(Net.NV_ETU, etu);
 
-                    if(Connexion.CONNEXION.isInscriptionAutorisee())
-                    {
+                    if(Connexion.CONNEXION.isInscriptionAutorisee()){
                         ConnexionDialogs connexionDialogs2 = new ConnexionDialogs();
                         connexionDialogs2.onCreateDialog(savedInstanceState,InscriptionActivity.this,true,"ETU");
 
@@ -98,8 +105,7 @@ public class InscriptionActivity extends AppCompatActivity {
                         Intent intent=new Intent(InscriptionActivity.this, MainActivity.class);
                         startActivity(intent);
                     }
-                    else
-                    {
+                    else{
                         ConnexionDialogs connexionDialogs = new ConnexionDialogs();
                         connexionDialogs.onCreateDialog(savedInstanceState,InscriptionActivity.this,false,"ETU");
                         saisieCorrecte = false;
@@ -107,7 +113,7 @@ public class InscriptionActivity extends AppCompatActivity {
                     }
 
 
-                    if(saisieCorrecte) {
+                    //if(saisieCorrecte) {
 
                         // Création d'un Dialog android
                     final AlertDialog.Builder builder2 = new AlertDialog.Builder(InscriptionActivity.this);
@@ -120,8 +126,7 @@ public class InscriptionActivity extends AppCompatActivity {
                                      *  Le choix est envoyé au serveur qui interprète cette information et renvoie le parcours correspondant au client.
                                      *  L'étudiant aura alors un parcours déjà fait, pour les premiers semestres du moins.
                                      */
-                                    switch (which)
-                                    {
+                                    switch (which){
                                         case 0:
                                             Connexion.CONNEXION.predefini = "Mathématiques";
                                             startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
@@ -156,8 +161,7 @@ public class InscriptionActivity extends AppCompatActivity {
                     builder.setTitle(R.string.choix)
                             .setItems(R.array.choix, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    switch(which)
-                                    {
+                                    switch(which){
                                         case  0 :
                                             startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
                                           //  Connexion.CONNEXION.envoyerMessage(Net.NV_ETU, etu);
