@@ -40,7 +40,7 @@ public class ReseauTest {
     @Test
     public void nouvelleConfirmation() throws IOException {
         gestionnaireResau.nouvelleConfirmation(choixUtilisateur);
-        Mockito.verify(fileHandler).EcrireDansFichierListe(Mockito.eq(null), Mockito.anyList());
+        Mockito.verify(fileHandler).EcrireDansFichierListe(Mockito.anyString(), Mockito.anyList());
     }
 
     @Test
@@ -49,7 +49,8 @@ public class ReseauTest {
         etudiant.setMotDePasse("MdpTest");
         gestionnaireResau.nouveauEtu(etudiant);
         Mockito.verify(fileHandler).EcrireDansFichier(Mockito.eq(BD), Mockito.eq(etudiant.getNumEtudiant() + " " + etudiant.getMotDePasse()));
-        Mockito.verify(fileHandler).EcrireDansFichier(Mockito.eq("BD Matieres"), Mockito.eq("$" + etudiant.getNumEtudiant()));
+        Mockito.verify(fileHandler).EcrireDansFichier(Mockito.eq("BD Matieres.txt"), Mockito.eq("$" + etudiant.getNumEtudiant()));
+        Mockito.verify(fileHandler).EnregistrerInfoEtudiant(Mockito.eq("BD INFO ETUDIANTS.txt"), Mockito.any(Etudiant.class));
     }
 
     @Test
