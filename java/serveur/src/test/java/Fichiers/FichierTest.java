@@ -1,15 +1,18 @@
 package Fichiers;
 
 import static org.junit.Assert.*;
+import metier.Etudiant;
 import org.junit.Before;
 import org.junit.Test;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 
 public class FichierTest {
 
@@ -18,25 +21,34 @@ public class FichierTest {
     private HashMap<String, List<String>> hashMapPrerequis;
     private Map<String, Map<Integer, List<String>>> mapPredefini;
     private HashMap<String, List<String>> constructionPrerequis;
+    private List<Map<String, List<String>>> listeToutUE;
+    private Etudiant etudiant;
     private String semestreTest;
     private String prerequisTest;
     private String predefiniTest;
     private String baseDonnee;
     private String ecrireFichierTest;
+    private String ecrireInfoEtuTest;
+    private String ecrireDansFichierListeTest;
+    private String baseDonneEtuTest;
 
     @Before
     public void setup() {
         fichiers = new GestionnaireDeFichiers();
+        etudiant = new Etudiant("Simpson", "Homer", "ad123456", LocalDate.of(1986, 04, 30), "MDP_Simpson");
         semestreTest = "SemestreTest.txt";
         prerequisTest = "PrerequisTest.txt";
         predefiniTest = "PredefiniTest.txt";
         baseDonnee = "src/test/resources/BaseDonneeTest.txt";
         ecrireFichierTest = "src/test/resources/EcrireFichierTest.txt";
+        ecrireInfoEtuTest = "src/test/resources/EcrireInfoEtuTest.txt";
+        ecrireDansFichierListeTest = "src/test/resources/EcrireDansFichierListeTest.txt";
+        baseDonneEtuTest = "src/test/resources/BaseDonneeEtuTest.txt";
     }
 
 
     @Test
-    public void lireFichierSemestre() {
+    public void lireFichierSemestreTest() {
         // On vérifie un fichier type semestre
         hashMapS1 = fichiers.lireFichier(semestreTest);
 
@@ -83,7 +95,7 @@ public class FichierTest {
 
 
     @Test
-    public void lireFichierPrerequis() {
+    public void lireFichierPrerequisTest() {
         // On vérifie un fichier type prerequis
         hashMapPrerequis = fichiers.lireFichier(prerequisTest);
 
@@ -99,7 +111,7 @@ public class FichierTest {
 
 
     @Test
-    public void lireFichierPredefini() {
+    public void lireFichierPredefiniTest() {
         // On vérifie un fichier type parcours predefini
         mapPredefini = fichiers.lireFichierPredefini(predefiniTest);
 
@@ -133,7 +145,32 @@ public class FichierTest {
 
 
     @Test
-    public void constructionPrerequis() {
+    public void lireToutTest() {
+        // On vérifie que la méthode "lireTout" construit bien une liste avec les 4 semestre (les 4 fichier pour le test sont identique, donc les 4 elements de la liste doivent eux aussi être identique)
+        listeToutUE = fichiers.lireTout(semestreTest, semestreTest, semestreTest, semestreTest);
+
+        // On vérifie que les matières correspondent bien pour le premier semestre (index 0 de la liste)
+        assertEquals(listeToutUE.get(0).get("MIASHS"), new ArrayList<>() {{ add("Economie-Gestion S1"); add("Intro R");}});
+        assertEquals(listeToutUE.get(0).get("Géographie"), new ArrayList<>() {{ add("Decouverte 1"); add("Decouverte 2"); add("Disciplinaire 1"); add("Découverte 4");}});
+        assertEquals(listeToutUE.get(0).get("Science de la vie"), new ArrayList<>() {{ add("Physiologie. Neurologie. Enzymologie. Methodologie"); add("Diversité du Vivant");}});
+        assertEquals(listeToutUE.get(0).get("Informatique"), new ArrayList<>() {{ add("Bases de l'informatique"); add("Introduction à l'informatique par le web"); add("Structures de données et programmation C"); add("Bases de donnée"); add("System 1. Unix et progra shell"); add("Programmation impérative");}});
+        assertEquals(listeToutUE.get(0).get("Mathématiques"), new ArrayList<>() {{ add("Fondements 1"); add("Méthodes : approche continue"); add("Complements 1"); add("Méthodes : Mathématiques et ingénierie"); add("Méthodes : approche géométrique"); }});
+        assertEquals(listeToutUE.get(0).get("Chimie"), new ArrayList<>() {{ add("Structure Microscopique de la Matière"); add("Réactions et reactivites chimiques");}});
+        assertEquals(listeToutUE.get(0).get("Science de la Terre"), new ArrayList<>() {{ add("Structure et dynamique de la terre"); add("Atmosphère; Océan; Climats");}});
+        assertEquals(listeToutUE.get(0).get("CLE 1D (Continuum Licence Enseignement)"), new ArrayList<>() {{ add("Enseignements fondamentaux à l'école primaire 1"); }});
+        assertEquals(listeToutUE.get(0).get("Physique"), new ArrayList<>() {{ add("Mécanique 1"); }});
+        assertEquals(listeToutUE.get(0).get("UE facultative"), new ArrayList<>() {{ add("Projet FabLab"); }});
+        assertEquals(listeToutUE.get(0).get("Electronique"), new ArrayList<>() {{ add("Electronique numerique - Bases"); add("Electronique analogique"); add("Communication sans fil");}});
+
+        // Les 4 semestres sont identique car ont a mis le même fichier
+        assertEquals(listeToutUE.get(0), listeToutUE.get(1));
+        assertEquals(listeToutUE.get(1), listeToutUE.get(2));
+        assertEquals(listeToutUE.get(2), listeToutUE.get(3));
+    }
+
+
+    @Test
+    public void constructionPrerequisTest() {
         //On construit les prérequis (les matières en double apparaissent qu'une seule fois)
         constructionPrerequis = fichiers.constructionPrerequis(semestreTest,semestreTest,semestreTest,semestreTest, prerequisTest);
 
@@ -184,7 +221,7 @@ public class FichierTest {
 
 
     @Test
-    public void ecrireDansFichier() throws IOException {
+    public void ecrireDansFichierTest() throws IOException {
         //On supprime le fichier dans lequel on va écrire (s'il existe)
         File fichierEcrit = new File(ecrireFichierTest);
         fichierEcrit.delete();
@@ -212,7 +249,85 @@ public class FichierTest {
 
 
     @Test
-    public void trouverEtudiant() {
+    public void EnregistrerInfoEtudiantTest() throws IOException {
+        //On supprime le fichier dans lequel on va écrire (s'il existe)
+        File fichierEcrit = new File(ecrireInfoEtuTest);
+        fichierEcrit.delete();
+
+        fichiers.EnregistrerInfoEtudiant(ecrireInfoEtuTest, etudiant);
+        BufferedReader br;
+        br = new BufferedReader(new FileReader(ecrireInfoEtuTest));
+        String line = br.readLine();
+
+        // Verification du numéro étudiant
+        assertEquals(line, etudiant.getNumEtudiant());
+
+        // Verification du nom
+        line = br.readLine();
+        assertEquals(line, etudiant.getNom());
+
+        // Verification du prenom
+        line = br.readLine();
+        assertEquals(line, etudiant.getPrenom());
+
+        // Verification de la date de naissance
+        line = br.readLine();
+        assertEquals(line, etudiant.getDateNaissance().toString());
+
+        // Verification du mot de passe
+        line = br.readLine();
+        assertEquals(line, etudiant.getMotDePasse());
+
+        br.close();
+    }
+
+
+    @Test
+    public void getEtudiantTest() {
+        // On vérifie si l'étudiant existe bien dans le fichier "BaseDonneEtuTest.txt"
+        Etudiant etu;
+        etu = fichiers.getEtudiant(baseDonneEtuTest, "ad123456");
+
+        // On test avec des valeurs contenus dans le fichier "BaseDonneeEtuTest.txt"
+        assertEquals(etu.getNumEtudiant(), "ad123456");
+        assertEquals(etu.getNom(), "Simpson");
+        assertEquals(etu.getPrenom(), "Homer");
+        assertEquals(etu.getDateNaissance(), LocalDate.of(1986, 04, 30));
+        assertEquals(etu.getMotDePasse(), "MDP_Simpson");
+    }
+
+
+    @Test
+    public void EcrireDansFichierListeTest() throws IOException {
+        //On supprime le fichier dans lequel on va écrire (s'il existe)
+        File fichierEcrit = new File(ecrireDansFichierListeTest);
+        fichierEcrit.delete();
+
+        // On remplis la liste avec 100 lignes de valeurs "EtudiantTest n° 1", "EtudiantTest n° 2", etc...
+        ArrayList<String> liste = new ArrayList<String>() {{
+            for (int i = 0; i < 100; i++) {
+                add("EtudiantTest n° " + i);
+            }
+        }};
+
+        fichiers.EcrireDansFichierListe(ecrireDansFichierListeTest, liste);
+
+        // On parcours le fichier et on vérifie ce qui a été écrit précédemment
+        BufferedReader br;
+        br = new BufferedReader(new FileReader(ecrireDansFichierListeTest));
+        String line = br.readLine();
+        for (int i = 0; i <100; i++) {
+            assertEquals(line, "EtudiantTest n° " + i);
+            assertNotEquals(line , "EtudiantTest n° " + (i + 1));
+            assertNotEquals(line , "EtudiantTest n° " + (i - 1));
+            line = br.readLine();
+        }
+        br.close();
+    }
+
+
+    @Test
+    public void trouverEtudiantTest() {
         //On test avec les vrai identifiants
         assertTrue(fichiers.trouverEtudiant(baseDonnee,"pp444444 1234"));
         assertTrue(fichiers.trouverEtudiant(baseDonnee,"jp111111 admin"));
@@ -232,5 +347,23 @@ public class FichierTest {
         assertFalse(fichiers.trouverEtudiant(baseDonnee,"pp444 1234"));
         assertFalse(fichiers.trouverEtudiant(baseDonnee,"jl546546 000078687"));
         assertFalse(fichiers.trouverEtudiant(baseDonnee,"MMMM465585 Code%Key/(Value_R+98-p)=C'estMonCode"));
+    }
+
+
+    @Test
+    public void etuDejaInscritTest() {
+        //On test avec les vrai numéro d'étudiant
+        assertTrue(fichiers.etuDejaInscrit(baseDonnee,"nk123456"));
+        assertTrue(fichiers.etuDejaInscrit(baseDonnee,"pp444444"));
+        assertTrue(fichiers.etuDejaInscrit(baseDonnee,"ad000000"));
+        assertTrue(fichiers.etuDejaInscrit(baseDonnee,"gt206999"));
+        assertTrue(fichiers.etuDejaInscrit(baseDonnee,"jp111111"));
+
+        //On change un ou plusieurs caractères
+        assertFalse(fichiers.etuDejaInscrit(baseDonnee,"nk123450"));
+        assertFalse(fichiers.etuDejaInscrit(baseDonnee,"pp444449"));
+        assertFalse(fichiers.etuDejaInscrit(baseDonnee,"ad000111"));
+        assertFalse(fichiers.etuDejaInscrit(baseDonnee,"gt206000"));
+        assertFalse(fichiers.etuDejaInscrit(baseDonnee,"jp222222"));
     }
 }

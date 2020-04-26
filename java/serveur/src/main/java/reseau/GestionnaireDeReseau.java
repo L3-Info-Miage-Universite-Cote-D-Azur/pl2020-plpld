@@ -45,7 +45,7 @@ public class GestionnaireDeReseau {
         System.out.println("L'étudiant numero " + etudiant.getNumEtudiant() + " s'est inscrit");
         System.out.println( etudiant.getNumEtudiant() + " " + etudiant.getMotDePasse());
 
-        if(FileHandler.etuDejaInscrit(etudiant.getNumEtudiant()))
+        if(FileHandler.etuDejaInscrit(BD, etudiant.getNumEtudiant()))
             return false;
         else {
             tmpNum = etudiant.getNumEtudiant();

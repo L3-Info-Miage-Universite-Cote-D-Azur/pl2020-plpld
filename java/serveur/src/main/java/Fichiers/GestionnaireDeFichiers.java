@@ -258,12 +258,12 @@ public class GestionnaireDeFichiers {
     }
 
 
-    public Boolean etuDejaInscrit(String numEtudiant) {
+    public Boolean etuDejaInscrit(String fichier, String numEtudiant) {
 
         BufferedReader br;
         try
         {
-            br = new BufferedReader(new FileReader(Net.BD));
+            br = new BufferedReader(new FileReader(fichier));
 
             String line = br.readLine();
             while(line != null)
