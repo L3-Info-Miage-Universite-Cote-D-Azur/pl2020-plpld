@@ -1,14 +1,15 @@
 package Fichiers;
 
+import constantes.Net;
 import metier.Etudiant;
 import metier.ListeSemestre;
 import java.io.*;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 /**
  *  Classe GestionnaireDeFichiers qui s'occupe de lire les données reçues et les écrire dans un fichier
@@ -255,5 +256,35 @@ public class GestionnaireDeFichiers {
         }
         return false;
     }
+
+
+    public Boolean etuDejaInscrit(String numEtudiant) {
+
+        BufferedReader br;
+        try
+        {
+            br = new BufferedReader(new FileReader(Net.BD));
+
+            String line = br.readLine();
+            while(line != null)
+            {
+                int i = line.indexOf(" ");
+                System.out.println(line);
+                if(line.substring(0,i).equals(numEtudiant))
+                {
+                    br.close();
+                    return true;
+                }
+                line = br.readLine();
+            }
+            br.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+
+        }
 
 }

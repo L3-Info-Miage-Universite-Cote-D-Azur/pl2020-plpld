@@ -94,7 +94,12 @@ public class Serveur {
                 System.out.println(etudiant.getMotDePasse());
                 System.out.println(etudiant.getNumEtudiant());
 
-                NetHandler.nouveauEtu(etudiant);
+                if(NetHandler.nouveauEtu(etudiant))
+                    socketIOClient.sendEvent(NV_ETU,"true");
+                else
+                    socketIOClient.sendEvent(NV_ETU,"false");
+
+
             }
         });
 

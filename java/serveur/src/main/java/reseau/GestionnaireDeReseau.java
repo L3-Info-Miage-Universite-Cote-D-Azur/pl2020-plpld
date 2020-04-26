@@ -41,13 +41,19 @@ public class GestionnaireDeReseau {
      * @param etudiant
      * @throws IOException
      */
-    public void nouveauEtu(Etudiant etudiant) throws IOException {
+    public boolean nouveauEtu(Etudiant etudiant) throws IOException {
         System.out.println("L'étudiant numero " + etudiant.getNumEtudiant() + " s'est inscrit");
         System.out.println( etudiant.getNumEtudiant() + " " + etudiant.getMotDePasse());
-        tmpNum = etudiant.getNumEtudiant();
-        FileHandler.EcrireDansFichier("BD.txt",etudiant.getNumEtudiant() + " " + etudiant.getMotDePasse());
-        FileHandler.EcrireDansFichier("BD Matieres.txt","$"+etudiant.getNumEtudiant());
-        FileHandler.EnregistrerInfoEtudiant("BD INFO ETUDIANTS.txt",etudiant);
+
+        if(FileHandler.etuDejaInscrit(etudiant.getNumEtudiant()))
+            return false;
+        else {
+            tmpNum = etudiant.getNumEtudiant();
+            FileHandler.EcrireDansFichier("BD.txt", etudiant.getNumEtudiant() + " " + etudiant.getMotDePasse());
+            FileHandler.EcrireDansFichier("BD Matieres.txt", "$" + etudiant.getNumEtudiant());
+            FileHandler.EnregistrerInfoEtudiant("BD INFO ETUDIANTS.txt", etudiant);
+            return true;
+        }
     }
 
     public boolean nouvelleConnexion(Identité id)
