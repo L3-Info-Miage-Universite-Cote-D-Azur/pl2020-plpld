@@ -82,7 +82,7 @@ public class InscriptionActivity extends AppCompatActivity {
                     mdp.setError("Votre mot de passe doit contenir au moins 6 caractères");
                     saisieCorrecte=false;
                 }
-                if(saisieCorrecte) {
+
 
                     // Création de l'étudiant
                     final Etudiant etu = new Etudiant(nom.getText().toString(), prénom.getText().toString(),
@@ -92,7 +92,7 @@ public class InscriptionActivity extends AppCompatActivity {
                     if(Connexion.CONNEXION.isInscriptionAutorisee())
                     {
                         ConnexionDialogs connexionDialogs2 = new ConnexionDialogs();
-                        connexionDialogs2.onCreateDialog(savedInstanceState,InscriptionActivity.this,true);
+                        connexionDialogs2.onCreateDialog(savedInstanceState,InscriptionActivity.this,true,"ETU");
 
 
                         Intent intent=new Intent(InscriptionActivity.this, MainActivity.class);
@@ -101,11 +101,15 @@ public class InscriptionActivity extends AppCompatActivity {
                     else
                     {
                         ConnexionDialogs connexionDialogs = new ConnexionDialogs();
-                        connexionDialogs.onCreateDialog(savedInstanceState,InscriptionActivity.this,false);
+                        connexionDialogs.onCreateDialog(savedInstanceState,InscriptionActivity.this,false,"ETU");
+                        saisieCorrecte = false;
 
                     }
 
-                    // Création d'un Dialog android
+
+                    if(saisieCorrecte) {
+
+                        // Création d'un Dialog android
                     final AlertDialog.Builder builder2 = new AlertDialog.Builder(InscriptionActivity.this);
                     builder2.setTitle(R.string.parcourspredefini)
                             .setItems(R.array.parcours, new DialogInterface.OnClickListener() {

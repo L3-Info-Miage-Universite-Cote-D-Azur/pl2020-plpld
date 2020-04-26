@@ -13,4 +13,6 @@
     <string name="identifiant">Cette combinaison d\'identifiants n\'est pas valide ! Veuillez réessayer. </string>
     <string name="ok">Ok</string>
     <string name="ConnexionReussie">"Connexion réussie ! vous êtes connecté "</string>
+    <string name="InscriptionReussie">"Inscription réussie ! "</string>
+    <string name="InscriptionRefusee">Le numéro étudiant existe déjà ! Inscription refusée !</string>
 </resources>

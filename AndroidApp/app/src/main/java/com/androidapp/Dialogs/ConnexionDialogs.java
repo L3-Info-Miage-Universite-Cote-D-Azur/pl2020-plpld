@@ -53,4 +53,43 @@ public class ConnexionDialogs extends DialogFragment {
         }
         }
 
+    public void onCreateDialog(Bundle savedInstanceState, final FragmentActivity Activity, Boolean check,String etu) {
+
+        if(Activity != null)
+        {
+
+            if (check && etu.equals("ETU")) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(Activity);
+                builder.setMessage(R.string.InscriptionReussie)
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                            }
+                        });
+
+                // On crée le dialog
+                builder.create();
+                builder.setCancelable(false);
+                builder.show();
+
+            }
+
+            else
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Activity);
+                builder.setMessage(R.string.InscriptionRefusee)
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                            }
+                        });
+
+                builder.create();
+                builder.show();
+            }
+        }
+    }
+
 }
+
+
