@@ -329,7 +329,6 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     }
 
 
-
     /**
      *  Cette méthode receptionne la liste des parcours prédefini donnée en paramètre.
       * @param Predefini la liste des parcours prédéfnis envoyées par le serveur
