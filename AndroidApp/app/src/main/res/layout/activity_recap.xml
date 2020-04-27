@@ -7,6 +7,21 @@
     tools:context=".vue.activity.RecapActivity"
     android:orientation="vertical">
 
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarRecap"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -38,7 +53,7 @@
                     android:id="@+id/semestre1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#0228FD"
+                    android:textColor="#000000"
                     android:text="Matières choisies au s1">
                 </TextView>
 
@@ -60,7 +75,7 @@
                     android:id="@+id/semestre2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#0228FD"
+                    android:textColor="#000000"
                     android:text="Matières choisies au s2">
                 </TextView>
 
@@ -81,7 +96,7 @@
                     android:id="@+id/semestre3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#0228FD"
+                    android:textColor="#000000"
                     android:text="Matières choisies au s3">
                 </TextView>
 
@@ -102,7 +117,7 @@
                     android:id="@+id/semestre4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#0228FD"
+                    android:textColor="#000000"
                     android:text="Matières choisies au s4">
                 </TextView>
 
@@ -110,22 +125,19 @@
 
         </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|bottom"
+        android:orientation="vertical">
 
     <Button
         android:id="@+id/RetourArriereRecap"
         android:layout_width="358dp"
         android:layout_height="70dp"
         android:textSize="20sp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/custom_button"
         android:text="Recommencer mon parcours" />
 
@@ -133,31 +145,11 @@
             android:id="@+id/buttonConfirmation"
             android:layout_width="358dp"
             android:layout_height="70dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="90dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/custom_button"
             android:textSize="20sp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_button"
             android:text="Finaliser mon inscription" />
 
-        <Button
-            android:id="@+id/buttonPartager"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignRight="@id/buttonConfirmation"
-            android:layout_marginTop="170dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/custom_button3"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:text="Partager"/>
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>
