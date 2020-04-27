@@ -21,9 +21,6 @@ import static constantes.Net.UE;
  */
 
 public class GestionnaireDeReseau {
-
-
-
     /**
      *  objet GestionnaireDeFichiers qui communique avec la classe
      */
@@ -136,6 +133,20 @@ public class GestionnaireDeReseau {
      * @return un étudiant
      */
     public Etudiant getEtudiant(String numEtudiant) {return FileHandler.getEtudiant("BD INFO ETUDIANTS.txt", numEtudiant); }
+
+    /**
+     *  Cette méthode associe chaque étudiant au parcours qu'il a choisi
+     *  @return map associant un étudiant à la liste d'UE qu'il a choisi
+     */
+    public Map<Etudiant, List<String>> getUEChoisies() {
+        HashMap<Etudiant, List<String>> map = new HashMap<>();
+        for(Etudiant etudiant: FileHandler.etuInscrits("BD INFO ETUDIANTS.txt")) {
+            map.put(new Etudiant(etudiant.getNom().toUpperCase() + " " + etudiant.getPrenom() + " (" + etudiant.getNumEtudiant() + ')'), FileHandler.selectionUE(etudiant));
+        }
+        return map;
+    }
+
+
 
     /**
      *

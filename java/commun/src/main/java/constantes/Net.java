@@ -17,23 +17,18 @@ public class Net {
     public static final String FICHIER_PREDEFINI = "Parcours_predefinis.txt";
     public static final String PREDEFINI = "PREDEFINI";
     public static final String NV_ETU = "Nouvel Etudiant";
+    public static final String CONSULTATION = "Consultation des UE";
     public static final String BD = "BD.txt";
-    public static final String LOGS = "Logs";
     public static final String NV_CONNEXION = "Nouvelle Connexion";
     public static final String CONFIRMATION = "Confirmation";
     public static final String RESET_PASSWORD = "Réinitialisation du mot de passe";
     public static final String AUTOCONNECT = "AUTOCONNECT";
-    public static final int MATHS = 0;
-    public static final int SVT = 1;
-    public static final int PHYSIQUE = 2;
-    public static final int CHIMIE = 3;
-    public static final int INFORMATIQUE = 4;
-    public static final int HISTOIRE = 5;
 
     public static final String ENVOIE_S1 = "Envoie S1";
     public static final String ENVOIE_PREDEFINI = "Envoie parcours prédéfinis";
     public static final String ENVOIE_TOUT = "Envoie toutes les UE";
     public static final String ENVOIE_PASSWORD = "Envoie du mot de passe";
+    public static final String ENVOIE_CONSULTATION = "Envoie des UE choisies pour chaque étudiant pour consultation";
 }
 
 

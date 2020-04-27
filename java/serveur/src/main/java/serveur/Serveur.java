@@ -49,9 +49,10 @@ public class Serveur {
         this.server.addEventListener(CONNEXION, Identité.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) {
-                mapEtudiants.put(id,socketIOClient);
+                mapEtudiants.put(id, socketIOClient);
                 envoiePrerequis(mapEtudiants.get(id));
-            }});
+            }
+        });
 
         /**
          *  Evenement de confirmation finale du choix du parcours de l'étudiant
@@ -71,10 +72,9 @@ public class Serveur {
         this.server.addEventListener(NV_CONNEXION, Identité.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité etudiant, AckRequest ackRequest) throws Exception {
-                if(NetHandler.nouvelleConnexion(etudiant)) {
+                if (NetHandler.nouvelleConnexion(etudiant)) {
                     socketIOClient.sendEvent(NV_CONNEXION, "true");
-                }
-                else
+                } else
                     socketIOClient.sendEvent(NV_CONNEXION, "false");
 
             }
@@ -94,12 +94,10 @@ public class Serveur {
                 System.out.println(etudiant.getMotDePasse());
                 System.out.println(etudiant.getNumEtudiant());
 
-                if(NetHandler.nouveauEtu(etudiant))
-                    socketIOClient.sendEvent(NV_ETU,"true");
+                if (NetHandler.nouveauEtu(etudiant))
+                    socketIOClient.sendEvent(NV_ETU, "true");
                 else
-                    socketIOClient.sendEvent(NV_ETU,"false");
-
-
+                    socketIOClient.sendEvent(NV_ETU, "false");
             }
         });
 
@@ -109,7 +107,7 @@ public class Serveur {
         this.server.addEventListener(CHOIX, String.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, String matiere, AckRequest ackRequest) {
-               nouveauChoix(socketIOClient, matiere);
+                nouveauChoix(socketIOClient, matiere);
             }
         });
         /**
@@ -119,7 +117,7 @@ public class Serveur {
             @Override
             public void onData(SocketIOClient socketIOClient, ChoixUtilisateur choix, AckRequest ackRequest) {
                 socketIOClient.sendEvent(VALIDATION, choix.toString());
-                if(mapEtudiants.containsValue(socketIOClient)) {
+                if (mapEtudiants.containsValue(socketIOClient)) {
                     switch (choix.getNumSemestre()) {
                         case 1:
                             envoyerUE((socketIOClient), S2);
@@ -131,7 +129,8 @@ public class Serveur {
                             envoyerUE((socketIOClient), S4);
                             break;
                     }
-                } }
+                }
+            }
         });
         /**
          *  Evenement qui gère l'envoie du S1 au client
@@ -139,8 +138,8 @@ public class Serveur {
         this.server.addEventListener(ENVOIE_S1, Identité.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité matiere, AckRequest ackRequest) {
-                if(mapEtudiants.containsValue(socketIOClient))
-                     envoyerUE(socketIOClient, S1);
+                if (mapEtudiants.containsValue(socketIOClient))
+                    envoyerUE(socketIOClient, S1);
             }
         });
         /**
@@ -162,14 +161,26 @@ public class Serveur {
             public void onData(SocketIOClient socketIOClient, Etudiant et, AckRequest ackRequest) {
                 System.out.println("Demande de réinitialisation du mot de passe.");
                 System.out.println(et.getNumEtudiant());
-                if(Objects.nonNull(NetHandler.getEtudiant(et.getNumEtudiant()))) {
-                    if(NetHandler.getEtudiant(et.getNumEtudiant()).getDateNaissance().equals(et.getDateNaissance())) {
+                if (Objects.nonNull(NetHandler.getEtudiant(et.getNumEtudiant()))) {
+                    if (NetHandler.getEtudiant(et.getNumEtudiant()).getDateNaissance().equals(et.getDateNaissance())) {
                         socketIOClient.sendEvent(ENVOIE_PASSWORD, NetHandler.getEtudiant(et.getNumEtudiant()));
                         return;
                     }
                 }
                 socketIOClient.sendEvent(ENVOIE_PASSWORD, new Etudiant("Combinaison invalide"));
-            }});
+            }
+        });
+
+        /**
+         * Evenement qui gère la consultation des UE choisies pour chaque étudiants
+         */
+        this.server.addEventListener(CONSULTATION, Identité.class, new DataListener<>() {
+            @Override
+            public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) {
+                socketIOClient.sendEvent(ENVOIE_CONSULTATION, NetHandler.getUEChoisies());
+                System.out.println("Envoie des UE pour consultation : " + NetHandler.getUEChoisies());
+            }
+        });
     }
 
 

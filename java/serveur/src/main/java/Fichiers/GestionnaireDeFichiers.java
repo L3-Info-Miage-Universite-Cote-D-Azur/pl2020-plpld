@@ -259,7 +259,6 @@ public class GestionnaireDeFichiers {
 
 
     public Boolean etuDejaInscrit(String fichier, String numEtudiant) {
-
         BufferedReader br;
         try
         {
@@ -287,4 +286,68 @@ public class GestionnaireDeFichiers {
 
         }
 
+
+    /**
+     *  Cette méthode renvoie la liste des étudiants déjà inscrits
+     * @param fichier le chemin du fichier
+     * @return liste des étudiants inscrits
+     * */
+        public List<Etudiant> etuInscrits(String fichier) {
+            List<Etudiant> ListeEtudiant = new ArrayList<>();
+            BufferedReader br;
+            try
+            {
+                br = new BufferedReader(new FileReader(fichier));
+                String line = br.readLine();
+                while(line != null)
+                {
+                    Etudiant etudiant = new Etudiant(line);
+                    line = br.readLine();
+                    etudiant.setNom(line);
+                    line = br.readLine();
+                    etudiant.setPrenom(line);
+                    line = br.readLine();
+                    etudiant.setDateNaissance(LocalDate.parse(line));
+                    line = br.readLine();
+                    etudiant.setMotDePasse(line);
+                    line = br.readLine();
+                    ListeEtudiant.add(etudiant);
+                }
+                br.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return ListeEtudiant;
+        }
+
+    /**
+     *  Cette méthode renvoie la liste d'UE choisie par un étudiant
+     * @param etudiant l'étudiant dont on veut obtenir la liste d'UE qu'il a séléctionné
+     * @return liste d'UE choisie par l'étudiant (ou null si aucune séléction)
+     * */
+    public List<String> selectionUE(Etudiant etudiant) {
+        BufferedReader br;
+        File selectionUE = new File(etudiant.getNumEtudiant() + ".txt");
+        List<String> lectureUE = new ArrayList<>();
+        if(!selectionUE.exists())
+            return null;
+        try
+        {
+            br = new BufferedReader(new FileReader(selectionUE));
+            String line = br.readLine();
+            while(line != null)
+            {
+                lectureUE.add(line);
+                line = br.readLine();
+            }
+            br.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lectureUE;
+    }
 }

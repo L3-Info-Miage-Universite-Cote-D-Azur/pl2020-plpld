@@ -65,6 +65,21 @@
         android:text="Commencer un nouveau parcours" />
 
     <Button
+        android:id="@+id/btnconsultation"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/custom_button2"
+        android:text="Consulter les parcours choisis par les autres étudiants" />
+
+    <Button
         android:id="@+id/btnmdpoublie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

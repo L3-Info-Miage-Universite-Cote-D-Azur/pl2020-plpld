@@ -16,8 +16,8 @@ public class Etudiant implements ToJSON {
     private LocalDate dateNaissance;
     private String motDePasse;
 
-    public Etudiant(String nom) {
-        this.nom = nom;
+    public Etudiant(String numEtudiant) {
+        this.numEtudiant = numEtudiant;
     }
 
     public Etudiant(String numEtudiant, LocalDate dateNaissance) {
@@ -102,6 +102,6 @@ public class Etudiant implements ToJSON {
     }
 
     public String toString() {
-        return this.getPrenom();
+        return this.getNumEtudiant();
     }
 }

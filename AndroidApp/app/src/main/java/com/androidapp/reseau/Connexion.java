@@ -54,6 +54,8 @@ public enum Connexion implements RecevoirMessage {
 
     private Etudiant etudiant;
 
+    private Map<Etudiant, List<String>> consultationUE = new HashMap<>();
+
 
     public String predefini = "Personnalisé";
     private boolean InscriptionAutorisee = false;
@@ -214,6 +216,21 @@ public enum Connexion implements RecevoirMessage {
                 }}
         });
 
+        /**
+         *  Cette méthode s'occupe d'interpréter le message du serveur quand le client fait une requête pour consulter les UE des autres étudiants.
+         *  Une map contenant tous les étudiants et les UE qu'ils ont choisies est alors transmise
+         */
+        recevoirMessage(Net.ENVOIE_CONSULTATION, new Emitter.Listener() {
+            ObjectMapper objectMapper2 = new ObjectMapper();
+            @Override
+            public void call(Object... args) {
+                try {
+                    consultationUE = objectMapper2.readValue(args[0].toString(), new TypeReference<Map<Etudiant, List<String>>>() {
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }});
     }
 
 
@@ -293,4 +310,11 @@ public enum Connexion implements RecevoirMessage {
         this.etudiant = etudiant;
     }
 
+    public Map<Etudiant, List<String>> getConsultationUE() {
+        return consultationUE;
+    }
+
+    public void resetConsultationUE() {
+        consultationUE = new HashMap<>();
+    }
 }

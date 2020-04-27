@@ -64,7 +64,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                     public void run() {
                         if(Objects.nonNull(Connexion.CONNEXION.getEtudiant())) {
                             dialog.dismiss();
-                            if(Connexion.CONNEXION.getEtudiant().getNom().equals("Combinaison invalide"))
+                            if(Connexion.CONNEXION.getEtudiant().getNumEtudiant().equals("Combinaison invalide"))
                                 displayMsg("La combinaison numEtudiant/date de naissance entrée n'est pas correcte.");
                             else
                                 popup("Votre mot de passe est " + Connexion.CONNEXION.getEtudiant().getMotDePasse());
@@ -75,7 +75,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                                 public void run() {
                                     dialog.dismiss();
                                     if(Objects.nonNull(Connexion.CONNEXION.getEtudiant())) {
-                                        if (Connexion.CONNEXION.getEtudiant().getNom().equals("Combinaison invalide")) {
+                                        if (Connexion.CONNEXION.getEtudiant().getNumEtudiant().equals("Combinaison invalide")) {
                                             displayMsg("La combinaison numEtudiant/date de naissance est incorrecte.");
                                         } else {
                                             popup("Votre mot de passe est " + Connexion.CONNEXION.getEtudiant().getMotDePasse());
