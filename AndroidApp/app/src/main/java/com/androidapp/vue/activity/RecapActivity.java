@@ -81,17 +81,13 @@ public class RecapActivity extends AppCompatActivity {
                 .replace("]", "")
                 .trim());
 
-        /**
-         * Todo Iteration 8 : Modifier le retour arrière pour tomber sur le semestre 4
-         */
         findViewById(R.id.RetourArriereRecap).setOnClickListener(new View.OnClickListener() {
             @Override
             public  void onClick(View v)
             {
-                Intent Intent = new Intent(RecapActivity.this, MainActivity.class);
-                int semestre = 4;
-                intent.putExtra("semestre", semestre);
-                startActivity(Intent);
+                Intent openMainActivity = new Intent(RecapActivity.this, MainActivity.class);
+                openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivityIfNeeded(openMainActivity, 0);
             }});
 
     }
