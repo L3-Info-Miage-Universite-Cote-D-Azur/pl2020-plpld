@@ -185,7 +185,10 @@ public enum Connexion implements RecevoirMessage {
                 }
             }
         });
-
+        /**
+         *  Cette méthode s'occupe d'interpréter le message du serveur quand le client fait une requête de mot de passe oublié
+         *  Un objet étudiant est envoyé au client qui est interprété par cette méthode et qui assigne le message au champ étudiant
+         */
         recevoirMessage(Net.ENVOIE_PASSWORD, new Emitter.Listener() {
             ObjectMapper objectMapper2 = new ObjectMapper();
             @Override
@@ -199,6 +202,9 @@ public enum Connexion implements RecevoirMessage {
             }
         });
 
+        /**
+         *  Même type de méthode que pour la connexion
+         */
         recevoirMessage(Net.NV_ETU, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
