@@ -84,11 +84,6 @@ public class InscriptionActivity extends AppCompatActivity {
                     mdp.setError("Votre mot de passe doit contenir au moins 6 caractères");
                     saisieCorrecte=false;
                 }
-                if(nom.getText().toString().isEmpty() || prénom.getText().toString().isEmpty() || numEtudiant.getText().toString().isEmpty() ||
-                        dateNaissance.getText().toString().isEmpty() || mdp.getText().toString().isEmpty()){
-                    Toast.makeText(InscriptionActivity.this,"Veuillez remplir les champs manquants avant de valider",Toast.LENGTH_LONG);
-                    saisieCorrecte=false;
-                }
 
                 if(saisieCorrecte) {
 
