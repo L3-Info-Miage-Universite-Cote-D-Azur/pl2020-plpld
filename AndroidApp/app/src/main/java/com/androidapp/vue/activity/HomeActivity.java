@@ -120,8 +120,7 @@ public class HomeActivity extends AppCompatActivity {
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        if(Connexion.CONNEXION.getConnexionAutorisee())
-                                {
+                        if(Connexion.CONNEXION.getConnexionAutorisee()){
                                     ConnexionDialogs connexionDialogs2 = new ConnexionDialogs();
                                     connexionDialogs2.onCreateDialog(savedInstanceState,HomeActivity.this,true);
 
@@ -129,8 +128,7 @@ public class HomeActivity extends AppCompatActivity {
                                     Intent intent=new Intent(HomeActivity.this, MainActivity.class);
                                     startActivity(intent);
                                     }
-                                else
-                                {
+                                else{
                                     ConnexionDialogs connexionDialogs = new ConnexionDialogs();
                                     connexionDialogs.onCreateDialog(savedInstanceState,HomeActivity.this,false);
 
@@ -158,20 +156,16 @@ public class HomeActivity extends AppCompatActivity {
         Connexion.CONNEXION.predefini = "Personnalisé";
     }
 
-    private void initMainActivityControls()
-    {
-        if(openInputPopupDialogButton == null)
-        {
+    private void initMainActivityControls(){
+        if(openInputPopupDialogButton == null){
             openInputPopupDialogButton = findViewById(R.id.btnpar);
         }
-        if(userDataListView == null)
-        {
+        if(userDataListView == null){
             userDataListView = findViewById(R.id.listview_user_data);
         }
     }
 
-    private void initPopupViewControls()
-    {
+    private void initPopupViewControls(){
         LayoutInflater layoutInflater = LayoutInflater.from(HomeActivity.this);
 
         popupInputDialogView = layoutInflater.inflate(R.layout.popup_input_dialog, null);
@@ -183,28 +177,23 @@ public class HomeActivity extends AppCompatActivity {
         initEditTextUserDataInPopupDialog();
     }
 
-    private void initEditTextUserDataInPopupDialog()
-    {
+    private void initEditTextUserDataInPopupDialog(){
         List<String> userDataList = getExistUserDataInListView(userDataListView);
-        if(userDataList.size() == 2)
-        {
+        if(userDataList.size() == 2){
             String userName = userDataList.get(0);
             String password = userDataList.get(1);
             if(userNameEditText != null) {
                 userNameEditText.setText(userName);
             }
-            if(passwordEditText != null)
-            {
+            if(passwordEditText != null){
                 passwordEditText.setText(password);
             }
         }
     }
 
-    private List<String> getExistUserDataInListView(ListView listView)
-    {
+    private List<String> getExistUserDataInListView(ListView listView){
         List<String> ret = new ArrayList<>();
-        if(listView != null)
-        {
+        if(listView != null){
             ListAdapter listAdapter = listView.getAdapter();
             if(listAdapter != null) {
                 int itemCount = listAdapter.getCount();

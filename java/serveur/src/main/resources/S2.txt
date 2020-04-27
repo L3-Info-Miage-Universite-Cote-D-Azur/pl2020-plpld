@@ -22,7 +22,7 @@ Optique 1
 Mécanique 2
 $Science de la Terre
 Structure et dynamique de la terre
-Atmosphère; Océan; Climats
+Atmosphère, Océan, Climats
 $Science de la vie
 Physiologie. Neurologie. Enzymologie. Methodologie
 Diversité du Vivant
@@ -30,6 +30,5 @@ $CLE 1D (Continuum Licence Enseignement)
 Enseignements fondamentaux à l'école primaire 2
 Méthodologie du concours et didactique - Géométrie
 Méthodologie du concours et didactique - Physique-Chimie
-Enseignements fondamentaux à l'école primaire 1
 $UE facultative
 Projet FabLab
