@@ -10,9 +10,7 @@ import serveur.Serveur;
 public class Main {
 
 
-    public static final void main(String[] args)
-
-    {
+    public static final void main(String[] args){
          GestionnaireDeReseau NetHandler = new GestionnaireDeReseau();
 
         Configuration config = new Configuration();

@@ -146,6 +146,10 @@ public class InscriptionActivity extends AppCompatActivity {
                                             Connexion.CONNEXION.predefini = "Informatique (L1)";
                                             startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
                                             break;
+                                        case 6 :
+                                            Connexion.CONNEXION.predefini = "Mathématiques (L1)";
+                                            startActivity(new Intent(InscriptionActivity.this, MainActivity.class));
+                                            break;
                                     }
                                 }});
 

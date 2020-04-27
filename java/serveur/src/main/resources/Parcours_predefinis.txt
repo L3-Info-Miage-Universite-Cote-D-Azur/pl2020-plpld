@@ -1,25 +1,118 @@
 $Informatique
 $$1
 Bases de l'informatique
-Introduction à l'informatique par le web
+Fondements 1
+Complements 1
+Electronique numerique - Bases
+UE transversale
 $$2
 System 1. Unix et progra shell
 Programmation impérative
+Fondements 2
+Complements 2
+UE transversale
 $$3
 Structures de données et programmation C
 Bases de données
 Outils formels pour l'informatique
-Algo & prog avec R
+Fondements 3
 $$4
 Algorithmique 1
 Réseaux et télécommunication
 Systèmes 2 : Mécanisme internes des systèmes d'exploitation
-Introduction aux systèmes intelligents
 Technologie du Web
+UE transversale
+$Mathématiques
+$$1
+Fondements 1
+Complements 1
+Bases de l'informatique
+Introduction à l'informatique par le web
+Compétences transversales
+$$2
+Fondements 2
+Complements 2
+System 1. Unix et progra shell
+Programmation impérative
+Compétences transversales
+$$3
+Fondements 3
+Compléments d'Analyse
+Compléments d'Algèbre
+Outils formels pour l'informatique
+Compétences transversales
+$$4
+Analyse
+Probabilités et Introduction à la Statistiques
+Algèbre
+Résolution numérique des systèmes d'équations linéaires et non-linéaires
+$Physique
+$$1
+Mécanique 1
+$$2
+Optique 1
+Mécanique 2
+$$3
+Electromagnétisme 1
+Thermodynamique 1
+Outils et Méthodes 1
+$$4
+Electromagnétisme 2
+Ondes
+Mathématiques pour la Physique 1
+Mécanique 3
+Outils et Méthodes 2
+$Chimie
+$$1
+Structure Microscopique de la Matière
+$$2
+Réactions et reactivites chimiques
+Thermodynamique chimique / Options
+$$3
+Chimie des solutions
+Chimie organique
+Matériaux 1
+$$4
+Vision macroscopique des molécules
+Matériaux 2
+Chimie Organique Fonctionnelle 2
+Bloc de Chimie Expérimentale
+$Science de la vie
+$$1
+Org. Mécanismes Moléculaires Cellules Eucaryotes
+Génétique. Evolution. Origine Vie et Biodiversité
+$$2
+Physiologie. Neurologie. Enzymologie. Methodologie
+Diversité du Vivant
+$$3
+Org. Mécanismes Moléculaires Cellules Eucaryotes
+Génétique. Evolution. Origine Vie et Biodiversité
+$$4
+Physiologie. Neurologie. Enzymologie. Methodologie
+Diversite du Vivant
 $Informatique (L1)
 $$1
 Bases de l'informatique
-Introduction à l'informatique par le web
+Fondements 1
+Complements 1
+Electronique numerique - Bases
+UE transversale
 $$2
 System 1. Unix et progra shell
 Programmation impérative
+Fondements 2
+Complements 2
+UE transversale
+$Mathématiques (L1)
+$$1
+Fondements 1
+Complements 1
+Bases de l'informatique
+Introduction à l'informatique par le web
+Compétences transversales
+$$2
+Fondements 2
+Complements 2
+System 1. Unix et progra shell
+Programmation impérative
+Compétences transversales
