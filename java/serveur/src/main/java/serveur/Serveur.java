@@ -118,7 +118,7 @@ public class Serveur {
         this.server.addEventListener(VALIDATION, ChoixUtilisateur.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, ChoixUtilisateur choix, AckRequest ackRequest) {
-                NetHandler.validation(socketIOClient, choix);
+                socketIOClient.sendEvent(VALIDATION, choix.toString());
                 if(mapEtudiants.containsValue(socketIOClient)) {
                     switch (choix.getNumSemestre()) {
                         case 1:

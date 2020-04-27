@@ -61,11 +61,11 @@ public class ReseauTest {
     }
 
 
-    @Test
+   /** @Test
     public void validationTest() {
         gestionnaireResau.validation(socketIOClient, choixUtilisateur);
         Mockito.verify(socketIOClient).sendEvent(Mockito.eq(VALIDATION), Mockito.anyString());
-    }
+    }*/
 
 
     @Test

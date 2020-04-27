@@ -4,22 +4,16 @@ import com.corundumstudio.socketio.SocketIOServer;
 import reseau.GestionnaireDeReseau;
 import serveur.Serveur;
 
-import java.io.File;
-
+/**
+ *  Classe Main qui relie les 3 objets et lance le serveur
+ */
 public class Main {
-
-
-    private GestionnaireDeReseau NetHandler;
-    private GestionnaireDeFichiers FileHandler;
-    private Serveur serveur;
-
-
 
 
     public static final void main(String[] args)
 
     {
-     GestionnaireDeReseau NetHandler = new GestionnaireDeReseau();
+         GestionnaireDeReseau NetHandler = new GestionnaireDeReseau();
 
         Configuration config = new Configuration();
         config.setHostname("127.0.0.1");
