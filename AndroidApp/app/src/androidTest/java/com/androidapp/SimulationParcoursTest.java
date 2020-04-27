@@ -63,7 +63,7 @@ public class SimulationParcoursTest {
         Mockito.doAnswer(new Answer() {
             @Override
             public Object answer(InvocationOnMock invocation) throws Throwable {
-                Connexion.CONNEXION.mainVue.receptionUE(UE);
+                Connexion.CONNEXION.getMainVue().receptionUE(UE);
                 return null;
             }
         }).when(connexion).recevoirMessage(Mockito.eq(Net.UE), Mockito.any(Emitter.Listener.class));
@@ -72,7 +72,7 @@ public class SimulationParcoursTest {
         Mockito.doAnswer(new Answer() {
             @Override
             public Object answer(InvocationOnMock invocation) throws Throwable {
-                Connexion.CONNEXION.mainVue.receptionUE(Pre);
+                Connexion.CONNEXION.getMainVue().receptionUE(Pre);
                 return null;
             }
         }).when(connexion).recevoirMessage(Mockito.eq(Net.PREREQUIS), Mockito.any(Emitter.Listener.class));
@@ -108,7 +108,7 @@ public class SimulationParcoursTest {
         Mockito.doAnswer(new Answer() {
             @Override
             public Object answer(InvocationOnMock invocation) throws Throwable {
-                Connexion.CONNEXION.ConnexionAutorisee = true;
+                Connexion.CONNEXION.setConnexionAutorisee(true);
                 return null;
             }
         }).when(connexion).recevoirMessage(Mockito.eq(Net.NV_CONNEXION), Mockito.any(Emitter.Listener.class));

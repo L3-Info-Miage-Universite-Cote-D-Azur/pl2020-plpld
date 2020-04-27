@@ -22,6 +22,7 @@ public class Net {
     public static final String NV_CONNEXION = "Nouvelle Connexion";
     public static final String CONFIRMATION = "Confirmation";
     public static final String RESET_PASSWORD = "Réinitialisation du mot de passe";
+    public static final String AUTOCONNECT = "AUTOCONNECT";
     public static final int MATHS = 0;
     public static final int SVT = 1;
     public static final int PHYSIQUE = 2;
