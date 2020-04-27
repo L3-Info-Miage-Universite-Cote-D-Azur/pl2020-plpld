@@ -341,8 +341,10 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
                 Connexion.CONNEXION.getSelectionUE().put(numSemestre, Connexion.CONNEXION.getMapPredefini().get(Connexion.CONNEXION.predefini).get(numSemestre));
                 numSemestre++;
             }
-            if(numSemestre==5)
+            if(numSemestre==5) {
+                numSemestre = 4;
                 startActivity(new Intent(MainActivity.this, RecapActivity.class));
+            }
             Connexion.CONNEXION.predefini = "Personnalisé";
             Log.d("Numéro du semestre", String.valueOf(numSemestre));
             new Thread()
