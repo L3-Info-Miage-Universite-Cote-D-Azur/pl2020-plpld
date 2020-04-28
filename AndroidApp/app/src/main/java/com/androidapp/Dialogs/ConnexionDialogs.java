@@ -58,7 +58,7 @@ public class ConnexionDialogs extends DialogFragment {
         if(Activity != null)
         {
 
-            if (check && etu.equals("ETU")) {
+            if (check) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(Activity);
                 builder.setMessage(R.string.InscriptionReussie)

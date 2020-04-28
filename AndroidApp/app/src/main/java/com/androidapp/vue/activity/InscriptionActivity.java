@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -27,7 +28,7 @@ public class InscriptionActivity extends AppCompatActivity {
         Connexion.CONNEXION.démarrerÉcoute();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription);
-
+        final boolean[] saisieCorrecte = new boolean[1];
         /**
          *  Le champ du nom de l'étudiant
          */
@@ -62,54 +63,63 @@ public class InscriptionActivity extends AppCompatActivity {
              *  Le serveur enregistre l'étudiant et ses possibles choix d'UE.
              */
             public void onClick(View v) {
-                boolean saisieCorrecte = true;
+                saisieCorrecte[0] = true;
                 if (nom.getText().toString().matches("[^a-zA-Z -]*")) {
                     nom.setError("Votre nom (écrit en lettre) est obligatoire");
-                    saisieCorrecte = false;
+                    saisieCorrecte[0] = false;
                 }
                 if (prénom.getText().toString().matches("[^a-zA-Z -]*")) {
                     prénom.setError("Votre prénom (écrit en lettre) est obligatoire");
-                    saisieCorrecte = false;
+                    saisieCorrecte[0] = false;
                 }
                 if (numEtudiant.getText().toString().matches("\\W*")) {
                     numEtudiant.setError("Votre numéro étudiant doit contenir des nombres et/ou lettres");
-                    saisieCorrecte = false;
+                    saisieCorrecte[0] = false;
                 }
                 String[] naissance = dateNaissance.getText().toString().split("/");
                 if(naissance.length!=3) {
                     dateNaissance.setError("Votre date de naissance doit être de la forme jour/mois/année");
-                    saisieCorrecte=false;
+                    saisieCorrecte[0] =false;
                 }
                 if(mdp.length()<6) {
                     mdp.setError("Votre mot de passe doit contenir au moins 6 caractères");
-                    saisieCorrecte=false;
+                    saisieCorrecte[0] =false;
                 }
 
-                if(saisieCorrecte) {
+                if(saisieCorrecte[0]) {
 
                     // Création de l'étudiant
                     final Etudiant etu = new Etudiant(nom.getText().toString(), prénom.getText().toString(),
                             numEtudiant.getText().toString(), LocalDate.of(Integer.parseInt(naissance[2]), Integer.parseInt(naissance[1]), Integer.parseInt(naissance[0])), mdp.getText().toString());
                     Connexion.CONNEXION.envoyerMessage(Net.NV_ETU, etu);
 
-                    if(Connexion.CONNEXION.isInscriptionAutorisee()){
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    if(Connexion.CONNEXION.isInscriptionAutorisee() == true){
+                        Log.d("BOOLEAN","SAISIE CORREC");
+                        saisieCorrecte[0] = true;
                         ConnexionDialogs connexionDialogs2 = new ConnexionDialogs();
                         connexionDialogs2.onCreateDialog(savedInstanceState,InscriptionActivity.this,true,"ETU");
 
-
-                        Intent intent=new Intent(InscriptionActivity.this, MainActivity.class);
-                        startActivity(intent);
                     }
                     else{
+
+                        Log.d("BOOLEAN","SAISIE INCORRECT");
                         ConnexionDialogs connexionDialogs = new ConnexionDialogs();
                         connexionDialogs.onCreateDialog(savedInstanceState,InscriptionActivity.this,false,"ETU");
-                        saisieCorrecte = false;
-
-                    }
+                        saisieCorrecte[0] = false;
 
 
-                    //if(saisieCorrecte) {
+                    }}
 
+
+
+                    if(saisieCorrecte[0])
+                    {
                         // Création d'un Dialog android
                     final AlertDialog.Builder builder2 = new AlertDialog.Builder(InscriptionActivity.this);
                     builder2.setTitle(R.string.parcourspredefini)
@@ -175,8 +185,8 @@ public class InscriptionActivity extends AppCompatActivity {
                     builder.create();
                     builder.show();
 
-                }
-                }
+                }}
+
         });
     }
 }

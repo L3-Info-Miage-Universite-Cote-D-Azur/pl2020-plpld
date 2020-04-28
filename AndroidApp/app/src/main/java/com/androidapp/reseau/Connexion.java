@@ -34,7 +34,7 @@ public enum Connexion implements RecevoirMessage {
      *  Boolean qui traite si la connexion d'un étudiant est autorisée
      */
 
-    private Boolean ConnexionAutorisee = false;
+    private Boolean ConnexionAutorisee;
     /**
      *  La variable de la vue principale
      */
@@ -65,7 +65,7 @@ public enum Connexion implements RecevoirMessage {
 
 
     public String predefini = "Personnalisé";
-    private boolean InscriptionAutorisee = false;
+    private boolean InscriptionAutorisee;
 
 
     /**
@@ -174,10 +174,10 @@ public enum Connexion implements RecevoirMessage {
                 Log.d("BOOLEAN",args[0].toString());
                 if(args[0].toString().equals("true"))
                 {
-                    Log.d("BOOLEAN","PASSE");
-
                     ConnexionAutorisee = true;
-                }}
+                }
+                else
+                    ConnexionAutorisee = false; }
         });
 
         /**
@@ -221,7 +221,11 @@ public enum Connexion implements RecevoirMessage {
                 if(args[0].toString().equals("true"))
                 {
                     InscriptionAutorisee = true;
-                }}
+                    Log.d("BOOLEAN",args[0].toString());
+                }
+                else
+                    {Log.d("BOOLEAN",args[0].toString());
+                    InscriptionAutorisee = false;}}
         });
 
         /**
@@ -249,7 +253,8 @@ public enum Connexion implements RecevoirMessage {
             public void call(Object... args) {
                 Log.d("Num étudiants activé", "");
                 try {
-                    numEtudiants = objectMapper2.readValue(args[0].toString(), new TypeReference<List<String>>() {
+                    if(numEtudiants != null)
+                        numEtudiants = objectMapper2.readValue(args[0].toString(), new TypeReference<List<String>>() {
                     });
                 } catch (IOException e) {
                     e.printStackTrace();
