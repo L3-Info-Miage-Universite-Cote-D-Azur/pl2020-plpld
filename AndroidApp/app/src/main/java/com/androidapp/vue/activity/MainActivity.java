@@ -84,6 +84,8 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        bouton = findViewById(R.id.buttonValider);
         /**
          *  On set la vue principale à l'activity de la classe (this) et le client fait une requête au serveur  pour recevoir les matières du premier semestre
          */
@@ -111,7 +113,6 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
     @Override
     protected void onResume() {
         super.onResume();
-        bouton = findViewById(R.id.buttonValider);
         if (autoconnect) {
             initVue();
         }
@@ -122,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
      */
     private void initVue() {
 
+        Log.d("Num semestre", String.valueOf(numSemestre));
         /**
          *   Si l'étudiant souhaite faire un parcours prédefini,
          *   on envoie une requête au serveur pour récupérer les parcours prédéfini
@@ -135,41 +137,57 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         autoconnect = getIntent().getBooleanExtra(Net.AUTOCONNECT, true);
         UECollection = new HashMap<>();
         EcouteurDeBouton ecouteur = new EcouteurDeBouton(this);
-        findViewById(R.id.buttonValider).setOnClickListener(ecouteur);
 
-        findViewById(R.id.s1).setOnClickListener(ecouteur);
-        findViewById(R.id.s2).setOnClickListener(ecouteur);
-        findViewById(R.id.s3).setOnClickListener(ecouteur);
-        findViewById(R.id.s4).setOnClickListener(ecouteur);
-        Connexion.CONNEXION.démarrerÉcoute();
+        if (numSemestre != 4)
+            findViewById(R.id.buttonValider).setOnClickListener(ecouteur);
 
-        ListView mListView = findViewById(R.id.list);
-
-        StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0, numSemestre - 1);
-        stepsAdapter.addAll("View " + numSemestre);
-        mListView.setAdapter(stepsAdapter);
-        dialog.show();
-        final Handler handler = new Handler();
-        Log.d("ListeUESize", String.valueOf(ListeUE.size()));
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                if (ListeUE.size() >= numSemestre) {
-                    dialog.dismiss();
-                } else {
-                    handler.postDelayed(new Runnable() {
-                        public void run() {
-                            if (ListeUE.size() >= numSemestre || Connexion.CONNEXION.getSelectionUE().containsKey(numSemestre)) {
-                                dialog.dismiss();
-                            } else {
-                                displayMsg("Erreur serveur");
-                                startActivity(new Intent(MainActivity.this, HomeActivity.class));
-                            }
-                        }
-                    }, 6000);
+        if (numSemestre == 4) {
+            bouton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Connexion.CONNEXION.getSelectionUE().put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
+                    Connexion.CONNEXION.envoyerMessage2(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
+                    displayMsg("Votre choix a été transmis au serveur");
+                    Connexion.CONNEXION.getSelectionUE().put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
+                    retourArriere(4);
+                    startActivity(new Intent(MainActivity.this, RecapActivity.class));
                 }
-            }
-        }, 500);
-    }
+            });
+        }
+
+            findViewById(R.id.s1).setOnClickListener(ecouteur);
+            findViewById(R.id.s2).setOnClickListener(ecouteur);
+            findViewById(R.id.s3).setOnClickListener(ecouteur);
+            findViewById(R.id.s4).setOnClickListener(ecouteur);
+            Connexion.CONNEXION.démarrerÉcoute();
+
+            ListView mListView = findViewById(R.id.list);
+
+            StepsProgressAdapter stepsAdapter = new StepsProgressAdapter(this, 0, numSemestre - 1);
+            stepsAdapter.addAll("View " + numSemestre);
+            mListView.setAdapter(stepsAdapter);
+            dialog.show();
+            final Handler handler = new Handler();
+            Log.d("ListeUESize", String.valueOf(ListeUE.size()));
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    if (ListeUE.size() >= numSemestre) {
+                        dialog.dismiss();
+                    } else {
+                        handler.postDelayed(new Runnable() {
+                            public void run() {
+                                if (ListeUE.size() >= numSemestre || Connexion.CONNEXION.getSelectionUE().containsKey(numSemestre)) {
+                                    dialog.dismiss();
+                                } else {
+                                    displayMsg("Erreur serveur");
+                                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                                }
+                            }
+                        }, 6000);
+                    }
+                }
+            }, 500);
+        }
 
     /**
      * Cette méthode retourne la selection de l'étudiant pour le semestre actuel
@@ -189,25 +207,9 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
      */
     @Override
     public void changementSemestre() {
-
         Connexion.CONNEXION.getSelectionUE().put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
         numSemestre++;
         initVue();
-
-
-        if (numSemestre == 4) {
-            bouton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Connexion.CONNEXION.getSelectionUE().put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
-                    Connexion.CONNEXION.envoyerMessage2(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
-                    vue.displayMsg("Votre choix a été transmis au serveur");
-                    Connexion.CONNEXION.getSelectionUE().put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
-                    retourArriere(4);
-                    startActivity(new Intent(MainActivity.this, RecapActivity.class));
-                }
-            });
-        }
     }
 
     /**
@@ -218,6 +220,9 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
      */
     @Override
     public void retourArriere(int semestre) {
+        if(numSemestre!=4) {
+
+        }
         if (semestre < numSemestre) {
             numSemestre = semestre;
             initVue();
