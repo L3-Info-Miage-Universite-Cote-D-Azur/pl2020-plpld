@@ -55,9 +55,12 @@ public class GestionnaireDeReseau {
         System.out.println("L'étudiant numero " + etudiant.getNumEtudiant() + " s'est inscrit");
         System.out.println( etudiant.getNumEtudiant() + " " + etudiant.getMotDePasse());
 
-        if(FileHandler.etuDejaInscrit(BD, etudiant.getNumEtudiant()))
+        if(FileHandler.etuDejaInscrit(BD, etudiant.getNumEtudiant())) {
+            System.out.println("l'étudiant est déjà inscrit, refus de l'inscription..");
             return false;
+        }
         else {
+            System.out.println(" l'étudiant est nouveau");
             tmpNum = etudiant.getNumEtudiant();
             FileHandler.EcrireDansFichier("BD.txt", etudiant.getNumEtudiant() + " " + etudiant.getMotDePasse());
             FileHandler.EcrireDansFichier("BD Matieres.txt", "$" + etudiant.getNumEtudiant());
@@ -152,7 +155,11 @@ public class GestionnaireDeReseau {
      *  @return liste constituée de tous les numéros étudiants inscrits
      */
     public List<String> getNumEtudiants() {
+        File fichier = new File("BD INFO ETUDIANTS.txt");
+        if (!fichier.exists())
+            return null;
         List<String> listeNumEtudiants = new ArrayList<>();
+
         for(Etudiant etudiant: FileHandler.etuInscrits("BD INFO ETUDIANTS.txt")) {
             listeNumEtudiants.add(etudiant.getNumEtudiant());
         }
