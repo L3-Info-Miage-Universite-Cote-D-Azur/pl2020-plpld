@@ -51,6 +51,8 @@ public class Serveur {
             public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) {
                 mapEtudiants.put(id, socketIOClient);
                 envoiePrerequis(mapEtudiants.get(id));
+                socketIOClient.sendEvent(NUM_ETUDIANTS, NetHandler.getNumEtudiants());
+                System.out.println(id.getNom() + " s'est connecté.");
             }
         });
 
@@ -76,7 +78,6 @@ public class Serveur {
                     socketIOClient.sendEvent(NV_CONNEXION, "true");
                 } else
                     socketIOClient.sendEvent(NV_CONNEXION, "false");
-
             }
         });
 

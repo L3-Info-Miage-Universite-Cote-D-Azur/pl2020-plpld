@@ -2,6 +2,7 @@ package com.androidapp.reseau;
 import android.util.Log;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import metier.Etudiant;
+import metier.Identité;
 import metier.ToJSON;
 import com.androidapp.vue.*;
 import com.androidapp.vue.activity.InscriptionActivity;
@@ -51,6 +53,11 @@ public enum Connexion implements RecevoirMessage {
      */
     private Map<String, Map<Integer, List<String>>> MapPredefini = new HashMap<>();
 
+    /**
+     *  La liste de tous les numéros étudiants inscrits
+     */
+    private List<String> numEtudiants = new ArrayList<>();
+
 
     private Etudiant etudiant;
 
@@ -70,6 +77,7 @@ public enum Connexion implements RecevoirMessage {
         } catch (URISyntaxException ex) {
             ex.printStackTrace();
         }
+        écouterRéseau();
     }
 
     /**
@@ -231,6 +239,22 @@ public enum Connexion implements RecevoirMessage {
                     e.printStackTrace();
                 }
             }});
+
+        /**
+         *  Cette méthode s'occupe de recenser tous les numéros étudiants déjà inscrits
+         */
+        recevoirMessage(Net.NUM_ETUDIANTS, new Emitter.Listener() {
+            ObjectMapper objectMapper2 = new ObjectMapper();
+            @Override
+            public void call(Object... args) {
+                Log.d("Num étudiants activé", "");
+                try {
+                    numEtudiants = objectMapper2.readValue(args[0].toString(), new TypeReference<List<String>>() {
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }});
     }
 
 
@@ -247,6 +271,7 @@ public enum Connexion implements RecevoirMessage {
     }
 
     public void envoyerMessage(String msg, ToJSON obj) {
+        Log.d("Message envoyé", msg);
         mSocket.emit(msg, obj.toJSON());
     }
 
@@ -316,5 +341,9 @@ public enum Connexion implements RecevoirMessage {
 
     public void resetConsultationUE() {
         consultationUE = new HashMap<>();
+    }
+
+    public List<String> getNumEtudiants() {
+        return numEtudiants;
     }
 }

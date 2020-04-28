@@ -20,7 +20,7 @@
             android:gravity="end"
             android:text="Numéro étudiant : " />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/userName"
             android:hint="Numéro étudiant"
             android:inputType="text" />

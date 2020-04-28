@@ -8,6 +8,7 @@ import metier.Identité;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -144,6 +145,18 @@ public class GestionnaireDeReseau {
             map.put(new Etudiant(etudiant.getNom().toUpperCase() + " " + etudiant.getPrenom() + " (" + etudiant.getNumEtudiant() + ')'), FileHandler.selectionUE(etudiant));
         }
         return map;
+    }
+
+    /**
+     *  Cette méthode renvoie la liste de numéro des étudiants inscrits
+     *  @return liste constituée de tous les numéros étudiants inscrits
+     */
+    public List<String> getNumEtudiants() {
+        List<String> listeNumEtudiants = new ArrayList<>();
+        for(Etudiant etudiant: FileHandler.etuInscrits("BD INFO ETUDIANTS.txt")) {
+            listeNumEtudiants.add(etudiant.getNumEtudiant());
+        }
+        return listeNumEtudiants;
     }
 
 

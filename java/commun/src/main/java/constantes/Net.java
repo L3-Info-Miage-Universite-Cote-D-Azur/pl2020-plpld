@@ -21,6 +21,7 @@ public class Net {
     public static final String BD = "BD.txt";
     public static final String NV_CONNEXION = "Nouvelle Connexion";
     public static final String CONFIRMATION = "Confirmation";
+    public static final String NUM_ETUDIANTS = "Envoie de numéros étudiants";
     public static final String RESET_PASSWORD = "Réinitialisation du mot de passe";
     public static final String AUTOCONNECT = "AUTOCONNECT";
 

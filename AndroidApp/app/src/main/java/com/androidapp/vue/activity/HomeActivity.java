@@ -5,8 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
@@ -15,6 +19,8 @@ import android.widget.SimpleAdapter;
 import com.androidapp.Dialogs.ConnexionDialogs;
 import com.androidapp.R;
 import com.androidapp.reseau.Connexion;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -32,7 +38,7 @@ public class HomeActivity extends AppCompatActivity {
     private Button openInputPopupDialogButton = null;
     private ListView userDataListView = null;
     private View popupInputDialogView = null;
-    private EditText userNameEditText = null;
+    private AutoCompleteTextView userNameEditText = null;
     private EditText passwordEditText = null;
     private Button saveUserDataButton = null;
     private Button cancelUserDataButton = null;
@@ -43,8 +49,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Connexion.CONNEXION.écouterRéseau();
+        Connexion.CONNEXION.démarrerÉcoute();
         Connexion.CONNEXION.envoyerMessage(Net.CONNEXION, new Identité("AndroidApp"));
+
         if (getIntent().hasExtra("Erreur")) {
             popupErreur(getIntent().getStringExtra("Erreur"));
         }
@@ -66,7 +73,6 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(HomeActivity.this, ConsultationActivity.class));
             }
         });
-
         setTitle("Connexion étudiant");
         initMainActivityControls();
         openInputPopupDialogButton.setOnClickListener(new View.OnClickListener() {
@@ -171,6 +177,12 @@ public class HomeActivity extends AppCompatActivity {
         popupInputDialogView = layoutInflater.inflate(R.layout.popup_input_dialog, null);
 
         userNameEditText = popupInputDialogView.findViewById(R.id.userName);
+
+        Log.d("Num etudiants", Connexion.CONNEXION.getNumEtudiants().toString());
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_dropdown_item_1line, Connexion.CONNEXION.getNumEtudiants());
+        userNameEditText.setAdapter(adapter);
+
         passwordEditText = popupInputDialogView.findViewById(R.id.password);
         saveUserDataButton = popupInputDialogView.findViewById(R.id.button_connexion);
         cancelUserDataButton = popupInputDialogView.findViewById(R.id.button_cancel_user_data);
