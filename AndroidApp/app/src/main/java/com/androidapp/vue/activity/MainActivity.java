@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
                     Connexion.CONNEXION.envoyerMessage2(Net.VALIDATION, new ChoixUtilisateur(vue.selection()));
                     displayMsg("Votre choix a été transmis au serveur");
                     Connexion.CONNEXION.getSelectionUE().put(numSemestre, new ChoixUtilisateur(selection()).getChoixS());
-                    retourArriere(4);
+                    retourArriere(1);
                     startActivity(new Intent(MainActivity.this, RecapActivity.class));
                 }
             });
@@ -348,7 +348,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
                 numSemestre++;
             }
             if(numSemestre==5) {
-                retourArriere(4);
+                retourArriere(1);
                 startActivity(new Intent(MainActivity.this, RecapActivity.class));
             }
             Connexion.CONNEXION.predefini = "Personnalisé";
