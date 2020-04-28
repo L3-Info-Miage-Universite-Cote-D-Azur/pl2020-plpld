@@ -220,13 +220,15 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
      */
     @Override
     public void retourArriere(int semestre) {
-        if(numSemestre!=4) {
-
-        }
         if (semestre < numSemestre) {
             numSemestre = semestre;
-            initVue();
-            receptionUE();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    initVue();
+                    receptionUE();
+                }
+            });
         } else if (semestre == numSemestre) {
             displayMsg("Vous êtes déjà en train d'effectuer votre selection pour le semestre n°" + semestre);
         } else {
