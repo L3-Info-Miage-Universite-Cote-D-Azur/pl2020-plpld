@@ -136,15 +136,15 @@ public class GestionnaireDeReseau {
      * @param numEtudiant
      * @return un étudiant
      */
-    public Etudiant getEtudiant(String numEtudiant) {return FileHandler.getEtudiant("BD INFO ETUDIANTS.txt", numEtudiant); }
+    public Etudiant getEtudiant(String path, String numEtudiant) {return FileHandler.getEtudiant(path, numEtudiant); }
 
     /**
      *  Cette méthode associe chaque étudiant au parcours qu'il a choisi
      *  @return map associant un étudiant à la liste d'UE qu'il a choisi
      */
-    public Map<Etudiant, List<String>> getUEChoisies() {
+    public Map<Etudiant, List<String>> getUEChoisies(String path) {
         HashMap<Etudiant, List<String>> map = new HashMap<>();
-        for(Etudiant etudiant: FileHandler.etuInscrits("BD INFO ETUDIANTS.txt")) {
+        for(Etudiant etudiant: FileHandler.etuInscrits(path)) {
             map.put(new Etudiant(etudiant.getNom().toUpperCase() + " " + etudiant.getPrenom() + " (" + etudiant.getNumEtudiant() + ')'), FileHandler.selectionUE(etudiant));
         }
         return map;
@@ -154,13 +154,13 @@ public class GestionnaireDeReseau {
      *  Cette méthode renvoie la liste de numéro des étudiants inscrits
      *  @return liste constituée de tous les numéros étudiants inscrits
      */
-    public List<String> getNumEtudiants() {
-        File fichier = new File("BD INFO ETUDIANTS.txt");
+    public List<String> getNumEtudiants(String path) {
+        File fichier = new File(path);
         if (!fichier.exists())
             return null;
         List<String> listeNumEtudiants = new ArrayList<>();
 
-        for(Etudiant etudiant: FileHandler.etuInscrits("BD INFO ETUDIANTS.txt")) {
+        for(Etudiant etudiant: FileHandler.etuInscrits(path)) {
             listeNumEtudiants.add(etudiant.getNumEtudiant());
         }
         return listeNumEtudiants;

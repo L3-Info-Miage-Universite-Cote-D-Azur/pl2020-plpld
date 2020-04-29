@@ -1,0 +1,5 @@
+src/test/resources/ListeUEetudiantTest
+Simpson
+Homer
+1986-04-30
+MDP_Simpson
