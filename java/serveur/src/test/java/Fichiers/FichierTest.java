@@ -460,13 +460,13 @@ public class FichierTest {
         List<String> liste = fichiers.selectionUE(etudiant);
         // On vérifie les matière dans le fichier
         assertEquals(liste.get(0), "Bases de l'informatique");
-        assertEquals(liste.get(0), "Introduction à l'informatique par le web");
-        assertEquals(liste.get(0), "Structures de données et programmation C");
-        assertEquals(liste.get(0), "Fondements 1");
-        assertEquals(liste.get(0), "Méthodes : approche continue");
-        assertEquals(liste.get(0), "Economie-Gestion S1");
-        assertEquals(liste.get(0), "Intro R");
-        assertEquals(liste.get(0), "Mécanique 1");
+        assertEquals(liste.get(1), "Introduction à l'informatique par le web");
+        assertEquals(liste.get(2), "Structures de données et programmation C");
+        assertEquals(liste.get(3), "Fondements 1");
+        assertEquals(liste.get(4), "Méthodes : approche continue");
+        assertEquals(liste.get(5), "Economie-Gestion S1");
+        assertEquals(liste.get(6), "Intro R");
+        assertEquals(liste.get(7), "Mécanique 1");
 
     }
 }
