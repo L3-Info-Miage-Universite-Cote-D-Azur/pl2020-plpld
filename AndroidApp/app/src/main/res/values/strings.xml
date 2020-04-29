@@ -16,4 +16,6 @@
     <string name="ConnexionReussie">"Connexion réussie ! vous êtes connecté "</string>
     <string name="InscriptionReussie">"Inscription réussie ! "</string>
     <string name="InscriptionRefusee">Le numéro étudiant existe déjà ! Inscription refusée !</string>
+    <string name="description"> "Description de l'UE </string>
+    <string name="descriptionUE">"Informatique"</string>
 </resources>

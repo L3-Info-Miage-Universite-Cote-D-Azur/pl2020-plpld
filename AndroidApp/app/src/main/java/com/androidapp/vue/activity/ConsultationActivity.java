@@ -6,12 +6,10 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +23,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import constantes.Net;
 import metier.Etudiant;
@@ -238,15 +235,12 @@ public class ConsultationActivity extends AppCompatActivity {
             }
         });
     }
-    private void addStudent(String name, List<String> ListUE)
-    {
-        if(this.groupList == null)
-        {
+    private void addStudent(String name, List<String> ListUE){
+        if(this.groupList == null){
             this.groupList = new ArrayList<String>();
         }
 
-        if(this.childListMap == null)
-        {
+        if(this.childListMap == null){
             this.childListMap = new HashMap<String, List<String>>();
         }
 

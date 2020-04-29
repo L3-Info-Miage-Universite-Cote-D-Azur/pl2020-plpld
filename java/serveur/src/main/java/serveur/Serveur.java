@@ -49,6 +49,7 @@ public class Serveur {
     private Map<SocketIOClient, List<String>> LoginList = new HashMap<>();
 
     private static final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
     public Serveur(SocketIOServer server) {
 
         this.server = server;
@@ -208,6 +209,15 @@ public class Serveur {
                 System.out.println("Envoie des UE pour consultation : " + NetHandler.getUEChoisies());
             }
         });
+
+        /*this.server.addEventListener(DESCRIPTION_UE, Model.class, new DataListener<>() {
+            @Override
+            public void onData(SocketIOClient socketIOClient, Model ue, AckRequest ackRequest) {
+
+            }
+        });
+        
+         */
     }
 
 
@@ -215,13 +225,11 @@ public class Serveur {
         server.start();
     }
 
-    public void envoyerUE(SocketIOClient socketIOClient,String path)
-    {
+    public void envoyerUE(SocketIOClient socketIOClient,String path){
         socketIOClient.sendEvent(UE,NetHandler.lireFichier(path));
     }
 
-    public void envoyerTout(SocketIOClient socketIOClient, String S1, String S2, String S3, String S4)
-    {
+    public void envoyerTout(SocketIOClient socketIOClient, String S1, String S2, String S3, String S4){
         socketIOClient.sendEvent(ENVOIE_TOUT, NetHandler.lireTout(S1, S2, S3, S4));
     }
 
@@ -248,8 +256,7 @@ public class Serveur {
      * @param socketIOClient
      * @param matiere matiere selectionnée
      */
-    public void nouveauChoix(SocketIOClient socketIOClient, String matiere)
-    {
+    public void nouveauChoix(SocketIOClient socketIOClient, String matiere){
         socketIOClient.sendEvent(CHOIX, matiere);
     }
 

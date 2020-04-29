@@ -8,18 +8,17 @@ import java.util.Map;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.androidapp.R;
+
+import metier.Model;
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
@@ -130,8 +129,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         if(AdapterCollection.containsKey(groupPosition))
             mAdapter = AdapterCollection.get(groupPosition);
         else
-            //mAdapter = new RecyclerViewAdapter(modelMap.get(UE.get(groupPosition)));
-            mAdapter = new RecyclerViewAdapter(getListData(UE.get(groupPosition),groupPosition,UE));
+            mAdapter = new RecyclerViewAdapter(getListData(UE.get(groupPosition),groupPosition,UE),context);
 
         LinearLayoutManager manager = new LinearLayoutManager(context);
         mRecyclerView.setHasFixedSize(true);
@@ -149,9 +147,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private List<Model> getListData(String discipline,int groupPosition,List<String> a) {
         mModelList = new ArrayList<>();
-        //for(String UE: UECollections.get(discipline)) {
-            //mModelList.add(new Model(UE)); //get model de la map ue et model
-
         mModelList.addAll(modelMap.get(a.get(groupPosition)));
 
         return mModelList;
@@ -165,6 +160,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
         return Selection;
     }
+
 
     public void filterData(String query) {
         query = query.toLowerCase();

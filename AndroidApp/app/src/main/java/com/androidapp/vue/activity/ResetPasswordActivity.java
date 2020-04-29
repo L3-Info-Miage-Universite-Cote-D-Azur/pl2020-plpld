@@ -2,7 +2,6 @@ package com.androidapp.vue.activity;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -24,7 +23,6 @@ import java.util.Objects;
 
 import constantes.Net;
 import metier.Etudiant;
-import metier.Identité;
 
 public class ResetPasswordActivity extends AppCompatActivity {
 
