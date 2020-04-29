@@ -17,10 +17,15 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import com.androidapp.Dialogs.ConnexionDialogs;
+import com.androidapp.Fichiers.GestionnaireDeFlux;
 import com.androidapp.R;
 import com.androidapp.reseau.Connexion;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -42,7 +47,7 @@ public class HomeActivity extends AppCompatActivity {
     private EditText passwordEditText = null;
     private Button saveUserDataButton = null;
     private Button cancelUserDataButton = null;
-
+    private GestionnaireDeFlux  gestionnaireDeFlux;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -51,6 +56,9 @@ public class HomeActivity extends AppCompatActivity {
 
         Connexion.CONNEXION.démarrerÉcoute();
         Connexion.CONNEXION.envoyerMessage(Net.CONNEXION, new Identité("AndroidApp"));
+        Connexion.CONNEXION.envoyerMessage(Net.PREREQUIS_BRUT,new Identité("AndroidApp"));
+
+
 
         if (getIntent().hasExtra("Erreur")) {
             popupErreur(getIntent().getStringExtra("Erreur"));
@@ -154,6 +162,10 @@ public class HomeActivity extends AppCompatActivity {
                 });
             }
         });
+
+
+
+
     }
 
     @Override

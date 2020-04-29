@@ -30,6 +30,7 @@ public class Net {
     public static final String ENVOIE_TOUT = "Envoie toutes les UE";
     public static final String ENVOIE_PASSWORD = "Envoie du mot de passe";
     public static final String ENVOIE_CONSULTATION = "Envoie des UE choisies pour chaque étudiant pour consultation";
+    public static final String PREREQUIS_BRUT = "consultation fichier prerequis";
 }
 
 

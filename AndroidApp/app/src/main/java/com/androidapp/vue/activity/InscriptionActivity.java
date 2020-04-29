@@ -12,9 +12,15 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.androidapp.Dialogs.ConnexionDialogs;
+import com.androidapp.Fichiers.GestionnaireDeFlux;
 import com.androidapp.R;
 import com.androidapp.reseau.Connexion;
+
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
+
 import constantes.Net;
 import metier.Etudiant;
 
@@ -23,11 +29,52 @@ import metier.Etudiant;
  */
 
 public class InscriptionActivity extends AppCompatActivity {
+
+    GestionnaireDeFlux gestionnaireDeFlux;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         Connexion.CONNEXION.démarrerÉcoute();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription);
+
+        int tmp = Connexion.CONNEXION.getMapPrerequis().size();
+
+
+        gestionnaireDeFlux = new GestionnaireDeFlux(this);
+        if(!gestionnaireDeFlux.fileExist(Net.FICHIER_PREREQUIS) || gestionnaireDeFlux.getFileLength(Net.FICHIER_PREREQUIS) == 0) {
+            gestionnaireDeFlux.ecrireMapDansFichier(Connexion.CONNEXION.getMapPrerequisBrut(), Net.FICHIER_PREREQUIS);
+        }
+
+        else
+        {
+
+            try {
+
+
+                int tmp3 = Connexion.CONNEXION.getMapPrerequisBrut().size();
+                String str3 = String.valueOf(tmp3);
+                int tmp4 = gestionnaireDeFlux.getFileLength(Net.FICHIER_PREREQUIS);
+                String str4 = String.valueOf(tmp4);
+                Log.d("MAP",str4);
+                Log.d("MAP",str3);
+                Log.d("MAP", gestionnaireDeFlux.getMapFromFile(Net.FICHIER_PREREQUIS).toString());
+                Log.d("MAP",Connexion.CONNEXION.getMapPrerequisBrut().toString());
+
+                if(gestionnaireDeFlux.getMapFromFile(Net.FICHIER_PREREQUIS).equals(Connexion.CONNEXION.getMapPrerequisBrut()))
+                {
+                    Log.d("FICHIER", "fichier non modifié");
+                }
+                else
+                    Log.d("FICHIER", "fichier modifié");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+
+
         final boolean[] saisieCorrecte = new boolean[1];
         /**
          *  Le champ du nom de l'étudiant
