@@ -73,12 +73,7 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(HomeActivity.this, ResetPasswordActivity.class));
             }
         });
-        findViewById(R.id.btnconsultation).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, ConsultationActivity.class));
-            }
-        });
+
         setTitle("Connexion étudiant");
         initMainActivityControls();
         openInputPopupDialogButton.setOnClickListener(new View.OnClickListener() {
@@ -137,7 +132,7 @@ public class HomeActivity extends AppCompatActivity {
                                     connexionDialogs2.onCreateDialog(savedInstanceState,HomeActivity.this,true);
 
 
-                                    Intent intent=new Intent(HomeActivity.this, MainActivity.class);
+                                    Intent intent=new Intent(HomeActivity.this, EcranAccueil.class);
                                     startActivity(intent);
                                     }
                                 else{
