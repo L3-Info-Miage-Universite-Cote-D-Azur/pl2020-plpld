@@ -1,0 +1,666 @@
+$Introduction à l'informatique par le web
+Cours de découverte de la science informatique à travers de thématiques concrètes issues du web.
+Calendrier
+Le cours se déroule sur 9 semaines et comprend :
+9 séances en amphi
+9 séances de TD
+9 séances de TP
+Contenu du cours :
+L’objectif de ce cours est de donner un aperçu de ce à quoi peut ressembler la science informatique, tant d’un point de vue pratique que théorique.
+Quelques thématiques et objectifs du cours :
+couleurs et traitement d’images (basique)
+premiers pas en langage HTML et CSS
+notions de matériel informatique
+introduction aux graphes
+remise à niveau pour code élémentaire (for, if)
+cryptographie et sécurité (élémentaires)
+Les notions vues en cours sont travaillées en TD et mises en pratique en TP sur ordinateur.
+Remarque
+Ce cours est destiné à l’ouverture à la science informatique. Le cours SPUF10 (Bases de l’informatique) est davantage recommandé pour les étudiants se sachant destinés
+à une licence informatique. Il est impossible de choisir simultanément ce cours et Bases de l’informatique (SPUF10), le choix est exclusif.
+Modalités de contrôle des connaissances
+un contrôle continu (CC)
+évaluation des TP (TP)
+un contrôle continu terminal (CCT)
+la note finale est max(0,4 CC + 0,2 TP + 0,4 CCT, CCT)
+$Bases de l'informatique
+Le cours a pour objectif de introduire les concepts fondamentaux de l’informatique: la logique, la modélisation, les operators de bases de la programmation ainsi que
+quelque structure de donnés.
+Calendrier
+Le cours se déroule sur 10 semaines (sans compter la semaine d’examen terminal), et comprend:
+9 séances de cours
+16 séances de TD (2 par semaine)
+un partiel
+Plus précisément on parlera de:
+Histoire de l’informatique : Panorama des personnes marquantes et leurs contributions
+L’informatique et le codage de l’information : Codage des nombres et des caractères, changement de base, conversion des formats des nombres
+L’informatique et la logique : Algèbre de Boole, circuits logiques, tables de vérité.
+L’informatique: algorithmique et programmation : Bases de l’algorithmique (séquence d’instructions, tests, boucles), introduction au principe de recurrence
+L’informatique et les automates : Modélisation de systèmes “automatiques” avec des automates à états finis et machines de Turing.
+Modalités de contrôle des connaissances
+1 contrôle à mi parcours 50%
+1 examen final 50%
+Ressources
+Logica Libri di storia automi linguaggi prog
+$System 1. Unix et progra shell
+L'objectif de ce cours est d'acquérir une certaine autonomie sous un environnement GNU/Linux et en programmation de scripts shell
+Description
+Programme :
+Notions de système d’exploitation, présentation d’Unix.
+Installation d’une distribution GNU/Linux
+Connexion d’un utilisateur (identification et authentification).
+Système de fichiers (arborescence des répertoires et chemins d’accès).
+Protection des fichiers (permissions et catégories d’utilisateurs).
+Editeurs de texte (utilisation d’Emacs).
+Interprètes de commandes (shells).
+Commandes Unix et redirections.
+Programmation en Shell (scripts).
+Gestion de l’espace disque et utilitaires de sauvegarde.
+Gestion des processus.
+Notions de réseaux et de protocoles Internet (communication, connexion à distance et sécurité).
+Outils de manipulation de textes (filtres et expressions régulières).
+Interface graphique X-Window.
+$Programmation impérative
+Ce cours est une introduction à la programmation impérative dans le langage Python
+Calendrier
+Le cours se déroule sur 10 semaines (sans compter la semaine d’examen terminal), et comprend:
+9 séances de cours
+9 séances de TD
+9 séances de TP
+un partiel
+Le cours commence en général fin janvier, dans les premières semaines du second semestre.
+Cours
+Le cours s’appuie sur le langage Python 3 pour aborder les notions de structures de contrôles (conditionnelles, boucles, déroutements, exceptions, …), les fonctions et la
+récursivité, les types de données élémentaires (entiers, flottants, booléens, chaînes de caractères,…) et les conteneurs (listes, tableaux extensibles, ensembles, dictionnaires).
+ Le cours aborde de manière introductive l’algorithmique avec un aperçu des algorithmes sur les listes et l’utilisation de la programmation dynamique par mémoisation.
+Les TPs du cours visent à approfondir les notions vues en cours et à les mettre en oeuvre sur de courts projets réalisables en 2 heures (jeu pierre-feuille-ciseaux,
+chiffrement de César et attaques par dictionnaire, jeu du pendu, manipulation de fichiers bitmaps, calcul d’itinéraire routier, etc).
+Une séance du cours est consacrée aux graphismes et à la programmation créative, notamment avec l’environnement Processing.
+Modalités de contrôle des connaissances
+Une note de controle continu
+Une note de partiel
+Une note d’examen
+$Structures de données et programmation C
+Description
+Ce cours est diviser en deux sous-modules :
+Structures de données
+Programmation C
+Structures de données
+Ce cours a pour objectif l’étude des structures de données et des algorithmes fondamentaux permettant d’organiser, de chercher et de manipuler des données de manière efficace.
+Il y a en fait deux parties bien distinctes dans cet enseignement. Il s’agit d’une part d’apprendre à utiliser des structures et des algorithmes,
+mais aussi de comprendre leur fonctionnement interne afin de pouvoir choisir le mieux adapté à un problème donné.
+Le programme détaillé de cet enseignement est le suivant, les structures de données classiques seront étudiées :
+Rappel sur les tableaux
+Piles
+Files
+Listes
+Pour chaque structure de données on considérera les algorithmes de manipulations classiques (ajout, insertion, suppression d’éléments…) Puis certains algorithmes utilisés dans
+le monde qui nous entourent et s’appuyant sur les structures de données vues seront détaillés, comme les algorithmes de tris par fusion ou par tas, l’algorithme de codage MP3…
+ Afin de faciliter l’enseignement, un langage de description des algorithmes, proche d’un langage naturel, sera introduit et servira pendant les TDs.
+ Pour chacun des algorithmes étudiés, nous analyserons la complexité algorithmique afin de déterminer les performances théoriques.
+Programmation C
+Il s’agit d’une introduction à la programmation dans le langage C. C est un langage de programmation impératif devenu l’un des plus utilisés dans le monde.
+Ce cours est divisé en 5 grandes parties :
+Introduction au C
+Tableaux, chaînes de caractères et caractères
+Pointeurs, chaînes de caractères et caractères
+Tableaux dynamiques et structures chaînées
+Nombre variable de paramètres, et fichiers
+$Outils formels pour l'informatique
+Initiation à l'étude des fondements théoriques de l'informatique.
+Description
+Ce cours est une initiation au formalisme et aux méthodes utilisées couramment en sciences informatiques. Le monde de l’informatique est discret, hiérarchisé et symbolique donc
+le cours débute par la présentation des notions de dénombrabilité, de relations d’ordre et de mots sur un alphabet. Le cours présente ensuite les principes d’induction afin
+d’étudier les comportements récursifs des algorithmes ou la génération récursive des structures de données. L’informatique touche également à la mécanisation du raisonnement,
+d’où l’introduction de la logique des propositions et de celle des prédicats, puis des algorithmes afférents. Une première façon de distinguer la syntaxe de la sémantique.
+Le cours présente ensuite les propriétés des modèles statiques que sont les arbres et les graphes, ainsi que des modèles dynamiques comme les automates. Enfin,
+le cours sensibilise aux performances des algorithmes. On commence par présenter les suites récurrentes et la résolution des équations de récurrence en vue de leurs applications
+ au calcul de la complexité d’un algorithme.
+$Bases de données
+L'objectif de ce cours est d'apprendre à créer et manipuler des bases de données relationnelles et de comprendre les problèmes qui y sont liés.
+Description
+Mise en évidence de l’intérêt des bases de données à travers une comparaison avec la programmation objet ou plus généralement procédurale
+Apprentissage des principaux concepts du modèle relationnel et positionnement de ce dernier dans l’écosystème à travers un petit historique
+Présentation et manipulation de l’algèbre relationnelle
+Création d’un schéma de base de données et manipulation de données (langage graphique)
+Normalisation d’un schéma de base de données (prise en compte des anomalies classiques d’insertion, mise à jour et suppression)
+Apprentissage du langage SQL (manipulation de données, puis création de schéma)
+Apprentissage des mécanismes avancés: journalisation, transaction…
+Mise en œuvre d’une base de données : prise en compte des problèmes d’optimisation, de gestion des droits d’accès
+Sensibilisation aux problèmes liés à la conception de gros systèmes d’information (survol d’une méthode de conception, par exemple la méthode Entité/Association)
+$Algo & prog avec R
+Ce cours est une initiation à l'algorithmique et à la programmation dans le langage R offert aux portails SV, ST et SITE.
+Toutes les informations sont sur le site web du cours. ( http://www.i3s.unice.fr/~malapert/R/ )
+$Technologie du Web
+Ce cours présente le fonctionnement du web, ainsi que la production de pages web statiques et la programmation de pages web dynamiques, tant du côté client que serveur.
+Calendrier
+Le cours comprend:
+12 séances de cours (2h)
+11 séances de TP (2h)
+Cours
+Les objectifs de ce cours sont de fournir les éléments techniques nécessaires à l’élaboration de pages Web, de sites internet dynamiques et interactifs.
+Au meme temps, l’enjeu majeur est de réussir à faire connaître et comprendre les nouveaux outils et modèles de conception et de développement d’applications et de systèmes
+d’information basés sur le web.
+En particulier, ce cours présente le fonctionnement du web (architecture client/serveur, protocole HTTP, DNS…), ainsi que la production de pages web statiques (HTML, CSS) et
+la programmation de pages web dynamiques, tant du côté client (JavaScript) que serveur (PHP).
+Les TPs du cours visent à approfondir les notions vues en cours et à les mettre en oeuvre sur de courts projets réalisables en 2 heures.
+Modalités de contrôle des connaissances
+1/2 note de TPs
+1/2 note d’examen
+$Systèmes 2 : Mécanisme internes des systèmes d'exploitation
+Ce cours présente les principaux concepts d'un système d'exploitation permettant d'orchestrer l'exécution de plusieurs processus en parallèle.
+Ces concepts sont mis en oeuvre en Python pour la réalisation d'un mini-projet de type 'mini-shell'.
+Pré-requis conseillés
+Système 1, programmation impérative
+Contenu
+Les systèmes d’exploitations sont des logiciels critiques et spéciaux qui font fonctionner les ordinateurs: ils gèrent le matériel et les divers programmes qui s’exécutent
+en concurrence, exécutent des taches de maintenance et de surveillance, etc. Un ordinateur partagé ne peut pas fonctionner sans système d’exploitation.
+L’étude des systèmes est un des thèmes fondamentaux en sciences informatiques.
+Dans ce cour, nous étudions les mécanismes internes d’un système d’exploitation, principalement de type Unix (linux pour les PC).
+Nous aborderons les aspects de programmation système (appel de fonctions systèmes bas niveau, gestion des processus, synchronisation et communications entre processus,
+système de fichiers, etc). Plus précisément, voici la liste des thèmes abordés:
+1 Introduction aux systèmes d’exploitation 2 Processus 3 Synchronisation entre Processus 4 Fichiers 5 Système de fichiers sous Unix 6 Les tubes nommés 7 Introduction aux
+réseaux informatiques 8 Communications entre processus par sockets 9 Gestion de la mémoire 10 Ordonnancement des processus et des threads
+Les travaux dirigés sous formes d’exercices corrigés seront proposés, ainsi que des travaux pratiques sur des machines Linux.
+$Introduction aux systèmes intelligents
+Ce cours introductif comporte deux parties, la première dédiée à l’intelligence collective et la seconde à l’intelligence individuelle.
+Description
+Partie 1 : Intelligence collective
+Objectif : modéliser et simuler les capacités d’une collectivité à résoudre des problèmes.
+Concept : systèmes complexes, approche orientée agent.
+Outil : NetLogo ; langage de Programmation Orientée Agent qui permet de simuler des phénomènes collectifs complexes.
+Partie 2 : Intelligence individuelle
+Objectif : modéliser et simuler les capacités de raisonnement humain sur un domaine d’expertise donné.
+Concept : programmation logique, systèmes experts.
+Outil : Prolog ; langage de Programmation Déclarative basé sur la logique des prédicats restreinte aux clauses de Horn qui permet de représenter et manipuler des structures
+récursives et possède des potentialités de méta-programmation (voir la bibliographie).
+Organisation
+Chaque cours est accompagné d’une séance de travaux dirigés sur machine.
+$Réseaux et télécommunication
+Ce cours présenter les principes de fonctionnement des réseaux de téléommunication depuis le signal à transmettre jusqu'à la réalisation de réseaux locaux.
+Description
+Ce cours présente les principes qui permettent d’interconnecter des systèmes terminaux (par exemple des ordinateurs) et de gérer leurs communications.
+Pour des raisons pratiques d’interopérabilité, on distingue plusieurs couches. La couche dite basse correspond au canal de communication qui va transporter les signaux
+échangés (un câble ethernet par exemple) et les couches supérieures proposent des protocoles pour faire coopérer des systèmes distants.
+Nous présenterons cette structuration en couche en suivant une approche dite de bas en haut selon le plan:
+Introduction au traitement du signal ;
+La couche physique et les différents types de liens (haut débit filaire) ;
+La couche réseau (principes d’architecure) ;
+Les différentes topologies de réseaux (physiques, logiques et virtuelles) ;
+La couche transport (méthodes d’adressage et de routage) ;
+Programmation par sockets ;
+Protocoles de niveau applicatif (dns, mail, web) ;
+Applications multimedia (voix sur IP) et domestiques ;
+Introduction aux réseaux pair à pair.
+Les travaux pratiques illustreront les différentes notions introduites dans le cours. On apprendra à configurer un petit réseau LAN et à utiliser certains des protocoles
+simples “à la main”, à prendre connaissance des documents relatifs aux protocoles (RFC). La programmation par sockets sera réalisée dans un langage de scripts par souci
+de simplicité. On découvrira quelques logiciels d’analyse ou d’audit de réseau et on illustrera le fonctionnement d’outils de type pair à pair.
+$Algorithmique 1
+Le but du cours est d'introduire l’étudiant à l’algorithmique, en mettant l'accent sur les stratégies de conception d'un algorithme efficace.
+Description
+Le but du cours est d’introduire l’étudiant à l’algorithmique, en mettant l’accent sur les stratégies de conception d’un algorithme efficace.
+Cours
+Complexité des algorithmes: temps et espace
+Complexité des problèmes: classes de complexité,NP-complétude
+Resumé des algorithmes de tri et des structures de données
+Revue des stratégies fondamentales de l’algorithmique :
+diviser-pour-régner
+gloutonne
+programmation dynamique
+Modalités de contrôle des connaissances
+2 CC à 30%
+1 CT à 40%
+Ressources
+Sanjoy Dasgupta, Christos Papadimitriou, Umesh Vazirani, Algorithms /2008.
+Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest et Clifford Stein, Intro-duction to Algorithms, 3rd edition, MIT Press, 2009
+Tim Roughgarden-Algorithms Illuminated_ Part 1_ The Basics-Soundlikeyourself Publ. (2017)
+Modalités de contrôle des connaissances
+2 CC à 30%
+1 CT à 40%
+Ressources
+Sanjoy Dasgupta, Christos Papadimitriou, Umesh Vazirani, Algorithms /2008.
+Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest et Clifford Stein, Intro-duction to Algorithms, 3rd edition, MIT Press, 2009
+Tim Roughgarden-Algorithms Illuminated_ Part 1_ The Basics-Soundlikeyourself Publ. (2017)
+$Fondements 1
+Prérequis :
+Les notions mathématiques de base d’une classe de Terminal S ou ES.
+Contenu du cours :
+Partie Analyse :
+• Généralités sur les fonctions d’une variable réelle à valeurs réelles : graphe, parité, imparité, pé-
+riodicité, composée, monotonie, fonctions minorées, majorées, bornées, rappel sur les fonctions
+cos, sin, exp, ln, puissances.
+• Limites et continuité des fonctions d’une variable réelle à valeurs réelles. En se bornant à
+une approche intuitive et sans démonstration, limite d’une fonction en un point ou en +∞
+ou −∞, opération sur les limites, stabilité des inégalités, croissances comparées, asymptotes
+verticales et horizontales. Continuité, opérations sur les fonctions continues, valeurs intermé-
+diaires, image continue d’un intervalle, théorème des bornes.
+• Dérivabilité, opérations sur les dérivées, extrema, Rolle, accroissements finis, variations ; étude
+d’une fonction.
+• Fonctions injectives, surjectives, bijectives, bijection réciproque. Continuité de la bijection réci-
+proque d’une fonction d’une variable réelle à valeurs réelles (admis), dérivabilité et dérivation
+de la bijection réciproque. Fonctions arccos, arcsin, tan et arctan.
+Partie Algèbre :
+• Résolution de systèmes d’équations linéaires (n, p) (n équations et p inconnues, avec n = ou
+= p), méthode du pivot de Gauss, rang.
+• Calcul matriciel : somme, produit, transposée, inverse, déterminant (2×2 et 3×3) et interpréta-
+tion géométrique, effets d’opérations élémentaires sur le déterminant, Cramer.
+$Complements 1
+Prérequis
+Les notions mathématiques de base d’une classe de Terminale S ou les notions mathématiques d’une
+classe de Terminale ES et les séances de Maths0. Ce cours est complémentaire à celui de Fondements 1
+et ne peut être pris sans lui.
+Présentation du cours
+Le but de ce cours est de voir (ou revoir) avec une rigueur mathématique plus poussée qu’au lycée
+certains outils de base des mathématiques. En particulier, on s’attache à donner des définitions
+précises et formelles des notions et on insiste sur les démonstrations.
+Contenu du cours
+• Arithmétique des entiers : divisibilité, nombres premiers, pgcd, rationalité et irrationalité,
+calcul modulaire...
+• Polynômes : racines, arithmétique, théorème de D’Alembert-Gauss...
+• Nombres réels : axiomatique, borne supérieure, borne inférieure, densité des rationnels...
+• Suites : définition rigoureuse de la convergence, théorème de la limite monotone, théorème
+des suites adjacentes, théorème de Bolzano-Weierstrass...
+• Fonctions d’un variable : limites et continuité, théorème des valeurs intermédiaires, image
+d’un segment par une fonction continue...
+$Méthodes : approche continue
+Prérequis
+Ce cours est réservé aux étudiants du cours Mathématiques de Base.
+Présentation du cours
+En complément du cours Maths de Base, nous mettrons en pratique les techniques méthodologiques et
+de raisonnements vues en cours Maths de Base, afin de s’approprier les raisonnements mathématiques
+utiles au cursus scientifique.
+Contenu du cours
+• Pourquoi doit-on formaliser nos énoncés ? Qu’est-ce qu’une définition, un exemple ? Comment
+nos objets sont-ils reliés ? Quelles propriétés vérifient-ils ?
+• Comprendre le "language" mathématique et ses règles. On apprendra en particulier à passer
+d’un énoncé "en Français" au même énoncé en langage mathématique, et inversement. On
+écrira la négation d’une proposition.
+• Qu’est-ce qu’une hypothèse, une conclusion, un théorème, un argument, une démonstration ?
+Pour vraiment comprendre une démonstration, on examinera si et quand toutes les hypothèses
+ont étés utilisées, on essayera de voir que notre résultat n’est plus vrai lorsqu’on supprime
+telle ou telle hypothèse.
+• Comment apprendre un cours de mathématiques ? Pourquoi connaitre les théorèmes par coeur ?
+Est-il utile d’en comprendre leur démonstration ? On verra que c’est grâce aux cours et à ses
+démonstrations qu’on sera capable de faire les exercices de la leçon. Inversement, nous verrons
+que nous ne comprendrons un théorème qu’après l’avoir utilisé dans plusieurs exercices.
+• Comment appréhender un problème ? Pour résoudre un exercice, on apprendra à bien lire
+l’énoncé, en particulier les hypothèses et ce qu’on doit prouver. Tant que l’énoncé n’est pas
+compris, il sera impossible de répondre aux questions posées. Parfois avant les questions, il y
+a le but de l’exercice, il ne faut pas croire qu’on perd du temps à essayer de le comprendre.
+On cherchera ensuite de l’aide et des idées dans son cours. Lorsqu’on a une idée, on n’hésitera
+pas à l’explorer à fond mais aussi à en changer si elle n’aboutit pas, quitte à revenir dessus
+après avoir essayé une autre piste. Il faut se lancer, essayer quelque chose, une mauvaise piste
+vous donnera des idées. Nous verrons que nos erreurs nous font progresser.
+• Gestion du stress lors de contrôles. Au plus on aura cherché d’exercices différents au plus on
+sera en confiance pour résoudre ceux des contrôles. Il est fondamental de prendre l’habitude
+de chercher les exercices de la feuille avant de venir en TD. On dit que "c’est en forgeant
+qu’on devient forgeron", se contenter de regarder forger serait moins efficace. Il est important
+"d’y croire", pourquoi certaines personnes font mieux que d’habitude lors de contrôles et
+que d’autres au contraire font moins bien ? Nous devons nous entraîner à faire partie de la
+première catégorie !
+$Fondements 2
+Contenu du cours
+Partie Algèbre :
+• Espaces vectoriels (vocabulaire, structure d’espaces vectorielles, combinaisons linéaires, sous-
+espaces vectoriels.) et applications linéaires (Noyau, Image, rang) (cadre général et dans R n
+en particulier).
+• Familles de vecteurs (génératrices, libres, bases, dimension finie), droites et plans dans R 2 et
+R 3 .
+• Exemples d’espaces vectoriels (polynômes, fonctions, suites). Somme directe de sous espaces
+vectoriels. Suites récurrences linéaires d’ordre n.
+• Applications linéaires en dim finie et matrices (écriture matricielle, composition, matrice de
+passage, formule de changements de bases).
+Partie Analyse :
+• Calcul intégral (intégrales par parties, changement de variables), intégration et dérivation,
+primitives (des fonctions élémentaires), formule de Taylor.
+• Équivalents et notations de Landau. Développements limités et application au calcul de limites.
+$Complements 2
+Prérequis
+Il faut avoir suivi les cours Fondements mathématioques 1, Compléments mathématiques 1 et suivre
+au second semestre le cours Fondements mathématiques 2. Nous utiliserons toutes les notions vues
+dans ces trois cours, même si nous reviendrons dessus s’il le faut. C’est mieux si vous avez suivi la
+spécialité mathématiques de la terminale S.
+Remédiation
+Du travail personnel régulier (relire le cours, apprendre les théorèmes, les définitions, etc, ...). Faire
+les exercices de la feuille de TD avant la séance. Les feuilles de TD et des rappels de cours sont
+disponibles en ligne.
+Présentation du cours
+Ce cours sera suivi par les étudiants se destinant à la licence Mathématiques, doubles licences
+Mathématiques-Informatique et Mathématiques-Physique.
+Un des objectifs de ce cours est de donner des preuves précises de certains résultats admis par ailleurs.
+Exemple : vous savez (ou vous avez utilisé sans le savoir déjà quand vous étiez en terminale) que
+“toute fonction continue admet des primitives “. Nous montrerons ce résultat : il faudra définir au
+préalable l’intégrale de Riemann (celle qui se calcule avec les primitives !) et donc faire de la théorie.
+Il n’y aura pas que du calcul et le cours sera axé (aussi) sur les preuves et la compréhension précise
+des objets que l’on manipule (il faudra entre autre apprendre les définitions et les théorèmes par
+cœur !). On vous demandera de comprendre des démonstrations et de faire des démonstrations.
+Contenu du cours
+• Rappels : fonctions logarithmes et équations fonctionnelles, fonctions exponentielles et équa-
+tions fonctionnelles. Equations différentielles linéaires du premier ordre. Equations différen-
+tielles linéaires du second ordre à coefficients constants.
+• Construction de l’intégrale de Riemann. Sommes de Riemann.
+• Décomposition en éléments simples des fractions rationnelles et intégration des fractions ra-
+tionnelles.
+• Géométrie vectorielle euclidienne dans R n : norme, distance, produit scalaire, orthogonalité,
+base orthonormées.
+• Projections et symétries orthogonales, matrice de projection, décomposition de l’espace en
+sous-espaces vectoriels orthogonaux.
+$Méthodes : approche discrète
+Mode d’enseignement : présentiel, 20h CM, 40h TD, sur 10 semaines.
+• Systèmes d’équations linéaires :
+Systèmes linéaires, interprétation géométrique en dimension 2 et 3. Matrices associées aux
+systèmes linéaires, transformations élémentaires, algorithme de Gauss.
+• Noyau d’une matrice, image d’une matrice, rang d’une matrice, théorème du rang.
+• Vecteurs de R n , combinaison linéaire de vecteurs, dépendance linéaire, famille libre, famille
+génératrice, sous-espaces vectoriels, sous-espaces vectoriels engendrés par des vecteurs, bases
+d’un sous-espace vectoriel, dimension.
+• Opérations algébriques sur les matrices, matrices inversibles, systèmes inversibles, déterminants
+de matrices de taille 2, 3.
+• Diagonalisation de matrices et applications :
+Vecteur propre, valeur propre, espace propre, polynôme caractéristique. Diagonalisation. Sys-
+tèmes différentielles et systèmes de suites.
+• Suites et séries numériques :
+Suites de nombres réels, opérations algébriques, suites arithmétiques, suites géométriques,
+monotonie, convergence. Suites récurrentes d’ordre p. Séries numériques, séries géométriques,
+série exponentielle, convergence, convergence des séries à termes positifs.
+$Fondements 3
+Prérequis
+Il est conseillé d’avoir suivi l’UE Fondements Mathématiques 2.
+Remédiation
+Des ressources en lignes seront disponibles pour l’UE Fondements Mathématiques 3. Les polycopiés
+pour l’UE Fondements Mathématiques 1 et Fondements Mathématiques 2 se trouvent en ligne.
+Mode d’enseignement :
+présentiel sur 12 semaines.
+Présentation du cours
+Dans la partie Algèbre de ce cours, nous abordons un problème classique en Algèbre linéaire : étant
+donné une application linéaire, nous nous proposons de chercher des bases dans lesquelles la forme de
+la matrice de l’application linéaire est la plus simple possible, en particulier diagonale. Les techniques
+et les structures liées à ce problème ont des applications dans de nombreux domaines et nous en
+rencontrerons plusieurs dans ce cours. En plus des applications, nous apprendrons à comprendre
+et à faire des raisonnements en Algèbre linéaire. Ce cours est destiné aux étudiants se dirigeant
+vers une licence mention Mathématiques, Informatique, Physique, Miashs, etc. Certains aspects plus
+conceptuels ne seront pas approfondis dans ce cours. Les étudiants intéressés pourront les étudier en
+même temps dans l’UE Compléments d’Algèbre.
+Dans la partie Analyse de ce cours, sont abordées les notions d’intégrale généralisée et de séries
+numériques, concepts de base en Analyse.
+Contenu du cours
+Partie Algèbre :
+• Déterminant d’une matrice (développement ligne/colonne) et d’un endomorphisme. Matrice
+inversible.
+• Valeurs propres, vecteurs propres, espaces propres, polynôme caractéristique.
+• (Calcul matriciel par blocs (en TD)).
+• Espaces Euclidiens (en particulier R n avec le produit scalaire canonique) : matrices orthogo-
+nales et lien avec les bases orthonormées.
+• Classification des matrices orthogonales réelles en dimension 2 et 3 (en TD).
+• Diagonalisation, applications (puissance d’une matrice diagonalisable, application aux suites
+récurrentes linéaires, systèmes dynamiques linéaires discrets, systèmes différentiels.
+• Diagonalisation des matrices symétriques réelles.
+Partie Analyse :
+• Intégrale généralisée (théorème de comparaison dans le cas des fonctions positives, absolue
+convergence, critères de convergence).
+• Séries numériques, comparaison séries-intégrales. Convergence absolue.
+• Fonctions convexes d’une variable réelle.
+$Compléments d'Analyse
+Prérequis
+Les notions mathématiques abordées dans les cours "M.S1.1 et M.S2.1" ou "MM.S1.1 et MM.S2.1".
+Contenu du cours
+Espaces vectoriels normés
+• Espaces vectoriels normés, espaces métriques (normes, espaces métriques, limites de suites dans
+un espace métrique, parties ouvertes, parties fermées, applications continues, applications uni-
+formément continues, applications linéaires ou multilinéaires continues, normes équivalentes).
+• Espaces métriques complets (suites de Cauchy, espaces complets, théorème du point fixe, séries
+dans un espace vectoriel normé).
+• Espaces métriques compacts (définition et premières propriétés, fonctions continues sur un
+compact, théorème de Heine).
+• Espaces vectoriels normés de dimension finie (théorèmes fondamentaux, normes matricielles).
+• Connexité, convexité (parties convexes, espaces connexes, fonctions convexes, inégalités de
+convexité).
+Courbes paramétrées
+• Courbes planes (notion de courbe paramétrée, étude locale, exemples).
+• Courbes en coordonnées polaires (définition, tangente, branches infinies).
+$Compléments d'Algèbre
+Prérequis
+Cours d’Algèbre des UE "M.S1.1 et M.S2.1" ou "MM.S1.1 et MM.S2.1".
+Présentation du cours
+Ce cours présente les notions fondamentales de l’Algèbre (groupe, anneau, corps, espaces vecto-
+riels, morphismes). Ces notions sont illustrées par de multiples applications en Arithmétique et en
+Géométrie.
+Contenu du cours
+I. Introduction aux structures algébriques et applications à l’Arithmétique :
+• Groupes : définition, exemples de groupes abéliens et de groupes non abéliens (comme le groupe
+des permutations), sous-groupes, (iso)morphismes de groupes, sous-groupes engendrés par un
+ensemble, ordre d’un élément, théorème de Lagrange, groupes cycliques.
+• Anneaux et corps : définitions, exemples d’anneaux, sous-anneaux, multiple, diviseur, élé-
+ment inversible, corps, anneaux intègres, idéal,(iso)morphismes d’anneaux, rappels sur les
+congruences (vu en M.S1.2), définition de l’anneau Z/nZ (via classes résiduelles), le corps F p ,
+théorème des restes chinois.
+• Applications à l’Arithmétique : Théorème de Fermat, fonction d’Euler, théorème d’Euler, sys-
+tèmes de congruences, cryptographie et équations diophantiennes (méthode réduction modulo
+p, méthode de la descente infinie de Fermat).
+II. Formes multilinéaires et Algèbre bilinéaire :
+• Groupe symétrique, formes multilinéaires, déterminant.
+• Formes bilinéaires symétriques, formes quadratiques réelles (méthode d’élimination de variables
+de Gauss, écriture matricielle, signature, théorème de Sylvester). Espaces euclidiens, Espaces
+hermitiens (C n avec produit hermitien standard), classification des formes hermitiennes.
+• Orthogonalisation simultanée, application aux coniques et quadriques.
+$Méthodes : approche géométrique
+Contenu du cours
+• Espaces vectoriels, applications linéaires.
+• Formes quadratiques, Lagrange, définies positive et négative.
+• Normes, distance, produit scalaire.
+• Méthode des moindres carrés, projection orthogonale, matrice de projection.
+• Orthogonalisation Gramm-Schmidt, décomposition QR.
+• Décomposition de l’espace en sous-espaces vectoriels orthogonaux.
+• Décomposition en valeurs singulières.
+• Régression (Méthode des moindres Carrés Ordinaires, Analyse en Composantes Principales),
+clustering, covariance empirique.
+$Méthodes : Mathématiques et ingénierie
+Prérequis
+Cours des UE M.S1.1, M.S2.1, MM.S1.1, MM.S2.1.
+Remédiation
+Cours d’Analyse et d’Algèbre linéaire des UE "M.S1.1 et M.S2.1" ou "MM.S1.1 et MM.S2.1".
+Présentation du cours
+Calculus des semestres 3 et 4.
+Contenu du cours
+• Fonctions d’une et de plusieurs variables, continuité, dérivées partielles, gradient, formule de
+Taylor, différentielle, opérateurs différentiels.
+• Intégrales multiples, intégrales curvilignes.
+• Courbes planes et gauches, surfaces.
+• Méthodes de résolutions des Équations Différentielles Ordinaires, initiation aux Équations aux
+Dérivées Partielles.
+Matériel didactique, médiagraphie
+Autres ressources : J. Stewart 2015, Calculus, 8th edition, Cengage Learning.
+$Analyse
+Présentation du cours
+Contenu du cours
+• Suites et séries de fonctions.
+• Séries entières (rayon de convergence, dérivation et intégration terme à terme d’une série en-
+tière).
+• Séries de Fourier (théorème d’unicité, théorème de convergence de Dirichlet, éventuellement
+théorème de Cesaro, éventuellement approximation uniforme par des polynômes trigonomé-
+triques).
+• Calcul différentiel : fonctions de plusieurs (2 ou 3) variables et à valeurs réelles (continuité, dé-
+rivées partielles, différentiabilité, gradient, Hessienne, formule de Taylor, matrice jacobienne,
+fonctions composées, extrema, éventuellement théorème des extrema liés).
+$Probabilités et Introduction à la Statistiques
+Prérequis
+Calcul intégral, séries.
+Remédiation
+Des rappels seront faits en cours (ou dans le polycopié) concernant les séries.
+Présentation du cours
+Ce cours présentera les bases des probabilités discrètes et continues, et des statistiques. Nous par-
+tirons de problèmes de la vie courante (jets de dés, jeux de cartes, jeux de hasard, sondages...)
+pour formaliser de manière rigoureuse les définitions, les modèles et les théorèmes fondamentaux en
+probabilité et en statistiques.
+Contenu du cours
+Introduction aux Probabilités
+• Notion d’événements aléatoires. Dénombrement. Lien entre probabilité et fréquence d’un évé-
+nement.
+• Notion de variables aléatoires discrètes et de lois discrètes. Exemples des lois de Bernoulli,
+binomiale, géométrique, Poisson et ce que ces lois modélisent : du jeu pile ou face (truqué et
+non truqué), jeu de dé (truqué et non truqué), événements rares. Formules (admises) de calcul
+(simple) de probabilités et d’espérance (formule de transfert), d’espérances et de variances,
+pour des variables aléatoires discrètes.
+• Notion de densité de probabilité. Exemple de la loi uniforme, exponentielle, gaussienne et ce
+que ces lois modélisent : tirage aléatoire uniforme, durée de vie, erreurs de mesures. Formule
+(admise) de calcul de probabilité, d’espérance (formule de transfert), de variance, avec des
+lois à densité.
+• Inégalités de Bienaymé-Tchebycheff et Markov.
+Introduction aux Statistiques
+• Notion de fonction de répartition et de fonction quantile. Interprétation et calculs.
+• Indicateurs statistiques : paramètres de tendance centrale, de dispersion et de position (moyenne
+médiane, variance, mode...)
+• Statistiques descriptives : diagramme en bâtons, histogramme et courbe des fréquences cumu-
+lées.
+• Introduction à l’indépendance d’événements et de variables aléatoires. Formule de Bayes sur
+deux événements et son interprétation. Notion de covariance entre variables aléatoires.
+• Théorème limites (sans preuve) : loi des grands nombres, théorème central limite. Intervalles
+de confiance.
+Matériel didactique, médiagraphie
+Autres ressources : Polycopiés, exercices corrigés et feuilles de TD disponibles sur moodle et sur
+la page web de l’enseignant (https ://math.unice.fr/ ingremeau/). La partie du cours concernant
+les probabilités sera fortement inspirée du cours "Probabilités pour l’informatique", pour lequel un
+polycopié est disponible sur la page web de l’enseignant.
+$Algèbre
+Contenu du cours
+I. Théorie des groupes :
+• Relation d’équivalence et ensemble-quotient, classes modulo un sous-groupe, sous-groupes dis-
+tingués, groupes quotients, sous-groupes de groupes cycliques et leurs quotients, théorème
+d’isomorphisme pour les groupes, énoncé de la structure des groupes abéliens finis.
+II. Algèbre commutative :
+• Généralités sur les anneaux commutatifs : idéaux, anneaux quotients, idéal engendré par un
+ensemble, idéaux principaux, idéaux maximaux, idéaux premiers.
+• Divisibilité dans les anneaux (pgcd, éléments associés), anneaux principaux (pgcd, Bezout,
+Gauss).
+• Anneaux de polynômes : division euclidienne, idéaux de K[x], l’anneau quotient K[x]/(f (x)).
+• Eléments algébriques, éléments transcendants, polynôme minimal.
+III. Réduction des endomorphismes :
+• Caractérisation des endomorphismes diagonalisables, Trigonalisation de matrices, polynômes
+d’endomorphismes, Cayley-Hamilton, lemme des noyaux, sous-espaces caractéristiques, dé-
+compositions selon les espaces caractéristiques, Dunford, Jordan.
+• (Si le temps le permet, faire une introduction aux actions de groupes et donner plusieurs
+exemples en lien avec la réduction des endomorphismes.)
+$Résolution numérique des systèmes d'équations linéaires et non-linéaires
+Nombre d’ECTS : 6.
+Mode d’enseignement : présentiel, 24h CM, 36h TD, 20h TP sur 12 semaines.
+Prérequis
+Algèbre linéaire : espaces vectoriels, applications linéaires, calcul matriciel, valeurs propres et vec-
+teurs propres d’une matrice, diagonalisation - triangularisation d’une matrice, produits scalaires et
+normes. Calcul différentiel : fonctions de plusieurs variables, continuité, différentielle, dérivées par-
+tielles, formule de Taylor.
+Présentation du cours
+Le but de cette unité d’enseignement est d’étudier théoriquement et de savoir programmer quelques
+méthodes de base du calcul et de la simulation numérique omniprésentes dans les applications. Ce
+cours aborde les algorithmes de résolution des systèmes linéaires et non linéaires ainsi que le calcul
+numérique des valeurs propres d’une matrice. Leurs propriétés de convergence seront rigoureusement
+établies, leur complexité ou coût sera étudié et les algorithmes seront mis en pratique sur ordinateur
+à l’aide du logiciel libre Scilab (https ://www.scilab.org) en abordant dès que possible des exemples
+d’applications concrètes.
+Contenu du cours
+• Rappels et compléments d’Algèbre Linéaire : normes vectorielles et normes matricielles ; rela-
+tion entre rayon spectral et normes matricielles ; suites de vecteurs et de matrices ; condition-
+nement d’un système linéaire.
+• Résolution numérique des systèmes linéaires par méthodes itératives : méthodes de Richardson
+à pas fixe et à pas variable, étude de leur propriétés de convergence ; notion de précondition-
+nement des méthodes itératives, exemples des préconditionnements de Jacobi, Gauss-Seidel,
+SOR et SSOR ; notion de matrice creuse et étude de la complexité des méthodes itératives.
+• Résolution numérique des systèmes linéaires par méthodes directes : factorisation LU sans
+et avec pivotage, algorithmes de descente et de remontée, étude des algorithmes et de leur
+complexité ;
+• Rappels et compléments de Calcul Différentiel. Approximation de solutions d’équations et
+de systèmes d’équations non linéaires : algorithme du point fixe et méthode de Newton en
+dimensions 1, puis en dimension n > 1 ; estimation de l’erreur d’approximation, ordre de
+convergence.
+• Calcul approché de valeurs propres et vecteurs propres d’une matrice : localisation des valeurs
+propres, méthodes de la puissance itérée et de la puissance inverse, présentation succincte de
+la méthode QR pour le calcul approché simultané de toutes les valeurs propres.
+Matériel didactique, médiagraphie
+Autres ressources : Seront disponibles sur le site web du cours, le cours rédigé sous forme succincte
+ainsi que les feuilles d’exercices de TDs et de TPs avec leurs corrigés.
+$Méthodes : approche aléatoire
+Nombre d’ECTS : 6.
+Mode d’enseignement : présentiel sur 12 semaines.
+Prérequis
+Présentation du cours
+Ce module sera une introduction aux Probabilités et aux Statistiques avec des exemples pour illustrer
+les différentes notions abordées.
+Contenu du cours
+• Introduction aux Probabilités
+— Dénombrement.
+— Définition des probabilités finies, probabilités conditionnelles finies, indépendance.
+Notion d’événements aléatoires. Lien entre probabilité et fréquence d’un événement.
+Introduction à l’indépendance d’événements. Formule de Bayes sur deux événements A et
+B : P (A|B) = P (A ∩ B)/P (A) et son interprétation.
+Illustration de l’intérêt de l’indépendance dans certains calculs.
+— Rappels sur les séries.
+— Probabilités sur des espaces dénombrables (généralités).
+— Variables aléatoires discrètes (définition, lois classiques, espérance, formule de transfert,
+variance)
+Notion de variables aléatoires discrètes et de lois discrètes.Exemples des lois de Bernoulli,
+binomiale, géométrique, Poisson et ce que ces lois modélisent : du jeu pile ou face (truqué
+et non truqué), jeu de dé (truqué et non truqué), événements rares. Formules (admises)
+de calcul (simple) de probabilités et d’espérance (formule de transfert), d’espérances et de
+variances, pour des variables aléatoires discrètes.
+— Variables aléatoires à densité (définition, lois classiques, fonction de répartition, espérance,
+variance) Notion de densité de probabilité. Exemple de la loi uniforme, exponentielle,
+gaussienne et ce que ces lois modélisent : tirage aléatoire uniforme, durée de vie, erreurs
+de mesures.
+Notion de fonction de répartition et de fonction quantile. Notion de médiane, quartile,
+décile.
+Formule (admise) de calcul de probabilité, d’espérance (formule de transfert), de variance,
+avec des lois à densité. Interprétation.
+• Introduction aux Statistiques
+— Statistiques descriptives : diagramme en bâtons et histogramme et courbe des fréquences
+cumulées.
+— Indicateurs statistiques : paramètres de tendance centrale, de dispersion et de position
+(moyenne médiane, variance, mode). Interprétation et représentation.
+— Introduction à la fluctuation d’échantillonage et ouverture vers l’intérêt d’un intervalle de
+confiance.
+— Introduction à l’indépendance pour les variables aléatoires et théorème limites (sans preuve) :
+loi des grands nombres, théorème central limite.
+$Géométrie
+En construction.
+Responsable à l’ESPE :
+Responsable au LJAD :
+$Mathématiques pour la Finance
+Nombre d’ECTS : 3.
+Mode d’enseignement : présentiel, 12h CM, 18h TD.
+Prérequis
+Les notions mathématiques de base d’une classe de Terminale S ou ES et UE Méthodes mathéma-
+tiques 1 (MMS1).
+Présentation du cours
+Ce cours offre une introduction et sert de prérequis aux cours avancés des mathématiques financières.
+Il vise à fournir les bases des outils mathématiques utilisés en finance et à initier et familiariser
+l’étudiant à quelques produits financiers.
+Tout d’abord nous commencerons par étudier la différence entre les différents types d’intérêts, les taux
+d’intérêts composés et les taux d’intérêts continus. Nous traiterons ensuite les notions d’actualisation
+et de capitalisation et les méthodes de calcul d’une suite d’annuités. Nous terminerons avec quelques
+applications financières comme l’amortissement des emprunts indivis et obligataires et par donner
+une introduction sur les produits dérivés financiers.
+Contenu du cours
+• Outils mathématiques : fonctions exponentielles de base a, compléments sur les suites numé-
+riques, suites arithmétiques, suites géométriques, suites arithmético-géométriques.
+• Intérêts : intérêt simple, intérêt composé, taux équivalent, taux effectif, taux proportionnel,
+taux continu, capitalisation, actualisation.
+• Annuités : valeur acquise et valeur actuelle d’une suite d’annuités, annuités constantes, annuités
+variables.
+• Emprunts indivis : tableau d’amortissement, échéances constantes, échéances variables, taux
+effectif global.
+• Emprunts obligataires : amortissement à taux fixe, analyse du risque.
+• Introduction aux produits dérivés : les options.
+$Analyse de la Décision
+Nombre d’ECTS : 3.
+Mode d’enseignement : présentiel sur 12 semaines.
+Prérequis
+Présentation du cours
+Contenu du cours
+• Outils mathématiques préliminaires : théorie naïve des ensembles, éléments de logique et mé-
+thodes de preuve.
+• Les fondamentaux de la théorie du choix : le statut du choix en sciences économiques, les
+relations binaires, les relations de préférences.
+• La théorie des préférences révélées : relations de préférences et choix ; choix et préférences
+révélées (axiomes alpha et beta de Sen, axiome d’Houthakker).
+• L’utilité ordinale : homomorphismes et isomorphismes d’ordre ; représentation des relations
+de préférences par une fonction d’utilité ; non-unicité des fonctions d’utilité ; fonction d’uti-
+lité et courbe d’indifférence ; propriétés structurelles des relations de préférences (continuité,
+monotonie, non-satiabilité, convexité, homothétie).
