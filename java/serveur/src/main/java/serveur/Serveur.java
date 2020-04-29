@@ -68,7 +68,7 @@ public class Serveur {
                 Date date = new Date();
                 LoginList.get(socketIOClient).add(sdf.format(date));
                 envoiePrerequis(mapEtudiants.get(id));
-                socketIOClient.sendEvent(NUM_ETUDIANTS, NetHandler.getNumEtudiants());
+                socketIOClient.sendEvent(NUM_ETUDIANTS, NetHandler.getNumEtudiants("BD INFO ETUDIANTS.txt"));
                 System.out.println(socketIOClient.toString());
                 System.out.println(id.getNom() + " s'est connecté.");
           //      sauvegarderDates();
@@ -189,9 +189,9 @@ public class Serveur {
             public void onData(SocketIOClient socketIOClient, Etudiant et, AckRequest ackRequest) {
                 System.out.println("Demande de réinitialisation du mot de passe.");
                 System.out.println(et.getNumEtudiant());
-                if (Objects.nonNull(NetHandler.getEtudiant(et.getNumEtudiant()))) {
-                    if (NetHandler.getEtudiant(et.getNumEtudiant()).getDateNaissance().equals(et.getDateNaissance())) {
-                        socketIOClient.sendEvent(ENVOIE_PASSWORD, NetHandler.getEtudiant(et.getNumEtudiant()));
+                if (Objects.nonNull(NetHandler.getEtudiant("BD INFO ETUDIANTS.txt", et.getNumEtudiant()))) {
+                    if (NetHandler.getEtudiant("BD INFO ETUDIANTS.txt", et.getNumEtudiant()).getDateNaissance().equals(et.getDateNaissance())) {
+                        socketIOClient.sendEvent(ENVOIE_PASSWORD, NetHandler.getEtudiant("BD INFO ETUDIANTS.txt", et.getNumEtudiant()));
                         return;
                     }
                 }
@@ -205,8 +205,8 @@ public class Serveur {
         this.server.addEventListener(CONSULTATION, Identité.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) {
-                socketIOClient.sendEvent(ENVOIE_CONSULTATION, NetHandler.getUEChoisies());
-                System.out.println("Envoie des UE pour consultation : " + NetHandler.getUEChoisies());
+                socketIOClient.sendEvent(ENVOIE_CONSULTATION, NetHandler.getUEChoisies("BD INFO ETUDIANTS.txt"));
+                System.out.println("Envoie des UE pour consultation : " + NetHandler.getUEChoisies("BD INFO ETUDIANTS.txt"));
             }
         });
 
