@@ -1,14 +1,18 @@
 package com.androidapp.reseau;
+import android.content.Context;
+import android.os.Environment;
 import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -24,10 +28,14 @@ import metier.Etudiant;
 import metier.Identité;
 import metier.ListeSemestre;
 import metier.ToJSON;
+
+import com.androidapp.Fichiers.GestionnaireDeFlux;
 import com.androidapp.vue.*;
 import com.androidapp.vue.activity.InscriptionActivity;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import static android.provider.Telephony.Mms.Part.FILENAME;
 
 /**
  *  Classe Connexion qui s'occupe de traiter les messages réceptionnés par le client
@@ -83,6 +91,12 @@ public enum Connexion implements RecevoirMessage {
     }
 
     private boolean prerequisChange;
+
+    public Map<String, List<String>> getMapPrerequisBrut() {
+        return MapPrerequisBrut;
+    }
+
+    private Map<String,List<String>> MapPrerequisBrut = new HashMap<>();
 
     /**
      *  Connexion de la socket
@@ -210,81 +224,7 @@ public enum Connexion implements RecevoirMessage {
                     Map<String,List<String>> tmpMap = new HashMap<>();
                     tmpMap = MapPrerequis;
                     Log.d("Prerequis",MapPrerequis.toString());
-                    File fichier = new File("Prerequis.txt");
-                    if(!fichier.exists())
-                    {
-                        FileWriter fw = new FileWriter("Prerequis.txt", false);
-                        Log.d("FICHIER","FICHIER EXISTE PAS");
-                        BufferedWriter bw = new BufferedWriter(fw);
-                        PrintWriter out = new PrintWriter(bw);
-                        tmpMap.values().removeAll(Collections.emptyList());
-                        for (Map.Entry<String,List<String>> entry : tmpMap.entrySet()) {
-                            out.println("$" + entry.getKey());
-                            for (String str : entry.getValue())
-                                out.println(str);
 
-                        }
-
-                        out.flush();
-                        out.close();
-
-
-                    }
-
-                    else
-                    {
-                        Log.d("FICHIER","FICHIER EXISTE ");
-
-                        Map<String,List<String>> tmpMap2 = new HashMap<>();
-                        String previousKey = null;
-                        BufferedReader br;
-                        try{
-                            br = new BufferedReader(new FileReader("Prerequis.txt"));
-
-
-                            String line = br.readLine();
-                            while(line != null){
-                                if(line.contains("$")){
-                                    line = line.replace("$","");
-                                    tmpMap2.put(line,new ArrayList<String>());
-                                    previousKey = line;
-                                }
-                                else{
-                                    tmpMap2.get(previousKey).add(line);
-                                }
-                                line = br.readLine();
-                            }
-                            br.close();
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-
-                        if(tmpMap2.equals(MapPrerequis)) {
-                            Log.d("PREREQUIS", "PREREQUIS N ONT PAS CHANGE ");
-                            prerequisChange = false;
-                        }
-                        else {
-                            prerequisChange = true;
-                            Log.d("PREREQUIS", "PREREQUIS ONT CHANGE");
-                            FileWriter fw = new FileWriter("Prerequis.txt", false);
-
-                            BufferedWriter bw = new BufferedWriter(fw);
-                            PrintWriter out = new PrintWriter(bw);
-                            tmpMap.values().removeAll(Collections.emptyList());
-                            for (Map.Entry<String,List<String>> entry : tmpMap.entrySet()) {
-                                out.println("$" + entry.getKey());
-                                for (String str : entry.getValue())
-                                    out.println(str);
-
-                            }
-
-                            out.flush();
-                            out.close();
-                        }
-                    }
 
 
                 } catch (IOException e) {
@@ -308,7 +248,18 @@ public enum Connexion implements RecevoirMessage {
                 }
             }
         });
-
+        recevoirMessage(Net.PREREQUIS_BRUT, new Emitter.Listener() {
+            ObjectMapper objectMapper3 = new ObjectMapper();
+            @Override
+            public void call(Object... args) {
+                try {
+                    MapPrerequisBrut = objectMapper3.readValue(args[0].toString(), new TypeReference<Map<String, List<String>>>() {
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         /**
          *  Même type de méthode que pour la connexion
          */

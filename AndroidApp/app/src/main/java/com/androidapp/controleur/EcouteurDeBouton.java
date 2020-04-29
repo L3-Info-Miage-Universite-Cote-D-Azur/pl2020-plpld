@@ -1,6 +1,5 @@
 package com.androidapp.controleur;
 
-import android.util.Log;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import com.androidapp.reseau.*;
