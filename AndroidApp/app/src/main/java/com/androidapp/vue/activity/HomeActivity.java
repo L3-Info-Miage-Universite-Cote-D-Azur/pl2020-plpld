@@ -20,10 +20,6 @@ import com.androidapp.Fichiers.GestionnaireDeFlux;
 import com.androidapp.R;
 import com.androidapp.reseau.Connexion;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -73,7 +69,15 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(HomeActivity.this, ResetPasswordActivity.class));
             }
         });
-
+        /**
+         * Bouton consultation
+         */
+        findViewById(R.id.btnconsultation).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, ConsultationActivity.class));
+            }
+        });
         setTitle("Connexion étudiant");
         initMainActivityControls();
         openInputPopupDialogButton.setOnClickListener(new View.OnClickListener() {
@@ -132,7 +136,7 @@ public class HomeActivity extends AppCompatActivity {
                                     connexionDialogs2.onCreateDialog(savedInstanceState,HomeActivity.this,true);
 
 
-                                    Intent intent=new Intent(HomeActivity.this, EcranAccueil.class);
+                                    Intent intent=new Intent(HomeActivity.this, EcranAccueilActivity.class);
                                     startActivity(intent);
                                     }
                                 else{

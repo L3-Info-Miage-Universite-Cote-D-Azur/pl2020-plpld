@@ -1,7 +1,5 @@
 package com.androidapp.vue.activity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,10 +13,7 @@ import com.androidapp.Fichiers.GestionnaireDeFlux;
 import com.androidapp.R;
 import com.androidapp.reseau.Connexion;
 
-import java.io.IOException;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Map;
 
 import constantes.Net;
 import metier.Etudiant;
@@ -59,6 +54,15 @@ public class InscriptionActivity extends AppCompatActivity {
          */
         final EditText mdp = findViewById(R.id.mdp);
 
+        /**
+         * Bouton consultation
+         */
+        findViewById(R.id.btnconsultation).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(InscriptionActivity.this, ConsultationActivity.class));
+            }
+        });
         /**
          *  Bouton valider
          */
@@ -112,7 +116,7 @@ public class InscriptionActivity extends AppCompatActivity {
                         saisieCorrecte[0] = true;
                         ConnexionDialogs connexionDialogs2 = new ConnexionDialogs();
                         connexionDialogs2.onCreateDialog(savedInstanceState,InscriptionActivity.this,true,"ETU");
-                        startActivity(new Intent(InscriptionActivity.this, EcranAccueil.class));
+                        startActivity(new Intent(InscriptionActivity.this, EcranAccueilActivity.class));
 
 
                     }

@@ -17,20 +17,15 @@ import java.io.IOException;
 
 import constantes.Net;
 
-public class EcranAccueil extends AppCompatActivity {
+public class EcranAccueilActivity extends AppCompatActivity {
 
 
     GestionnaireDeFlux gestionnaireDeFlux;
 
     protected void onCreate(final Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_ecranaccueil);
-
-        int tmp = Connexion.CONNEXION.getMapPrerequis().size();
-
 
         gestionnaireDeFlux = new GestionnaireDeFlux(this);
         if(!gestionnaireDeFlux.fileExist(Net.FICHIER_PREREQUIS) || gestionnaireDeFlux.getFileLength(Net.FICHIER_PREREQUIS) == 0) {
@@ -39,16 +34,9 @@ public class EcranAccueil extends AppCompatActivity {
 
         else
         {
-
             try {
-
-
-                int tmp3 = Connexion.CONNEXION.getMapPrerequisBrut().size();
-                String str3 = String.valueOf(tmp3);
-                int tmp4 = gestionnaireDeFlux.getFileLength(Net.FICHIER_PREREQUIS);
-                String str4 = String.valueOf(tmp4);
-                Log.d("MAP",str4);
-                Log.d("MAP",str3);
+                Log.d("MAP",String.valueOf(gestionnaireDeFlux.getFileLength(Net.FICHIER_PREREQUIS)));
+                Log.d("MAP", String.valueOf(Connexion.CONNEXION.getMapPrerequisBrut().size()));
                 Log.d("MAP", gestionnaireDeFlux.getMapFromFile(Net.FICHIER_PREREQUIS).toString());
                 Log.d("MAP",Connexion.CONNEXION.getMapPrerequisBrut().toString());
 
@@ -64,10 +52,13 @@ public class EcranAccueil extends AppCompatActivity {
             }
         }
 
-        findViewById(R.id.btnconsultation).setOnClickListener(new View.OnClickListener() {
+        /**
+         * Bouton déconnexion
+         */
+        findViewById(R.id.btndeconnexion).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(EcranAccueil.this, ConsultationActivity.class));
+                startActivity(new Intent(EcranAccueilActivity.this, HomeActivity.class));
             }
         });
 
@@ -76,7 +67,7 @@ public class EcranAccueil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final AlertDialog.Builder builder2 = new AlertDialog.Builder(EcranAccueil.this);
+                final AlertDialog.Builder builder2 = new AlertDialog.Builder(EcranAccueilActivity.this);
                 builder2.setTitle(R.string.parcourspredefini)
                         .setItems(R.array.parcours, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -89,31 +80,31 @@ public class EcranAccueil extends AppCompatActivity {
                                 switch (which){
                                     case 0:
                                         Connexion.CONNEXION.predefini = "Mathématiques";
-                                        startActivity(new Intent(EcranAccueil.this, MainActivity.class));
+                                        startActivity(new Intent(EcranAccueilActivity.this, MainActivity.class));
                                         break;
                                     case 1 :
                                         Connexion.CONNEXION.predefini = "SVT";
-                                        startActivity(new Intent(EcranAccueil.this, MainActivity.class));
+                                        startActivity(new Intent(EcranAccueilActivity.this, MainActivity.class));
                                         break;
                                     case 2 :
                                         Connexion.CONNEXION.predefini = "Physique";
-                                        startActivity(new Intent(EcranAccueil.this, MainActivity.class));
+                                        startActivity(new Intent(EcranAccueilActivity.this, MainActivity.class));
                                         break;
                                     case 3 :
                                         Connexion.CONNEXION.predefini = "Chimie";
-                                        startActivity(new Intent(EcranAccueil.this, MainActivity.class));
+                                        startActivity(new Intent(EcranAccueilActivity.this, MainActivity.class));
                                         break;
                                     case 4 :
                                         Connexion.CONNEXION.predefini = "Informatique";
-                                        startActivity(new Intent(EcranAccueil.this, MainActivity.class));
+                                        startActivity(new Intent(EcranAccueilActivity.this, MainActivity.class));
                                         break;
                                     case 5 :
                                         Connexion.CONNEXION.predefini = "Informatique (L1)";
-                                        startActivity(new Intent(EcranAccueil.this, MainActivity.class));
+                                        startActivity(new Intent(EcranAccueilActivity.this, MainActivity.class));
                                         break;
                                     case 6 :
                                         Connexion.CONNEXION.predefini = "Mathématiques (L1)";
-                                        startActivity(new Intent(EcranAccueil.this, MainActivity.class));
+                                        startActivity(new Intent(EcranAccueilActivity.this, MainActivity.class));
                                         break;
                                 }
                             }});
@@ -121,13 +112,13 @@ public class EcranAccueil extends AppCompatActivity {
                 /**
                  *  Sinon, l'étudiant opte pour un parcours personnalisé, ou il doit choisir de lui même toutes ses UE pour les 4 semestres
                  */
-                AlertDialog.Builder builder = new AlertDialog.Builder(EcranAccueil.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(EcranAccueilActivity.this);
                 builder.setTitle(R.string.choix)
                         .setItems(R.array.choix, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 switch(which){
                                     case  0 :
-                                        startActivity(new Intent(EcranAccueil.this, MainActivity.class));
+                                        startActivity(new Intent(EcranAccueilActivity.this, MainActivity.class));
                                         //  Connexion.CONNEXION.envoyerMessage(Net.NV_ETU, etu);
                                         break;
                                     case 1 :
@@ -142,14 +133,6 @@ public class EcranAccueil extends AppCompatActivity {
 
             }
 
-        });
-
-
-        findViewById(R.id.btnconsulterparcours).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(EcranAccueil.this, ConsultationActivity.class));
-            }
         });
     }
 }

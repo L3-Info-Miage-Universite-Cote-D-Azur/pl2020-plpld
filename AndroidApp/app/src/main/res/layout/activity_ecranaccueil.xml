@@ -49,19 +49,12 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btnconsultation"
+        android:id="@+id/btndeconnexion"
         android:layout_width="wrap_content"
-        android:layout_height="102dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/custom_button2"
-        android:text="Consulter les parcours choisis par les autres étudiants"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp" />
-
-
+        android:layout_height="wrap_content"
+        android:text="Se déconnecter"
+        android:textSize="15sp"
+        android:layout_gravity="right"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        />
 </LinearLayout>

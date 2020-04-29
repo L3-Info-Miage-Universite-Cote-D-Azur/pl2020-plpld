@@ -26,7 +26,7 @@
         <activity android:name=".vue.activity.InscriptionActivity" />
         <activity android:name=".vue.activity.ResetPasswordActivity" />
         <activity android:name=".vue.activity.ConsultationActivity" />
-        <activity android:name=".vue.activity.EcranAccueil"/>
+        <activity android:name=".vue.activity.EcranAccueilActivity"/>
         <activity android:name=".vue.activity.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
