@@ -22,6 +22,7 @@ Découverte des sciences de la terre
 $Science de la vie
 Org. Mécanismes Moléculaires Cellules Eucaryotes
 Génétique. Evolution. Origine Vie et Biodiversité
+Chimie biochimie
 $CLE 1D (Continuum Licence Enseignement)
 Enseignements fondamentaux à l'école primaire 1
 $UE facultative

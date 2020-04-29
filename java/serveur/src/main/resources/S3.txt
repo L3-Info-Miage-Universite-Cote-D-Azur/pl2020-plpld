@@ -50,6 +50,9 @@ Matériaux terrestres
 $Science de la vie
 Org. Mécanismes Moléculaires Cellules Eucaryotes
 Génétique. Evolution. Origine Vie et Biodiversité
+Physiologie animale
+Informatique et génétique des populations
+Réactivité et chimie biologique
 $CLE 1D (Continuum Licence Enseignement)
 Enseignements fondamentaux à l'école primaire 1
 $UE facultative
