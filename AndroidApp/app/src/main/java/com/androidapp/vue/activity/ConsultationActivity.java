@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -143,20 +144,19 @@ public class ConsultationActivity extends AppCompatActivity {
                 LinearLayout groupLayoutView = new LinearLayout(ConsultationActivity.this);
                 groupLayoutView.setOrientation(LinearLayout.HORIZONTAL);
 
-                //A décommenter si on souhaite ajouter une image (comme un avatar) à côté du nom de l'étudiant
-                /*
+                //ajout d'une image
                 ImageView groupImageView = new ImageView(ConsultationActivity.this);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(100, 100);
                 params.setMargins(100, 1, 1, 1);
                 groupImageView.setLayoutParams(params);
                 if(isExpanded) {
-                    groupImageView.setImageResource(R.mipmap.ic_launcher_round);
-                }else
-                {
-                    groupImageView.setImageResource(R.mipmap.ic_launcher);
+                    groupImageView.setImageResource(R.drawable.ic_person_black_24dp);
+                }else{
+                    groupImageView.setImageResource(R.drawable.ic_person_black_24dp);
                 }
-                groupLayoutView.addView(groupImageView); */
-
+                groupLayoutView.addView(groupImageView);
+                //fin ajout de l'image
+                
                 String groupText = groupList.get(groupIndex);
                 TextView groupTextView = new TextView(ConsultationActivity.this);
                 groupTextView.setText(groupText);
