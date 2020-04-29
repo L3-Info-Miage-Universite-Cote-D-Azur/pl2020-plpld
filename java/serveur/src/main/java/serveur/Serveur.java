@@ -46,10 +46,6 @@ public class Serveur {
 
     private Map<Identité,SocketIOClient> mapEtudiants = new HashMap<>();
 
-    private Map<SocketIOClient, List<String>> LoginList = new HashMap<>();
-
-    private static final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-
     public Serveur(SocketIOServer server) {
 
         this.server = server;
@@ -61,18 +57,10 @@ public class Serveur {
         this.server.addEventListener(CONNEXION, Identité.class, new DataListener<>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) throws IOException, ParseException, URISyntaxException {
-
-
                 mapEtudiants.put(id, socketIOClient);
-                LoginList.put(socketIOClient,new ArrayList<>());
-                Date date = new Date();
-                LoginList.get(socketIOClient).add(sdf.format(date));
                 envoiePrerequis(mapEtudiants.get(id));
                 socketIOClient.sendEvent(NUM_ETUDIANTS, NetHandler.getNumEtudiants("BD INFO ETUDIANTS.txt"));
-                System.out.println(socketIOClient.toString());
                 System.out.println(id.getNom() + " s'est connecté.");
-          //      sauvegarderDates();
-          //      recupererLastLogin(socketIOClient);
             }
         });
 
@@ -264,45 +252,4 @@ public class Serveur {
         NetHandler = netHandler;
     }
 
-
-    public void sauvegarderDates() throws IOException {
-
-        FileWriter fw = new FileWriter("dates.txt", false);
-        BufferedWriter bw = new BufferedWriter(fw);
-        PrintWriter out = new PrintWriter(bw);
-
-        for (Map.Entry<SocketIOClient,List<String>> entry : LoginList.entrySet()) {
-            out.println("$"+entry.getKey().toString());
-            out.println(entry.getValue().get(entry.getValue().size() - 1));
-        }
-
-
-        out.flush();
-        out.close();
-    }
-
-
-    public boolean recupererLastLogin(SocketIOClient socketIOClient) throws IOException, ParseException, URISyntaxException {
-        URL url = this.getClass().getClassLoader().getResource("A:\\pl2020-plpld\\java\\serveur\\src\\main\\resources\\Prerequis.txt");
-        File file = new File(url.toURI());
-        BufferedReader br = new BufferedReader(new FileReader("dates.txt"));
-
-        String line = br.readLine();
-        while(line != null) {
-            if (line.contains("$")) {
-                line = line.replace("$", "");
-                if (line.equals(socketIOClient.toString())) {
-                    Date date = sdf.parse(br.readLine());
-                    System.out.println("date lue dans le fichier en millisecondes : " + date.getTime() + date);
-                    System.out.println(" date de la derniere modification du fichier : " + file.lastModified());
-                    return date.getTime() > file.lastModified();
-
-                }
-                line = br.readLine();
-            }
-            br.close();
-        }
-        return false;
-
-    }
 }
