@@ -15,6 +15,9 @@ Probabilités et Introduction à la Statistiques
 Algèbre
 Résolution numérique des systèmes d'équations linéaires et non-linéaires
 Méthodes : approche aléatoire
+Géométrie
+Mathématiques pour la Finance
+Analyse de la Décision
 $Chimie
 Reactions et reactivites chimiques
 Thermodynamique chimique / Options
