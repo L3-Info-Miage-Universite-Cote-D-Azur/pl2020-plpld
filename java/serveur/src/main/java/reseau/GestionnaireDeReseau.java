@@ -157,7 +157,7 @@ public class GestionnaireDeReseau {
     public List<String> getNumEtudiants(String path) {
         File fichier = new File(path);
         if (!fichier.exists())
-            return null;
+            return new ArrayList<>();
         List<String> listeNumEtudiants = new ArrayList<>();
 
         for(Etudiant etudiant: FileHandler.etuInscrits(path)) {
