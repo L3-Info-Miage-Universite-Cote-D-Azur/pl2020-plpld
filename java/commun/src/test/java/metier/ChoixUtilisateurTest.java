@@ -43,6 +43,9 @@ public class ChoixUtilisateurTest {
     }
 
 
+    /**
+     * On vérifie la méthode "getChoix".
+     */
     @Test
     public void testString() {
         //Test d'égalité sur un seul choix de matière
@@ -63,6 +66,9 @@ public class ChoixUtilisateurTest {
     }
 
 
+    /**
+     * On vérifie la méthode "toJSON" qui transforme une liste en objet JSON.
+     */
     @Test
     public void toJSON() {
         // Test du JSON avec un seul choix de matière

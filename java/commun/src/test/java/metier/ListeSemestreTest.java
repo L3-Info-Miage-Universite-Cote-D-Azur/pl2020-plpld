@@ -2,13 +2,13 @@ package metier;
 
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
+import static org.junit.Assert.assertEquals;
 
 public class ListeSemestreTest {
 
-    ListeSemestre listeSemestre;
-    ListeSemestre listeElectronique;
+    private ListeSemestre listeSemestre;
+    private ListeSemestre listeElectronique;
 
     @Before
     public void setup() {
@@ -42,6 +42,9 @@ public class ListeSemestreTest {
     }
 
 
+    /**
+     * On vérifie les méthodes "getMapUE", "setMapUE", et "add" de la classe ListeSemestre
+     */
     @Test
     public void test() {
         // On vérifient que le HashMap est bien initialisé
@@ -64,5 +67,13 @@ public class ListeSemestreTest {
         assertEquals(listeSemestre.getMapUE().get("Electronique").get(1), "Automatique : une introduction");
         assertEquals(listeSemestre.getMapUE().get("Electronique").get(2), "Système embarqué");
         assertEquals(listeSemestre.getMapUE().get("Electronique").get(3), "Physique des capteurs");
+
+        // On ajoute une nouvelle nouvelle discipline avec la méthode "add"
+        listeSemestre.add("MIASHS", new ArrayList<String>() {{
+            add("Economie-Gestion S1");
+            add("Intro R");
+        }});
+        assertEquals(listeSemestre.getMapUE().get("MIASHS").get(0), "Economie-Gestion S1");
+        assertEquals(listeSemestre.getMapUE().get("MIASHS").get(1), "Intro R");
     }
 }

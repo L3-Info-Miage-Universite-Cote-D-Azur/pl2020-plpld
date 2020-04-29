@@ -18,6 +18,10 @@ public class IdentitéTest {
         identite2 = new Identité("Android APP 2");
     }
 
+
+    /**
+     * On vérifie les méthodes "getNom" et "setNom".
+     */
     @Test
     public void nom() {
         //Test avec le nom d'origine
@@ -36,6 +40,9 @@ public class IdentitéTest {
     }
 
 
+    /**
+     * On vérifie la méthode JSON qui transforme l'identité de l'utilisateur en objet JSON.
+     */
     @Test
     public void toJSON() {
         // Test du JSON avec le nom d'origine

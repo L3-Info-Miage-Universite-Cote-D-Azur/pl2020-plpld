@@ -2,16 +2,13 @@ package metier;
 
 import org.junit.Before;
 import org.junit.Test;
-
 import java.time.LocalDate;
-
 import static org.junit.Assert.assertEquals;
 
 public class EtudiantTest {
 
-    Etudiant etudiant;
-    LocalDate localDate = LocalDate.of(1998,05,19);
-
+    private Etudiant etudiant;
+    private LocalDate localDate = LocalDate.of(1998,05,19);
 
     @Before
     public void setup(){
@@ -19,6 +16,10 @@ public class EtudiantTest {
 
     }
 
+
+    /**
+     * On vérifie les méthodes "getNom" et "setNom".
+     */
     @Test
     public void nom() {
         assertEquals("ashraf",etudiant.getNom());
@@ -26,6 +27,10 @@ public class EtudiantTest {
         assertEquals("ASHRAF",etudiant.getNom());
     }
 
+
+    /**
+     * On vérifie les méthodes "getPrenom" et "setPrenom".
+     */
     @Test
     public void prénom() {
         assertEquals("ossama",etudiant.getPrenom());
@@ -33,6 +38,10 @@ public class EtudiantTest {
         assertEquals("OSSAMA",etudiant.getPrenom());
     }
 
+
+    /**
+     * On vérifie les méthodes "getNumEtudiant" et "setNumEtudiant".
+     */
     @Test
     public void numEtudiant() {
         assertEquals("ao910223",etudiant.getNumEtudiant());
@@ -40,6 +49,10 @@ public class EtudiantTest {
         assertEquals("Ao910223",etudiant.getNumEtudiant());
     }
 
+
+    /**
+     * On vérifie les méthodes "getDateNaissance" et "setDateNaissance".
+     */
     @Test
     public void dateNaissance() {
         LocalDate localDate = LocalDate.of(1998,05,19);
@@ -50,6 +63,10 @@ public class EtudiantTest {
         assertEquals(localDate2,etudiant.getDateNaissance());
     }
 
+
+    /**
+     * On vérifie les méthodes "getMotDePasse" et "setMotDePasse".
+     */
     @Test
     public void motDePasse() {
         assertEquals("aaaaaaa",etudiant.getMotDePasse());
@@ -57,6 +74,10 @@ public class EtudiantTest {
         assertEquals("AAAAAA",etudiant.getMotDePasse());
     }
 
+
+    /**
+     * On vérifie la méthode "toJSON" qui transforme l'étudiant en objet JSON.
+     */
     @Test
     public void toJSON() {
         LocalDate localDate2 = LocalDate.of(2000,07,07);
@@ -73,5 +94,4 @@ public class EtudiantTest {
         assertEquals("{\"motDePasse\":\"AAAAAA\",\"numEtudiant\":\"Ao910223\",\"dateNaissance\":\"2000-07-07\",\"nom\":\"ASHRAF\",\"prenom\":\"OSSAMA\"}"
                 ,etudiant.toJSON().toString());
     }
-
 }
