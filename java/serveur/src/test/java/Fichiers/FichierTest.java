@@ -46,9 +46,12 @@ public class FichierTest {
         baseDonneEtuTest = "src/test/resources/BaseDonneeEtuTest.txt";
     }
 
-
+    /**
+     * On vérifie que la méthode "lireFichier" créer bien une HashMap<String, List<String>>
+     *     avec un fichier de type semestre (de test) passé en paramètre
+     */
     @Test
-    public void lireFichierSemestreTest() {
+    public void lireFichierTest_TypeSemestre() {
         // On vérifie un fichier type semestre
         hashMapS1 = fichiers.lireFichier(semestreTest);
 
@@ -94,8 +97,12 @@ public class FichierTest {
     }
 
 
+    /**
+     * On vérifie que la méthode "lireFichier" créer bien une HashMap<String, List<String>>
+     *     avec un fichier de type prérequis (de test) passé en paramètre
+     */
     @Test
-    public void lireFichierPrerequisTest() {
+    public void lireFichierTest_TypePrerequis() {
         // On vérifie un fichier type prerequis
         hashMapPrerequis = fichiers.lireFichier(prerequisTest);
 
@@ -109,7 +116,10 @@ public class FichierTest {
         assertEquals(hashMapPrerequis.get("Enseignements fondamentaux à l'école primaire 2").get(0), "Enseignements fondamentaux à l'école primaire 1");
     }
 
-
+    /**
+     * On vérifie que la méthode "lireFichierPredefini" créer bien une Map<String, Map<Integer, List<String>>>
+     *     avec un fichier de parcours predefini (de test) en paramètre.
+     */
     @Test
     public void lireFichierPredefiniTest() {
         // On vérifie un fichier type parcours predefini
@@ -144,6 +154,10 @@ public class FichierTest {
     }
 
 
+    /**
+     * On vérifie que la méthode "lireTout" créer bien une List<Map<String, List<String>>>
+     *     avec les fichiers de semesres (de test) passé en paramètre.
+     */
     @Test
     public void lireToutTest() {
         // On vérifie que la méthode "lireTout" construit bien une liste avec les 4 semestre (les 4 fichier pour le test sont identique, donc les 4 elements de la liste doivent eux aussi être identique)
@@ -169,6 +183,9 @@ public class FichierTest {
     }
 
 
+    /**
+     * On vérifie la bonne construction des prérequis avec un fichier de prérequis de test.
+     */
     @Test
     public void constructionPrerequisTest() {
         //On construit les prérequis (les matières en double apparaissent qu'une seule fois)
@@ -220,6 +237,11 @@ public class FichierTest {
     }
 
 
+    /**
+     * On vérifie que la méthode "ecrireDansFichier" écrit bien dans un fichier de test le numéro d'étudiant,
+     * et le mot de passe passé en paramètre.
+     * @throws IOException
+     */
     @Test
     public void ecrireDansFichierTest() throws IOException {
         //On supprime le fichier dans lequel on va écrire (s'il existe)
@@ -248,6 +270,12 @@ public class FichierTest {
     }
 
 
+    /**
+     * On vérifie que la méthode "EnregistrerInfoEtudiant" enregistre bien les informations d'un étudiant
+     * dans un fichier de test. Les informations d'un étudiant sont son numéro d'étudiant, son nom,
+     * son prénom, sa date de naissance, et son mot de passe.
+     * @throws IOException
+     */
     @Test
     public void EnregistrerInfoEtudiantTest() throws IOException {
         //On supprime le fichier dans lequel on va écrire (s'il existe)
@@ -281,22 +309,36 @@ public class FichierTest {
         br.close();
     }
 
-
+    /**
+     * On vérifie si l'étudiant existe bien dans le fichier de test "BaseDonneEtuTest.txt"
+     */
     @Test
     public void getEtudiantTest() {
-        // On vérifie si l'étudiant existe bien dans le fichier "BaseDonneEtuTest.txt"
         Etudiant etu;
         etu = fichiers.getEtudiant(baseDonneEtuTest, "ad123456");
 
-        // On test avec des valeurs contenus dans le fichier "BaseDonneeEtuTest.txt"
+        // On test avec le premier etudiant contenus dans le fichier "BaseDonneeEtuTest.txt"
         assertEquals(etu.getNumEtudiant(), "ad123456");
         assertEquals(etu.getNom(), "Simpson");
         assertEquals(etu.getPrenom(), "Homer");
         assertEquals(etu.getDateNaissance(), LocalDate.of(1986, 04, 30));
         assertEquals(etu.getMotDePasse(), "MDP_Simpson");
+
+        etu = fichiers.getEtudiant(baseDonneEtuTest, "ad111111");
+        // On test avec le deuxième etudiant contenus dans le fichier "BaseDonneeEtuTest.txt"
+        assertEquals(etu.getNumEtudiant(), "ad111111");
+        assertEquals(etu.getNom(), "nomTest2");
+        assertEquals(etu.getPrenom(), "prenomTest2");
+        assertEquals(etu.getDateNaissance(), LocalDate.of(2000, 01, 01));
+        assertEquals(etu.getMotDePasse(), "MDP2");
     }
 
 
+    /**
+     * On vérifie que la méthode "EcrireDansFichierListe" écrit bien la liste passé en paramètre
+     * dans un fichier de test.
+     * @throws IOException
+     */
     @Test
     public void EcrireDansFichierListeTest() throws IOException {
         //On supprime le fichier dans lequel on va écrire (s'il existe)
@@ -326,6 +368,10 @@ public class FichierTest {
     }
 
 
+    /**
+     * On vérifie si on arrive a trouver un étudiant dans la base de données de test avec
+     * son numéro d'etudiant et son mot de passe
+     */
     @Test
     public void trouverEtudiantTest() {
         //On test avec les vrai identifiants
@@ -350,6 +396,11 @@ public class FichierTest {
     }
 
 
+    /**
+     * On vérifie si le numéro d'étudiant est enregistré dans la base de données de test
+     * (i.e. si l'étudiant est inscrit ou non)
+     *
+     */
     @Test
     public void etuDejaInscritTest() {
         //On test avec les vrai numéro d'étudiant
@@ -365,5 +416,57 @@ public class FichierTest {
         assertFalse(fichiers.etuDejaInscrit(baseDonnee,"ad000111"));
         assertFalse(fichiers.etuDejaInscrit(baseDonnee,"gt206000"));
         assertFalse(fichiers.etuDejaInscrit(baseDonnee,"jp222222"));
+    }
+
+
+    /**
+     * On vérifie que la liste des étudiants obtenue grace a la méthode "etuInscrits" est correcte
+     */
+    @Test
+    public void etuInscritsTest() {
+        List<Etudiant> liste = fichiers.etuInscrits(baseDonneEtuTest);
+        // Premier étudiant
+        assertEquals(liste.get(0).getNumEtudiant(), "ad123456");
+        assertEquals(liste.get(0).getNom(), "Simpson");
+        assertEquals(liste.get(0).getPrenom(), "Homer");
+        assertEquals(liste.get(0).getDateNaissance(), LocalDate.of(1986, 04, 30));
+        assertEquals(liste.get(0).getMotDePasse(), "MDP_Simpson");
+        // Deuxième étudiant
+        assertEquals(liste.get(1).getNumEtudiant(), "ad111111");
+        assertEquals(liste.get(1).getNom(), "nomTest2");
+        assertEquals(liste.get(1).getPrenom(), "prenomTest2");
+        assertEquals(liste.get(1).getDateNaissance(), LocalDate.of(2000, 01, 01));
+        assertEquals(liste.get(1).getMotDePasse(), "MDP2");
+        // Troisième étudiant
+        assertEquals(liste.get(2).getNumEtudiant(), "ad000000");
+        assertEquals(liste.get(2).getNom(), "nomTest3");
+        assertEquals(liste.get(2).getPrenom(), "prenomTest3");
+        assertEquals(liste.get(2).getDateNaissance(), LocalDate.of(1800, 12, 12));
+        assertEquals(liste.get(2).getMotDePasse(), "MDP3");
+    }
+
+
+    /**
+     * On vérifie que la méthode "selectionUE" créer bien une Liste<String> des UE choisie par l'étudiant
+     * passer en paramètre.
+     * Pour réaliser ce test nous avons crée un objet Etudiant en l'initialisant avec le numéro d'étudiant :
+     * "src/test/resources/ListeUEetudiantTest", car les listes des UEs des étudiants ont un nom sous la forme
+     * numéroEtudiant.txt (la méthode "selectionUE" se charge de rajouter le ".txt"). De ce fait le fichier pointé
+     * est "ListeUEetudiantTest.txt" car on rentre son chemin comme numéro d'étudiant.
+     */
+    @Test
+    public void selectionUETest() {
+        Etudiant etudiant = new Etudiant("src/test/resources/ListeUEetudiantTest");
+        List<String> liste = fichiers.selectionUE(etudiant);
+        // On vérifie les matière dans le fichier
+        assertEquals(liste.get(0), "Bases de l'informatique");
+        assertEquals(liste.get(0), "Introduction à l'informatique par le web");
+        assertEquals(liste.get(0), "Structures de données et programmation C");
+        assertEquals(liste.get(0), "Fondements 1");
+        assertEquals(liste.get(0), "Méthodes : approche continue");
+        assertEquals(liste.get(0), "Economie-Gestion S1");
+        assertEquals(liste.get(0), "Intro R");
+        assertEquals(liste.get(0), "Mécanique 1");
+
     }
 }
