@@ -22,8 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:text="Bienvenue à la plateforme de création de parcours.\nPour un nouveau parcours cliquez sur commencer un nouveau parcours:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:text="Bienvenue à la plateforme de création de parcours de l'université CÔTE D'AZUR "
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
     <ListView
         android:id="@+id/listview_user_data"
