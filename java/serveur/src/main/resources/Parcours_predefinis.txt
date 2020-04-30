@@ -49,18 +49,28 @@ Résolution numérique des systèmes d'équations linéaires et non-linéaires
 $Physique
 $$1
 Mécanique 1
+Fondements 1
+Complements 1
+Structure Microscopique de la Matière
+Bases de l'informatique
 $$2
 Optique 1
 Mécanique 2
+Programmation impérative
+Fondements 2
+Complements 2
+Electronique analogique
 $$3
 Electromagnétisme 1
 Thermodynamique 1
 Outils et Méthodes 1
+Informatique pour la physique
+Fondements 3
 $$4
 Electromagnétisme 2
 Ondes
 Mathématiques pour la Physique 1
-Mécanique 3
+Mécanique 2
 Outils et Méthodes 2
 $Chimie
 $$1
