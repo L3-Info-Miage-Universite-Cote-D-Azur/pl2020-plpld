@@ -79,6 +79,8 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         setContentView(R.layout.activity_main);
 
 
+
+        Connexion.CONNEXION.démarrerÉcoute();
         bouton = findViewById(R.id.buttonValider);
         /**
          *  On set la vue principale à l'activity de la classe (this) et le client fait une requête au serveur  pour recevoir les matières du premier semestre
@@ -153,7 +155,6 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
             findViewById(R.id.s2).setOnClickListener(ecouteur);
             findViewById(R.id.s3).setOnClickListener(ecouteur);
             findViewById(R.id.s4).setOnClickListener(ecouteur);
-            Connexion.CONNEXION.démarrerÉcoute();
 
             ListView mListView = findViewById(R.id.list);
 
@@ -166,6 +167,7 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
             handler.postDelayed(new Runnable() {
                 public void run() {
                     if (ListeUE.size() >= numSemestre) {
+                        receptionUE();
                         dialog.dismiss();
                     } else {
                         handler.postDelayed(new Runnable() {
