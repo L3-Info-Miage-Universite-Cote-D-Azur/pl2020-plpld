@@ -48,6 +48,14 @@ public class ParcoursPredefiniTest {
         // Clique sur le bouton valider
         clicCommencer = onView(withId(R.id.buttonValiderInscription)).perform(click());
 
+        // On vérifie le text des boutons
+        champs = onView(withId(R.id.btnparcours)).check(matches(withText("Effectuer un choix de parcours")));
+        champs = onView(withId(R.id.btnconsulterparcours)).check(matches(withText("Consulter son parcours")));
+        champs = onView(withId(R.id.btndeconnexion)).check(matches(withText("Se déconnecter")));
+
+        // Clique sur le bouton "Effectuer un choix de parcours"
+        connexion = onView(withId(R.id.btnparcours)).perform(click());
+
         // Clique sur parcours personnaliser
         connexion = onView(withText("Parcours prédéfini")).perform(click());
 
@@ -58,24 +66,32 @@ public class ParcoursPredefiniTest {
         // Récape
         // Semestre 1
         verifMatiere = onView(withId(R.id.semestre1)).check(matches(withText(containsString("Bases de l'informatique"))));
-        verifMatiere = onView(withId(R.id.semestre1)).check(matches(withText(containsString("Introduction à l'informatique par le web"))));
+        verifMatiere = onView(withId(R.id.semestre1)).check(matches(withText(containsString("Fondements 1"))));
+        verifMatiere = onView(withId(R.id.semestre1)).check(matches(withText(containsString("Complements 1"))));
+        verifMatiere = onView(withId(R.id.semestre1)).check(matches(withText(containsString("Electronique numerique - Bases"))));
+        verifMatiere = onView(withId(R.id.semestre1)).check(matches(withText(containsString("UE transversale"))));
+
 
         // Semestre 2
         verifMatiere = onView(withId(R.id.semestre2)).check(matches(withText(containsString("System 1. Unix et progra shell"))));
         verifMatiere = onView(withId(R.id.semestre2)).check(matches(withText(containsString("Programmation impérative"))));
+        verifMatiere = onView(withId(R.id.semestre2)).check(matches(withText(containsString("Fondements 2"))));
+        verifMatiere = onView(withId(R.id.semestre2)).check(matches(withText(containsString("Complements 2"))));
+        verifMatiere = onView(withId(R.id.semestre2)).check(matches(withText(containsString("UE transversale"))));
+
 
         // Semestre 3
         verifMatiere = onView(withId(R.id.semestre3)).check(matches(withText(containsString("Structures de données et programmation C"))));
         verifMatiere = onView(withId(R.id.semestre3)).check(matches(withText(containsString("Bases de données"))));
         verifMatiere = onView(withId(R.id.semestre3)).check(matches(withText(containsString("Outils formels pour l'informatique"))));
-        verifMatiere = onView(withId(R.id.semestre3)).check(matches(withText(containsString("Algo & prog avec R"))));
+        verifMatiere = onView(withId(R.id.semestre3)).check(matches(withText(containsString("Fondements 3"))));
 
         // Semestre 4
         verifMatiere = onView(withId(R.id.semestre4)).check(matches(withText(containsString("Algorithmique 1"))));
         verifMatiere = onView(withId(R.id.semestre4)).check(matches(withText(containsString("Réseaux et télécommunication"))));
         verifMatiere = onView(withId(R.id.semestre4)).check(matches(withText(containsString("Systèmes 2 : Mécanisme internes des systèmes d'exploitation"))));
-        verifMatiere = onView(withId(R.id.semestre4)).check(matches(withText(containsString("Introduction aux systèmes intelligents"))));
         verifMatiere = onView(withId(R.id.semestre4)).check(matches(withText(containsString("Technologie du Web"))));
+        verifMatiere = onView(withId(R.id.semestre4)).check(matches(withText(containsString("UE transversale"))));
 
         // Clique sur "finaliser mon inscription"
         clicCommencer = onView(withId(R.id.buttonConfirmation)).perform(click());

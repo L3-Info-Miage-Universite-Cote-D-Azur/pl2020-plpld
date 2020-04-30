@@ -74,19 +74,28 @@ Mécanique 2
 Outils et Méthodes 2
 $Chimie
 $$1
-Structure Microscopique de la Matière
+Structure Microscopique de la Matière : atomistique
+Structure Microscopique de la Matière : structure et représentation des molécules
+Mécanique 1
+Bases de l'informatique
 $$2
-Réactions et reactivites chimiques
-Thermodynamique chimique / Options
+Réactions et reactivites : équilibre chimiques
+Réactions et reactivites : introduction à la réactivité organique
+Thermodynamique chimique / Options : thermochimie
 $$3
+Structure Microscopique de la Matière
 Chimie des solutions
-Chimie organique
 Matériaux 1
+Chimie des solutions : Cinétique et conductivité
+Chimie des solutions : Équilibres et dosages
+Réactivité organique/options : Chimie organique fonctionnelle
 $$4
-Vision macroscopique des molécules
-Matériaux 2
-Chimie Organique Fonctionnelle 2
-Bloc de Chimie Expérimentale
+Du microscopique au macroscopique : Spectroscopies
+Du microscopique au macroscopique : De la molécule aux propriétés macroscopiques
+Matériaux II : Chimie systématique
+Bloc expérimental : organique
+Reactions et reactivites chimiques
+Thermodynamique chimique / Options
 $Science de la vie
 $$1
 Org. Mécanismes Moléculaires Cellules Eucaryotes
