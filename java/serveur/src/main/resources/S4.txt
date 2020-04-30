@@ -19,13 +19,13 @@ Géométrie
 Mathématiques pour la Finance
 Analyse de la Décision
 $Chimie
-Spectroscopies
-De la molécule aux propriétés macroscopiques
-Chimie systématique
-Chimie inorganique II
+Du microscopique au macroscopique : Spectroscopies
+Du microscopique au macroscopique : De la molécule aux propriétés macroscopiques
+Matériaux II : Chimie systématique
+Matériaux II : Chimie inorganique II
 Chimie organique fonctionnelle II
-Bloc expérimental inorganique
-Bloc expérimental organique
+Bloc expérimental : inorganique
+Bloc expérimental : organique
 Reactions et reactivites chimiques
 Thermodynamique chimique / Options
 Vision macroscopique des molécules

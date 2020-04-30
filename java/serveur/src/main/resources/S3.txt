@@ -18,12 +18,13 @@ $Chimie
 Structure Microscopique de la Matière
 Chimie des solutions
 Matériaux 1
-Cinétique et conductivité
-Équilibres et dosages
-Chimie organique fonctionnelle
-Chimie inorganique
-Matériaux solides
-Matériaux polymères
+Chimie des solutions : Cinétique et conductivité
+Chimie des solutions : Équilibres et dosages
+Réactivité organique/options : Chimie organique fonctionnelle
+Réactivité organique/options : options
+Matériaux I : Chimie inorganique
+Matériaux I : Matériaux solides
+Matériaux I : Matériaux polymères
 $Electronique
 Electronique numerique - Bases
 Automatique : une introduction
