@@ -53,17 +53,19 @@ public class EcranAccueilActivity extends AppCompatActivity {
                 Log.d("MAP", String.valueOf(Connexion.CONNEXION.getMapPrerequisBrut().size()));
                 Log.d("MAP", gestionnaireDeFlux.getMapFromFile(Net.FICHIER_PREREQUIS).toString());
                 Log.d("MAP", Connexion.CONNEXION.getMapPrerequisBrut().toString());
-
+                if(gestionnaireDeFlux.fileExist(Net.LOGS) && gestionnaireDeFlux.getFileLength(Net.LOGS) > 1) {
+                    String tmp = gestionnaireDeFlux.readFromFile(Net.LOGS);
+                    String[] logs = tmp.split("\n", 3);
+                    Connexion.CONNEXION.envoyerMessage(Net.CHANGEMENT_PREREQUIS, new Identité(logs[1]));
+                }
                 if (gestionnaireDeFlux.getMapFromFile(Net.FICHIER_PREREQUIS).equals(Connexion.CONNEXION.getMapPrerequisBrut())) {
                     Log.d("FICHIER", "fichier non modifié");
 
                 }
                 else {
-                    String tmp = gestionnaireDeFlux.readFromFile(Net.LOGS);
-                    String[] logs = tmp.split("\n", 3);
+
 
                     try {
-                        Connexion.CONNEXION.envoyerMessage(Net.CHANGEMENT_PREREQUIS, new Identité(logs[1]));
                        Thread.sleep(1000);
                         Log.d("FICHIER", "fichier modifié");
                         gestionnaireDeFlux.ecrireMapDansFichier(Connexion.CONNEXION.getMapPrerequisBrut(), Net.FICHIER_PREREQUIS);
@@ -134,7 +136,24 @@ public class EcranAccueilActivity extends AppCompatActivity {
                         startActivity(new Intent(EcranAccueilActivity.this, HomeActivity.class));
                     }
                 });
+                findViewById(R.id.btnconsulterparcours).setOnClickListener(new View.OnClickListener() {
+                  @Override
+                     public void onClick(View v) {
+                      StringBuilder stringBuilder = new StringBuilder();
+                      if(!Connexion.CONNEXION.getChoixParcoursEtudiant().isEmpty()) {
+                          for (String str : Connexion.CONNEXION.getChoixParcoursEtudiant()) {
+                              stringBuilder.append(str + "\n");
+                          }
+                      }
+                      else
+                          stringBuilder.append("Vous n'avez pas encore choisi de parcours!");
 
+                      PrerequisChangeDialogs dialog3 = new PrerequisChangeDialogs();
+
+                      dialog3.onCreateDialog(savedInstanceState,EcranAccueilActivity.this,stringBuilder.toString());
+
+            }
+                });
                 findViewById(R.id.btnparcours).setOnClickListener(new View.OnClickListener(){
 
                     @Override
