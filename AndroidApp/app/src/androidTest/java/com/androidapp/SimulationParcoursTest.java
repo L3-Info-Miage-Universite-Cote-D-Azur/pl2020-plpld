@@ -3,27 +3,11 @@ package com.androidapp;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
-import org.junit.jupiter.api.Disabled;
 import org.junit.runner.RunWith;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.rule.ActivityTestRule;
-import com.androidapp.reseau.Connexion;
-import com.androidapp.reseau.RecevoirMessage;
-import com.androidapp.vue.Vue;
 import com.androidapp.vue.activity.HomeActivity;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.*;
-import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import constantes.Net;
-import io.socket.client.IO;
-import io.socket.emitter.Emitter;
-import io.socket.client.Socket;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.longClick;
@@ -80,6 +64,12 @@ public class SimulationParcoursTest {
         // Clique sur le bouton valider
         connexion = onView(withId(R.id.buttonValiderInscription)).perform(click());
 
+        try {
+            champs = onView(withId(R.id.btnparcours)).check(matches(withText("Effectuer un choix de parcours")));
+        }
+        catch (Exception e) {
+            return;
+        }
         // Clique sur le bouton "Effectuer un choix de parcours"
         connexion = onView(withId(R.id.btnparcours)).perform(click());
         
