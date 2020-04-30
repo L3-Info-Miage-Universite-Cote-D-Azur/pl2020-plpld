@@ -35,9 +35,11 @@ public class InscriptionTest {
         ViewInteraction champs;
 
         // Vérifie les champs de la page d'accueil
-        connexion = onView(withId(R.id.btnpar)).check(matches(withText("Commencer un nouveau parcours")));
+        connexion = onView(withId(R.id.btnpar)).check(matches(withText("SE CONNECTER")));
         connexion = onView(withId(R.id.textView2)).check(matches(withText("Bienvenue à la plateforme de création de parcours.\nPour un nouveau parcours cliquez sur commencer un nouveau parcours:")));
-        connexion = onView(withId(R.id.btninscription)).check(matches(withText("Commencer une inscription")));
+        connexion = onView(withId(R.id.btninscription)).check(matches(withText("S'INSCRIRE")));
+        champs = onView(withId(R.id.btnconsultation)).check(matches(withText("Consulter les parcours choisis par les autres étudiants")));
+
 
         // Clique sur le bouton Commencer un nouveau parcours
         connexion = onView(withId(R.id.btnpar)).perform(click());
