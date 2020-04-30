@@ -7,7 +7,7 @@
 
     <string-array name="parcours">
         <item>Maths</item>
-        <item>SVT</item>
+        <item>Science de la vie</item>
         <item>Physique</item>
         <item>Chimie</item>
         <item>Informatique</item>
@@ -16,5 +16,3 @@
     </string-array>
 
 </resources>
-
-

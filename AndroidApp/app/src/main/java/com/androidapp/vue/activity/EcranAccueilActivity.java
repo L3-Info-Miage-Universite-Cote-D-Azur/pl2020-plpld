@@ -83,7 +83,7 @@ public class EcranAccueilActivity extends AppCompatActivity {
                                         startActivity(new Intent(EcranAccueilActivity.this, MainActivity.class));
                                         break;
                                     case 1 :
-                                        Connexion.CONNEXION.predefini = "SVT";
+                                        Connexion.CONNEXION.predefini = "Science de la vie";
                                         startActivity(new Intent(EcranAccueilActivity.this, MainActivity.class));
                                         break;
                                     case 2 :
