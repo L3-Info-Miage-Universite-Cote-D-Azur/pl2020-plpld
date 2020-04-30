@@ -1,0 +1,32 @@
+$Introduction à l'informatique par le web
+Cours de découverte de la science informatique à travers de thématiques concrètes issues du web.
+Calendrier
+Le cours se déroule sur 9 semaines et comprend :
+9 séances en amphi
+9 séances de TD
+9 séances de TP
+Contenu du cours :
+L’objectif de ce cours est de donner un aperçu de ce à quoi peut ressembler la science informatique, tant d’un point de vue pratique que théorique.
+Quelques thématiques et objectifs du cours :
+couleurs et traitement d’images (basique)
+premiers pas en langage HTML et CSS
+notions de matériel informatique
+introduction aux graphes
+remise à niveau pour code élémentaire (for, if)
+cryptographie et sécurité (élémentaires)
+Les notions vues en cours sont travaillées en TD et mises en pratique en TP sur ordinateur.
+Remarque
+Ce cours est destiné à l’ouverture à la science informatique. Le cours SPUF10 (Bases de l’informatique) est davantage recommandé pour les étudiants se sachant destinés à une licence informatique. Il est impossible de choisir simultanément ce cours et Bases de l’informatique (SPUF10), le choix est exclusif.
+Modalités de contrôle des connaissances
+un contrôle continu (CC)
+évaluation des TP (TP)
+un contrôle continu terminal (CCT)
+la note finale est max(0,4 CC + 0,2 TP + 0,4 CCT, CCT)
+$Electromagnétisme 1
+Responsable: David Mary Cours : 15 h TD : 24h
+Charges électriques, Champ électrique, Potentiel électrique, forces conservatives, Théorème de Gauss, Electrodynamique
+$Mathématiques pour la Physique 1
+Responsable: Pascal Baldi Cours : 20 h TD : 30 h
+Ondes électromagnétiques, sources, propagation, interactions lumière-matière, propriétés des matériaux, anisotropie .
+$Matériaux II : Chimie systématique
+4 ECTS    CM 20/ TD 25

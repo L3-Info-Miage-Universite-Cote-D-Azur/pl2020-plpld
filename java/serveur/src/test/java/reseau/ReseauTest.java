@@ -178,4 +178,15 @@ public class ReseauTest {
         gestionnaireResauSpy.lireTout(semestreTest, semestreTest, semestreTest, semestreTest);
         Mockito.verify(fileHandler).lireTout(Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString());
     }
+
+
+    /**
+     * On vérifie si la méthode "descriptionUE" de la classe "GestionnaireDeFichier" a bien été effectué.
+     */
+    @Test
+    public void description_UETest() {
+        String descriptionUETest = "DescriptionUETest.txt";
+        gestionnaireResauSpy.description_UE(descriptionUETest);
+        Mockito.verify(fileHandler).descriptionUE(Mockito.eq(descriptionUETest));
+    }
 }

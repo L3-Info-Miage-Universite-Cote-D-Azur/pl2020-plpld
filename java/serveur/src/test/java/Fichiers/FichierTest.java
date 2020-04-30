@@ -22,6 +22,7 @@ public class FichierTest {
     private Map<String, Map<Integer, List<String>>> mapPredefini;
     private HashMap<String, List<String>> constructionPrerequis;
     private List<Map<String, List<String>>> listeToutUE;
+    private HashMap<String,String> descriptionUE;
     private Etudiant etudiant;
     private String semestreTest;
     private String prerequisTest;
@@ -31,6 +32,7 @@ public class FichierTest {
     private String ecrireInfoEtuTest;
     private String ecrireDansFichierListeTest;
     private String baseDonneEtuTest;
+    private String descrictionUETest;
 
     @Before
     public void setup() {
@@ -44,6 +46,7 @@ public class FichierTest {
         ecrireInfoEtuTest = "src/test/resources/EcrireInfoEtuTest.txt";
         ecrireDansFichierListeTest = "src/test/resources/EcrireDansFichierListeTest.txt";
         baseDonneEtuTest = "src/test/resources/BaseDonneeEtuTest.txt";
+        descrictionUETest = "DescriptionUETest.txt";
     }
 
     /**
@@ -467,6 +470,61 @@ public class FichierTest {
         assertEquals(liste.get(5), "Economie-Gestion S1");
         assertEquals(liste.get(6), "Intro R");
         assertEquals(liste.get(7), "Mécanique 1");
-
     }
+
+
+    /**
+     * On vérifie la bonne description des UEs contenue dans HashMap<String,String> que crée la méthode "descriptionUE".
+     */
+    @Test
+    public void descriptionUETest() {
+        // Données de test
+        String informatique = "Cours de découverte de la science informatique à travers de thématiques concrètes issues du web.\n" +
+                "Calendrier\n" +
+                "Le cours se déroule sur 9 semaines et comprend :\n" +
+                "9 séances en amphi\n" +
+                "9 séances de TD\n" +
+                "9 séances de TP\n" +
+                "Contenu du cours :\n" +
+                "L’objectif de ce cours est de donner un aperçu de ce à quoi peut ressembler la science informatique, tant d’un point de vue pratique que théorique.\n" +
+                "Quelques thématiques et objectifs du cours :\n" +
+                "couleurs et traitement d’images (basique)\n" +
+                "premiers pas en langage HTML et CSS\n" +
+                "notions de matériel informatique\n" +
+                "introduction aux graphes\n" +
+                "remise à niveau pour code élémentaire (for, if)\n" +
+                "cryptographie et sécurité (élémentaires)\n" +
+                "Les notions vues en cours sont travaillées en TD et mises en pratique en TP sur ordinateur.\n" +
+                "Remarque\n" +
+                "Ce cours est destiné à l’ouverture à la science informatique. Le cours SPUF10 (Bases de l’informatique) est davantage recommandé pour les étudiants se sachant destinés à une licence informatique. Il est impossible de choisir simultanément ce cours et Bases de l’informatique (SPUF10), le choix est exclusif.\n" +
+                "Modalités de contrôle des connaissances\n" +
+                "un contrôle continu (CC)\n" +
+                "évaluation des TP (TP)\n" +
+                "un contrôle continu terminal (CCT)\n" +
+                "la note finale est max(0,4 CC + 0,2 TP + 0,4 CCT, CCT)\n";
+
+        String electro = "Responsable: David Mary Cours : 15 h TD : 24h\n" +
+                "Charges électriques, Champ électrique, Potentiel électrique, forces conservatives, Théorème de Gauss, Electrodynamique\n";
+
+        String math = "Responsable: Pascal Baldi Cours : 20 h TD : 30 h\n" +
+                "Ondes électromagnétiques, sources, propagation, interactions lumière-matière, propriétés des matériaux, anisotropie .\n";
+
+        String materiaux = "4 ECTS    CM 20/ TD 25\n";
+
+        // Création du HashMap
+        descriptionUE = fichiers.descriptionUE(descrictionUETest);
+
+        // Vérification du HashMap
+        assertEquals(descriptionUE.get("Matériaux II : Chimie systématique"), materiaux);
+        assertEquals(descriptionUE.get("Mathématiques pour la Physique 1"), math);
+        assertEquals(descriptionUE.get("Electromagnétisme 1"), electro);
+        assertEquals(descriptionUE.get("Introduction à l'informatique par le web"), informatique);
+    }
+
+
+
+
+
+
+
 }
