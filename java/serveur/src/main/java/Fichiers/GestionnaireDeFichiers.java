@@ -334,6 +334,12 @@ public class GestionnaireDeFichiers {
         return lectureUE;
     }
 
+
+    /**
+     * Cette méthode renvoie une map dont les clefs sont les noms des UE et les mappings les descriptions des UE .
+     * @param fichier le chemin du fichier
+     * @return une map dont les clefs sont les noms des UE et les mappings les descriptions des UE .
+     */
     public HashMap<String,String> descriptionUE (String fichier) {
         HashMap<String,String> hashMap=new HashMap<>();
         BufferedReader br;
