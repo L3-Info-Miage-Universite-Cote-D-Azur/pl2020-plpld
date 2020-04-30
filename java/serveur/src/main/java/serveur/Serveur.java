@@ -72,7 +72,13 @@ public class Serveur {
                 socketIOClient.sendEvent(PREREQUIS_BRUT,NetHandler.lireFichier(FICHIER_PREREQUIS));
             }
         });
-
+        this.server.addEventListener(CHANGEMENT_PREREQUIS, Identité.class, new DataListener<Identité>() {
+            @Override
+            public void onData(SocketIOClient socketIOClient, Identité identité, AckRequest ackRequest) throws Exception {
+                socketIOClient.sendEvent(CHANGEMENT_PREREQUIS,NetHandler.getParcoursEtu(identité.getNom()));
+                System.out.println("Nouvelle demande de parcours ... " + identité.getNom());
+            }
+        });
         /**
          *  Evenement de confirmation finale du choix du parcours de l'étudiant
          *  le choix de l'étudiant est enregistré dans un fichier

@@ -334,6 +334,28 @@ public class GestionnaireDeFichiers {
         return lectureUE;
     }
 
+    public List<String> selectionUE(String numEtu) {
+        BufferedReader br;
+        File selectionUE = new File(numEtu + ".txt");
+        List<String> lectureUE = new ArrayList<>();
+        if(!selectionUE.exists())
+            return null;
+        try{
+            br = new BufferedReader(new FileReader(selectionUE));
+            String line = br.readLine();
+            while(line != null){
+                lectureUE.add(line);
+                line = br.readLine();
+            }
+            br.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lectureUE;
+    }
+
 
     /**
      * Cette méthode renvoie une map dont les clefs sont les noms des UE et les mappings les descriptions des UE .
