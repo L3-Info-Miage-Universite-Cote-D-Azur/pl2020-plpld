@@ -26,7 +26,9 @@ import io.socket.emitter.Emitter;
 import io.socket.client.Socket;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.longClick;
 import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -38,88 +40,22 @@ import static org.hamcrest.core.StringContains.containsString;
 
 public class SimulationParcoursTest {
 
+    private String descriptionUE;
 
-    @Before
-    public void setup() throws URISyntaxException {
-
-        Socket socket = Mockito.mock(Socket.class);
-
-
-        Connexion.CONNEXION.setSocket(socket);
-
-
-        final HashMap<String, List<String>> UE = new HashMap<String, List<String>>();
-        UE.put("Informatique", new ArrayList<String>() {{
-            add("Base de l'info");
-        }});
-
-        final HashMap<String, List<String>> Pre = new HashMap<String, List<String>>();
-        Pre.put("Informatique", new ArrayList<String>());
-        
-        RecevoirMessage connexion = Mockito.mock(RecevoirMessage.class);
-
-
-
-        Mockito.doAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                Connexion.CONNEXION.getMainVue().receptionUE(UE);
-                return null;
-            }
-        }).when(connexion).recevoirMessage(Mockito.eq(Net.UE), Mockito.any(Emitter.Listener.class));
-
-
-        Mockito.doAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                Connexion.CONNEXION.getMainVue().receptionUE(Pre);
-                return null;
-            }
-        }).when(connexion).recevoirMessage(Mockito.eq(Net.PREREQUIS), Mockito.any(Emitter.Listener.class));
-
-        /*
-        Mockito.doAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                Connexion.CONNEXION.mainVue.receptionUE(UE);
-                return null;
-            }
-        }).when(connexion).recevoirMessage(Mockito.eq(Net.ENVOIE_S1), Mockito.any(Emitter.Listener.class));
-
-
-        Mockito.doAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                Connexion.CONNEXION.mainVue.receptionUE(UE);
-                return null;
-            }
-        }).when(connexion).recevoirMessage(Mockito.eq(Net.PREDEFINI), Mockito.any(Emitter.Listener.class));
-
-
-        Mockito.doAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                Connexion.CONNEXION.mainVue.receptionUE(UE);
-                return null;
-            }
-        }).when(connexion).recevoirMessage(Mockito.eq(Net.ENVOIE_TOUT), Mockito.any(Emitter.Listener.class));
-        */
-
-        Mockito.doAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                Connexion.CONNEXION.setConnexionAutorisee(true);
-                return null;
-            }
-        }).when(connexion).recevoirMessage(Mockito.eq(Net.NV_CONNEXION), Mockito.any(Emitter.Listener.class));
-
-    }
 
     @Rule
     public ActivityTestRule<HomeActivity> mActivityTestRule = new ActivityTestRule<>(HomeActivity.class);
 
 
-    @Disabled
+
+    @Before
+    public void setup() {
+        descriptionUE = "Responsables:Claire Michel, Philippe Thomen Cours : 18 h TD : 24h\n" +
+                "Cinématique ; Dynamique du point, Lois de Newton ; Lois de conservation de l’énergie ; Oscillations libre non amortie ; Systèmes de points en interaction, chocs\n";
+    }
+
+
+
     @Test
     public void graphicTest() throws InterruptedException {
 
@@ -135,20 +71,22 @@ public class SimulationParcoursTest {
         connexion = onView(withId(R.id.btninscription)).perform(click());
 
         // Remplissage des champs
-        champs = onView(withId(R.id.numEtudiant)).perform(click()).perform(typeText("jm529620")).perform(ViewActions.closeSoftKeyboard());
-        champs = onView(withId(R.id.nom)).perform(click()).perform(typeText("jean")).perform(ViewActions.closeSoftKeyboard());
-        champs = onView(withId(R.id.prénom)).perform(click()).perform(typeText("marc")).perform(ViewActions.closeSoftKeyboard());
+        champs = onView(withId(R.id.numEtudiant)).perform(click()).perform(typeText("0000000000")).perform(ViewActions.closeSoftKeyboard());
+        champs = onView(withId(R.id.nom)).perform(click()).perform(typeText("Homer")).perform(ViewActions.closeSoftKeyboard());
+        champs = onView(withId(R.id.prénom)).perform(click()).perform(typeText("Simpson")).perform(ViewActions.closeSoftKeyboard());
         champs = onView(withId(R.id.naissance)).perform(click()).perform(typeText("11/11/2011")).perform(ViewActions.closeSoftKeyboard());
-        champs = onView(withId(R.id.mdp)).perform(click()).perform(typeText("jmjmjmjm")).perform(ViewActions.closeSoftKeyboard());
+        champs = onView(withId(R.id.mdp)).perform(click()).perform(typeText("0000000000")).perform(ViewActions.closeSoftKeyboard());
 
         // Clique sur le bouton valider
         connexion = onView(withId(R.id.buttonValiderInscription)).perform(click());
+
+        // Clique sur le bouton "Effectuer un choix de parcours"
+        connexion = onView(withId(R.id.btnparcours)).perform(click());
         
         // Clique sur parcours personnaliser
         connexion = onView(withText("Parcours personalisé")).perform(click());
 
         /////////////// Semestre 1 ///////////////
-        Thread.sleep(4000);
         clicGroupe = onView(
                 withText("Informatique")).perform(click());
         clicMatiere = onView(
@@ -177,6 +115,22 @@ public class SimulationParcoursTest {
                 withText("Complements 1")).perform(click());
         clicMatiere = onView(
                 withText("Méthodes : approche continue")).perform(click());
+        clicMatiere = onView(
+                withText("Mathématiques")).perform(click());
+
+        clicMatiere = onView(
+                withText("Physique")).perform(click());
+        clicMatiere = onView(withText("Mécanique 1")).perform(click());
+
+        clicMatiere = onView(
+                withText("Mécanique 1")).perform(longClick());
+
+        verifMatiere = onView(withText("Description de l'UE :Mécanique 1")).check(matches(isDisplayed()));
+        verifMatiere = onView(withText(containsString(descriptionUE))).check(matches(isDisplayed()));
+        clicMatiere = onView(withText("REVENIR À LA SELECTION DES UE")).perform(click());
+
+        clicMatiere = onView(withText("Mécanique 1")).perform(click());
+
         clicCommencer = onView(
                 withId(R.id.buttonValider)).perform(click());
 
@@ -200,7 +154,7 @@ public class SimulationParcoursTest {
         clicGroupe = onView(
                 withText("Chimie")).perform(click());
         clicMatiere = onView(
-                withText("Réactions et reactivites chimiques")).perform(click());
+                withText("Réactions et reactivites : équilibre chimiques")).perform(click());
         clicGroupe = onView(
                 withText("Chimie")).perform(click());
 
@@ -298,12 +252,13 @@ public class SimulationParcoursTest {
         verifMatiere = onView(withId(R.id.semestre1)).check(matches(withText(containsString("Electronique numerique - Bases"))));
         verifMatiere = onView(withId(R.id.semestre1)).check(matches(withText(containsString("Fondements 1"))));
         verifMatiere = onView(withId(R.id.semestre1)).check(matches(withText(containsString("Complements 1"))));
+        verifMatiere = onView(withId(R.id.semestre1)).check(matches(withText(containsString("Mécanique 1"))));
 
         // Semestre 2
         verifMatiere = onView(withId(R.id.semestre2)).check(matches(withText(containsString("System 1. Unix et progra shell"))));
         verifMatiere = onView(withId(R.id.semestre2)).check(matches(withText(containsString("Programmation impérative"))));
         verifMatiere = onView(withId(R.id.semestre2)).check(matches(withText(containsString("Fondements 2"))));
-        verifMatiere = onView(withId(R.id.semestre2)).check(matches(withText(containsString("Réactions et reactivites chimiques"))));
+        verifMatiere = onView(withId(R.id.semestre2)).check(matches(withText(containsString("Réactions et reactivites : équilibre chimiques"))));
         verifMatiere = onView(withId(R.id.semestre2)).check(matches(withText(containsString("Optique 1"))));
         verifMatiere = onView(withId(R.id.semestre2)).check(matches(withText(containsString("Electronique analogique"))));
 

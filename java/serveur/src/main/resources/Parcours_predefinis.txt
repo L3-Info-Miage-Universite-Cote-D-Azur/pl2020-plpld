@@ -115,23 +115,19 @@ Bases de l'informatique
 Fondements 1
 Complements 1
 Electronique numerique - Bases
-UE transversale
 $$2
 System 1. Unix et progra shell
 Programmation impérative
 Fondements 2
 Complements 2
-UE transversale
 $Mathématiques (L1)
 $$1
 Fondements 1
 Complements 1
 Bases de l'informatique
 Introduction à l'informatique par le web
-Compétences transversales
 $$2
 Fondements 2
 Complements 2
 System 1. Unix et progra shell
 Programmation impérative
-Compétences transversales
