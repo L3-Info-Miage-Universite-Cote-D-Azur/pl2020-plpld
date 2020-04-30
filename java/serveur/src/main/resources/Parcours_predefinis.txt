@@ -4,13 +4,11 @@ Bases de l'informatique
 Fondements 1
 Complements 1
 Electronique numerique - Bases
-UE transversale
 $$2
 System 1. Unix et progra shell
 Programmation impérative
 Fondements 2
 Complements 2
-UE transversale
 $$3
 Structures de données et programmation C
 Bases de données
@@ -21,26 +19,22 @@ Algorithmique 1
 Réseaux et télécommunication
 Systèmes 2 : Mécanisme internes des systèmes d'exploitation
 Technologie du Web
-UE transversale
 $Mathématiques
 $$1
 Fondements 1
 Complements 1
 Bases de l'informatique
 Introduction à l'informatique par le web
-Compétences transversales
 $$2
 Fondements 2
 Complements 2
 System 1. Unix et progra shell
 Programmation impérative
-Compétences transversales
 $$3
 Fondements 3
 Compléments d'Analyse
 Compléments d'Algèbre
 Outils formels pour l'informatique
-Compétences transversales
 $$4
 Analyse
 Probabilités et Introduction à la Statistiques
