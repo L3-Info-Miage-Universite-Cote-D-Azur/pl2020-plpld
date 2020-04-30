@@ -39,11 +39,11 @@ public class ParcoursPredefiniTest {
         connexion = onView(withId(R.id.btninscription)).perform(click());
 
         // Remplissage des champs
-        champs = onView(withId(R.id.numEtudiant)).perform(click()).perform(typeText("jm529620")).perform(ViewActions.closeSoftKeyboard());
-        champs = onView(withId(R.id.nom)).perform(click()).perform(typeText("jean")).perform(ViewActions.closeSoftKeyboard());
-        champs = onView(withId(R.id.prénom)).perform(click()).perform(typeText("marc")).perform(ViewActions.closeSoftKeyboard());
+        champs = onView(withId(R.id.numEtudiant)).perform(click()).perform(typeText("0000000000")).perform(ViewActions.closeSoftKeyboard());
+        champs = onView(withId(R.id.nom)).perform(click()).perform(typeText("Homer")).perform(ViewActions.closeSoftKeyboard());
+        champs = onView(withId(R.id.prénom)).perform(click()).perform(typeText("Simpson")).perform(ViewActions.closeSoftKeyboard());
         champs = onView(withId(R.id.naissance)).perform(click()).perform(typeText("11/11/2011")).perform(ViewActions.closeSoftKeyboard());
-        champs = onView(withId(R.id.mdp)).perform(click()).perform(typeText("jmjmjmjm")).perform(ViewActions.closeSoftKeyboard());
+        champs = onView(withId(R.id.mdp)).perform(click()).perform(typeText("0000000000")).perform(ViewActions.closeSoftKeyboard());
 
         // Clique sur le bouton valider
         clicCommencer = onView(withId(R.id.buttonValiderInscription)).perform(click());

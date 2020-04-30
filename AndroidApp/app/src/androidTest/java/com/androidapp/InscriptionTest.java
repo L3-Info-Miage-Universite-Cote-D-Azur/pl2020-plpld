@@ -36,7 +36,7 @@ public class InscriptionTest {
 
         // Vérifie les champs de la page d'accueil
         connexion = onView(withId(R.id.btnpar)).check(matches(withText("SE CONNECTER")));
-        connexion = onView(withId(R.id.textView2)).check(matches(withText("Bienvenue à la plateforme de création de parcours.\nPour un nouveau parcours cliquez sur commencer un nouveau parcours:")));
+        connexion = onView(withId(R.id.textView2)).check(matches(withText("Bienvenue à la plateforme de création de parcours de l'université CÔTE D'AZUR ")));
         connexion = onView(withId(R.id.btninscription)).check(matches(withText("S'INSCRIRE")));
         champs = onView(withId(R.id.btnconsultation)).check(matches(withText("Consulter les parcours choisis par les autres étudiants")));
 
@@ -66,11 +66,11 @@ public class InscriptionTest {
         champs = onView(withId(R.id.buttonValiderInscription)).check(matches(withText("Valider")));
 
         // Remplissage des champs
-        champs = onView(withId(R.id.numEtudiant)).perform(click()).perform(typeText("jm529620")).perform(ViewActions.closeSoftKeyboard());
-        champs = onView(withId(R.id.nom)).perform(click()).perform(typeText("jean")).perform(ViewActions.closeSoftKeyboard());
-        champs = onView(withId(R.id.prénom)).perform(click()).perform(typeText("marc")).perform(ViewActions.closeSoftKeyboard());
+        champs = onView(withId(R.id.numEtudiant)).perform(click()).perform(typeText("0000000000")).perform(ViewActions.closeSoftKeyboard());
+        champs = onView(withId(R.id.nom)).perform(click()).perform(typeText("Homer")).perform(ViewActions.closeSoftKeyboard());
+        champs = onView(withId(R.id.prénom)).perform(click()).perform(typeText("SIMPSON")).perform(ViewActions.closeSoftKeyboard());
         champs = onView(withId(R.id.naissance)).perform(click()).perform(typeText("11/11/2011")).perform(ViewActions.closeSoftKeyboard());
-        champs = onView(withId(R.id.mdp)).perform(click()).perform(typeText("jmjmjmjm")).perform(ViewActions.closeSoftKeyboard());
+        champs = onView(withId(R.id.mdp)).perform(click()).perform(typeText("0000000000")).perform(ViewActions.closeSoftKeyboard());
 
         // Clique sur le bouton valider
         connexion = onView(withId(R.id.buttonValiderInscription)).perform(click());

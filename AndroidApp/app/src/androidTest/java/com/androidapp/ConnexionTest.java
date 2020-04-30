@@ -34,7 +34,7 @@ public class ConnexionTest {
 
         // Vérifie les champs de la page d'accueil
         champs = onView(withId(R.id.btnpar)).check(matches(withText("SE CONNECTER")));
-        champs = onView(withId(R.id.textView2)).check(matches(withText("Bienvenue à la plateforme de création de parcours.\nPour un nouveau parcours cliquez sur commencer un nouveau parcours:")));
+        champs = onView(withId(R.id.textView2)).check(matches(withText("Bienvenue à la plateforme de création de parcours de l'université CÔTE D'AZUR ")));
         champs = onView(withId(R.id.btninscription)).check(matches(withText("S'INSCRIRE")));
         champs = onView(withId(R.id.btnconsultation)).check(matches(withText("Consulter les parcours choisis par les autres étudiants")));
 
