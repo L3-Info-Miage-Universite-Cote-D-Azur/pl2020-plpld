@@ -21,6 +21,7 @@ import com.androidapp.R;
 import com.androidapp.reseau.Connexion;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -51,7 +52,25 @@ public class HomeActivity extends AppCompatActivity {
         Connexion.CONNEXION.démarrerÉcoute();
         Connexion.CONNEXION.envoyerMessage(Net.CONNEXION, new Identité("AndroidApp"));
         Connexion.CONNEXION.envoyerMessage(Net.PREREQUIS_BRUT,new Identité("AndroidApp"));
+        gestionnaireDeFlux = new GestionnaireDeFlux(this);
+        if(gestionnaireDeFlux.fileExist(Net.LOGS) && gestionnaireDeFlux.getFileLength(Net.LOGS) != 0)
+        {
+            String tmp = gestionnaireDeFlux.readFromFile(Net.LOGS);
+            String[] logs = tmp.split("\n",3);
 
+            Connexion.CONNEXION.envoyerMessage(Net.NV_CONNEXION, new Identité(logs[1] + " " + logs[2]));
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if(Connexion.CONNEXION.getConnexionAutorisee()) {
+                ConnexionDialogs connexionDialogs2 = new ConnexionDialogs();
+                connexionDialogs2.onCreateDialog(savedInstanceState, HomeActivity.this, true);
+                Intent intent = new Intent(HomeActivity.this, EcranAccueilActivity.class);
+                startActivity(intent);
+            }
+        }
 
 
         if (getIntent().hasExtra("Erreur")) {
@@ -134,7 +153,7 @@ public class HomeActivity extends AppCompatActivity {
                         if(Connexion.CONNEXION.getConnexionAutorisee()){
                                     ConnexionDialogs connexionDialogs2 = new ConnexionDialogs();
                                     connexionDialogs2.onCreateDialog(savedInstanceState,HomeActivity.this,true);
-
+                                    gestionnaireDeFlux.ecrireDansFichier(userName + "\n" + password,Net.LOGS);
 
                                     Intent intent=new Intent(HomeActivity.this, EcranAccueilActivity.class);
                                     startActivity(intent);
