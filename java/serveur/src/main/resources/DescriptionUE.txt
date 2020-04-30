@@ -684,3 +684,43 @@ Partie Solides déformables: Cinématique de la déformation. Tenseur de déform
 Partie Mécanique des Fluides:Cinématique des fluides. Contrainte visqueuse. Equations de conservation. Vorticité. Dynamique de la vorticité. Dynamique des fluides parfaits. Ecoulements potentiels
 $Optique Ondulatoire
 Optique Ondulatoire
+$Structure Microscopique de la Matière : atomistique
+3 ECTS    CM 12/ TD 16/ TP 6
+$Structure Microscopique de la Matière : structure et représentation des molécules
+3 ECTS    CM 8/ TD 10/ TP 8
+$Réactions et reactivites : équilibre chimiques
+3 ECTS    CM 10/ TD 12/ TP 8
+$Réactions et reactivites : introduction à la réactivité organique
+3 ECTS    CM 14/ TD 14/ TP 2
+$Thermodynamique chimique / Options : thermochimie
+4,5 ECTS    CM 18/ TD 22/ TP 16
+$Thermodynamique chimique / Options : option
+1,5 ECTS    CM 8/ TD 12
+$Chimie des solutions : Cinétique et conductivité
+1,8 ECTS    CM 10/ TD 12/ TP 4
+$Chimie des solutions : Équilibres et dosages
+2,4 ECTS    CM 12/ TD 16/ TP 14
+$Réactivité organique/options : Chimie organique fonctionnelle
+4,5 ECTS    CM 22/ TD 16/ TP 8
+$Réactivité organique/options : options
+1,5 ECTS    CM 8/ TD 12
+$Matériaux I : Chimie inorganique
+2 ECTS    CM 10/ TD 6/ TP 3
+$Matériaux I : Matériaux solides
+2 ECTS    CM 14/ TD 12/ TP 4
+$Matériaux I : Matériaux polymères
+2 ECTS    CM 14/ TD 10/ TP 0
+$Du microscopique au macroscopique : Spectroscopies
+4 ECTS    CM 20/ TD 20/ TP 6
+$Du microscopique au macroscopique : De la molécule aux propriétés macroscopiques
+2 ECTS    CM 10/ TD 10/ TP 8
+$Matériaux II : Chimie systématique
+4 ECTS    CM 20/ TD 25
+$Matériaux II : Chimie inorganique II
+2 ECTS    CM 8/ TD 8/ TP 6
+$Chimie organique fonctionnelle II
+6 ECTS    CM 26/ TD 28
+$Bloc expérimental : inorganique
+3 ECTS    CM 2/ TD 0/ TP 26
+$Bloc expérimental : organique
+3 ECTS    CM 2/ TD 0/ TP 26
