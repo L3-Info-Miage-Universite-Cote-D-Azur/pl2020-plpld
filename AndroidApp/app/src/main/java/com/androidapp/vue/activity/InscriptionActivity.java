@@ -119,7 +119,6 @@ public class InscriptionActivity extends AppCompatActivity {
                         saisieCorrecte[0] = false;
                     }
 
-                        startActivity(new Intent(InscriptionActivity.this, EcranAccueilActivity.class));
                     }}
         });
     }
