@@ -44,12 +44,12 @@ Pour démarrer le serveur : lancer un terminal et exécuter :
    ## Modification des fichiers par le client   
    Les fichiers ressources disponibles à l'emplacement "pl2020-plpld\java\serveur\src\main\resources" sont modifiables à tout moment par le gestionnaire du serveur. Le client peut modifier les fichiers txt à cet emplacement pour configurer simplement les parcours préconçus, les UE proposées à chaque semestre ainsi que les prérequis pour chaque UE.
    
-   *Pour les fichiers contenant les UE des semestres il faut faire précéder de '$' le nom des disciplines et les noms d'UE ne doivent pas contenir ce symbole.*
+   *Pour les fichiers contenant les UE des semestres (les fichiers textes S1, S2, S3 et S4) il faut faire précéder de '$' le nom des disciplines et les noms d'UE ne doivent pas contenir ce symbole.*
    
-   *Le fichier "Prerequis.txt" doit contenir le symbole "$" avant le nom de l'UE qui demande un (ou plusieurs) prérequis et la ou les lignes suivantes doivent contenir la (ou les) UE prérequis(es) pour accéder à celle-ci.*
+   *Le fichier "Prerequis.txt" doit contenir le symbole "$" avant le nom de l'UE qui demande un (ou plusieurs) prérequis et la ou les lignes suivantes doivent contenir la (ou les) UE prérequis(es) pour accéder à celle-ci. Les modifications de ce fichier sont détéctées par le serveur et le client en est notifié si cela impacte son parcours.*
    
-   
-   *Le fichier "Parcours_predefinis.txt" doit contenir le symbole "$" avant le nom du parcours et le symbole "$$" avant le numéro du semestre que l'on souhaite préconcevoir ensuite. Il n'y a pas d'obligation de définir les 4 semestres, si on en prédifinit que 2 par exemple cela sera automatiquement géré par l'application.*           
+   *Le fichier "Parcours_predefinis.txt" doit contenir le symbole "$" avant le nom du parcours et le symbole "$$" avant le numéro du semestre que l'on souhaite préconcevoir ensuite. Il n'y a pas d'obligation de définir les 4 semestres, si on en prédifinit que 2 par exemple cela sera automatiquement géré par l'application.*
+   #### ATTENTION: le fichier définissant les parcours prédéfinis ainsi que celui énnonçant les prérequis doivent évidemment contenir uniquement des UE déjà listées dans les fichiers recensant les UE.
                  
 
 ## Contraintes du projet à respecter
