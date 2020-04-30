@@ -18,8 +18,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.androidapp.R;
 
-import metier.Model;
-
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Activity context;

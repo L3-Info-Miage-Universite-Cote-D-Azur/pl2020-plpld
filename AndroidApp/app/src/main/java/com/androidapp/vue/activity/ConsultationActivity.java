@@ -156,7 +156,7 @@ public class ConsultationActivity extends AppCompatActivity {
                 }
                 groupLayoutView.addView(groupImageView);
                 //fin ajout de l'image
-                
+
                 String groupText = groupList.get(groupIndex);
                 TextView groupTextView = new TextView(ConsultationActivity.this);
                 groupTextView.setText(groupText);
