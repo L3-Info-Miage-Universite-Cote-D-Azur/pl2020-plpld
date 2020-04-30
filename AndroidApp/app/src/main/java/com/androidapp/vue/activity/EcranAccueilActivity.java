@@ -9,6 +9,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.androidapp.Dialogs.PrerequisChangeDialogs;
 import com.androidapp.Fichiers.GestionnaireDeFlux;
 import com.androidapp.R;
 import com.androidapp.reseau.Connexion;
@@ -43,9 +44,13 @@ public class EcranAccueilActivity extends AppCompatActivity {
                 if(gestionnaireDeFlux.getMapFromFile(Net.FICHIER_PREREQUIS).equals(Connexion.CONNEXION.getMapPrerequisBrut()))
                 {
                     Log.d("FICHIER", "fichier non modifié");
+
                 }
                 else {
                     Log.d("FICHIER", "fichier modifié");
+                    PrerequisChangeDialogs dialog = new PrerequisChangeDialogs();
+                    dialog.onCreateDialog(savedInstanceState,EcranAccueilActivity.this);
+                    gestionnaireDeFlux.ecrireMapDansFichier(Connexion.CONNEXION.getMapPrerequisBrut(), Net.FICHIER_PREREQUIS);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -58,6 +63,8 @@ public class EcranAccueilActivity extends AppCompatActivity {
         findViewById(R.id.btndeconnexion).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(gestionnaireDeFlux.fileExist(Net.LOGS))
+                    gestionnaireDeFlux.ecrireDansFichier("",Net.LOGS);
                 startActivity(new Intent(EcranAccueilActivity.this, HomeActivity.class));
             }
         });

@@ -19,4 +19,5 @@
     <string name="description"> "Description de l'UE </string>
     <string name="descriptionUE">"Informatique"</string>
     <string name="revenir">Revenir à la selection des UE</string>
+    <string name="PrerequisChange">Les prérequis ont changé depuis votre derniere connexion.</string>
 </resources>
