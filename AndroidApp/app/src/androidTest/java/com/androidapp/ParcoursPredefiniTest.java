@@ -8,7 +8,6 @@ import androidx.test.rule.ActivityTestRule;
 import com.androidapp.vue.activity.HomeActivity;
 import org.junit.*;
 import org.junit.runner.RunWith;
-
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.typeText;
@@ -47,6 +46,13 @@ public class ParcoursPredefiniTest {
 
         // Clique sur le bouton valider
         clicCommencer = onView(withId(R.id.buttonValiderInscription)).perform(click());
+
+        try {
+            champs = onView(withId(R.id.btnparcours)).check(matches(withText("Effectuer un choix de parcours")));
+        }
+        catch (Exception e) {
+            return;
+        }
 
         // On vérifie le text des boutons
         champs = onView(withId(R.id.btnparcours)).check(matches(withText("Effectuer un choix de parcours")));
