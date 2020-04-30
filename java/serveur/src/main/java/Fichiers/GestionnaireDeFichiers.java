@@ -1,6 +1,4 @@
 package Fichiers;
-
-import constantes.Net;
 import metier.Etudiant;
 import metier.ListeSemestre;
 import java.io.*;
@@ -159,6 +157,13 @@ public class GestionnaireDeFichiers {
         out.close();
     }
 
+
+    /**
+     * Cette méthode enregistre un étudiant (toutes ses informations) dans un fichier texte passé en paramètre
+     * @param fichier le fichier dest
+     * @param etudiant l'étudiant a enregistrer
+     * @throws IOException
+     */
     public void EnregistrerInfoEtudiant(String fichier, Etudiant etudiant) throws IOException {
         FileWriter fw = new FileWriter(fichier, true);
         BufferedWriter bw = new BufferedWriter(fw);
@@ -172,6 +177,12 @@ public class GestionnaireDeFichiers {
         out.close();
     }
 
+    /**
+     *  Cette méthode recupère un étudiant dans la BD ainsi que toutes ses informations en fonction de son numéro
+     * @param fichier ficher dest
+     * @param numEtudiant numéro de l'étudiant
+     * @return
+     */
     public Etudiant getEtudiant(String fichier,String numEtudiant){
         BufferedReader br;
         try{
@@ -247,7 +258,12 @@ public class GestionnaireDeFichiers {
         return false;
     }
 
-
+    /**
+     * Cette méthode renvoie, si oui ou non, un étudiant est déjà inscrit
+     * @param fichier le fichier BD
+     * @param numEtudiant numétu
+     * @return
+     */
     public Boolean etuDejaInscrit(String fichier, String numEtudiant) {
         BufferedReader br;
         try{
@@ -334,6 +350,11 @@ public class GestionnaireDeFichiers {
         return lectureUE;
     }
 
+    /**
+     *  Retourne le parcours de l'étudiant si il existe en fonction de son numéro
+     * @param numEtu
+     * @return
+     */
     public List<String> selectionUE(String numEtu) {
         BufferedReader br;
         File selectionUE = new File(numEtu + ".txt");
