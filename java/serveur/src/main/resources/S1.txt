@@ -6,7 +6,8 @@ Fondements 1
 Méthodes : approche continue
 Complements 1
 $Chimie
-Structure Microscopique de la Matière
+Structure Microscopique de la Matière : atomistique
+Structure Microscopique de la Matière : structure et représentation des molécules
 $Electronique
 Electronique numerique - Bases
 $Géographie
@@ -16,7 +17,10 @@ Disciplinaire 1
 $MIASHS
 Economie-Gestion S1
 $Physique
+Electromagnétisme 1
 Mécanique 1
+Mécanique quantique 1
+Mécanique des Milieux Continus
 $Science de la Terre
 Découverte des sciences de la terre
 $Science de la vie

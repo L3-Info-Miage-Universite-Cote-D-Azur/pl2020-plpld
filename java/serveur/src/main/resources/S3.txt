@@ -17,8 +17,13 @@ Méthodes : approche géométrique
 $Chimie
 Structure Microscopique de la Matière
 Chimie des solutions
-Chimie organique
 Matériaux 1
+Cinétique et conductivité
+Équilibres et dosages
+Chimie organique fonctionnelle
+Chimie inorganique
+Matériaux solides
+Matériaux polymères
 $Electronique
 Electronique numerique - Bases
 Automatique : une introduction
@@ -41,6 +46,7 @@ Mécanique 1
 Electromagnétisme 1
 Thermodynamique 1
 Outils et Méthodes 1
+Informatique pour la physique
 $Science de la Terre
 Découverte des sciences de la terre
 Atmosphère; Océan; Climats

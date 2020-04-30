@@ -6,8 +6,10 @@ Fondements 2
 Méthodes : approche discrète
 Complements 2
 $Chimie
-Réactions et reactivites chimiques
-Thermodynamique chimique / Options
+Réactions et reactivites : équilibre chimiques
+Réactions et reactivites : introduction à la réactivité organique
+Thermodynamique chimique / Options : thermochimie
+Thermodynamique chimique / Options : option
 $Electronique
 Electronique analogique
 Communication sans fil
@@ -20,6 +22,8 @@ Economie-Gestion S2
 $Physique
 Optique 1
 Mécanique 2
+Mécanique quantique 2
+Optique Ondulatoire
 $Science de la Terre
 Structure et dynamique de la terre
 Atmosphère; Océan; Climats
