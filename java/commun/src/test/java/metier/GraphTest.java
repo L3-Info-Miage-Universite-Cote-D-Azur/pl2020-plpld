@@ -53,4 +53,16 @@ public class GraphTest {
 
         assertEquals(graphe.getGraphe(), graph);
     }
+
+
+    /**
+     * On test la méthode "selectionnable" avec une UE, puis une liste d'UE passé en paramètre.
+     */
+    @Test
+    public void selectionnableTest() {
+        assertEquals(graphe.selectionnable("Algèbre linéaire"), new ArrayList<String>() {{add("Mathématique");}});
+
+        ArrayList<String> list = new ArrayList<String>() {{add("Algèbre linéaire"); add("Équation différentielle");}};
+        assertEquals(graphe.selectionnable(list), new ArrayList<String>() {{add("Informatique"); add("Mathématique");}});
+    }
 }
