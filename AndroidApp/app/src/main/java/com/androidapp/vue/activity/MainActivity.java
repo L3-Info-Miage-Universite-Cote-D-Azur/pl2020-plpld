@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
@@ -30,11 +29,7 @@ import java.util.*;
  *   Classe MainActivity, qui gère la selection des UE du parcours de l'étudiant.
  *   Chaque UE selectionnée est envoyée au serveur, son parcours est ensuite enregistré
  */
-
-
-
 public class MainActivity extends AppCompatActivity implements Vue ,SearchView.OnQueryTextListener,SearchView.OnCloseListener {
-
     /**
      * Objet Graphe  qui servira à implémenter les algorithmes de graphes pour le bon fonctionnement des prerequis
      */
@@ -371,7 +366,6 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
 
     //Pour la barre de recherche:
     private Vue vue=this;
-    private MenuItem searchItem;
     private SearchManager searchManager;
     private android.widget.SearchView searchView;
 
@@ -390,16 +384,6 @@ public class MainActivity extends AppCompatActivity implements Vue ,SearchView.O
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will automatically handle clicks on the Home/Up button, so long as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     private void expandAll() {
         int count = adapter.getGroupCount();
