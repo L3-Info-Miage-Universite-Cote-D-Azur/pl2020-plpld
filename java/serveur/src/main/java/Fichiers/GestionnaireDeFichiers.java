@@ -350,7 +350,7 @@ public class GestionnaireDeFichiers {
                     description="";
                 }
                 else{
-                    description=description+line+" ";
+                    description=description+line+"\n";
                     hashMap.put(ue,description);
                 }
                 line=br.readLine();
