@@ -65,13 +65,19 @@ public class Serveur {
                 System.out.println(id.getNom() + " s'est connecté.");
             }
         });
-
+        /**
+         *  Evenement qui envoie la liste des prerequis brut au serveur,juste les prerequis en eux même.
+         */
         this.server.addEventListener(PREREQUIS_BRUT, Identité.class, new DataListener<Identité>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité identité, AckRequest ackRequest) throws Exception {
                 socketIOClient.sendEvent(PREREQUIS_BRUT,NetHandler.lireFichier(FICHIER_PREREQUIS));
             }
         });
+
+        /**
+         *  Evenement qui envoie au client le choix du parcours de l'étudiant s'il existe
+         */
         this.server.addEventListener(CHANGEMENT_PREREQUIS, Identité.class, new DataListener<Identité>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité identité, AckRequest ackRequest) throws Exception {
@@ -206,14 +212,6 @@ public class Serveur {
             }
         });
 
-        /*this.server.addEventListener(DESCRIPTION_UE, Model.class, new DataListener<>() {
-            @Override
-            public void onData(SocketIOClient socketIOClient, Model ue, AckRequest ackRequest) {
-
-            }
-        });
-        
-         */
     }
 
 
