@@ -35,8 +35,6 @@ Decouverte 1
 Decouverte 2
 Disciplinaire 1
 Disciplinaire 3
-Disciplinaire 4
-Disciplinaire 5
 Approfondissement hors géographie 1
 $MIASHS
 Economie-Gestion S1

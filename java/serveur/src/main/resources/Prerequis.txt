@@ -28,3 +28,9 @@ $Enseignements fondamentaux à l'école primaire 2
 Enseignements fondamentaux à l'école primaire 1
 $Systèmes 2 : Mécanisme internes des systèmes d'exploitation
 System 1. Unix et progra shell
+$Economie-Gestion S3
+Economie-Gestion S1
+$Disciplinaire 3
+Disciplinaire 2
+$Disciplinaire 2
+Disciplinaire 1

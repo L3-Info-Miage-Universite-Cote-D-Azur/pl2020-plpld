@@ -146,7 +146,7 @@ public class EcranAccueilActivity extends AppCompatActivity {
                           }
                       }
                       else
-                          stringBuilder.append("Vous n'avez pas encore choisi de parcours!");
+                          stringBuilder.append("Vous n'avez pas encore choisi de parcours (si vous venez de définir un parcours reconnectez vous)");
 
                       PrerequisChangeDialogs dialog3 = new PrerequisChangeDialogs();
 

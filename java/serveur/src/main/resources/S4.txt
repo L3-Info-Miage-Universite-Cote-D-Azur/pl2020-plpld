@@ -43,9 +43,6 @@ $Géographie
 Découverte 3
 Découverte 4
 Disciplinaire 2
-Disciplinaire 6
-Disciplinaire 7
-Disciplinaire 8
 Approfondissement hors géographie 2
 $MIASHS
 Economie-Gestion S2
