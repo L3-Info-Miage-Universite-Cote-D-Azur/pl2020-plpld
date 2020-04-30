@@ -663,3 +663,24 @@ révélées (axiomes alpha et beta de Sen, axiome d’Houthakker).
 de préférences par une fonction d’utilité ; non-unicité des fonctions d’utilité ; fonction d’uti-
 lité et courbe d’indifférence ; propriétés structurelles des relations de préférences (continuité,
 monotonie, non-satiabilité, convexité, homothétie).
+$Mécanique 1
+Responsables:Claire Michel, Philippe Thomen Cours : 18 h TD : 24h
+Cinématique ; Dynamique du point, Lois de Newton ; Lois de conservation de l’énergie ; Oscillations libre non amortie ; Systèmes de points en interaction, chocs
+$Mécanique 2
+Responsables:Holger Homann, Laurent Lobry Cours : 15 h TD : 24h
+Partie Corps Solides:La position et vitesse d'un corps solide, Rappel sur les intégrales multiples, Le tenseur d'inertie, Le gyroscope.
+$Electromagnétisme 1
+Responsable: David Mary Cours : 15 h TD : 24h
+Charges électriques, Champ électrique, Potentiel électrique, forces conservatives, Théorème de Gauss, Electrodynamique
+$Mathématiques pour la Physique 1
+Responsable: Pascal Baldi Cours : 20 h TD : 30 h
+Ondes électromagnétiques, sources, propagation, interactions lumière-matière, propriétés des matériaux, anisotropie .
+$Mécanique quantique 2
+Responsable: Olivier Legrand Cours : 35 h TD : 35 h TP : 28 h
+Postulats de la physique quantique - Spin 1/2 - Systèmes à 2 niveaux - oscillations de Rabi - Opérateurs X et P - Fonctions d’ondes - Equation de Schrödinger - états liés, états de diffusion - oscillateur harmonique - théorie des pertubations stationnaires - Moment angulaire - potentiel central - 1e approche de l’atome d’hydrogène
+$Mécanique des Milieux Continus
+Responsables: François Peters, Alain Ciffreo Cours : 15 h TD : 24h
+Partie Solides déformables: Cinématique de la déformation. Tenseur de déformation. Tenseur de contrainte. Equation d'équilibre tridimensionnelle. Loi de comportement élastique isotrope.Flexion des poutres. Moment fléchissant. Effort tranchant. Modes propres de vibration.
+Partie Mécanique des Fluides:Cinématique des fluides. Contrainte visqueuse. Equations de conservation. Vorticité. Dynamique de la vorticité. Dynamique des fluides parfaits. Ecoulements potentiels
+$Optique Ondulatoire
+Optique Ondulatoire
