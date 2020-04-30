@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidApp</string>
+    <string name="app_name">UCA</string>
     <string name="Maths">Mathématiques</string>
     <string name="SVT">Science de la vie</string>
     <string name="Physique">Physique</string>

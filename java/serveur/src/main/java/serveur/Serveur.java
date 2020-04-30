@@ -59,6 +59,7 @@ public class Serveur {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) throws IOException, ParseException, URISyntaxException {
                 mapEtudiants.put(id, socketIOClient);
+                socketIOClient.sendEvent(NV_CONNEXION, "false");
                 envoiePrerequis(mapEtudiants.get(id));
                 socketIOClient.sendEvent(NUM_ETUDIANTS, NetHandler.getNumEtudiants("BD INFO ETUDIANTS.txt"));
                 socketIOClient.sendEvent(DESCRIPTION_UE,NetHandler.description_UE("DescriptionUE.txt"));
