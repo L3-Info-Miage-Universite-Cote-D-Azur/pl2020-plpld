@@ -147,7 +147,9 @@ public class GestionnaireDeReseau {
         }
         return map;
     }
-
+    public List<String> getParcoursEtu(String numEtu){
+        return FileHandler.selectionUE(numEtu);
+    }
     /**
      *  Cette méthode renvoie la liste de numéro des étudiants inscrits
      *  @return liste constituée de tous les numéros étudiants inscrits

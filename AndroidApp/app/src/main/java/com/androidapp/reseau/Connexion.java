@@ -80,6 +80,12 @@ public enum Connexion implements RecevoirMessage {
 
     private Map<String,List<String>> MapPrerequisBrut = new HashMap<>();
 
+    public List<String> getChoixParcoursEtudiant() {
+        return choixParcoursEtudiant;
+    }
+
+    private List<String> choixParcoursEtudiant = new ArrayList<>();
+
     /**
      *  Connexion de la socket
      */
@@ -121,7 +127,20 @@ public enum Connexion implements RecevoirMessage {
                 }
             }
         });
-
+        recevoirMessage(Net.CHANGEMENT_PREREQUIS, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                ObjectMapper objectMapper = new ObjectMapper();
+                try {
+                    Log.d("TEST2",args[0].toString());
+                    List<String> liste = objectMapper.readValue(args[0].toString(), new TypeReference<List<String>>() {
+                    });
+                    choixParcoursEtudiant = liste;
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
 
         /**
          *  Même méthode que la méthode précedente, sauf qu'elle gère spécifiquement le S1

@@ -58,6 +58,8 @@ public class HomeActivity extends AppCompatActivity {
             String tmp = gestionnaireDeFlux.readFromFile(Net.LOGS);
             String[] logs = tmp.split("\n",3);
 
+            Log.d("LOGS",Arrays.toString(logs));
+
             Connexion.CONNEXION.envoyerMessage(Net.NV_CONNEXION, new Identité(logs[1] + " " + logs[2]));
             try {
                 Thread.sleep(1000);
