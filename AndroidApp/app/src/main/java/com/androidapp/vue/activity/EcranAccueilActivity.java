@@ -64,11 +64,10 @@ public class EcranAccueilActivity extends AppCompatActivity {
 
                     try {
                         Connexion.CONNEXION.envoyerMessage(Net.CHANGEMENT_PREREQUIS, new Identité(logs[1]));
+                       Thread.sleep(1000);
                         Log.d("FICHIER", "fichier modifié");
                         gestionnaireDeFlux.ecrireMapDansFichier(Connexion.CONNEXION.getMapPrerequisBrut(), Net.FICHIER_PREREQUIS);
                         PrerequisChangeDialogs dialog = new PrerequisChangeDialogs();
-                    //    dialog.onCreateDialog(savedInstanceState, EcranAccueilActivity.this);
-
 
                         Map<String, List<String>> tmpMap = new HashMap<>();
                         tmpMap = Connexion.CONNEXION.getMapPrerequisBrut();
@@ -84,23 +83,31 @@ public class EcranAccueilActivity extends AppCompatActivity {
                             }
                             StringBuilder msgTmp = new StringBuilder();
 
-
+                            boolean affecte = false;
+                            Log.d("LISTE",Connexion.CONNEXION.getChoixParcoursEtudiant().toString());
                             for (String str : tmpList) {
                                 msgTmp.append(str + "\n");
                                 if(Connexion.CONNEXION.getChoixParcoursEtudiant().contains(str))
                                 {
                                     tmpList2.add(str);
+                                    affecte = true;
 
                                 }
                             }
-
+                            String message;
                             StringBuilder msgTmp2 = new StringBuilder();
                             for(String str : tmpList2)
                                 msgTmp.append(str + "\n");
 
+                            if(affecte)
+                                 message = "Les Prerequis suivant ont été modifiés : " + msgTmp.toString() +
+                                            ".\n Attention vos choix " + msgTmp2.toString()
+                                           + "ont été affectés veuillez refaire un parcours";
+                            else
+                                message = "Les Prerequis suivant ont été modifiés : " + msgTmp.toString();
 
-                            String message = "Les Prerequis suivant ont été modifiés : " + msgTmp.toString() + "\n attention vos choix " + msgTmp2.toString()
-                                    + "ont été affectés veuillez refaire un parcours";
+
+
                             dialog.onCreateDialog(savedInstanceState, EcranAccueilActivity.this,message);
 
 

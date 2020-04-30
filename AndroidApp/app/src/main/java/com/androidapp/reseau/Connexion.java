@@ -132,10 +132,13 @@ public enum Connexion implements RecevoirMessage {
             public void call(Object... args) {
                 ObjectMapper objectMapper = new ObjectMapper();
                 try {
-                    Log.d("TEST2",args[0].toString());
-                    List<String> liste = objectMapper.readValue(args[0].toString(), new TypeReference<List<String>>() {
+                    if (args[0] != null)
+                    {   Log.d("TEST2", args[0].toString());
+                        List<String> liste = objectMapper.readValue(args[0].toString(), new TypeReference<List<String>>() {
                     });
+
                     choixParcoursEtudiant = liste;
+                }
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
