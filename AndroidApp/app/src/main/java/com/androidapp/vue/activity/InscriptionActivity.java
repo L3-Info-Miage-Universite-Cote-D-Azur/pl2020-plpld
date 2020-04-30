@@ -111,16 +111,16 @@ public class InscriptionActivity extends AppCompatActivity {
 
 
                     }
-                    else{
+                    else {
 
-                        Log.d("BOOLEAN","SAISIE INCORRECT");
+                        Log.d("BOOLEAN", "SAISIE INCORRECT");
                         ConnexionDialogs connexionDialogs = new ConnexionDialogs();
-                        connexionDialogs.onCreateDialog(savedInstanceState,InscriptionActivity.this,false,"ETU");
+                        connexionDialogs.onCreateDialog(savedInstanceState, InscriptionActivity.this, false, "ETU");
                         saisieCorrecte[0] = false;
-
+                    }
 
                         startActivity(new Intent(InscriptionActivity.this, EcranAccueilActivity.class));
-                    }}}
+                    }}
         });
     }
 }
