@@ -1,6 +1,6 @@
 # Bilan [Iteration10 ](https://github.com/L3-Info-Miage-Universite-Cote-D-Azur/pl2020-plpld/milestone/10)  :
 
-- [X] Parcours préconçu améliorés.
+- [X] Parcours préconçus améliorés.
 -----------------------------------------------
  
 - [X] Amélioration de la searchView.
@@ -10,6 +10,9 @@
 -----------------------------------------------
    
 - [X] Création d'un menu d'accueil.
+-----------------------------------------------
+
+- [X] Création d'une fonctionnalité de consultation des parcours des autres étudiants.
 -----------------------------------------------
 
 - [X] Description des UE.
@@ -27,7 +30,7 @@
 - [X] Amélioration de l'interface graphique.
 -----------------------------------------------
     
-- [X] Ajout de la javadoc, suppréssion des import inutile.
+- [X] Ajout de la javadoc, suppression des imports inutiles.
 -----------------------------------------------
 
 - [X] Dernier ajout dans les fichier de ressources.
