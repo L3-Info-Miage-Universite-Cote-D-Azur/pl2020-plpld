@@ -53,7 +53,7 @@ public class RecapActivity extends AppCompatActivity {
                 Connexion.CONNEXION.envoyerMessage2(Net.CONFIRMATION,new ChoixUtilisateur(tmpList));
 
                 // L'utilisateur est renvoyé sur l'écran d'accueil
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), EcranAccueilActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
