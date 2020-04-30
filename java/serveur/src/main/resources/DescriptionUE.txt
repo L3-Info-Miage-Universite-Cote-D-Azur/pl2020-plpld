@@ -16,8 +16,7 @@ remise à niveau pour code élémentaire (for, if)
 cryptographie et sécurité (élémentaires)
 Les notions vues en cours sont travaillées en TD et mises en pratique en TP sur ordinateur.
 Remarque
-Ce cours est destiné à l’ouverture à la science informatique. Le cours SPUF10 (Bases de l’informatique) est davantage recommandé pour les étudiants se sachant destinés
-à une licence informatique. Il est impossible de choisir simultanément ce cours et Bases de l’informatique (SPUF10), le choix est exclusif.
+Ce cours est destiné à l’ouverture à la science informatique. Le cours SPUF10 (Bases de l’informatique) est davantage recommandé pour les étudiants se sachant destinés à une licence informatique. Il est impossible de choisir simultanément ce cours et Bases de l’informatique (SPUF10), le choix est exclusif.
 Modalités de contrôle des connaissances
 un contrôle continu (CC)
 évaluation des TP (TP)

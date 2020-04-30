@@ -51,7 +51,8 @@ public class Serveur {
         this.server = server;
         /**
          *  Evenement de connexion qui gère la connexion d'un étudiant, la connexion est enregistrée dans la map.
-         *  Les prérequis de chaque parcours sont alors envoyés au client par le serveur
+         *  Les prérequis de chaque parcours sont alors envoyés au client par le serveur.
+         *  La description des UE est envoyé au client par le serveur .
          */
 
         this.server.addEventListener(CONNEXION, Identité.class, new DataListener<>() {
@@ -60,6 +61,7 @@ public class Serveur {
                 mapEtudiants.put(id, socketIOClient);
                 envoiePrerequis(mapEtudiants.get(id));
                 socketIOClient.sendEvent(NUM_ETUDIANTS, NetHandler.getNumEtudiants("BD INFO ETUDIANTS.txt"));
+                socketIOClient.sendEvent(DESCRIPTION_UE,NetHandler.description_UE("DescriptionUE.txt"));
                 System.out.println(id.getNom() + " s'est connecté.");
             }
         });

@@ -77,9 +77,7 @@ public class GestionnaireDeReseau {
      * @param id L'identité de la personne voulant se connecter
      * @return un boolean
      */
-    public boolean nouvelleConnexion(Identité id)
-    {
-
+    public boolean nouvelleConnexion(Identité id){
         System.out.println("Tentative de connexion...." + id.getNom());
         if(FileHandler.trouverEtudiant(BD, id.getNom())) {
            System.out.println("accepté");
@@ -166,8 +164,6 @@ public class GestionnaireDeReseau {
         return listeNumEtudiants;
     }
 
-
-
     /**
      *
      * @param s1 le chemin du S1
@@ -182,5 +178,9 @@ public class GestionnaireDeReseau {
 
     public void setFileHandler(GestionnaireDeFichiers fileHandler) {
         FileHandler = fileHandler;
+    }
+
+    public HashMap<String,String> description_UE(String fichier){
+        return FileHandler.descriptionUE(fichier);
     }
 }

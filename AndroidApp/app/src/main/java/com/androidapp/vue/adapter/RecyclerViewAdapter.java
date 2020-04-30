@@ -11,14 +11,11 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.androidapp.R;
 import com.androidapp.reseau.Connexion;
-import com.androidapp.vue.activity.InscriptionActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 import constantes.Net;
 import metier.Identité;
-import metier.Model;
-import metier.ToJSON;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
@@ -53,20 +50,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.textView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                Connexion.CONNEXION.envoyerMessage(Net.DESCRIPTION_UE, model);
-                Log.d("LongClick","si senior give the ball to bobby and he will score");
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Description de l'UE :" + model.getText())
-                        .setMessage(R.string.descriptionUE)
-                        .setMessage(model.getText());
-                        /*.setItems(R.array.descriptionUE, new DialogInterface.OnClickListener() {
+                        .setMessage(Connexion.CONNEXION.getDescriptionUE().get(model.getText()))
+                        .setNegativeButton(R.string.revenir, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Log.d("LongClick","si senior give the ball ");
+                                dialog.dismiss();
                             }
                         });
-
-                         */
                 builder.create();
                 builder.show();
 

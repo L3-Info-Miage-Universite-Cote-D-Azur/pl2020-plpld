@@ -1,22 +1,9 @@
 package com.androidapp.reseau;
-import android.content.Context;
-import android.os.Environment;
 import android.util.Log;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,18 +12,11 @@ import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import metier.Etudiant;
-import metier.Identité;
-import metier.ListeSemestre;
 import metier.ToJSON;
 
-import com.androidapp.Fichiers.GestionnaireDeFlux;
 import com.androidapp.vue.*;
-import com.androidapp.vue.activity.InscriptionActivity;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import static android.provider.Telephony.Mms.Part.FILENAME;
-
 /**
  *  Classe Connexion qui s'occupe de traiter les messages réceptionnés par le client
  */
@@ -77,6 +57,8 @@ public enum Connexion implements RecevoirMessage {
      */
     private List<String> numEtudiants = new ArrayList<>();
 
+    // La map de la description des UE , les clefs sont les ue et les mapping les descriptions des UE
+    private HashMap<String,String> descriptionUE=new HashMap<>();
 
     private Etudiant etudiant;
 
@@ -202,8 +184,7 @@ public enum Connexion implements RecevoirMessage {
             @Override
             public void call(Object... args) {
                 Log.d("BOOLEAN",args[0].toString());
-                if(args[0].toString().equals("true"))
-                {
+                if(args[0].toString().equals("true")){
                     ConnexionAutorisee = true;
                 }
                 else
@@ -266,8 +247,7 @@ public enum Connexion implements RecevoirMessage {
         recevoirMessage(Net.NV_ETU, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
-                if(args[0].toString().equals("true"))
-                {
+                if(args[0].toString().equals("true")){
                     InscriptionAutorisee = true;
                     Log.d("BOOLEAN",args[0].toString());
                 }
@@ -308,6 +288,20 @@ public enum Connexion implements RecevoirMessage {
                     e.printStackTrace();
                 }
             }});
+
+        recevoirMessage(Net.DESCRIPTION_UE, new Emitter.Listener() {
+            ObjectMapper objectMapper = new ObjectMapper();
+            @Override
+            public void call(Object... args) {
+                try {
+                    descriptionUE= objectMapper.readValue(args[0].toString(), new TypeReference<HashMap<String, String>>() {
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
     }
 
 
@@ -402,5 +396,9 @@ public enum Connexion implements RecevoirMessage {
 
     public boolean isPrerequisChange() {
         return prerequisChange;
+    }
+
+    public HashMap<String, String> getDescriptionUE() {
+        return descriptionUE;
     }
 }

@@ -18,4 +18,5 @@
     <string name="InscriptionRefusee">Le numéro étudiant existe déjà ! Inscription refusée !</string>
     <string name="description"> "Description de l'UE </string>
     <string name="descriptionUE">"Informatique"</string>
+    <string name="revenir">Revenir à la selection des UE</string>
 </resources>

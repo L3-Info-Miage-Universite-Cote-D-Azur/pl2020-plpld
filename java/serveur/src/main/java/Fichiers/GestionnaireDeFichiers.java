@@ -15,8 +15,6 @@ import java.util.Map;
  *  Classe GestionnaireDeFichiers qui s'occupe de lire les données reçues et les écrire dans un fichier
  */
 public class GestionnaireDeFichiers {
-
-
     /**
      * Cette méthode prend en parametre le chemin du fichier à lire puis sérialise les données contenues dans le fichier en une map
      * Cette map est ensuite envoyée au client.
@@ -131,16 +129,14 @@ public class GestionnaireDeFichiers {
 
         for(int i = 0; i < listofMaps.size();i++) {
             for (Map.Entry<String, List<String>> entry : listofMaps.get(i).entrySet()) {
-                for(String str :  entry.getValue())
-                {
+                for(String str :  entry.getValue()){
                     // une nouvelle map est crée avec comme valeur toutes les UE de toutes les maps dans notre liste
                     listePrerequis.add(str, new ArrayList<>());
                 }
             }
         }
 
-        for(Map.Entry<String, List<String>> entry : lireFichier(Prerequis).entrySet())
-        {
+        for(Map.Entry<String, List<String>> entry : lireFichier(Prerequis).entrySet()){
             // Les UE qui ont des prérequis sont ensuite complétées
             listePrerequis.add(entry.getKey(),entry.getValue());
         }
@@ -176,18 +172,14 @@ public class GestionnaireDeFichiers {
         out.close();
     }
 
-    public Etudiant getEtudiant(String fichier,String numEtudiant)
-    {
+    public Etudiant getEtudiant(String fichier,String numEtudiant){
         BufferedReader br;
-        try
-        {
+        try{
             br = new BufferedReader(new FileReader(fichier));
             String line = br.readLine();
-            while(line != null)
-            {
+            while(line != null){
                 System.out.println(line);
-                if(line.equals(numEtudiant))
-                {
+                if(line.equals(numEtudiant)){
                    String num = line;
                    List<String> tmpList = new ArrayList<>();
                    for(int i = 0; i < 5; i ++) {
@@ -233,18 +225,14 @@ public class GestionnaireDeFichiers {
      * @param logs  les identifiants de l'étudiant
      * @return un boolean pour savoir si les identifiants passés en paramètre correspondent à ceux dans la BD
      */
-    public Boolean trouverEtudiant(String fichier, String logs)
-    {
+    public Boolean trouverEtudiant(String fichier, String logs){
         BufferedReader br;
-        try
-        {
+        try{
             br = new BufferedReader(new FileReader(fichier));
             String line = br.readLine();
-            while(line != null)
-            {
+            while(line != null){
                 System.out.println(line);
-                if(line.equals(logs))
-                {
+                if(line.equals(logs)){
                     br.close();
                     return true;
                 }
@@ -262,17 +250,14 @@ public class GestionnaireDeFichiers {
 
     public Boolean etuDejaInscrit(String fichier, String numEtudiant) {
         BufferedReader br;
-        try
-        {
+        try{
             br = new BufferedReader(new FileReader(fichier));
 
             String line = br.readLine();
-            while(line != null)
-            {
+            while(line != null){
                 int i = line.indexOf(" ");
                 System.out.println(line);
-                if(line.substring(0,i).equals(numEtudiant))
-                {
+                if(line.substring(0,i).equals(numEtudiant)){
                     br.close();
                     return true;
                 }
@@ -297,12 +282,10 @@ public class GestionnaireDeFichiers {
         public List<Etudiant> etuInscrits(String fichier) {
             List<Etudiant> ListeEtudiant = new ArrayList<>();
             BufferedReader br;
-            try
-            {
+            try{
                 br = new BufferedReader(new FileReader(fichier));
                 String line = br.readLine();
-                while(line != null)
-                {
+                while(line != null){
                     Etudiant etudiant = new Etudiant(line);
                     line = br.readLine();
                     etudiant.setNom(line);
@@ -335,12 +318,10 @@ public class GestionnaireDeFichiers {
         List<String> lectureUE = new ArrayList<>();
         if(!selectionUE.exists())
             return null;
-        try
-        {
+        try{
             br = new BufferedReader(new FileReader(selectionUE));
             String line = br.readLine();
-            while(line != null)
-            {
+            while(line != null){
                 lectureUE.add(line);
                 line = br.readLine();
             }
@@ -351,5 +332,39 @@ public class GestionnaireDeFichiers {
             e.printStackTrace();
         }
         return lectureUE;
+    }
+
+    public HashMap<String,String> descriptionUE (String fichier) {
+        HashMap<String,String> hashMap=new HashMap<>();
+        BufferedReader br;
+        String ue=null;
+        String description="";
+        try{
+            br = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(fichier),"UTF-8"));
+
+            String line=br.readLine();
+            while (line!=null ){
+                if (line.contains("$")){
+                    line = line.replace("$","");
+                    ue=line;
+                    description="";
+                }
+                else{
+                    description=description+line+" ";
+                    hashMap.put(ue,description);
+                }
+                line=br.readLine();
+            }
+            br.close();
+        }
+        catch (FileNotFoundException e){
+            System.err.println("Fichier non trouvé :" + e);
+            e.printStackTrace();
+        }
+        catch (IOException e){
+            System.err.println("Erreur de lecture du fichier :" + e);
+            e.printStackTrace();
+        }
+        return hashMap ;
     }
 }
