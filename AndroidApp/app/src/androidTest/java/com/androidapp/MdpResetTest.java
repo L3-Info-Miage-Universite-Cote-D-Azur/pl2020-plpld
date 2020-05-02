@@ -21,11 +21,13 @@ public class MdpResetTest {
 
 
     @Test
-    public void motDePasseReset() {
+    public void motDePasseReset() throws InterruptedException {
 
         ViewInteraction connexion;
         ViewInteraction champs;
 
+
+        Thread.sleep(8000);
         // On vérifie le champs "Mot de passe oublié ?"
         champs = onView(withId(R.id.btnmdpoublie)).check(matches(withText("Mot de passe oublié ?")));
 

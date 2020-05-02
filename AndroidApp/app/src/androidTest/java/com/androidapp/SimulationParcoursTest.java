@@ -51,6 +51,8 @@ public class SimulationParcoursTest {
         ViewInteraction champs;
         ViewInteraction clicCommencer;
 
+
+        Thread.sleep(8000);
         // Clique sur le bouton Commencer une inscription
         connexion = onView(withId(R.id.btninscription)).perform(click());
 

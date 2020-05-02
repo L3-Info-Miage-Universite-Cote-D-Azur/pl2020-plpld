@@ -34,6 +34,7 @@ public class InscriptionTest {
         ViewInteraction connexion;
         ViewInteraction champs;
 
+        Thread.sleep(8000);
         // Vérifie les champs de la page d'accueil
         connexion = onView(withId(R.id.btnpar)).check(matches(withText("SE CONNECTER")));
         connexion = onView(withId(R.id.textView2)).check(matches(withText("Bienvenue à la plateforme de création de parcours de l'université CÔTE D'AZUR ")));
