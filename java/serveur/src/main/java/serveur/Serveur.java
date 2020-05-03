@@ -1,25 +1,15 @@
 package serveur;
 
-import Fichiers.GestionnaireDeFichiers;
 import com.corundumstudio.socketio.AckRequest;
-import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.DataListener;
-import constantes.Net;
 import metier.*;
 import reseau.GestionnaireDeReseau;
 
 import java.io.*;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.attribute.FileTime;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static constantes.Net.*;
@@ -55,7 +45,7 @@ public class Serveur {
          *  La description des UE est envoyé au client par le serveur .
          */
 
-        this.server.addEventListener(CONNEXION, Identité.class, new DataListener<>() {
+        this.server.addEventListener(CONNEXION, Identité.class, new DataListener<Identité>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) throws IOException, ParseException, URISyntaxException {
                 mapEtudiants.put(id, socketIOClient);
@@ -91,7 +81,7 @@ public class Serveur {
          *  le choix de l'étudiant est enregistré dans un fichier
          */
 
-        this.server.addEventListener(CONFIRMATION, ChoixUtilisateur.class, new DataListener<>() {
+        this.server.addEventListener(CONFIRMATION, ChoixUtilisateur.class, new DataListener<ChoixUtilisateur>() {
             @Override
             public void onData(SocketIOClient socketIOClient, ChoixUtilisateur choix, AckRequest ackRequest) throws Exception {
                 NetHandler.nouvelleConfirmation(choix);
@@ -101,7 +91,7 @@ public class Serveur {
         /**
          * Evenement qui gère les tentatives de connexion des étudiants à l'application
          */
-        this.server.addEventListener(NV_CONNEXION, Identité.class, new DataListener<>() {
+        this.server.addEventListener(NV_CONNEXION, Identité.class, new DataListener<Identité>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité etudiant, AckRequest ackRequest) throws Exception {
                 if (NetHandler.nouvelleConnexion(etudiant)) {
@@ -115,7 +105,7 @@ public class Serveur {
          * Evenement qui gère les nouvelles inscriptions des étudiants à l'application
          * l'étudiant est ensuite enregistré dans la base de donnée
          */
-        this.server.addEventListener(NV_ETU, Etudiant.class, new DataListener<>() {
+        this.server.addEventListener(NV_ETU, Etudiant.class, new DataListener<Etudiant>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Etudiant etudiant, AckRequest ackRequest) throws Exception {
                 System.out.println(etudiant.getNom());
@@ -135,7 +125,7 @@ public class Serveur {
         /**
          *  Evenement qui gère les choix de l'étudiant en fonction de sa selection de matière
          */
-        this.server.addEventListener(CHOIX, String.class, new DataListener<>() {
+        this.server.addEventListener(CHOIX, String.class, new DataListener<String>() {
             @Override
             public void onData(SocketIOClient socketIOClient, String matiere, AckRequest ackRequest) {
                 nouveauChoix(socketIOClient, matiere);
@@ -144,7 +134,7 @@ public class Serveur {
         /**
          *  Evenement qui gère la validation des UE de chaque semestre
          */
-        this.server.addEventListener(VALIDATION, ChoixUtilisateur.class, new DataListener<>() {
+        this.server.addEventListener(VALIDATION, ChoixUtilisateur.class, new DataListener<ChoixUtilisateur>() {
             @Override
             public void onData(SocketIOClient socketIOClient, ChoixUtilisateur choix, AckRequest ackRequest) {
                 socketIOClient.sendEvent(VALIDATION, choix.toString());
@@ -166,7 +156,7 @@ public class Serveur {
         /**
          *  Evenement qui gère l'envoie du S1 au client
          */
-        this.server.addEventListener(ENVOIE_S1, Identité.class, new DataListener<>() {
+        this.server.addEventListener(ENVOIE_S1, Identité.class, new DataListener<Identité>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité matiere, AckRequest ackRequest) {
                 if (mapEtudiants.containsValue(socketIOClient))
@@ -176,7 +166,7 @@ public class Serveur {
         /**
          *  Evenement qui gère l'envoie des parcours prédéfinis
          */
-        this.server.addEventListener(ENVOIE_PREDEFINI, String.class, new DataListener<>() {
+        this.server.addEventListener(ENVOIE_PREDEFINI, String.class, new DataListener<String>() {
             @Override
             public void onData(SocketIOClient socketIOClient, String parcours, AckRequest ackRequest) {
                 envoiePredefini(socketIOClient, FICHIER_PREDEFINI);
@@ -187,7 +177,7 @@ public class Serveur {
         /**
          *  Evenement qui gère l'envoi d'un mot de passe oublié
          */
-        this.server.addEventListener(RESET_PASSWORD, Etudiant.class, new DataListener<>() {
+        this.server.addEventListener(RESET_PASSWORD, Etudiant.class, new DataListener<Etudiant>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Etudiant et, AckRequest ackRequest) {
                 System.out.println("Demande de réinitialisation du mot de passe.");
@@ -205,7 +195,7 @@ public class Serveur {
         /**
          * Evenement qui gère la consultation des UE choisies pour chaque étudiants
          */
-        this.server.addEventListener(CONSULTATION, Identité.class, new DataListener<>() {
+        this.server.addEventListener(CONSULTATION, Identité.class, new DataListener<Identité>() {
             @Override
             public void onData(SocketIOClient socketIOClient, Identité id, AckRequest ackRequest) {
                 socketIOClient.sendEvent(ENVOIE_CONSULTATION, NetHandler.getUEChoisies("BD INFO ETUDIANTS.txt"));

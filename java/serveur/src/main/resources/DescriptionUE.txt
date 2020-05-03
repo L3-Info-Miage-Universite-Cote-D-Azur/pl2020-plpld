@@ -158,7 +158,7 @@ L’étude des systèmes est un des thèmes fondamentaux en sciences informatiqu
 Dans ce cour, nous étudions les mécanismes internes d’un système d’exploitation, principalement de type Unix (linux pour les PC).
 Nous aborderons les aspects de programmation système (appel de fonctions systèmes bas niveau, gestion des processus, synchronisation et communications entre processus,
 système de fichiers, etc). Plus précisément, voici la liste des thèmes abordés:
-1 Introduction aux systèmes d’exploitation 2 Processus 3 Synchronisation entre Processus 4 Fichiers 5 Système de fichiers sous Unix 6 Les tubes nommés 7 Introduction aux
+1 Introduction aux systèmes d’exploitation 2 Processus 3 Synchronisation entre Processus 4 fichiers 5 Système de fichiers sous Unix 6 Les tubes nommés 7 Introduction aux
 réseaux informatiques 8 Communications entre processus par sockets 9 Gestion de la mémoire 10 Ordonnancement des processus et des threads
 Les travaux dirigés sous formes d’exercices corrigés seront proposés, ainsi que des travaux pratiques sur des machines Linux.
 $Introduction aux systèmes intelligents

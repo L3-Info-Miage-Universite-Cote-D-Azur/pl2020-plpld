@@ -13,11 +13,16 @@
     <artifactId>commun</artifactId> <!-- et le nom du projet -->
     <version>1.0</version>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> <!-- éventuellement à changer : encodage de vos fichiers -->
+        <compiler.source>13</compiler.source> <!-- éventuellement à changer : version de java (sdk) utilisée pour le développement -->
+        <compiler.target>13</compiler.target>
+    </properties>
 
 
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>  <!-- éventuellement à changer : localisation des fichiers sources -->
-        <!--  <testSourceDirectory>src/test</testSourceDirectory> éventuellement à changer : localisation des fichiers sources des tests -->
+        <testSourceDirectory>src/test/java</testSourceDirectory> <!-- éventuellement à changer : localisation des fichiers sources des tests -->
         <plugins>
 
 
@@ -29,17 +34,12 @@
 
 
             <plugin>
-
-
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.1.1</version>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
                 <configuration>
-                    <show>package</show>
-                    <nohelp>true</nohelp>
-                    <encoding>utf-8</encoding> <!-- éventuellement à changer : encodage de vos fichiers -->
-                    <charset>utf-8</charset> <!-- éventuellement à changer : encodage de vos fichiers -->
-                    <docencoding>utf-8</docencoding>
+                    <source>1.8</source> <!-- 1.8,1.9,1.10,11,12,13 -->
+                    <target>1.8</target>
                 </configuration>
 
                 <executions>
@@ -63,11 +63,6 @@
                             <goal>test-javadoc</goal>
                         </goals>
                         <phase>site</phase>
-                        <configuration>
-                            <!-- endroit où seront les fichiers html générés ! attention au .gitignore ! -->
-                            <!-- ici, c'est dans src/test/apidocs -->
-                            <reportOutputDirectory>${basedir}/src/test/</reportOutputDirectory>
-                        </configuration>
                     </execution>
                 </executions>
 
@@ -83,6 +78,13 @@
     </build>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-dependency-plugin -->
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>3.1.2</version>
+        </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
@@ -113,12 +115,6 @@
             <artifactId>junit</artifactId>
             <version>4.13</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.9.7</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 

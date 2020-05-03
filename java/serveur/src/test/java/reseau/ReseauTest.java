@@ -1,6 +1,6 @@
 package reseau;
 
-import Fichiers.GestionnaireDeFichiers;
+import fichiers.GestionnaireDeFichiers;
 import com.corundumstudio.socketio.SocketIOClient;
 import metier.ChoixUtilisateur;
 import metier.Etudiant;

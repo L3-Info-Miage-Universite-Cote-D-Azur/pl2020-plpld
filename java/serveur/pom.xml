@@ -17,29 +17,35 @@
 
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>  <!-- éventuellement à changer : localisation des fichiers sources -->
-        <!--  <testSourceDirectory>src/test</testSourceDirectory> éventuellement à changer : localisation des fichiers sources des tests -->
+        <testSourceDirectory>src/test/java</testSourceDirectory>
         <plugins>
 
 
             <!-- pour que maven lance les tests junit 5 -->
-
-
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+                <configuration>
+                <excludes>
+                    <exclude/>
+                </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
 
             <!-- la génération de la  javadoc s'utilise avec "mvn site" -->
 
 
             <plugin>
-
-
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.1.1</version>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
                 <configuration>
-                    <show>package</show>
-                    <nohelp>true</nohelp>
-                    <encoding>utf-8</encoding> <!-- éventuellement à changer : encodage de vos fichiers -->
-                    <charset>utf-8</charset> <!-- éventuellement à changer : encodage de vos fichiers -->
-                    <docencoding>utf-8</docencoding>
+                    <source>1.8</source> <!-- 1.8,1.9,1.10,11,12,13 -->
+                    <target>1.8</target>
                 </configuration>
 
                 <executions>
@@ -70,14 +76,7 @@
                         </configuration>
                     </execution>
                 </executions>
-
             </plugin>
-
-
-
-
-
-
 
 
             <plugin>
@@ -92,27 +91,8 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>serveur.Serveur
-                    </mainClass>  <!-- à changer : classe avec point d'entrée pour votre projet -->
-                    <!-- argument de la commande java (en plus du nom de la classe et du classpath -->
-
-                    <!-- arguments récupérés dans le main -->
-
-                    <arguments>
-                        <argument>3</argument>
-                        <argument>partie</argument>
-                    </arguments>
-
-
-                    <!-- arguments de configuration système -->
-                    <!--
-                        <systemProperties>
-                                <systemProperty>
-                                    <key>myproperty</key>
-                                    <value>myvalue</value>
-                                </systemProperty>
-                        </systemProperties>
-                     -->
+                    <executable>java</executable>
+                    <mainClass>Main</mainClass>  <!-- à changer : classe avec point d'entrée pour votre projet -->
                 </configuration>
             </plugin>
 
@@ -128,8 +108,16 @@
             <version>1.0</version>
         </dependency>
 
-
-
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-surefire-provider</artifactId>
+            <version>1.2.0-M1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.2.0-M1</version>
+        </dependency>
 
         <dependency>
             <groupId>com.corundumstudio.socketio</groupId>
@@ -156,12 +144,6 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13</version>
-        </dependency>
-        <dependency>
-            <groupId>PLPLD</groupId>
-            <artifactId>commun</artifactId>
-            <version>1.0</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 

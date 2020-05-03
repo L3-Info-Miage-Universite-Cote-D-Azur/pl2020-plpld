@@ -1,4 +1,4 @@
-package Fichiers;
+package fichiers;
 import metier.Etudiant;
 import metier.ListeSemestre;
 import java.io.*;

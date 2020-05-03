@@ -1,4 +1,4 @@
-package Fichiers;
+package fichiers;
 
 import static org.junit.Assert.*;
 import metier.Etudiant;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FichierTest {
+public class GestionnaireDeFichiersTest {
 
     private GestionnaireDeFichiers fichiers;
     private HashMap<String, List<String>> hashMapS1;
@@ -167,17 +167,17 @@ public class FichierTest {
         listeToutUE = fichiers.lireTout(semestreTest, semestreTest, semestreTest, semestreTest);
 
         // On vérifie que les matières correspondent bien pour le premier semestre (index 0 de la liste)
-        assertEquals(listeToutUE.get(0).get("MIASHS"), new ArrayList<>() {{ add("Economie-Gestion S1"); add("Intro R");}});
-        assertEquals(listeToutUE.get(0).get("Géographie"), new ArrayList<>() {{ add("Decouverte 1"); add("Decouverte 2"); add("Disciplinaire 1"); add("Découverte 4");}});
-        assertEquals(listeToutUE.get(0).get("Science de la vie"), new ArrayList<>() {{ add("Physiologie. Neurologie. Enzymologie. Methodologie"); add("Diversité du Vivant");}});
-        assertEquals(listeToutUE.get(0).get("Informatique"), new ArrayList<>() {{ add("Bases de l'informatique"); add("Introduction à l'informatique par le web"); add("Structures de données et programmation C"); add("Bases de donnée"); add("System 1. Unix et progra shell"); add("Programmation impérative");}});
-        assertEquals(listeToutUE.get(0).get("Mathématiques"), new ArrayList<>() {{ add("Fondements 1"); add("Méthodes : approche continue"); add("Complements 1"); add("Méthodes : Mathématiques et ingénierie"); add("Méthodes : approche géométrique"); }});
-        assertEquals(listeToutUE.get(0).get("Chimie"), new ArrayList<>() {{ add("Structure Microscopique de la Matière"); add("Réactions et reactivites chimiques");}});
-        assertEquals(listeToutUE.get(0).get("Science de la Terre"), new ArrayList<>() {{ add("Structure et dynamique de la terre"); add("Atmosphère; Océan; Climats");}});
-        assertEquals(listeToutUE.get(0).get("CLE 1D (Continuum Licence Enseignement)"), new ArrayList<>() {{ add("Enseignements fondamentaux à l'école primaire 1"); }});
-        assertEquals(listeToutUE.get(0).get("Physique"), new ArrayList<>() {{ add("Mécanique 1"); }});
-        assertEquals(listeToutUE.get(0).get("UE facultative"), new ArrayList<>() {{ add("Projet FabLab"); }});
-        assertEquals(listeToutUE.get(0).get("Electronique"), new ArrayList<>() {{ add("Electronique numerique - Bases"); add("Electronique analogique"); add("Communication sans fil");}});
+        assertEquals(listeToutUE.get(0).get("MIASHS"), new ArrayList<String>() {{ add("Economie-Gestion S1"); add("Intro R");}});
+        assertEquals(listeToutUE.get(0).get("Géographie"), new ArrayList<String>() {{ add("Decouverte 1"); add("Decouverte 2"); add("Disciplinaire 1"); add("Découverte 4");}});
+        assertEquals(listeToutUE.get(0).get("Science de la vie"), new ArrayList<String>() {{ add("Physiologie. Neurologie. Enzymologie. Methodologie"); add("Diversité du Vivant");}});
+        assertEquals(listeToutUE.get(0).get("Informatique"), new ArrayList<String>() {{ add("Bases de l'informatique"); add("Introduction à l'informatique par le web"); add("Structures de données et programmation C"); add("Bases de donnée"); add("System 1. Unix et progra shell"); add("Programmation impérative");}});
+        assertEquals(listeToutUE.get(0).get("Mathématiques"), new ArrayList<String>() {{ add("Fondements 1"); add("Méthodes : approche continue"); add("Complements 1"); add("Méthodes : Mathématiques et ingénierie"); add("Méthodes : approche géométrique"); }});
+        assertEquals(listeToutUE.get(0).get("Chimie"), new ArrayList<String>() {{ add("Structure Microscopique de la Matière"); add("Réactions et reactivites chimiques");}});
+        assertEquals(listeToutUE.get(0).get("Science de la Terre"), new ArrayList<String>() {{ add("Structure et dynamique de la terre"); add("Atmosphère; Océan; Climats");}});
+        assertEquals(listeToutUE.get(0).get("CLE 1D (Continuum Licence Enseignement)"), new ArrayList<String>() {{ add("Enseignements fondamentaux à l'école primaire 1"); }});
+        assertEquals(listeToutUE.get(0).get("Physique"), new ArrayList<String>() {{ add("Mécanique 1"); }});
+        assertEquals(listeToutUE.get(0).get("UE facultative"), new ArrayList<String>() {{ add("Projet FabLab"); }});
+        assertEquals(listeToutUE.get(0).get("Electronique"), new ArrayList<String>() {{ add("Electronique numerique - Bases"); add("Electronique analogique"); add("Communication sans fil");}});
 
         // Les 4 semestres sont identique car ont a mis le même fichier
         assertEquals(listeToutUE.get(0), listeToutUE.get(1));
@@ -195,48 +195,48 @@ public class FichierTest {
         constructionPrerequis = fichiers.constructionPrerequis(semestreTest,semestreTest,semestreTest,semestreTest, prerequisTest);
 
         //On vérifie les matières sans prérequis (la valeur est une liste vide)
-        assertEquals(constructionPrerequis.get("Communication sans fil"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Decouverte 1"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Decouverte 2"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Fondements 1"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Méthodes : Mathématiques et ingénierie"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Structure et dynamique de la terre"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Atmosphère; Océan; Climats"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Disciplinaire 1"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Intro R"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Bases de l'informatique"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Electronique analogique"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Complements 1"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Physiologie. Neurologie. Enzymologie. Methodologie"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Méthodes : approche continue"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Structures de données et programmation C"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("System 1. Unix et progra shell"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Mécanique 1"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Bases de donnée"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Programmation impérative"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Enseignements fondamentaux à l'école primaire 1"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Economie-Gestion S1"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Méthodes : approche géométrique"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Structure Microscopique de la Matière"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Introduction à l'informatique par le web"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Diversité du Vivant"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Réactions et reactivites chimiques"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Projet FabLab"), new ArrayList<>());
-        assertEquals(constructionPrerequis.get("Electronique numerique - Bases"), new ArrayList<>());
+        assertEquals(constructionPrerequis.get("Communication sans fil"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Decouverte 1"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Decouverte 2"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Fondements 1"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Méthodes : Mathématiques et ingénierie"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Structure et dynamique de la terre"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Atmosphère; Océan; Climats"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Disciplinaire 1"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Intro R"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Bases de l'informatique"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Electronique analogique"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Complements 1"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Physiologie. Neurologie. Enzymologie. Methodologie"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Méthodes : approche continue"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Structures de données et programmation C"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("System 1. Unix et progra shell"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Mécanique 1"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Bases de donnée"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Programmation impérative"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Enseignements fondamentaux à l'école primaire 1"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Economie-Gestion S1"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Méthodes : approche géométrique"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Structure Microscopique de la Matière"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Introduction à l'informatique par le web"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Diversité du Vivant"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Réactions et reactivites chimiques"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Projet FabLab"), new ArrayList<String>());
+        assertEquals(constructionPrerequis.get("Electronique numerique - Bases"), new ArrayList<String>());
 
         //On vérifie les matières avec prérequis
-        assertEquals(constructionPrerequis.get("Fondements 2"), new ArrayList<>() {{add("Fondements 1");}});
-        assertEquals(constructionPrerequis.get("Disciplinaire 2"), new ArrayList<>(){{add("Disciplinaire 1");}});
-        assertEquals(constructionPrerequis.get("Complements 2"), new ArrayList<>(){{add("Complements 1");}});
-        assertEquals(constructionPrerequis.get("Mécanique 2"), new ArrayList<>(){{add("Mécanique 1");}});
-        assertEquals(constructionPrerequis.get("Découverte 3"), new ArrayList<>(){{add("Decouverte 2");}});
-        assertEquals(constructionPrerequis.get("Découverte 4"), new ArrayList<>(){{add("Decouverte 3");}});
-        assertEquals(constructionPrerequis.get("Enseignements fondamentaux à l'école primaire 2"), new ArrayList<>(){{add("Enseignements fondamentaux à l'école primaire 1");}});
-        assertEquals(constructionPrerequis.get("Economie-Gestion S2"), new ArrayList<>(){{add("Economie-Gestion S1");}});
+        assertEquals(constructionPrerequis.get("Fondements 2"), new ArrayList<String>() {{add("Fondements 1");}});
+        assertEquals(constructionPrerequis.get("Disciplinaire 2"), new ArrayList<String>(){{add("Disciplinaire 1");}});
+        assertEquals(constructionPrerequis.get("Complements 2"), new ArrayList<String>(){{add("Complements 1");}});
+        assertEquals(constructionPrerequis.get("Mécanique 2"), new ArrayList<String>(){{add("Mécanique 1");}});
+        assertEquals(constructionPrerequis.get("Découverte 3"), new ArrayList<String>(){{add("Decouverte 2");}});
+        assertEquals(constructionPrerequis.get("Découverte 4"), new ArrayList<String>(){{add("Decouverte 3");}});
+        assertEquals(constructionPrerequis.get("Enseignements fondamentaux à l'école primaire 2"), new ArrayList<String>(){{add("Enseignements fondamentaux à l'école primaire 1");}});
+        assertEquals(constructionPrerequis.get("Economie-Gestion S2"), new ArrayList<String>(){{add("Economie-Gestion S1");}});
 
         //Une matières qui n'est pas dans le HashMap apparait comme NULL (et non comme une liste vide)
         assertEquals(constructionPrerequis.get("Matières"), null);
-        assertNotEquals(constructionPrerequis.get("Matières"), new ArrayList<>());
+        assertNotEquals(constructionPrerequis.get("Matières"), new ArrayList<String>());
     }
 
 

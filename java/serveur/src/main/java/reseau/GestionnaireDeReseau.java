@@ -1,7 +1,6 @@
 package reseau;
 
-import Fichiers.GestionnaireDeFichiers;
-import com.corundumstudio.socketio.SocketIOClient;
+import fichiers.GestionnaireDeFichiers;
 import metier.ChoixUtilisateur;
 import metier.Etudiant;
 import metier.Identité;
@@ -14,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 import static constantes.Net.*;
-import static constantes.Net.UE;
 
 /**
  *  Classe GestionnaireDeRéseau, cette classe sert de passerelle entre le serveur et GestionnaireDeFichier
